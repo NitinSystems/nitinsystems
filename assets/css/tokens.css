@@ -1,0 +1,63 @@
+/* ==========================================================================
+   DESIGN TOKENS — NITIN SYSTEMS
+   ========================================================================== */
+:root {
+  /* Brand Core Colors */
+  --ink: #0F172A;
+  --ink-light: #1E293B;
+  --ink-soft: #475569;
+  --ink-muted: #64748B;
+  
+  --cobalt: #2563EB;
+  --cobalt-dark: #1D4ED8;
+  --cobalt-light: #EFF6FF;
+  --cobalt-border: rgba(37, 99, 235, 0.25);
+  --cobalt-glow: rgba(37, 99, 235, 0.15);
+  
+  --sky-accent: #38BDF8;
+  --emerald: #059669;
+  --emerald-light: #D1FAE5;
+  --emerald-border: #A7F3D0;
+  --rose: #E11D48;
+  --rose-light: #FFF1F2;
+  --rose-border: #FECDD3;
+
+  /* Surfaces & Canvas */
+  --paper: #FFFFFF;
+  --cloud: #F8FAFC;
+  --slate-subtle: #F1F5F9;
+  --canvas-bg: linear-gradient(135deg, #EAF3FC 0%, #FFFFFF 100%);
+  --line: #E2E8F0;
+  --line-strong: #CBD5E1;
+
+  /* Neo-Glassmorphism Tokens (IgnytLabs Standard) */
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-bg-hover: rgba(255, 255, 255, 0.88);
+  --glass-border: rgba(255, 255, 255, 0.85);
+  --glass-border-hover: rgba(37, 99, 235, 0.35);
+  --glass-blur: blur(16px);
+  --glass-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05);
+  --glass-shadow-hover: 0 25px 50px -12px rgba(37, 99, 235, 0.12);
+
+  /* Typography Scale */
+  --font-serif: 'Lora', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* Spacing Scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 5rem;
+  --max-width: 1152px;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+  --transition-smooth: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  --transition-spring: transform 0.2s ease, box-shadow 0.2s ease;
+}

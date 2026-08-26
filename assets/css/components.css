@@ -1,0 +1,592 @@
+/* ==========================================================================
+   COMPONENT LIBRARY — NITIN SYSTEMS MASTER COMPONENTS
+   ========================================================================== */
+
+/* ── 1. FROSTED GLOW NAVBAR ── */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0.75rem 1.25rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+#navbar-inner {
+  width: 100%;
+  max-width: var(--max-width);
+  height: 52px;
+  max-height: 52px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 8px 32px rgba(37, 99, 235, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+  transition: all 0.25s ease;
+  pointer-events: auto;
+}
+
+#navbar-inner.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 12px 36px -8px rgba(37, 99, 235, 0.15), 0 1px 4px rgba(0, 0, 0, 0.06);
+  border-color: rgba(203, 213, 225, 0.95);
+}
+
+.nav-brand-wrap,
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 100%;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.brand-logo-box {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.brand-title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.brand-status {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.15rem;
+}
+
+.nav-links-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(241, 245, 249, 0.85);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  height: 38px;
+  box-sizing: border-box;
+}
+
+.nav-link,
+.nav-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-link:hover,
+.nav-item:hover {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.nav-link.active,
+.nav-item.active {
+  color: var(--cobalt);
+  background: #FFFFFF;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.nav-actions-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.hamburger-btn {
+  display: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-sm);
+  background: none;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  color: var(--ink);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+#mobile-drawer {
+  position: fixed;
+  inset: 1rem;
+  top: 5rem;
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  display: none !important;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 1100;
+}
+
+#mobile-drawer.open {
+  display: flex !important;
+}
+
+/* ── 2. NEO-GLASS CARDS & 3D HOVER ── */
+.glass-card {
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease !important;
+  will-change: transform, box-shadow, border-color;
+}
+
+.glass-card:hover,
+.glass-card.wave-reveal.in-view:hover,
+.stage-card:hover,
+.capability-card:hover,
+.insight-topic-card:hover,
+.founder-profile-box:hover {
+  transform: translateY(-6px) scale(1.015) !important;
+  box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.16), 0 0 0 1px rgba(37, 99, 235, 0.35) !important;
+  border-color: rgba(37, 99, 235, 0.45) !important;
+  z-index: 5;
+}
+
+.glass-card .spotlight {
+  pointer-events: none;
+  position: absolute;
+  inset: -1px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.glass-card:hover .spotlight {
+  opacity: 1;
+}
+
+.glass-card > .card-inner {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+}
+
+/* ── 3. BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: var(--cobalt);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+}
+
+.btn-primary:hover {
+  background: var(--cobalt-dark);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-primary .arrow-icon {
+  transition: transform 0.25s ease;
+}
+
+.btn-primary:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+.btn-secondary {
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.btn-secondary:hover {
+  border-color: var(--cobalt);
+  color: var(--cobalt);
+  background: var(--cobalt-light);
+  transform: translateY(-1px);
+}
+
+/* ── 4. BADGES & PILLS ── */
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--cobalt);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.badge-pill .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cobalt);
+}
+
+/* ── 5. TOOL STACK MARQUEE (STRICT CONFINED SIZING) ── */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 1.25rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.marquee-container::before,
+.marquee-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee-container::before {
+  left: 0;
+  background: linear-gradient(to right, #FAFAFA, transparent);
+}
+
+.marquee-container::after {
+  right: 0;
+  background: linear-gradient(to left, #FAFAFA, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.tool-marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.5rem 1.15rem;
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tool-marquee-item img,
+.tool-marquee-item svg {
+  width: 22px !important;
+  height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+  object-fit: contain !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+}
+
+.tool-marquee-item span {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+/* ── 6. WORKFLOW CONSOLE ── */
+.workflow-console {
+  background: var(--ink);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  width: 100%;
+}
+
+.console-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.console-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.console-body {
+  padding: 1.25rem;
+}
+
+.console-node {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 0.875rem;
+  text-align: center;
+}
+
+.console-node.active {
+  border-color: rgba(37, 99, 235, 0.5);
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.console-node.success {
+  border-color: rgba(52, 211, 153, 0.5);
+  background: rgba(52, 211, 153, 0.08);
+}
+
+/* ── 7. ACCORDION / FAQ ── */
+.accordion-item {
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.25s ease;
+  margin-bottom: 0.75rem;
+}
+
+.accordion-item:hover {
+  border-color: var(--cobalt-border);
+}
+
+.accordion-btn {
+  width: 100%;
+  text-align: left;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.accordion-btn .question {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ink);
+  transition: color 0.2s ease;
+}
+
+.accordion-btn:hover .question {
+  color: var(--cobalt);
+}
+
+.accordion-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--cloud);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  font-size: 0.75rem;
+}
+
+.accordion-item.open .accordion-icon {
+  background: var(--cobalt);
+  color: #FFFFFF;
+  border-color: var(--cobalt);
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding: 0 1.5rem;
+}
+
+.accordion-item.open .accordion-content {
+  max-height: 320px;
+  padding-bottom: 1.25rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+
+/* ── 8. FORMS & INPUTS ── */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink);
+}
+
+.form-input, .form-textarea, .form-select {
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: #FFFFFF;
+  font-size: 0.875rem;
+  color: var(--ink);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+  width: 100%;
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  border-color: var(--cobalt);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* ── 9. MODAL & LIGHTBOX OVERLAYS ── */
+.modal-overlay,
+.lightbox-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(15, 23, 42, 0.75) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  z-index: 2000 !important;
+  display: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 1.5rem !important;
+}
+
+.modal-overlay.open,
+.lightbox-overlay.open {
+  display: flex !important;
+}
+
+.modal-card {
+  background: #FFFFFF;
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 540px;
+  padding: 2.25rem;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--cloud);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+}
+
+/* ── 10. LIGHT FOOTER ── */
+#footer,
+footer {
+  background: var(--cloud) !important;
+  color: var(--ink-soft) !important;
+  border-top: 1px solid var(--line) !important;
+  padding: 4rem 1.25rem 2.5rem 1.25rem !important;
+}
+
+#footer a,
+footer a {
+  color: var(--ink-soft) !important;
+}
+
+#footer a:hover,
+footer a:hover {
+  color: var(--cobalt) !important;
+}
+
+#footer h4,
+footer h4 {
+  color: var(--ink) !important;
+}

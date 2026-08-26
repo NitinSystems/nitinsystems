@@ -1,0 +1,33 @@
+/* ==========================================================================
+   PATTERNCRAFT BACKGROUND PATTERNS
+   ========================================================================== */
+.bg-pattern-grid-light {
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.bg-pattern-grid-dark {
+  background-image:
+    linear-gradient(to right, rgba(56, 189, 248, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.bg-pattern-dots {
+  background-image: radial-gradient(rgba(15, 23, 42, 0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.ambient-glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.08), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}

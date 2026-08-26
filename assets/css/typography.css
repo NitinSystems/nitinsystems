@@ -1,0 +1,61 @@
+/* ==========================================================================
+   TYPOGRAPHY SYSTEM & HIERARCHY
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--ink);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+}
+
+h4 {
+  font-size: 1.1rem;
+}
+
+p {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.serif { font-family: var(--font-serif); }
+.sans { font-family: var(--font-sans); }
+.font-mono { font-family: var(--font-mono); }
+
+.text-ink { color: var(--ink); }
+.text-ink-soft { color: var(--ink-soft); }
+.text-cobalt { color: var(--cobalt); }
+.text-emerald { color: var(--emerald); }
+.text-white { color: #FFFFFF; }
+
+.eyebrow-text {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--cobalt);
+}
+
+.text-accent {
+  color: var(--cobalt);
+  font-style: italic;
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  text-decoration-color: var(--cobalt-border);
+}

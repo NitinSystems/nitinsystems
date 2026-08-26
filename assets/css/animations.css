@@ -1,0 +1,199 @@
+/* ==========================================================================
+   ANIMATIONS & MOTION SYSTEM — 100% HARMONIZED UNIVERSAL FLOW (4:49 PM MASTER)
+   ========================================================================== */
+
+/* ── 1. CHOREOGRAPHED HERO ENTRANCE (ZERO PREMATURE FRAME 0 ARTIFACTS) ── */
+@keyframes heroNavDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroBadgeEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(26px) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heroTitleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(34px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroSubFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroCtaFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroConsoleExpand {
+  0% {
+    opacity: 0;
+    transform: translateY(36px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heroGlowBloom {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.7);
+  }
+  100% {
+    opacity: 0.95;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+/* ── 2. AMBIENT ZERO-GRAVITY BALLOON LEVITATION ── */
+@keyframes balloonLevitate {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Hero Stagger Classes (Every element starts at opacity: 0 and flows in smoothly) */
+.animate-hero-nav {
+  animation: heroNavDrop 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.animate-hero-badge {
+  animation: heroBadgeEntrance 1.25s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both, balloonLevitate 4.5s ease-in-out 1.5s infinite !important;
+}
+
+.animate-hero-title {
+  animation: heroTitleFloat 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both !important;
+}
+
+.animate-hero-sub {
+  animation: heroSubFloat 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both !important;
+}
+
+.animate-hero-cta {
+  animation: heroCtaFloat 1.3s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both !important;
+}
+
+.animate-hero-console {
+  animation: heroConsoleExpand 1.55s cubic-bezier(0.16, 1, 0.3, 1) 1.05s both !important;
+}
+
+.animate-hero-glow {
+  animation: heroGlowBloom 1.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+}
+
+/* Standalone Badge Pills (Lower in page) */
+.badge-pill:not(.animate-hero-badge) {
+  animation: balloonLevitate 4.5s ease-in-out infinite;
+}
+
+
+/* ── 3. WAVE AIRFLOW SCROLL REVEALS ── */
+.wave-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.wave-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wave-delay-1 { transition-delay: 0.08s; }
+.wave-delay-2 { transition-delay: 0.16s; }
+.wave-delay-3 { transition-delay: 0.24s; }
+.wave-delay-4 { transition-delay: 0.32s; }
+.wave-delay-5 { transition-delay: 0.40s; }
+.wave-delay-6 { transition-delay: 0.48s; }
+
+
+/* ── 4. SPECULAR GRADIENT SCROLL SWEEP ── */
+.shimmer-sweep-title {
+  opacity: 0;
+  transform: translateY(24px);
+  background: linear-gradient(105deg, #0F172A 0%, #0F172A 35%, #2563EB 50%, #38BDF8 58%, #0F172A 70%, #0F172A 100%);
+  background-size: 260% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, background-position;
+}
+
+.shimmer-sweep-title.in-view {
+  opacity: 1;
+  transform: translateY(0);
+  animation: specularShimmer 2.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+@keyframes specularShimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: 0% 0; }
+}
+
+
+/* ── 5. RADAR BEACON & MICRO-INTERACTIONS ── */
+@keyframes ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+.animate-ping {
+  animation: ping 1.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.raycast-hover {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+
+.raycast-hover:hover {
+  transform: scale(1.025) translateY(-2px);
+}
+
+.raycast-hover:active {
+  transform: scale(0.98);
+}
