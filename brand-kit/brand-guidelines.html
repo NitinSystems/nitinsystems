@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nitin Systems — Brand Guidelines & Design System Master</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    .swatch { height: 72px; border-radius: 8px; margin-bottom: 0.5rem; border: 1px solid rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body style="padding-top: 3rem; padding-bottom: 5rem;">
+  <div class="container" style="max-width: 960px;">
+    <div style="border-bottom: 2px solid var(--line); padding-bottom: 2rem; margin-bottom: 3rem;">
+      <span class="badge-pill">OFFICIAL DESIGN SYSTEM</span>
+      <h1 style="font-size: 2.75rem; margin-top: 0.75rem;">Nitin Systems Brand Guidelines</h1>
+      <p style="font-size: 1.05rem; color: var(--ink-soft); margin-top: 0.5rem;">
+        Master Design Tokens, Typography Hierarchy, Color Palette, and Interaction Standards.
+      </p>
+    </div>
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem;">1. Color Palette Tokens</h2>
+      <div class="grid grid-4">
+        <div>
+          <div class="swatch" style="background: #0F172A;"></div>
+          <div style="font-weight: 700; font-size: 0.85rem;">Deep Slate Ink</div>
+          <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--ink-soft);">#0F172A (--ink)</div>
+        </div>
+        <div>
+          <div class="swatch" style="background: #2563EB;"></div>
+          <div style="font-weight: 700; font-size: 0.85rem;">Cobalt Brand Blue</div>
+          <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--ink-soft);">#2563EB (--cobalt)</div>
+        </div>
+        <div>
+          <div class="swatch" style="background: #EAF3FC;"></div>
+          <div style="font-weight: 700; font-size: 0.85rem;">Ice Blue Canvas</div>
+          <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--ink-soft);">#EAF3FC</div>
+        </div>
+        <div>
+          <div class="swatch" style="background: #059669;"></div>
+          <div style="font-weight: 700; font-size: 0.85rem;">Emerald Verified</div>
+          <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--ink-soft);">#059669 (--emerald)</div>
+        </div>
+      </div>
+    </section>
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem;">2. Typography System</h2>
+      <div style="display: flex; flex-direction: column; gap: 1.5rem; background: var(--paper); padding: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--line);">
+        <div>
+          <span style="font-size: 0.7rem; font-family: var(--font-mono); color: var(--cobalt);">HEADINGS (H1-H4) — LORA SERIF</span>
+          <h1 style="font-size: 2.25rem;">H1 Headline Scale (Lora 700)</h1>
+        </div>
+        <div>
+          <span style="font-size: 0.7rem; font-family: var(--font-mono); color: var(--cobalt);">BODY & UI — INTER SANS</span>
+          <p style="font-size: 0.95rem;">Body text is set in Inter (400 / 500 / 600) with a 1.7 line height for optimal readability on high-contrast surfaces.</p>
+        </div>
+        <div>
+          <span style="font-size: 0.7rem; font-family: var(--font-mono); color: var(--cobalt);">CODE & METRICS — JETBRAINS MONO</span>
+          <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-soft);">01. Ingest &gt; 02. Triage &gt; 03. Sync &gt; 04. Handoff</div>
+        </div>
+      </div>
+    </section>
+    <section style="margin-bottom: 4rem;">
+      <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem;">3. Interactive Components</h2>
+      <div class="grid grid-2">
+        <div class="glass-card" style="padding: 2rem;">
+          <div class="card-inner">
+            <span class="badge-pill" style="margin-bottom: 1rem;">NEO-GLASS CARD</span>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Frosted Glassmorphism</h3>
+            <p style="font-size: 0.85rem; color: var(--ink-soft);">IgnytLabs standard: 72% opacity, 16px backdrop blur, subtle inner stroke.</p>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1rem; justify-content: center;">
+          <a href="#" class="btn btn-primary raycast-hover">Primary Button CTA →</a>
+          <a href="#" class="btn btn-secondary">Secondary Outline Button</a>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2 style="font-size: 1.75rem; margin-bottom: 1rem;">4. Brand Voice &amp; Positioning Rules</h2>
+      <div style="background: var(--cloud); padding: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--line); font-size: 0.9rem; line-height: 1.7;">
+        <ul style="list-style: disc; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+          <li><strong>Direct Solo Founder:</strong> Never use corporate titles ("Senior Enterprise Architect"). Position Nitin Mishra honestly as a skilled, solo B2B automation specialist.</li>
+          <li><strong>Single Email Authority:</strong> Use ONLY <code>NitinSystems@outlook.com</code> site-wide.</li>
+          <li><strong>Clear &gt; Clever:</strong> Copy must focus on tangible business outcomes (reducing lead latency, eliminating duplicates, syncing CRM pipelines).</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
