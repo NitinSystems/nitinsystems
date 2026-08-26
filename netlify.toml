@@ -1,0 +1,8 @@
+# Netlify Configuration for Nitin Systems (Static HTML/CSS/JS Architecture)
+
+[build]
+  publish = "."
+  command = ""
+
+[build.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
