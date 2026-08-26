@@ -3,76 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Systems Library & Operational Blueprints — Nitin Systems</title>
-  <meta name="description" content="Explore production and portfolio operational architectures: lead intake, CRM pipelines, and integration workflows." />
+  <title>Systems Library & Operational Blueprints | Nitin Systems</title>
+  <meta name="description" content="B2B automation systems specialist serving founders and small businesses in India, US, UK and Europe. CRM-connected workflows, integrations, and automation." />
   <meta name="author" content="Nitin Mishra" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://nitinsystems.com/systems.html" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/logo/favicon.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo/apple-touch-icon.png" />
-  <link rel="shortcut icon" href="assets/logo/favicon.png" />
-  <meta property="og:image" content="assets/logo/social-graph-logo.png" />
-  <meta name="twitter:image" content="assets/logo/social-graph-logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/nav-logo.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/logo/nav-logo.png" />
+  <link rel="shortcut icon" href="assets/logo/nav-logo.png" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="view-transition" content="same-origin" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=999.0" />
+  <link rel="stylesheet" href="assets/css/style.css?v=16.0" />
 </head>
 <body>
-<header id="navbar">
+<header id="navbar" class="animate-hero-nav">
   <div id="navbar-inner">
-    <a href="index.html" class="nav-brand">
-      <div class="brand-logo-box">
-        <img src="assets/logo/nav-logo.png" alt="Logo" style="width: 24px; height: 24px; object-fit: contain;" />
-      </div>
-      <div>
-        <div class="brand-title">Nitin Systems</div>
-        <div class="brand-status">
-          <div style="position: relative; width: 8px; height: 8px;">
-            <div class="animate-ping" style="position: absolute; inset: 0; border-radius: 50%; background: #34D399; opacity: 0.75;"></div>
-            <div style="position: relative; width: 8px; height: 8px; border-radius: 50%; background: #10B981;"></div>
-          </div>
-          <span style="font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft);">Operational · Solo Practice</span>
+    <div class="nav-brand-wrap">
+      <a href="index.html" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;">
+        <div class="brand-logo-box">
+          <img src="assets/logo/nav-logo.png" alt="Nitin Systems" />
         </div>
-      </div>
-    </a>
-    <nav class="nav-links-wrap">
-      <a href="index.html" class="nav-item ">Home</a>
-      <a href="systems.html" class="nav-item active">Systems</a>
-      <a href="approach.html" class="nav-item ">Approach</a>
-      <a href="about.html" class="nav-item ">About</a>
-      <a href="insights.html" class="nav-item ">Insights</a>
-    </nav>
-    <div style="display: flex; align-items: center; gap: 0.75rem;">
-      <a href="mailto:NitinSystems@outlook.com" class="nav-item" title="Email Nitin Directly" style="padding: 0 0.6rem; border-radius: 9999px;">✉</a>
-      <a href="audit.html" class="btn btn-primary raycast-hover" style="padding: 0.45rem 1.15rem; font-size: 0.75rem;">
-        <span>Discuss a Project</span>
-        <span class="arrow-icon">→</span>
+        <div>
+          <span style="font-size:0.95rem;font-weight:700;letter-spacing:-0.02em;color:var(--ink);display:block;line-height:1.1;">Nitin Systems</span>
+          <span style="font-size:0.65rem;font-weight:600;color:var(--ink-muted);letter-spacing:0.04em;text-transform:uppercase;display:flex;align-items:center;gap:0.35rem;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#10B981;display:inline-block;"></span>
+            OPERATIONAL · SOLO BUILDER
+          </span>
+        </div>
       </a>
-      <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle menu">☰</button>
+    </div>
+
+    <nav class="nav-links-wrap">
+      <a href="index.html" class="nav-link">Home</a>
+      <div class="nav-dropdown" style="position:relative;display:inline-block;">
+        <a href="systems.html" class="nav-link active" style="display:flex;align-items:center;gap:0.25rem;">
+          Systems <span style="font-size:0.65rem;opacity:0.7;">▾</span>
+        </a>
+      </div>
+      <a href="approach.html" class="nav-link">Approach</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="insights.html" class="nav-link">Insights</a>
+    </nav>
+
+    <div class="nav-actions-wrap">
+      <a href="audit.html" class="btn btn-primary" style="padding:0.45rem 1rem;font-size:0.85rem;">Discuss a Project →</a>
     </div>
   </div>
 </header>
-<div id="mobile-drawer">
-  <a href="index.html" class="nav-item " onclick="closeMobileMenu()">Home</a>
-  <a href="systems.html" class="nav-item active" onclick="closeMobileMenu()">Systems</a>
-  <a href="approach.html" class="nav-item " onclick="closeMobileMenu()">Approach</a>
-  <a href="about.html" class="nav-item " onclick="closeMobileMenu()">About</a>
-  <a href="insights.html" class="nav-item " onclick="closeMobileMenu()">Insights</a>
-  <div style="padding-top: 0.75rem; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem;">
-    <a href="audit.html" class="btn btn-primary" onclick="closeMobileMenu()">Discuss a Project →</a>
-    <a href="mailto:NitinSystems@outlook.com" style="text-align: center; padding: 0.65rem; border: 1px solid var(--line); border-radius: 0.75rem; font-size: 0.8rem; font-weight: 500; color: var(--ink-soft);">✉ NitinSystems@outlook.com</a>
-  </div>
-</div>
-<section class="section bg-pattern-grid-light" style="padding-top: 7.5rem; padding-bottom: 4rem; background: linear-gradient(180deg, #EAF3FC 0%, #FFFFFF 100%);">
-  <div class="ambient-glow"></div>
-  <div class="container" style="max-width: 860px; text-align: center;">
-    <div class="badge-pill animate-float"><span class="dot animate-pulse"></span>SYSTEMS LIBRARY &amp; PROOF</div>
-    <h1 style="font-size: clamp(2.2rem, 4.5vw, 3.2rem); margin-top: 1rem; color: var(--ink);">Systems Library &amp; Blueprints</h1>
-    <p class="section-sub" style="font-size: 1.05rem; max-width: 640px; margin: 0.85rem auto 0 auto;">A transparent catalog of client implementations, technical portfolio builds, and experimental workflow architectures.</p>
+
+<section class="section bg-pattern-grid-light" style="padding-top:7.5rem;padding-bottom:4rem;background:linear-gradient(180deg, #EAF3FC 0%, #FFFFFF 100%);">
+  <div class="ambient-glow animate-hero-glow"></div>
+  <div class="container" style="max-width:860px;text-align:center;">
+    <div class="badge-pill animate-hero-badge"><span class="dot animate-pulse"></span>SYSTEMS LIBRARY &amp; PROOF</div>
+    <h1 class="animate-hero-title" style="font-size:clamp(2.2rem,4.5vw,3.2rem);margin-top:1rem;color:var(--ink);">Systems Library &amp; Blueprints</h1>
+    <p class="section-sub animate-hero-sub" style="font-size:1.05rem;max-width:640px;margin:0.85rem auto 0 auto;">A transparent catalog of client implementations, technical portfolio builds, and experimental workflow architectures.</p>
   </div>
 </section>
 <section class="section" style="background: var(--paper); padding-top: 2rem; padding-bottom: 5rem;">
@@ -85,7 +71,7 @@
             <span style="font-size: 0.72rem; font-family: var(--font-mono); font-weight: 700; color: var(--emerald); background: var(--emerald-light); border: 1px solid var(--emerald-border); padding: 0.25rem 0.75rem; border-radius: 9999px;">Client Implementation</span>
             <span style="font-size: 0.72rem; font-family: var(--font-mono); color: var(--ink-soft);">Real Business Delivery</span>
           </div>
-          <span style="font-size: 0.72rem; font-family: var(--font-mono); color: var(--cobalt);">GoHighLevel · Google Calendar · Gmail · Make.com</span>
+          <span style="font-size: 0.72rem; font-family: var(--font-mono); color: var(--cobalt);">GoHighLevel · Google Calendar · Gmail</span>
         </div>
         <h2 style="font-size: 1.4rem; color: var(--ink); margin-bottom: 0.6rem;">Lead Capture to Booking System</h2>
         <p style="font-size: 0.9rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 1.25rem;">A live system implementation for an active service business connecting website intake forms, SMS/email notifications, and calendar scheduling.</p>
@@ -135,65 +121,74 @@
     </div>
   </div>
 </section>
+</main>
 <footer id="footer">
   <div class="container">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--line);">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--line);">
       <div>
-        <div style="display: flex; align-items: center; gap: 0.75rem;">
-          <div class="brand-logo-box"><img src="assets/logo/nav-logo.png" alt="Logo" style="width: 24px; height: 24px; object-fit: contain;" /></div>
-          <span style="font-family: var(--font-serif); font-weight: 700; font-size: 1.2rem; color: var(--ink);">Nitin Systems</span>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <div class="brand-logo-box"><img src="assets/logo/nav-logo.png" alt="Logo" style="width:24px;height:24px;object-fit:contain;" /></div>
+          <span style="font-family:var(--font-serif);font-weight:700;font-size:1.2rem;color:var(--ink);">Nitin Systems</span>
         </div>
-        <p style="font-size: 0.8rem; color: var(--ink-soft); line-height: 1.7; margin-top: 0.85rem; max-width: 400px;">
-          Solo-led B2B automation systems practice operated directly by Nitin Mishra. Designing, architecting, and maintaining fault-tolerant automation pipelines for scaling service businesses.
-        </p>
-        <div style="margin-top: 1.25rem;">
-          <a href="mailto:NitinSystems@outlook.com" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.9rem; border-radius: 0.75rem; background: var(--paper); border: 1px solid var(--line); font-size: 0.75rem; font-weight: 600; color: var(--ink);">✉ NitinSystems@outlook.com</a>
+        <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.7;margin-top:0.85rem;max-width:400px;">Solo-led B2B automation systems practice operated directly by Nitin Mishra. Designing, architecting, and delivering fault-tolerant automation pipelines for scaling service businesses.</p>
+        <div style="margin-top:1.25rem;">
+          <a href="mailto:NitinSystems@outlook.com" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.5rem 0.9rem;border-radius:0.75rem;background:var(--paper);border:1px solid var(--line);font-size:0.75rem;font-weight:600;color:var(--ink);">✉ NitinSystems@outlook.com</a>
         </div>
       </div>
       <div>
-        <h4 style="font-family: var(--font-serif); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink); margin-bottom: 0.85rem;">Navigation</h4>
-        <ul style="display: flex; flex-direction: column; gap: 0.5rem;">
-          <li><a href="index.html" style="font-size: 0.8rem; color: var(--ink-soft);">Home Overview</a></li>
-          <li><a href="systems.html" style="font-size: 0.8rem; color: var(--ink-soft);">Systems Library</a></li>
-          <li><a href="approach.html" style="font-size: 0.8rem; color: var(--ink-soft);">Our Approach</a></li>
-          <li><a href="about.html" style="font-size: 0.8rem; color: var(--ink-soft);">About Founder</a></li>
-          <li><a href="insights.html" style="font-size: 0.8rem; color: var(--ink-soft);">Insights &amp; Journal</a></li>
-          <li><a href="audit.html" style="font-size: 0.8rem; color: var(--ink-soft);">Discuss a Project</a></li>
+        <h4 style="font-family:var(--font-serif);font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink);margin-bottom:0.85rem;">Navigation</h4>
+        <ul style="display:flex;flex-direction:column;gap:0.5rem;">
+          <li><a href="index.html" style="font-size:0.8rem;color:var(--ink-soft);">Home</a></li>
+          <li><a href="systems.html" style="font-size:0.8rem;color:var(--ink-soft);">Systems Library</a></li>
+          <li><a href="approach.html" style="font-size:0.8rem;color:var(--ink-soft);">Approach</a></li>
+          <li><a href="about.html" style="font-size:0.8rem;color:var(--ink-soft);">About</a></li>
+          <li><a href="insights.html" style="font-size:0.8rem;color:var(--ink-soft);">Insights</a></li>
+          <li><a href="audit.html" style="font-size:0.8rem;color:var(--ink-soft);">Discuss a Project</a></li>
         </ul>
       </div>
       <div>
-        <h4 style="font-family: var(--font-serif); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink); margin-bottom: 0.85rem;">Systems Proof</h4>
-        <ul style="display: flex; flex-direction: column; gap: 0.5rem;">
-          <li><a href="systems.html" style="font-size: 0.8rem; color: var(--ink-soft); display: flex; justify-content: space-between;"><span>Lead Capture to Booking</span><span style="color: var(--emerald); font-family: var(--font-mono); font-size: 0.65rem;">Client Build</span></a></li>
-          <li><a href="systems.html" style="font-size: 0.8rem; color: var(--ink-soft); display: flex; justify-content: space-between;"><span>Lead Intake &amp; Deduplication</span><span style="color: var(--cobalt); font-family: var(--font-mono); font-size: 0.65rem;">Portfolio Build</span></a></li>
-          <li><a href="systems.html" style="font-size: 0.8rem; color: var(--ink-soft); display: flex; justify-content: space-between;"><span>AI Customer Journey Ops</span><span style="color: var(--cobalt); font-family: var(--font-mono); font-size: 0.65rem;">Architecture</span></a></li>
+        <h4 style="font-family:var(--font-serif);font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink);margin-bottom:0.85rem;">Systems Proof</h4>
+        <ul style="display:flex;flex-direction:column;gap:0.5rem;">
+          <li><a href="systems.html" style="font-size:0.8rem;color:var(--ink-soft);display:flex;justify-content:space-between;"><span>Lead Capture to Booking</span><span style="color:var(--emerald);font-family:var(--font-mono);font-size:0.65rem;">Client Build</span></a></li>
+          <li><a href="systems.html" style="font-size:0.8rem;color:var(--ink-soft);display:flex;justify-content:space-between;"><span>Lead Intake &amp; Deduplication</span><span style="color:var(--cobalt);font-family:var(--font-mono);font-size:0.65rem;">Portfolio</span></a></li>
+          <li><a href="systems.html" style="font-size:0.8rem;color:var(--ink-soft);display:flex;justify-content:space-between;"><span>AI Customer Journey Ops</span><span style="color:var(--cobalt);font-family:var(--font-mono);font-size:0.65rem;">Architecture</span></a></li>
         </ul>
       </div>
     </div>
-    <div style="padding-top: 1.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; font-size: 0.75rem; color: var(--ink-soft);">
-      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem;">
-        <p>© 2026 Nitin Systems. Solo Practice led by Nitin Mishra.</p>
-        <span style="color: var(--line);">|</span>
-        <a href="privacy.html" style="color: var(--ink-soft); text-decoration: underline;">Privacy Policy</a>
-        <span style="color: var(--line);">|</span>
-        <a href="terms.html" style="color: var(--ink-soft); text-decoration: underline;">Terms of Service</a>
+    <div style="padding-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;font-size:0.72rem;color:var(--ink-muted);">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem;">
+        <p style="font-weight:400;color:#64748B;">© 2026 Nitin Systems. Solo operation led by Nitin Mishra.</p>
+        <span style="color:var(--line);">|</span>
+        <a href="privacy.html" style="color:var(--ink-muted);text-decoration:underline;">Privacy Policy</a>
+        <span style="color:var(--line);">|</span>
+        <a href="terms.html" style="color:var(--ink-muted);text-decoration:underline;">Terms of Service</a>
       </div>
-      <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding: 0.35rem 0.75rem; border-radius: 0.5rem; background: var(--paper); border: 1px solid var(--line); font-size: 0.72rem; cursor: pointer;">Back to top ↑</button>
+      <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:0.35rem 0.75rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.72rem;cursor:pointer;color:var(--ink-soft);">Back to top ↑</button>
     </div>
   </div>
 </footer>
+<!-- PDF MODAL -->
 <div class="modal-overlay" id="pdf-modal" onclick="closePdfModal(event)">
   <div class="modal-card">
     <button class="modal-close-btn" onclick="closePdfModal()">✕</button>
-    <h3 id="modal-pdf-title" style="font-family: var(--font-serif); font-weight: 700; font-size: 1.25rem; color: var(--ink); margin-bottom: 0.4rem;">Download Blueprint PDF</h3>
-    <p style="font-size: 0.8rem; color: var(--ink-soft); margin-bottom: 1.5rem;">Access the verified technical case study document.</p>
-    <a id="modal-pdf-open" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; margin-bottom: 0.5rem;">Open in New Tab ↗</a>
-    <a id="modal-pdf-download" href="#" download class="btn btn-secondary" style="width: 100%;">Download PDF ⬇</a>
+    <h3 id="modal-pdf-title" style="font-family:var(--font-serif);font-weight:700;font-size:1.25rem;color:var(--ink);margin-bottom:0.4rem;"></h3>
+    <p style="font-size:0.8rem;color:var(--ink-soft);margin-bottom:1.5rem;">Access the verified technical case study document.</p>
+    <a id="modal-pdf-open" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%;margin-bottom:0.5rem;">Open in New Tab ↗</a>
+    <a id="modal-pdf-download" href="#" download class="btn btn-secondary" style="width:100%;">Download PDF</a>
   </div>
 </div>
+<!-- IMAGE LIGHTBOX MODAL -->
+<div class="modal-overlay" id="img-modal" onclick="closeImgModal(event)">
+  <div class="modal-card" style="max-width:820px;padding:1.5rem;">
+    <button class="modal-close-btn" onclick="closeImgModal()">✕</button>
+    <h3 id="modal-img-title" style="font-family:var(--font-serif);font-weight:700;font-size:1.15rem;color:var(--ink);margin-bottom:0.75rem;"></h3>
+    <div style="width:100%;max-height:72vh;overflow:auto;border-radius:8px;border:1px solid var(--line);background:#000;display:flex;align-items:center;justify-content:center;">
+      <img id="modal-img-src" src="" alt="Certificate Preview" style="width:100%;height:auto;object-fit:contain;" />
+    </div>
+  </div>
 <script src="assets/js/data.js?v=999.0"></script>
 <script src="assets/js/components.js?v=999.0"></script>
-<script src="assets/js/interactions.js?v=999.0"></script>
+<script src="assets/js/interactions.js?v=16.0"></script>
 <script src="assets/js/main.js?v=999.0"></script>
 </body>
 </html>

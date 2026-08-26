@@ -1,8 +1,6 @@
 /* ==========================================================================
-   INTERACTIONS & MOTION ENGINE — NITIN SYSTEMS
+   INTERACTIONS & MOTION ENGINE — NITIN SYSTEMS (STAGING ISOLATED)
    ========================================================================== */
-
-let lenisInstance = null;
 
 function initSmoothScroll() {
   // Use native smooth scrolling for instant, silky-smooth responsiveness without wheel lag
@@ -14,14 +12,16 @@ function initWaveScrollReveals() {
   document.querySelectorAll('.grid, [style*="grid-template-columns"]').forEach(grid => {
     const children = Array.from(grid.children);
     children.forEach((child, idx) => {
-      child.classList.add('wave-reveal');
-      const delayClass = `wave-delay-${(idx % 4) + 1}`;
-      child.classList.add(delayClass);
+      if (!child.classList.contains('wave-reveal') && !child.closest('#hero')) {
+        child.classList.add('wave-reveal');
+        const delayClass = `wave-delay-${(idx % 4) + 1}`;
+        child.classList.add(delayClass);
+      }
     });
   });
 
   // 2. Add wave-reveal to section headers & cards
-  document.querySelectorAll('.section-header, .glass-card, .accordion-item, .workflow-console').forEach(el => {
+  document.querySelectorAll('.section-header, .glass-card, .accordion-item, .workflow-console, .stage-card, .capability-card, .insight-topic-card').forEach(el => {
     if (!el.classList.contains('wave-reveal') && !el.closest('#hero')) {
       el.classList.add('wave-reveal');
     }
@@ -63,120 +63,122 @@ function initScrollNavbar() {
   }, { passive: true });
 }
 
-function initMobileMenu() {
-  const btn = document.getElementById('hamburger-btn');
-  const drawer = document.getElementById('mobile-drawer');
-  if (!btn || !drawer) return;
-
-  btn.addEventListener('click', () => {
-    drawer.classList.toggle('open');
-  });
-}
-
-function closeMobileMenu() {
-  const drawer = document.getElementById('mobile-drawer');
-  if (drawer) drawer.classList.remove('open');
-}
-
 function initSpotlightCards() {
-  const cards = document.querySelectorAll('[data-spotlight]');
+  const cards = document.querySelectorAll('.glass-card');
   cards.forEach(card => {
-    const spotlight = card.querySelector('.spotlight');
-    if (!spotlight) return;
+    let spotlight = card.querySelector('.spotlight');
+    if (!spotlight) {
+      spotlight = document.createElement('div');
+      spotlight.className = 'spotlight';
+      card.appendChild(spotlight);
+    }
 
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      spotlight.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(56, 189, 248, 0.14), transparent 70%)`;
+      spotlight.style.background = `radial-gradient(400px circle at ${x}px ${y}px, rgba(37, 99, 235, 0.08), transparent 80%)`;
     });
   });
 }
 
-function openPdfModal(title, url) {
+function initAccordions() {
+  document.querySelectorAll('.accordion-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.accordion-item');
+      if (!item) return;
+      const isOpen = item.classList.contains('open');
+
+      // Close all other items in the same container
+      const parent = item.parentElement;
+      if (parent) {
+        parent.querySelectorAll('.accordion-item.open').forEach(openItem => {
+          if (openItem !== item) openItem.classList.remove('open');
+        });
+      }
+
+      item.classList.toggle('open', !isOpen);
+    });
+  });
+}
+
+// PDF Modal Handlers
+function openPdfModal(title, pdfUrl) {
   const modal = document.getElementById('pdf-modal');
-  const titleEl = document.getElementById('modal-pdf-title');
+  const modalTitle = document.getElementById('modal-pdf-title');
   const openLink = document.getElementById('modal-pdf-open');
   const downloadLink = document.getElementById('modal-pdf-download');
-  if (titleEl) titleEl.textContent = title || 'Architecture Blueprint';
-  if (openLink) openLink.href = url || '#';
-  if (downloadLink) downloadLink.href = url || '#';
+
+  if (modalTitle && title) modalTitle.textContent = title;
+  if (openLink && pdfUrl) openLink.href = pdfUrl;
+  if (downloadLink && pdfUrl) downloadLink.href = pdfUrl;
+
   if (modal) modal.classList.add('open');
 }
 
 function closePdfModal(e) {
-  const modal = document.getElementById('pdf-modal');
-  if (!modal) return;
-  if (!e || e.target === modal || e.currentTarget.classList.contains('modal-close-btn')) {
-    modal.classList.remove('open');
+  if (e && e.target && e.target !== e.currentTarget && !e.target.classList.contains('modal-close-btn')) {
+    return;
   }
+  const modal = document.getElementById('pdf-modal');
+  if (modal) modal.classList.remove('open');
 }
 
-function openImgModal(title, src) {
-  const modal = document.getElementById('img-modal');
-  const titleEl = document.getElementById('modal-img-title');
-  const imgEl = document.getElementById('modal-img-src');
+// Certificate / Image Lightbox Handlers
+function openImgModal(title, imgSrc) {
+  const modal = document.getElementById('img-modal') || document.getElementById('cert-lightbox');
+  const modalTitle = document.getElementById('modal-img-title') || document.getElementById('lightbox-title');
+  const imgElement = document.getElementById('modal-img-src') || document.getElementById('lightbox-img');
 
-  if (titleEl) titleEl.textContent = title;
-  if (imgEl) imgEl.src = src;
-  if (modal) modal.classList.add('open');
+  if (modalTitle && title) modalTitle.textContent = title;
+  if (imgElement && imgSrc) imgElement.src = imgSrc;
+
+  if (modal) {
+    modal.classList.add('open');
+    modal.style.display = 'flex';
+  }
 }
 
 function closeImgModal(e) {
-  const modal = document.getElementById('img-modal');
-  if (!modal) return;
-  if (!e || e.target === modal || e.currentTarget.classList.contains('modal-close-btn')) {
+  if (e && e.target && e.target !== e.currentTarget && !e.target.classList.contains('modal-close-btn') && !e.target.hasAttribute('onclick')) {
+    return;
+  }
+  const modal = document.getElementById('img-modal') || document.getElementById('cert-lightbox');
+  if (modal) {
     modal.classList.remove('open');
+    modal.style.display = 'none';
   }
 }
 
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    const pdfModal = document.getElementById('pdf-modal');
-    if (pdfModal) pdfModal.classList.remove('open');
-    const imgModal = document.getElementById('img-modal');
-    if (imgModal) imgModal.classList.remove('open');
+function closeCertLightbox() {
+  closeImgModal();
+}
+
+// Mobile Menu Handlers
+function toggleMobileMenu() {
+  const drawer = document.getElementById('mobile-drawer');
+  if (drawer) {
+    drawer.classList.toggle('open');
+  }
+}
+
+function closeMobileMenu() {
+  const drawer = document.getElementById('mobile-drawer');
+  if (drawer) {
+    drawer.classList.remove('open');
+  }
+}
+
+// Master Initialization
+document.addEventListener('DOMContentLoaded', () => {
+  initSmoothScroll();
+  initWaveScrollReveals();
+  initScrollNavbar();
+  initSpotlightCards();
+  initAccordions();
+
+  const hamburger = document.getElementById('hamburger-btn');
+  if (hamburger) {
+    hamburger.addEventListener('click', toggleMobileMenu);
   }
 });
-
-function handleIntakeFormSubmit(e) {
-  e.preventDefault();
-  const form = e.target;
-  const submitBtn = form.querySelector('button[type="submit"]');
-  
-  if (submitBtn) {
-    submitBtn.disabled = true;
-    submitBtn.textContent = '✓ Submitting Diagnostic Intake...';
-    submitBtn.style.background = 'var(--emerald)';
-  }
-
-  setTimeout(() => {
-    window.location.href = 'thank-you.html';
-  }, 600);
-}
-
-function handleNewsletterSubmit(e) {
-  e.preventDefault();
-  const form = e.target;
-  const emailInput = form.querySelector('input[type="email"]');
-  const successBox = document.getElementById('newsletter-success');
-
-  if (emailInput && emailInput.value.includes('@')) {
-    if (form) form.style.display = 'none';
-    if (successBox) successBox.style.display = 'block';
-    setTimeout(() => {
-      window.open('https://nitinmishra.beehiiv.com/', '_blank');
-    }, 1200);
-  }
-}
-
-// Mobile Hamburger Menu Toggle
-window.toggleMobileMenu = function() {
-  const menu = document.getElementById('mobile-menu');
-  const btn = document.getElementById('hamburger-btn');
-  if (!menu) return;
-  menu.classList.toggle('open');
-  if (btn) {
-    btn.innerHTML = menu.classList.contains('open') ? '✕' : '☰';
-  }
-};

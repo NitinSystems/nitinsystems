@@ -1,9 +1,9 @@
 /* ==========================================================================
-   NITIN SYSTEMS — MASTER UNIFIED PRODUCTION STYLESHEET
+   NITIN SYSTEMS — MASTER STAGING STYLESHEET (100% ISOLATED WORKING PIPELINE)
    ========================================================================== */
 
 /* ==========================================================================
-   DESIGN TOKENS — NITIN SYSTEMS
+   1. DESIGN TOKENS
    ========================================================================== */
 :root {
   /* Brand Core Colors */
@@ -67,7 +67,7 @@
 }
 
 /* ==========================================================================
-   RESET & BASE STYLES
+   2. RESET & BASE STYLES
    ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -92,7 +92,7 @@ body {
 }
 
 /* ==========================================================================
-   TYPOGRAPHY
+   3. TYPOGRAPHY
    ========================================================================== */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
@@ -108,7 +108,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   LAYOUT & CONTAINER SYSTEM
+   4. LAYOUT & CONTAINER SYSTEM
    ========================================================================== */
 .container {
   width: 100%;
@@ -117,6 +117,12 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: auto;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+}
+
+.container-narrow {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
 }
 
 .section {
@@ -167,8 +173,28 @@ h1, h2, h3, h4, h5, h6 {
   .section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
 }
 
+.brand-logo-box {
+  width: 34px;
+  height: 34px;
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  padding: 4px;
+  flex-shrink: 0;
+}
+.brand-logo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
 /* ==========================================================================
-   PATTERNS & BACKGROUNDS
+   5. PATTERNS & BACKGROUNDS
    ========================================================================== */
 .bg-pattern-grid-light {
   background-image:
@@ -190,8 +216,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   ANIMATIONS & MOTION SYSTEM
+   6. MOTION SYSTEM (CHOREOGRAPHED HERO ENTRANCE + BALLOON LEVITATION)
    ========================================================================== */
+
+/* ── Hero Entrance Keyframes (Zero Premature Frame 0 Pop) ── */
 @keyframes heroNavDrop {
   0% { opacity: 0; transform: translateY(-30px); }
   100% { opacity: 1; transform: translateY(0); }
@@ -227,12 +255,14 @@ h1, h2, h3, h4, h5, h6 {
   100% { opacity: 0.95; transform: translateX(-50%) scale(1); }
 }
 
+/* ── Continuous Zero-Gravity Balloon Levitation ── */
 @keyframes balloonLevitate {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-5px); }
   100% { transform: translateY(0px); }
 }
 
+/* ── Hero Stagger Classes ── */
 .animate-hero-nav {
   animation: heroNavDrop 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
 }
@@ -261,10 +291,12 @@ h1, h2, h3, h4, h5, h6 {
   animation: heroGlowBloom 1.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
 }
 
+/* Standalone Badge Pills (Lower on page) */
 .badge-pill:not(.animate-hero-badge) {
   animation: balloonLevitate 4.5s ease-in-out infinite;
 }
 
+/* ── Wave Airflow Scroll Reveals ── */
 .wave-reveal {
   opacity: 0;
   transform: translateY(32px);
@@ -284,6 +316,7 @@ h1, h2, h3, h4, h5, h6 {
 .wave-delay-5 { transition-delay: 0.40s; }
 .wave-delay-6 { transition-delay: 0.48s; }
 
+/* ── Specular Gradient Scroll Sweep ── */
 .shimmer-sweep-title {
   opacity: 0;
   transform: translateY(24px);
@@ -327,10 +360,10 @@ h1, h2, h3, h4, h5, h6 {
 .raycast-hover:active { transform: scale(0.98); }
 
 /* ==========================================================================
-   COMPONENT LIBRARY — NITIN SYSTEMS MASTER COMPONENTS
+   7. COMPONENTS (NAVBAR, CARDS, BUTTONS, MARQUEE, MODALS, FOOTER)
    ========================================================================== */
 
-/* ── 1. FROSTED GLOW NAVBAR ── */
+/* ── Frosted Glow Navbar ── */
 #navbar {
   position: fixed;
   top: 0;
@@ -489,7 +522,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #mobile-drawer.open { display: flex !important; }
 
-/* ── 2. NEO-GLASS CARDS & 3D HOVER ── */
+/* ── 3D Neo-Glass Cards & Magnetic Air-Cushion Hover Float ── */
 .glass-card {
   background: #FFFFFF;
   border: 1px solid var(--line);
@@ -497,7 +530,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
   position: relative;
   overflow: hidden;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease !important;
+  transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.55s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.45s ease !important;
   will-change: transform, box-shadow, border-color;
 }
 
@@ -507,9 +540,9 @@ h1, h2, h3, h4, h5, h6 {
 .capability-card:hover,
 .insight-topic-card:hover,
 .founder-profile-box:hover {
-  transform: translateY(-6px) scale(1.015) !important;
-  box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.16), 0 0 0 1px rgba(37, 99, 235, 0.35) !important;
-  border-color: rgba(37, 99, 235, 0.45) !important;
+  transform: translateY(-8px) scale(1.018) !important;
+  box-shadow: 0 24px 48px -12px rgba(37, 99, 235, 0.18), 0 0 0 1px rgba(37, 99, 235, 0.35) !important;
+  border-color: rgba(37, 99, 235, 0.5) !important;
   z-index: 5;
 }
 
@@ -531,7 +564,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
 }
 
-/* ── 3. BUTTONS ── */
+/* ── Buttons ── */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -576,7 +609,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-1px);
 }
 
-/* ── 4. BADGES & PILLS ── */
+/* ── Badges & Pills ── */
 .badge-pill {
   display: inline-flex;
   align-items: center;
@@ -600,7 +633,7 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--cobalt);
 }
 
-/* ── 5. TOOL STACK MARQUEE (STRICT CONFINED SIZING) ── */
+/* ── Tool Stack Marquee (Strict Confined Sizing) ── */
 .marquee-container {
   width: 100%;
   overflow: hidden;
@@ -682,7 +715,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.01em;
 }
 
-/* ── 6. WORKFLOW CONSOLE ── */
+/* ── Workflow Console ── */
 .workflow-console {
   background: var(--ink);
   border-radius: var(--radius-xl);
@@ -727,7 +760,7 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(52, 211, 153, 0.08);
 }
 
-/* ── 7. ACCORDION / FAQ ── */
+/* ── Accordion / FAQ ── */
 .accordion-item {
   background: #FFFFFF;
   border: 1px solid var(--line);
@@ -797,7 +830,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 1rem;
 }
 
-/* ── 8. FORMS & INPUTS ── */
+/* ── Forms & Inputs ── */
 .form-field {
   display: flex;
   flex-direction: column;
@@ -834,7 +867,7 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 110px;
 }
 
-/* ── 9. MODAL & LIGHTBOX OVERLAYS ── */
+/* ── Modals & Lightbox Overlays ── */
 .modal-overlay,
 .lightbox-overlay {
   position: fixed !important;
@@ -880,7 +913,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.85rem;
 }
 
-/* ── 10. LIGHT FOOTER ── */
+/* ── Light Footer ── */
 #footer,
 footer {
   background: var(--cloud) !important;
