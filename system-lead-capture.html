@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lead Capture to Booking System | Client Implementation | Nitin Systems</title>
+  <meta name="description" content="A live production pipeline engineered for an active service business: automating inbound intake, 2-way calendar sync, and instant multi-channel confirmations." />
+  <meta name="author" content="Nitin Mishra" />
+  <meta name="robots" content="index, follow" />
+  <!-- Open Graph & Social Cards -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Lead Capture to Booking System | Nitin Systems Case Study" />
+  <meta property="og:description" content="A live production pipeline engineered for an active service business: automating inbound intake, 2-way calendar sync, and instant multi-channel confirmations." />
+  <meta property="og:url" content="https://nitinsystems.com/systems/lead-capture-booking" />
+  <meta property="og:image" content="https://nitinsystems.com/assets/images/case-study/lead-capture/diagram-architecture.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lead Capture to Booking System | Nitin Systems Case Study" />
+  <meta name="twitter:description" content="A live production pipeline engineered for an active service business: automating inbound intake, 2-way calendar sync, and instant multi-channel confirmations." />
+  <meta name="twitter:image" content="https://nitinsystems.com/assets/images/case-study/lead-capture/diagram-architecture.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/nav-logo.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/logo/nav-logo.png" />
+  <link rel="shortcut icon" href="assets/logo/nav-logo.png" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="view-transition" content="same-origin" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css?v=1.0" />
+</head>
+<body>
+<header id="navbar" class="animate-hero-nav">
+  <div id="navbar-inner">
+    <div class="nav-brand-wrap">
+      <a href="index.html" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;">
+        <div class="brand-logo-box">
+          <img src="assets/logo/nav-logo.png" alt="Nitin Systems brand logo" />
+        </div>
+        <div>
+          <span style="font-size:0.95rem;font-weight:700;letter-spacing:-0.02em;color:var(--ink);display:block;line-height:1.1;">Nitin Systems</span>
+          <span style="font-size:0.65rem;font-weight:600;color:var(--ink-muted);letter-spacing:0.04em;text-transform:uppercase;display:flex;align-items:center;gap:0.35rem;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#10B981;display:inline-block;"></span>
+            OPERATIONAL · SOLO BUILDER
+          </span>
+        </div>
+      </a>
+    </div>
+
+    <nav class="nav-links-wrap">
+      <a href="index.html" class="nav-link">Home</a>
+      <div class="nav-dropdown">
+        <a href="systems.html" class="nav-link active" style="display:flex;align-items:center;gap:0.25rem;">
+          Systems <span style="font-size:0.65rem;opacity:0.7;">▾</span>
+        </a>
+        <div class="nav-dropdown-menu">
+          <a href="system-lead-capture.html" class="dropdown-item">
+            <div class="dropdown-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <div class="dropdown-item-content">
+              <span class="dropdown-item-title">Lead Capture to Booking</span>
+              <span class="dropdown-item-desc">GoHighLevel · Calendar · Instant Routing</span>
+            </div>
+          </a>
+          <a href="system-lead-intake.html" class="dropdown-item">
+            <div class="dropdown-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+            <div class="dropdown-item-content">
+              <span class="dropdown-item-title">Lead Intake &amp; Deduplication</span>
+              <span class="dropdown-item-desc">Make.com · Airtable · HubSpot Sync</span>
+            </div>
+          </a>
+          <a href="system-ai-journey.html" class="dropdown-item">
+            <div class="dropdown-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3"/><path d="M15 1v3"/><path d="M9 20v3"/><path d="M15 20v3"/><path d="M20 9h3"/><path d="M20 14h3"/><path d="M1 9h3"/><path d="M1 14h3"/></svg>
+            </div>
+            <div class="dropdown-item-content">
+              <span class="dropdown-item-title">AI Customer Journey Ops</span>
+              <span class="dropdown-item-desc">5 Scenarios · Multi-Branch Logic · Make.com AI Agent</span>
+            </div>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="systems.html" class="dropdown-item" style="background:rgba(241, 245, 249, 0.65);">
+            <div class="dropdown-item-content">
+              <span class="dropdown-item-title" style="color:var(--cobalt);font-size:0.8rem;">
+                <span>View All Systems &amp; Blueprints</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <a href="approach.html" class="nav-link">Approach</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="insights.html" class="nav-link">Insights</a>
+    </nav>
+
+    <div class="nav-actions-wrap">
+      <a href="audit.html" class="btn btn-primary" style="padding:0.45rem 1rem;font-size:0.85rem;">Discuss a Project →</a>
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAVIGATION DRAWER & BACKDROP -->
+<div id="mobile-drawer" class="mobile-drawer" aria-hidden="true">
+  <div class="mobile-drawer-header">
+    <div style="display:flex;align-items:center;gap:0.6rem;">
+      <div class="brand-logo-box" style="width:28px;height:28px;background:#FFFFFF;border:1px solid var(--line);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;padding:3px;">
+        <img src="assets/logo/nav-logo.png" alt="Nitin Systems brand logo" style="width:100%;height:100%;object-fit:contain;" />
+      </div>
+      <div>
+        <span style="font-weight:700;font-size:0.9rem;color:var(--ink);display:block;line-height:1.1;">Nitin Systems</span>
+        <span style="font-size:0.58rem;font-weight:600;color:var(--ink-muted);text-transform:uppercase;">Solo Builder</span>
+      </div>
+    </div>
+    <button class="mobile-drawer-close" onclick="closeMobileMenu()" aria-label="Close menu">✕</button>
+  </div>
+  <nav class="mobile-nav-links">
+    <a href="index.html" class="mobile-nav-link" onclick="closeMobileMenu()">Home</a>
+    <a href="systems.html" class="mobile-nav-link active" onclick="closeMobileMenu()">Systems Library</a>
+    <a href="approach.html" class="mobile-nav-link" onclick="closeMobileMenu()">Approach</a>
+    <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()">About</a>
+    <a href="insights.html" class="mobile-nav-link" onclick="closeMobileMenu()">Insights</a>
+  </nav>
+  <div class="mobile-drawer-footer">
+    <a href="audit.html" class="btn btn-primary" style="width:100%;text-align:center;padding:0.75rem 1rem;" onclick="closeMobileMenu()">Discuss a Project →</a>
+    <div style="margin-top:0.75rem;font-size:0.7rem;color:var(--ink-muted);text-align:center;">
+      <span>Operational · Solo Builder</span>
+    </div>
+  </div>
+</div>
+<div id="mobile-backdrop" class="mobile-backdrop" onclick="closeMobileMenu()"></div>
+
+<main>
+<!-- CASE STUDY HERO -->
+<section class="section bg-pattern-grid-light" style="padding-top:8rem;padding-bottom:3.5rem;background:linear-gradient(180deg, #EAF3FC 0%, #FFFFFF 100%);">
+  <div class="ambient-glow animate-hero-glow"></div>
+  <div class="container" style="max-width:960px;">
+    <div style="margin-bottom:1rem;">
+      <a href="systems.html" style="font-size:0.8rem;color:var(--cobalt);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:0.35rem;">
+        ← Back to Systems Library
+      </a>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;margin-bottom:1rem;">
+      <span style="font-size:0.68rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);background:var(--emerald-light);border:1px solid var(--emerald-border);padding:0.25rem 0.75rem;border-radius:9999px;">Client Implementation</span>
+      <span style="font-size:0.72rem;font-family:var(--font-mono);color:var(--ink-soft);">Real Service Business Delivery</span>
+    </div>
+    <h1 style="font-size:clamp(2.1rem,4.2vw,3rem);color:var(--ink);line-height:1.2;margin-bottom:0.75rem;font-weight:700;">
+      Lead Capture to Booking System
+    </h1>
+    <p style="font-size:1.1rem;color:var(--ink-soft);line-height:1.7;margin-bottom:1.5rem;">
+      An automated inbound lead qualification and scheduling pipeline engineered for an active service business: replacing manual email coordination with real-time 2-way Google Calendar synchronization, custom intake routing, and automated SMS reminders.
+    </p>
+
+    <!-- METRICS & TECH PILLS -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:2rem;">
+      <div class="glass-card" style="padding:1.25rem;background:#FFFFFF;border-left:3px solid var(--emerald);">
+        <div style="font-size:0.65rem;font-family:var(--font-mono);color:var(--ink-muted);text-transform:uppercase;">Core CRM &amp; Workflow</div>
+        <div style="font-size:1.05rem;font-weight:700;color:var(--ink);margin-top:0.25rem;">GoHighLevel (GHL)</div>
+        <div style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.2rem;">Pipeline triggers &amp; custom tags</div>
+      </div>
+      <div class="glass-card" style="padding:1.25rem;background:#FFFFFF;border-left:3px solid var(--emerald);">
+        <div style="font-size:0.65rem;font-family:var(--font-mono);color:var(--ink-muted);text-transform:uppercase;">Calendar Integration</div>
+        <div style="font-size:1.05rem;font-weight:700;color:var(--ink);margin-top:0.25rem;">Google Calendar 2-Way</div>
+        <div style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.2rem;">Live conflict avoidance &amp; buffer logic</div>
+      </div>
+      <div class="glass-card" style="padding:1.25rem;background:#FFFFFF;border-left:3px solid var(--emerald);">
+        <div style="font-size:0.65rem;font-family:var(--font-mono);color:var(--ink-muted);text-transform:uppercase;">Communication Layer</div>
+        <div style="font-size:1.05rem;font-weight:700;color:var(--ink);margin-top:0.25rem;">SMS &amp; Email Sequences</div>
+        <div style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.2rem;">Instant confirmation &amp; 24h/1h reminders</div>
+      </div>
+    </div>
+
+    <!-- SCOPE DISCLOSURE -->
+    <div style="margin-top:1.5rem;padding:0.85rem 1.25rem;background:var(--cloud);border:1px dashed var(--line);border-radius:8px;font-size:0.78rem;color:var(--ink-soft);line-height:1.6;">
+      <strong style="color:var(--ink);">Production Delivery:</strong> Built and deployed directly into live business operations for a service company managing multi-rep consultation schedules.
+    </div>
+  </div>
+</section>
+
+<!-- DEEP DIVE BODY -->
+<section class="section" style="background:var(--paper);padding-top:3rem;padding-bottom:5rem;">
+  <div class="container" style="max-width:960px;">
+    
+    <!-- 01 THE OPERATIONAL PROBLEM -->
+    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;">
+      <span class="badge-pill" style="margin-bottom:0.75rem;">01 THE OPERATIONAL PROBLEM</span>
+      <h2 style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Inbox Friction &amp; Scheduling Latency</h2>
+      <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1rem;">
+        Prior to implementation, incoming website inquiries were delivered as static email notifications to a shared inbox. Sales representatives had to manually reply, exchange multiple back-and-forth emails to confirm availability, and manually create calendar events.
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1.25rem;background:var(--cloud);padding:1.25rem;border-radius:8px;">
+        <div>
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:#F43F5E;">❌ 4–12 HOUR RESPONSE DELAYS</div>
+          <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.6;margin-top:0.25rem;">Leads submitted interest during off-hours and were contacted hours later, dramatically dropping call show-up rates.</p>
+        </div>
+        <div>
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:#F43F5E;">❌ DOUBLE-BOOKING &amp; UNTRACKED LEADS</div>
+          <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.6;margin-top:0.25rem;">Reps occasionally scheduled conflicting meetings, while non-responsive leads fell out of the pipeline without follow-up.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 ARCHITECTURE & OPERATIONAL DIAGRAM -->
+    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;">
+      <span class="badge-pill" style="margin-bottom:0.75rem;">02 SYSTEM ARCHITECTURE</span>
+      <h2 style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">End-to-End System Architecture Diagram</h2>
+      <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.5rem;">
+        The system maps the complete lead lifecycle: Website Intake Form → Custom Tagging &amp; Pipeline Creation → 2-Way Google Calendar Slot Reservation → Multi-Channel Confirmation &amp; SMS Reminder Engine. Click the diagram below to inspect in high resolution:
+      </p>
+      
+      <!-- DIAGRAM PREVIEW CONTAINER -->
+      <div style="background:var(--cloud);padding:1.25rem;border-radius:8px;border:1px solid var(--line);text-align:center;margin-bottom:1.5rem;">
+        <img 
+          src="assets/images/case-study/lead-capture/diagram-architecture.png" 
+          alt="System Architecture Diagram for Lead Capture to Booking System" 
+          style="width:100%;height:auto;max-height:500px;object-fit:contain;cursor:pointer;border-radius:6px;transition:transform 0.3s ease;"
+          onclick="openImgModal('Lead Capture System Architecture Diagram', 'assets/images/case-study/lead-capture/diagram-architecture.png')"
+          class="raycast-hover"
+        />
+        <div style="margin-top:0.75rem;font-size:0.75rem;color:var(--ink-soft);display:flex;align-items:center;justify-content:center;gap:0.4rem;">
+          <span>🔍 Click diagram to expand full screen</span>
+        </div>
+      </div>
+
+      <!-- DEDICATED 2-COLUMN SCHEMATICS POD -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;">
+        <!-- SCHEMATIC 01 -->
+        <div class="glass-card" style="padding:1.25rem;background:#FFFFFF;border-left:3px solid var(--cobalt);display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <div style="font-size:0.68rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;letter-spacing:0.04em;">📐 01 · SYSTEM ARCHITECTURE SCHEMATIC</div>
+            <div style="font-size:0.95rem;font-weight:700;color:var(--ink);margin:0.35rem 0 0.35rem 0;">Vector Architecture Blueprint</div>
+            <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;margin-bottom:1rem;">
+              Full vector diagram detailing lead acquisition layers, GoHighLevel triggers, and calendar integrations.
+            </p>
+          </div>
+          <a href="assets/images/case-study/lead-capture/diagram-architecture.pdf" target="_blank" class="btn btn-primary raycast-hover" style="width:100%;text-align:center;padding:0.65rem 1rem;font-size:0.82rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:0.4rem;">
+            <span>Open Architecture PDF</span>
+            <span class="arrow-icon">↗</span>
+          </a>
+        </div>
+
+        <!-- SCHEMATIC 02 -->
+        <div class="glass-card" style="padding:1.25rem;background:#FFFFFF;border-left:3px solid var(--emerald);display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <div style="font-size:0.68rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);text-transform:uppercase;letter-spacing:0.04em;">🔄 02 · OPERATIONAL SEQUENCE BLUEPRINT</div>
+            <div style="font-size:0.95rem;font-weight:700;color:var(--ink);margin:0.35rem 0 0.35rem 0;">Operational Sequence Logic</div>
+            <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;margin-bottom:1rem;">
+              Complete logic flow covering webhook triggers, time-slot buffer checks, and multi-channel SMS notification paths.
+            </p>
+          </div>
+          <a href="assets/images/case-study/lead-capture/diagram-operational.pdf" target="_blank" class="btn btn-secondary raycast-hover" style="width:100%;text-align:center;padding:0.65rem 1rem;font-size:0.82rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:0.4rem;">
+            <span>Open Operational PDF</span>
+            <span class="arrow-icon">↗</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 03 INTAKE LAYER & CONVERSION UI -->
+    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;">
+      <span class="badge-pill" style="margin-bottom:0.75rem;">03 INTAKE &amp; CONVERSION UI</span>
+      <h2 style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Embedded Form &amp; Instant Confirmation Screen</h2>
+      <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.5rem;">
+        Production frontend interfaces built directly into the client website. Leads submit qualification questions and transition smoothly to the confirmed appointment screen:
+      </p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem;">
+        <!-- INTEGRATED FORM -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);margin-bottom:0.4rem;">01 · EMBEDDED INTAKE FORM</div>
+          <img 
+            src="assets/images/case-study/lead-capture/intake-form.png" 
+            alt="Embedded Website Intake Form UI" 
+            style="width:100%;height:180px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
+            onclick="openImgModal('Embedded Intake Form UI', 'assets/images/case-study/lead-capture/intake-form.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;">Custom validated form capturing service requirements, company size, and budget.</p>
+        </div>
+
+        <!-- THANK YOU PAGE -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);margin-bottom:0.4rem;">02 · CONFIRMATION THANK YOU SCREEN</div>
+          <img 
+            src="assets/images/case-study/lead-capture/thank-you-page.png" 
+            alt="Booking Confirmation Thank You Screen" 
+            style="width:100%;height:180px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
+            onclick="openImgModal('Booking Confirmation Thank You Screen', 'assets/images/case-study/lead-capture/thank-you-page.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;">Instant confirmation display with calendar invite link and onboarding instructions.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 GOHIGHLEVEL AUTOMATION WORKFLOWS PROOF GALLERY -->
+    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;">
+      <span class="badge-pill" style="margin-bottom:0.75rem;">04 GOHIGHLEVEL AUTOMATION ENGINE</span>
+      <h2 style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Production Automation &amp; Scheduling Workflows</h2>
+      <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.5rem;">
+        Real backend configuration screenshots inside GoHighLevel proving the calendar routing, booking triggers, and pipeline automation logic. Click any card to inspect in high resolution:
+      </p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;">
+        <!-- 01 BOOKING CALENDAR -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);">01 · 2-WAY BOOKING CALENDAR</div>
+          <div style="font-size:0.85rem;font-weight:600;color:var(--ink);margin:0.2rem 0 0.5rem 0;">Live Availability Widget</div>
+          <img 
+            src="assets/images/case-study/lead-capture/booking-calendar.png" 
+            alt="GoHighLevel Booking Calendar Widget" 
+            style="width:100%;height:170px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
+            onclick="openImgModal('GoHighLevel Booking Calendar Widget', 'assets/images/case-study/lead-capture/booking-calendar.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.4rem;">Direct 2-way sync with Google Calendar respecting rep buffer times and time zones.</p>
+        </div>
+
+        <!-- 02 BOOKING WORKFLOW -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);">02 · BOOKING AUTOMATION FLOW</div>
+          <div style="font-size:0.85rem;font-weight:600;color:var(--ink);margin:0.2rem 0 0.5rem 0;">Multi-Step Event Handler</div>
+          <img 
+            src="assets/images/case-study/lead-capture/workflow-booking.png" 
+            alt="GoHighLevel Calendar Booking Automation Workflow" 
+            style="width:100%;height:170px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
+            onclick="openImgModal('Calendar Booking Automation Workflow', 'assets/images/case-study/lead-capture/workflow-booking.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.4rem;">Triggers contact tagging, creates deal in CRM, and schedules reminder sequences.</p>
+        </div>
+
+        <!-- 03 CALENDAR GROUP -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);">03 · TEAM CALENDAR GROUP</div>
+          <div style="font-size:0.85rem;font-weight:600;color:var(--ink);margin:0.2rem 0 0.5rem 0;">Routing &amp; Capacity Setup</div>
+          <img 
+            src="assets/images/case-study/lead-capture/workflow-calendar-group.png" 
+            alt="GoHighLevel Calendar Group Settings" 
+            style="width:100%;height:170px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
+            onclick="openImgModal('Calendar Group Settings', 'assets/images/case-study/lead-capture/workflow-calendar-group.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.4rem;">Configures multi-rep round-robin routing and team calendar permissions.</p>
+        </div>
+
+        <!-- 04 LEAD AUTOMATION -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);">04 · PIPELINE TRIGGER LOGIC</div>
+          <div style="font-size:0.85rem;font-weight:600;color:var(--ink);margin:0.2rem 0 0.5rem 0;">CRM Stage Progression</div>
+          <img 
+            src="assets/images/case-study/lead-capture/workflow-lead-pipeline.png" 
+            alt="GoHighLevel Lead Automation Pipeline Trigger" 
+            style="width:100%;height:170px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
+            onclick="openImgModal('Lead Pipeline Automation Trigger', 'assets/images/case-study/lead-capture/workflow-lead-pipeline.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.4rem;">Moves leads from 'Inquiry' to 'Booked Call' and notifies assigned rep via SMS.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 ENGINEERING SAFEGUARDS & RELIABILITY -->
+    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;">
+      <span class="badge-pill" style="margin-bottom:0.75rem;">05 SYSTEM RELIABILITY</span>
+      <h2 style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Reliability Safeguards &amp; Edge Cases</h2>
+      <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.25rem;">
+        To ensure 100% operational uptime and prevent appointment drop-offs, the pipeline was built with specific fallback mechanisms:
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;">
+        <div style="background:var(--cloud);padding:1rem;border-radius:6px;border-left:3px solid var(--emerald);">
+          <div style="font-size:0.75rem;font-weight:700;color:var(--ink);">Time-Zone Normalization</div>
+          <p style="font-size:0.78rem;color:var(--ink-soft);margin-top:0.25rem;line-height:1.5;">Automatically detects prospect browser time zone and locks calendar invites in ISO 8601 format.</p>
+        </div>
+        <div style="background:var(--cloud);padding:1rem;border-radius:6px;border-left:3px solid var(--emerald);">
+          <div style="font-size:0.75rem;font-weight:700;color:var(--ink);">Cancellation &amp; Reschedule Webhooks</div>
+          <p style="font-size:0.78rem;color:var(--ink-soft);margin-top:0.25rem;line-height:1.5;">If a prospect reschedules, the pipeline frees up the slot immediately and updates the CRM stage.</p>
+        </div>
+        <div style="background:var(--cloud);padding:1rem;border-radius:6px;border-left:3px solid var(--emerald);">
+          <div style="font-size:0.75rem;font-weight:700;color:var(--ink);">Multi-Channel Reminder Cadence</div>
+          <p style="font-size:0.78rem;color:var(--ink-soft);margin-top:0.25rem;line-height:1.5;">Automated email at 24h and SMS at 1h prior to call, reducing no-show rates.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 CLIENT IMPLEMENTATION CASE STUDY -->
+    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:3rem;text-align:center;">
+      <span class="badge-pill" style="margin-bottom:0.75rem;display:inline-flex;">06 CLIENT CASE STUDY</span>
+      <h2 style="font-size:1.4rem;color:var(--ink);margin-bottom:0.5rem;">Lead Capture to Booking Implementation Case Study</h2>
+      <p style="font-size:0.88rem;color:var(--ink-soft);max-width:580px;margin:0 auto 1.5rem auto;line-height:1.7;">
+        A comprehensive breakdown of the live production system delivered for an active service company - covering qualification logic, 2-way Google Calendar synchronization, and automated SMS sequences.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;">
+        <a href="audit.html" class="btn btn-primary raycast-hover" style="padding:0.75rem 1.75rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;">
+          <span>Request Full Client Case Study →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 07 DIRECT CLOSING CTA -->
+    <div class="glass-card reveal" style="padding:2.5rem;background:linear-gradient(180deg,#EAF3FC 0%,#FFFFFF 100%);border:1px solid var(--cobalt-border);text-align:center;">
+      <span class="badge-pill animate-hero-badge" style="margin-bottom:0.75rem;display:inline-flex;"><span class="dot animate-pulse"></span>DIRECT SPECIALIST ENGAGEMENT</span>
+      <h2 style="font-size:1.6rem;color:var(--ink);margin-bottom:0.5rem;">Need an automated lead intake &amp; booking pipeline?</h2>
+      <p style="font-size:0.95rem;color:var(--ink-soft);max-width:540px;margin:0.5rem auto 1.5rem auto;line-height:1.7;">
+        I can engineer a custom GoHighLevel scheduling flow, 2-way calendar sync, and automated reminder sequences for your service operations.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1rem;">
+        <a href="audit.html" class="btn btn-primary raycast-hover" style="padding:0.85rem 2.25rem;"><span>Discuss a Project</span><span class="arrow-icon">→</span></a>
+        <a href="mailto:NitinSystems@outlook.com" class="btn btn-secondary raycast-hover" style="padding:0.85rem 2rem;">✉ NitinSystems@outlook.com</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+</main>
+
+<!-- Image Lightbox Modal Container (Anti-Clipping / Full Scroll) -->
+<div id="cert-lightbox" class="lightbox-overlay" onclick="closeCertLightbox()">
+  <div class="lightbox-card" onclick="event.stopPropagation()">
+    <div class="lightbox-header">
+      <h3 id="lightbox-title" class="lightbox-title">Image Preview</h3>
+      <button class="lightbox-close-btn" onclick="closeCertLightbox()" aria-label="Close">✕</button>
+    </div>
+    <div style="width:100%;max-height:82vh;overflow-y:auto;border-radius:8px;border:1px solid var(--line);background:#0F172A;text-align:center;padding:0.75rem;box-sizing:border-box;">
+      <img id="lightbox-img" src="" alt="Proof Preview" style="max-width:100%;height:auto;display:inline-block;vertical-align:middle;border-radius:4px;" />
+    </div>
+  </div>
+</div>
+
+<footer id="footer">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--line);">
+      <div>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <div class="brand-logo-box"><img src="assets/logo/nav-logo.png" alt="Nitin Systems brand logo" style="width:24px;height:24px;object-fit:contain;" /></div>
+          <span style="font-family:var(--font-serif);font-weight:700;font-size:1.2rem;color:var(--ink);">Nitin Systems</span>
+        </div>
+        <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.7;margin-top:0.85rem;max-width:400px;">Solo-led B2B automation systems business operated directly by Nitin Mishra. Designing, architecting, and delivering fault-tolerant automation pipelines for scaling service businesses.</p>
+        <div style="margin-top:1.25rem;">
+          <a href="mailto:NitinSystems@outlook.com" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.5rem 0.9rem;border-radius:0.75rem;background:var(--paper);border:1px solid var(--line);font-size:0.75rem;font-weight:600;color:var(--ink);">✉ NitinSystems@outlook.com</a>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-family:var(--font-serif);font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink);margin-bottom:0.85rem;">Navigation</h4>
+        <ul style="display:flex;flex-direction:column;gap:0.5rem;">
+          <li><a href="index.html" style="font-size:0.8rem;color:var(--ink-soft);">Home</a></li>
+          <li><a href="systems.html" style="font-size:0.8rem;color:var(--ink-soft);">Systems Library</a></li>
+          <li><a href="approach.html" style="font-size:0.8rem;color:var(--ink-soft);">Approach</a></li>
+          <li><a href="about.html" style="font-size:0.8rem;color:var(--ink-soft);">About</a></li>
+          <li><a href="insights.html" style="font-size:0.8rem;color:var(--ink-soft);">Insights</a></li>
+          <li><a href="audit.html" style="font-size:0.8rem;color:var(--ink-soft);">Discuss a Project</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-family:var(--font-serif);font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink);margin-bottom:0.85rem;">Systems Proof</h4>
+        <ul style="display:flex;flex-direction:column;gap:0.5rem;">
+          <li><a href="system-lead-capture.html" style="font-size:0.8rem;color:var(--ink-soft);display:flex;justify-content:space-between;"><span>Lead Capture to Booking</span><span style="color:var(--emerald);font-family:var(--font-mono);font-size:0.65rem;">Client Build</span></a></li>
+          <li><a href="system-lead-intake.html" style="font-size:0.8rem;color:var(--ink-soft);display:flex;justify-content:space-between;"><span>Lead Intake &amp; Deduplication</span><span style="color:var(--cobalt);font-family:var(--font-mono);font-size:0.65rem;">Blueprint</span></a></li>
+          <li><a href="system-ai-journey.html" style="font-size:0.8rem;color:var(--ink-soft);display:flex;justify-content:space-between;"><span>AI Customer Journey Ops</span><span style="color:var(--cobalt);font-family:var(--font-mono);font-size:0.65rem;">Case Study</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="padding-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;font-size:0.72rem;color:var(--ink-muted);">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem;">
+        <p style="font-weight:400;color:#64748B;">© 2026 Nitin Systems. Solo operation led by Nitin Mishra.</p>
+        <span style="color:var(--line);">|</span>
+        <a href="privacy.html" style="color:var(--ink-muted);text-decoration:underline;">Privacy Policy</a>
+        <span style="color:var(--line);">|</span>
+        <a href="terms.html" style="color:var(--ink-muted);text-decoration:underline;">Terms of Service</a>
+      </div>
+      <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:0.35rem 0.75rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.72rem;cursor:pointer;color:var(--ink-soft);">Back to top ↑</button>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js?v=999.0"></script>
+<script src="assets/js/components.js?v=999.0"></script>
+<script src="assets/js/interactions.js?v=1.0"></script>
+<script src="assets/js/main.js?v=999.0"></script>
+</body>
+</html>
