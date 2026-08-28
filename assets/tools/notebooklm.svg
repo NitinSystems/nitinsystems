@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <rect x="6" y="4" width="36" height="40" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1.5"/>
+  <rect x="10" y="8" width="28" height="32" rx="5" fill="#FFFFFF"/>
+  <!-- NotebookLM Multi-Colored Core Motif -->
+  <path d="M16 16h16v3H16z" fill="#4285F4"/>
+  <path d="M16 22h16v3H16z" fill="#EA4335"/>
+  <path d="M16 28h11v3H16z" fill="#34A853"/>
+  <!-- Spiral Bindings -->
+  <circle cx="6" cy="12" r="2.5" fill="#1F2937"/>
+  <circle cx="6" cy="20" r="2.5" fill="#1F2937"/>
+  <circle cx="6" cy="28" r="2.5" fill="#1F2937"/>
+  <circle cx="6" cy="36" r="2.5" fill="#1F2937"/>
+  <!-- AI Sparkle Badge -->
+  <path d="M33 28l1.5 3.5L38 33l-3.5 1.5L33 38l-1.5-3.5L28 33l3.5-1.5z" fill="#8B5CF6"/>
+</svg>

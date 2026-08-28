@@ -1,6 +1,7 @@
-/* ==========================================================================
-   INTERACTIONS & MOTION ENGINE — NITIN SYSTEMS (STAGING ISOLATED)
-   ========================================================================== */
+// Prevent browser reload scroll-jump and CLS
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
 
 function initSmoothScroll() {
   // Use native smooth scrolling for instant, silky-smooth responsiveness without wheel lag
@@ -126,9 +127,9 @@ function closePdfModal(e) {
 
 // Certificate / Image Lightbox Handlers
 function openImgModal(title, imgSrc) {
-  const modal = document.getElementById('img-modal') || document.getElementById('cert-lightbox');
-  const modalTitle = document.getElementById('modal-img-title') || document.getElementById('lightbox-title');
-  const imgElement = document.getElementById('modal-img-src') || document.getElementById('lightbox-img');
+  const modal = document.getElementById('cert-lightbox') || document.getElementById('img-modal');
+  const modalTitle = document.getElementById('lightbox-title') || document.getElementById('modal-img-title');
+  const imgElement = document.getElementById('lightbox-img') || document.getElementById('modal-img-src');
 
   if (modalTitle && title) modalTitle.textContent = title;
   if (imgElement && imgSrc) imgElement.src = imgSrc;
@@ -136,37 +137,87 @@ function openImgModal(title, imgSrc) {
   if (modal) {
     modal.classList.add('open');
     modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
   }
 }
 
 function closeImgModal(e) {
-  if (e && e.target && e.target !== e.currentTarget && !e.target.classList.contains('modal-close-btn') && !e.target.hasAttribute('onclick')) {
+  if (e && e.target && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close-btn') && !e.target.classList.contains('modal-close-btn') && !e.target.hasAttribute('onclick')) {
     return;
   }
-  const modal = document.getElementById('img-modal') || document.getElementById('cert-lightbox');
+  const modal = document.getElementById('cert-lightbox') || document.getElementById('img-modal');
   if (modal) {
     modal.classList.remove('open');
     modal.style.display = 'none';
+    document.body.style.overflow = '';
   }
 }
 
 function closeCertLightbox() {
-  closeImgModal();
+  const modal = document.getElementById('cert-lightbox') || document.getElementById('img-modal');
+  if (modal) {
+    modal.classList.remove('open');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
 }
 
 // Mobile Menu Handlers
 function toggleMobileMenu() {
   const drawer = document.getElementById('mobile-drawer');
-  if (drawer) {
-    drawer.classList.toggle('open');
+  const backdrop = document.getElementById('mobile-backdrop');
+  if (!drawer) return;
+  const isOpen = drawer.classList.contains('open');
+  if (isOpen) {
+    drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+    if (backdrop) backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  } else {
+    drawer.classList.add('open');
+    drawer.setAttribute('aria-hidden', 'false');
+    if (backdrop) backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
 }
 
 function closeMobileMenu() {
   const drawer = document.getElementById('mobile-drawer');
+  const backdrop = document.getElementById('mobile-backdrop');
   if (drawer) {
     drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
   }
+  if (backdrop) {
+    backdrop.classList.remove('open');
+  }
+  document.body.style.overflow = '';
+}
+
+// Desktop Systems Dropdown Persistent Hover Lock
+function initNavDropdown() {
+  const dropdowns = document.querySelectorAll('.nav-dropdown');
+  dropdowns.forEach(dd => {
+    let timeout;
+    const menu = dd.querySelector('.nav-dropdown-menu');
+    if (!menu) return;
+
+    const openMenu = () => {
+      clearTimeout(timeout);
+      dd.classList.add('is-open');
+    };
+
+    const closeMenu = () => {
+      timeout = setTimeout(() => {
+        dd.classList.remove('is-open');
+      }, 300);
+    };
+
+    dd.addEventListener('mouseenter', openMenu);
+    dd.addEventListener('mouseleave', closeMenu);
+    menu.addEventListener('mouseenter', openMenu);
+    menu.addEventListener('mouseleave', closeMenu);
+  });
 }
 
 // Master Initialization
@@ -176,9 +227,29 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollNavbar();
   initSpotlightCards();
   initAccordions();
+  initNavDropdown();
 
   const hamburger = document.getElementById('hamburger-btn');
   if (hamburger) {
-    hamburger.addEventListener('click', toggleMobileMenu);
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMobileMenu();
+    });
   }
+
+  // Close drawer if user presses Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeMobileMenu();
+      closePdfModal();
+      closeImgModal();
+    }
+  });
+
+  // Dynamic ResizeObserver / Window Resize listener to clean up drawer if viewport expands to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) {
+      closeMobileMenu();
+    }
+  }, { passive: true });
 });
