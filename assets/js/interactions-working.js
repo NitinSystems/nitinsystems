@@ -1,6 +1,6 @@
-// Prevent browser reload scroll-jump and CLS
+// Native browser scroll restoration for trackpad back-swipe and history navigation
 if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
+  history.scrollRestoration = 'auto';
 }
 
 function initSmoothScroll() {

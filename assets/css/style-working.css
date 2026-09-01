@@ -500,17 +500,23 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   height: 100%;
-  pointer-events: auto !important;
 }
 
-.nav-dropdown.is-open,
-.nav-dropdown:hover {
-  pointer-events: auto !important;
+/* Precise vertical hover bridge constrained strictly to the Systems trigger button */
+.nav-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: transparent;
+  pointer-events: auto;
 }
 
 .nav-dropdown-menu {
   position: absolute;
-  top: calc(100% + 4px);
+  top: calc(100% + 6px);
   left: 50%;
   transform: translateX(-50%) translateY(4px);
   min-width: 310px;
@@ -528,28 +534,16 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s;
-}
-
-/* Expanded continuous hover boundary bridge */
-.nav-dropdown-menu::before {
-  content: '';
-  position: absolute;
-  top: -30px;
-  left: -20px;
-  right: -20px;
-  height: 35px;
-  background: transparent;
-  pointer-events: auto !important;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
 }
 
 .nav-dropdown:hover .nav-dropdown-menu,
-.nav-dropdown.is-open .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu,
 .nav-dropdown-menu:hover {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: translateX(-50%) translateY(0) !important;
-  pointer-events: auto !important;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
 }
 
 .dropdown-item {
@@ -1434,7 +1428,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* ── Light Footer ── */
+/* ── Clean Light Footer (No Underlines, No Bullets) ── */
 #footer,
 footer {
   background: var(--cloud) !important;
@@ -1443,9 +1437,25 @@ footer {
   padding: 4rem 1.25rem 2.5rem 1.25rem !important;
 }
 
+#footer ul,
+footer ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#footer li,
+footer li {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 #footer a,
 footer a {
   color: var(--ink-soft) !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 #footer a:hover,
@@ -1456,4 +1466,19 @@ footer a:hover {
 #footer h4,
 footer h4 {
   color: var(--ink) !important;
+}
+/* ── PatternCraft Precision Circular Center Dot Pattern ── */
+.pattern-dots-radial {
+  position: relative;
+}
+.pattern-dots-radial::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(37, 99, 235, 0.12) 1.25px, transparent 1.25px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 35%, #000 35%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 35%, #000 35%, transparent 90%);
+  pointer-events: none;
+  z-index: 0;
 }

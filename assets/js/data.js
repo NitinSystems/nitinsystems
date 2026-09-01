@@ -88,8 +88,8 @@ const SITE_DATA = {
       shortDesc: 'A live system implementation for an active service business connecting website intake forms, SMS/email notifications, and calendar scheduling.',
       outcome: 'Established structured automated inquiry routing, instant calendar booking confirmation, and pre-meeting reminder sequences.',
       techStack: ['GoHighLevel', 'Google Calendar', 'Gmail'],
-      pdfUrl: 'projects/lead-capture-to-booking-system/case-study/lead-capture-booking-system-case-study.pdf',
-      coverImage: 'projects/ai-customer-journey-operations-and-recovery-system/cover-page/featured-project-cover-card-lead recovery-system.png',
+      pdfUrl: 'projects/lead-capture-system/case-study/lead-capture-booking-system-case-study.pdf',
+      coverImage: 'projects/ai-customer-journey-system/cover-page/featured-project-cover-card-lead recovery-system.png',
       evidenceType: 'Real Company Implementation'
     },
     {
@@ -103,8 +103,8 @@ const SITE_DATA = {
       shortDesc: 'A verified technical portfolio architecture evaluating incoming webhook payloads against an Airtable database to eliminate duplicate CRM records.',
       outcome: 'Demonstrates real-time hash lookups, record deduplication logic, and clean stage synchronization with CRM pipelines.',
       techStack: ['Make.com', 'Airtable', 'HubSpot CRM', 'Webhooks'],
-      pdfUrl: 'projects/lead-intake-duplicate-verification/case-study/systems-that-scale.pdf',
-      coverImage: 'projects/ai-customer-journey-operations-and-recovery-system/cover-page/featured-project-cover-card-lead recovery-system.png',
+      pdfUrl: 'projects/lead-intake-system/case-study/systems-that-scale.pdf',
+      coverImage: 'projects/ai-customer-journey-system/cover-page/featured-project-cover-card-lead recovery-system.png',
       evidenceType: 'Portfolio Build'
     },
     {
@@ -118,8 +118,8 @@ const SITE_DATA = {
       shortDesc: 'A portfolio architecture exploring how AI-assisted decision logic can monitor lifecycle states, identify recovery opportunities, and route actions across CRM and automation workflows.',
       outcome: 'Demonstrates 5 interconnected Make.com scenarios, 5 relational Airtable tables, and prompt-driven journey state triage.',
       techStack: ['Make.com (5 Scenarios)', 'Airtable (5 Sheets)', 'AI Agent'],
-      pdfUrl: 'projects/ai-customer-journey-operations-and-recovery-system/case-study/ai-customer-journey-operations-&-recovery-system.pdf',
-      coverImage: 'projects/ai-customer-journey-operations-and-recovery-system/cover-page/featured-project-cover-card-lead recovery-system.png',
+      pdfUrl: 'projects/ai-customer-journey-system/case-study/ai-customer-journey-operations-&-recovery-system.pdf',
+      coverImage: 'projects/ai-customer-journey-system/cover-page/featured-project-cover-card-lead recovery-system.png',
       evidenceType: 'Concept / Architecture'
     }
   ],
