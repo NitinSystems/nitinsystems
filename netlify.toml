@@ -3,11 +3,6 @@
   command = ""
   publish = "."
 
-# Explicitly disable auto-detected Next.js plugin
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-  enabled = false
-
 [build.processing]
   skip_processing = false
 
