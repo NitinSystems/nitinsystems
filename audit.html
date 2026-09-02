@@ -234,15 +234,15 @@
         <form id="audit-form" onsubmit="handleAuditSubmit(event)" style="display: flex; flex-direction: column; gap: 1rem;">
           <div class="form-field">
             <label class="form-label" style="font-size:0.78rem;font-weight:600;">Full Name *</label>
-            <input type="text" required placeholder="Alex Morgan" class="form-input" style="padding:0.65rem 0.85rem;font-size:0.85rem;" />
+            <input type="text" id="audit-name" aria-label="Your Name" required placeholder="Alex Morgan" class="form-input" style="padding:0.65rem 0.85rem;font-size:0.85rem;" />
           </div>
           <div class="form-field">
             <label class="form-label" style="font-size:0.78rem;font-weight:600;">Work Email *</label>
-            <input type="email" required placeholder="alex@company.com" class="form-input" style="padding:0.65rem 0.85rem;font-size:0.85rem;" />
+            <input type="email" id="audit-email" aria-label="Work Email" required placeholder="alex@company.com" class="form-input" style="padding:0.65rem 0.85rem;font-size:0.85rem;" />
           </div>
           <div class="form-field">
             <label class="form-label" style="font-size:0.78rem;font-weight:600;">Current Software / CRM Stack</label>
-            <input type="text" placeholder="e.g. HubSpot, Make.com, GoHighLevel, Airtable" class="form-input" style="padding:0.65rem 0.85rem;font-size:0.85rem;" />
+            <input type="text" id="audit-stack" aria-label="Current Tech Stack" placeholder="e.g. HubSpot, Make.com, GoHighLevel, Airtable" class="form-input" style="padding:0.65rem 0.85rem;font-size:0.85rem;" />
           </div>
           <div class="form-field">
             <label class="form-label" style="font-size:0.78rem;font-weight:600;">What workflow or bottleneck are you solving? *</label>
