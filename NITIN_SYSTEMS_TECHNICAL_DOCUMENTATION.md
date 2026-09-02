@@ -1,47 +1,52 @@
-# Nitin Systems — Technical Architecture & Implementation Documentation
+# Nitin Systems — Technical Documentation
 
-## 1. Technical Stack Overview
-- **Architecture:** Pure Modular HTML5, CSS3, ES6+ JavaScript (Zero framework runtime overhead).
-- **Styling Architecture:** Multi-file CSS tokenization (`tokens.css`, `reset.css`, `typography.css`, `layout.css`, `patterns.css`, `animations.css`, `components.css`, `style.css`).
-- **Scripting Architecture:** Modular Vanilla JS (`data.js`, `components.js`, `interactions.js`, `main.js`).
-- **Execution Mode:** Static execution capable of running via `file://` or static hosting (Netlify, Vercel, GitHub Pages, Cloudflare Pages, S3/CloudFront).
+> **Complete Infrastructure Blueprint & Architecture Specifications**
 
 ---
 
-## 2. Navigation Stability & Layout Shift (CLS) Fixes
-- **Root Cause Problem A (Content Flash):** Above-the-fold content was assigned `opacity: 0` awaiting asynchronous `IntersectionObserver` initialization. Fixed by rendering Hero and Navbar with `opacity: 1` immediately in CSS.
-- **Root Cause Problem B (Navbar Shaking/Jumping):** `.nav-item.active` changed font weight and added box shadows dynamically, causing flexbox width recalculation across sibling links. Fixed by establishing a stable `height: 52px` constraint on `#navbar-inner`, stable line-height, and padding.
-- **Scroll Smoothness:** Implemented buttery cubic-bezier easing with `scroll-margin-top: 88px` across all section targets to prevent the sticky navbar from obscuring section headings.
+## 1. Repository Structure & File Hierarchy
 
----
-
-## 3. Form Handling & Security Architecture
-- **Diagnostic Intake Form (`audit.html` & Home):**
-  - Client-side validation: Required fields, email pattern, minimum textarea length.
-  - Integration readiness: Standard `POST` action pluggable into GoHighLevel webhook, Make.com webhook URL, or Zapier catch hook.
-  - Honeypot anti-spam field included.
-- **Newsletter Subscription (`newsletter.html` & Home):**
-  - Email sanitization and format verification.
-  - Direct integration and 1-click redirect to Beehiiv publication endpoint.
-
----
-
-## 4. Asset Structure
-```
-assets/
-  ├── css/ (8 modular stylesheets)
-  ├── js/ (4 modular scripts)
-  └── logo/
-       ├── nav-logo.png
-       ├── favicon.png
-       ├── favicon-32x32.png
-       ├── apple-touch-icon.png
-       └── social-graph-logo.png
+```text
+├── index.html                           # Production Homepage
+├── systems.html                         # Production Systems Directory & R&D Lab
+├── system-lead-capture.html             # Case Study: Lead Capture to Booking System
+├── system-lead-intake.html              # Case Study: Lead Intake & Qualification Pipeline
+├── system-ai-journey.html               # Case Study: AI Customer Journey Operations
+├── approach.html                        # Systems Methodology & Process
+├── about.html                           # Founder Bio & Sanskrit Name Origin Story
+├── insights.html                        # Technical Insights & Articles
+├── audit.html                           # Project Inquiry & Audit Request Form
+├── privacy.html                         # Privacy Policy
+├── terms.html                           # Terms of Service
+├── thank-you.html                       # Inquiry Confirmation Page
+├── *-working.html                       # Isolated Working Sandbox Files
+├── sitemap.xml                          # XML Search Index Map
+├── robots.txt                           # Search Crawler Directives
+├── netlify.toml                         # Netlify CDN Caching & Header Rules
+├── .nojekyll                            # Bypass Jekyll processing on GitHub Pages
+├── .gitignore                           # Git Repository Ignore List
+└── assets/
+    ├── css/style.css                    # Production CSS Design System
+    ├── js/main.js                       # Core JavaScript Logic
+    ├── js/interactions.js               # Interactive UI Scripts & Modal Controllers
+    ├── images/nitin-mishra-image.webp   # WebP Profile Image (40.7 KB)
+    ├── logo/nav-logo.webp               # WebP Brand Vector Logo
+    └── tools/*.svg                      # Authentic Tool Vectors (Make, GHL, Airtable, etc.)
 ```
 
 ---
 
-## 5. Security & Privacy Headers
-- `X-Content-Type-Options: nosniff`
-- `Referrer-Policy: strict-origin-when-cross-origin`
-- `Content-Security-Policy` ready: Allows Google Fonts, SVG rendering, and local static scripts without inline vulnerability vectors.
+## 2. Image & Asset Optimization Rules
+- All raster images must use WebP compression.
+- Maximum payload limit for profile images: **< 50 KB**.
+- Vector tool icons must be authentic SVGs placed in `assets/tools/*.svg`.
+
+---
+
+## 3. Heading & Accessibility Rules
+- Heading hierarchy must follow strict sequential order: `H1` → `H2` → `H3` (no skipping levels).
+- Mobile drawer navigation must set `display: none` when collapsed to prevent focusable hidden elements.
+
+---
+
+© 2026 Nitin Systems - Founder-Led B2B Automation & Operations Infrastructure.

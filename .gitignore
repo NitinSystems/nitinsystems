@@ -1,3 +1,15 @@
+# Dependencies & Build
 node_modules/
 .next/
 .cache/
+
+# Agent Scratch & Temporary Logs
+scratch/
+backups/
+*.log
+
+# OS & Editor Junk
+.DS_Store
+.vscode/
+.idea/
+Thumbs.db

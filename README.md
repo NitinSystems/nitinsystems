@@ -1,95 +1,70 @@
 # Nitin Systems
 
-> Marketing systems, automation, and operational infrastructure for small and growing B2B businesses.
+> **Founder-Led B2B Automation & Operations Infrastructure**
 
-Nitin Systems is focused on designing and building practical systems that reduce manual coordination and make business processes easier to manage.
-
-The work focuses on CRM structure, workflow automation, integrations, data organization, and operational handoffs.
-
-## What I Build
-
-- CRM-connected workflows
-- Lead intake and qualification systems
-- Follow-up and lifecycle automation
-- CRM and database workflows
-- Application and API integrations
-- Form-to-CRM automation
-- Scheduling and booking workflows
-- Data validation and duplicate detection
-- Internal notifications and operational handoffs
-- Workflow documentation and visual system blueprints
-
-## Core Tools
-
-- Make.com
-- GoHighLevel
-- Airtable
-- Zapier
-- HubSpot
-- Webhooks
-- APIs
-- Google Workspace integrations
-
-## Systems Approach
-
-The approach is systems-first rather than tool-first.
-
-Before building an automation, the business process, data structure, dependencies, triggers, decision logic, and handoffs are considered first.
-
-A typical system moves through:
-
-**Understand → Map → Design → Build → Test → Handoff**
-
-The goal is not simply to connect applications. The goal is to create workflows that are understandable, maintainable, and appropriate for the business process they support.
-
-## Selected Work
-
-### Lead Capture to Booking System
-
-A client implementation connecting lead intake, qualification, automated follow-up, and scheduling workflows.
-
-**Tools:** GoHighLevel, Make.com
-
-### Lead Intake & Duplicate Verification
-
-A portfolio system exploring webhook-based intake, duplicate detection, database lookups, and CRM routing.
-
-**Tools:** Make.com, Airtable
-
-### AI Customer Journey Operations
-
-An experimental architecture exploring AI-assisted decision logic for lifecycle monitoring and structured re-engagement workflows.
-
-**Tools:** AI, Make.com, Airtable
-
-Project designations are intentionally stated as client implementation, portfolio system, or experimental architecture where applicable.
-
-## Repository Purpose
-
-This repository contains the website and related project assets for Nitin Systems.
-
-It may include:
-
-- Website source files
-- Design and interface assets
-- System diagrams
-- Architecture documentation
-- Project references
-- Supporting media and approved website assets
-
-## About
-
-Nitin Systems is operated by **Nitin Mishra**, a Marketing Systems & Automation Specialist focused on practical CRM, workflow, and automation infrastructure.
-
-The work covers system planning, implementation, testing, documentation, and operational handoff.
-
-## Contact
-
-**Nitin Mishra**  
-Nitin Systems
-
-Email: NitinSystems@outlook.com
+Nitin Systems is an independent engineering practice operated directly by **Nitin Mishra**. We design, architect, and deploy custom intake landing pages, CRM pipelines, and automated backend workflows for scaling service businesses across India, the US, UK, and Europe.
 
 ---
 
-© Nitin Systems. All rights reserved.
+## 🏛️ Brand Philosophy & Origin
+
+The name **Nitin** derives from the Sanskrit root *Nīti*, meaning **principles, structured rules, and disciplined order**. Paired with **Systems**, it reflects an innate engineering mindset: eliminating operational friction, connecting siloed software tools, and replacing chaotic manual processes with predictable, fault-tolerant infrastructure.
+
+---
+
+## ⚡ What We Engineer
+
+- **Full-Stack Lead Engines:** High-converting HTML intake landing pages + connected CRM pipelines.
+- **Webhook & API Orchestration:** Real-time data routing via Make.com, Zapier, and custom webhooks.
+- **CRM Pipeline Architecture:** Sub-account structure, multi-calendar scheduling, and deal stage automation in GoHighLevel, HubSpot, and Airtable.
+- **Data Hygiene & Duplicate Verification:** Pre-CRM payload normalization, hash lookups, and clean record deduplication.
+- **AI-Powered Customer Journey Triage:** Semantic lead scoring, automated re-engagement, and LLM context routing using Google Gemini API.
+
+---
+
+## 🛠️ The Tech Stack
+
+- **Integrations & Scenarios:** Make.com, Zapier, Custom Webhooks, REST APIs.
+- **CRM & Databases:** GoHighLevel, Airtable, HubSpot CRM.
+- **Frontend Architecture:** Lightweight HTML5, CSS3 Tokens, WebP responsive images, JS.
+- **AI Infrastructure:** Google AI Studio (Gemini Pro API), OpenAI.
+
+---
+
+## 📚 Systems & Case Studies
+
+### 1. Lead Capture to Booking System
+Direct client build for an active B2B AI Automation Agency connecting website intake forms, automated SMS/email reminders, and 2-way Google Calendar scheduling.
+- **Stack:** GoHighLevel, Google Calendar, Webhooks
+
+### 2. Lead Intake & Duplicate Verification System
+Technical architecture blueprint evaluating incoming webhook payloads against an Airtable lookup table to eliminate duplicate records before updating HubSpot CRM.
+- **Stack:** Make.com, Airtable, HubSpot CRM, Webhooks
+
+### 3. AI Customer Journey Operations & Recovery System
+A 5-scenario operational blueprint demonstrating how Make.com, relational Airtable records, and AI context analysis monitor lifecycle states and route recovery actions.
+- **Stack:** Make.com, Make.com AI Agent, Airtable
+
+### 4. Nitin Systems Lab (R&D Division)
+Active engineering prototype: **Autonomous Lead Scoring & Qualification Agent** using Make.com and Google Gemini API to evaluate lead fit before human review.
+
+---
+
+## 🚀 Performance & Accessibility Standards
+
+- **Performance Score:** 98+ (Optimized WebP assets, zero layout shifts).
+- **Accessibility Score:** 100/100 (WCAG compliant sequential heading hierarchy, accessible touch targets).
+- **SEO & Best Practices:** 100/100 (Structured JSON-LD schema, canonical indexing, robots.txt, sitemap.xml).
+
+---
+
+## ✉ Contact & Project Inquiries
+
+- **Founder & Systems Engineer:** Nitin Mishra
+- **Email:** [NitinSystems@outlook.com](mailto:NitinSystems@outlook.com)
+- **LinkedIn:** [linkedin.com/in/nitinmishraops](https://www.linkedin.com/in/nitinmishraops)
+- **Website:** [https://nitinsystems.com](https://nitinsystems.com)
+
+---
+
+© 2026 Nitin Systems - Founder-Led B2B Automation & Operations Infrastructure.

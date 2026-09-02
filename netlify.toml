@@ -1,8 +1,57 @@
-# Netlify Configuration for Nitin Systems (Static HTML/CSS/JS Architecture)
-
+# Netlify Configuration for Nitin Systems
 [build]
   publish = "."
-  command = ""
 
-[build.environment]
-  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+# Clean URL Redirects (e.g. /systems -> /systems.html)
+[[redirects]]
+  from = "/systems"
+  to = "/systems.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/approach"
+  to = "/approach.html"
+  status = 200
+
+[[redirects]]
+  from = "/insights"
+  to = "/insights.html"
+  status = 200
+
+[[redirects]]
+  from = "/audit"
+  to = "/audit.html"
+  status = 200
+
+# Security & High-Performance Caching Headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "origin-when-cross-origin"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

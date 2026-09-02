@@ -1,4 +1,11 @@
+# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
+
+# Exclude scratch scripts and working sandbox files from search crawlers
+Disallow: /*-working.html
+Disallow: /scratch/
+Disallow: /backups/
+Disallow: /.git/
 
 Sitemap: https://nitinsystems.com/sitemap.xml
