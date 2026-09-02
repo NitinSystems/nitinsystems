@@ -1,5 +1,6 @@
-# Netlify Configuration for Nitin Systems
+# Netlify Configuration for Nitin Systems (Pure Static HTML5 / CSS3 / WebP)
 [build]
+  command = ""
   publish = "."
 
 [build.processing]
