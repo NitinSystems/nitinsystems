@@ -62,7 +62,7 @@ Active engineering prototype: **Autonomous Lead Scoring & Qualification Agent** 
 
 - **Founder & Systems Engineer:** Nitin Mishra
 - **Email:** [NitinSystems@outlook.com](mailto:NitinSystems@outlook.com)
-- **LinkedIn:** [linkedin.com/in/nitinmishraops](https://www.linkedin.com/in/nitinmishraops)
+- **LinkedIn:** [linkedin.com/in/nitinmishr-me](https://www.linkedin.com/in/nitinmishra-me)
 - **Website:** [https://nitinsystems.com](https://nitinsystems.com)
 
 ---
