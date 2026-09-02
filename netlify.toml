@@ -1,6 +1,12 @@
-# Netlify Configuration for Nitin Systems
+# Netlify Configuration for Nitin Systems (Pure Static HTML5 / CSS3 / WebP)
 [build]
+  command = ""
   publish = "."
+
+# Explicitly disable auto-detected Next.js plugin
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+  enabled = false
 
 [build.processing]
   skip_processing = false
