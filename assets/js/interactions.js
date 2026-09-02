@@ -170,12 +170,12 @@ function toggleMobileMenu() {
   const isOpen = drawer.classList.contains('open');
   if (isOpen) {
     drawer.classList.remove('open');
-    drawer.setAttribute('aria-hidden', 'true');
+    drawer.removeAttribute("aria-hidden"); drawer.style.display = "none";
     if (backdrop) backdrop.classList.remove('open');
     document.body.style.overflow = '';
   } else {
     drawer.classList.add('open');
-    drawer.setAttribute('aria-hidden', 'false');
+    drawer.style.display = "block";
     if (backdrop) backdrop.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -186,7 +186,7 @@ function closeMobileMenu() {
   const backdrop = document.getElementById('mobile-backdrop');
   if (drawer) {
     drawer.classList.remove('open');
-    drawer.setAttribute('aria-hidden', 'true');
+    drawer.removeAttribute("aria-hidden"); drawer.style.display = "none";
   }
   if (backdrop) {
     backdrop.classList.remove('open');
