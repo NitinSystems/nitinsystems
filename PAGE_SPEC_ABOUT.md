@@ -11,4 +11,4 @@
 ---
 
 ## 📜 SANSKRIT NĪTI PHILOSOPHY
-- **Statement:** `The name Nitin is associated with the Sanskrit concept of Nīti — guidance, conduct, principles, prudence, and sound judgment. I interpret that idea through principles, structured rules, and disciplined order.`
+- **Statement:** `In Sanskrit, the root of Nitin (Nīti) represents guidance, conduct, principles, prudence, and disciplined order. I interpret that idea through principles, structured rules, and disciplined order.`
