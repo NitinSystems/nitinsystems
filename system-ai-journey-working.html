@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Customer Journey Operations & Recovery System | Case Study | Nitin Systems</title>
+  <link rel="canonical" href="https://nitinsystems.com/system-ai-journey.html" />
+  <meta name="description" content="A 7-scenario operational blueprint demonstrating how Make.com, relational Airtable data, and the Make.com AI Agent can monitor lifecycle states and route recovery actions." />
+  <meta name="author" content="Nitin Mishra" />
+  <meta name="robots" content="index, follow" />
+  <!-- Open Graph & Social Cards -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="AI Customer Journey Operations & Recovery System | Nitin Systems Case Study" />
+  <meta property="og:description" content="A 7-scenario operational blueprint demonstrating how Make.com, relational Airtable data, and the Make.com AI Agent can monitor lifecycle states and route recovery actions." />
+  <meta property="og:url" content="https://nitinsystems.com/systems/ai-customer-journey-operations" />
+  <meta property="og:image" content="https://nitinsystems.com/assets/images/case-study/ai-journey/diagram-operational.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Customer Journey Operations & Recovery System | Nitin Systems Case Study" />
+  <meta name="twitter:description" content="A 7-scenario operational blueprint demonstrating how Make.com, relational Airtable data, and the Make.com AI Agent can monitor lifecycle states and route recovery actions." />
+  <meta name="twitter:image" content="https://nitinsystems.com/assets/images/case-study/ai-journey/diagram-operational.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/nav-logo.webp" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/logo/nav-logo.webp" />
+  <link rel="shortcut icon" href="assets/logo/nav-logo.webp" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="view-transition" content="same-origin" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style-working.css?v=1.0" />
+</head>
+<body>
+<header id="navbar" class="animate-hero-nav">
+  <div id="navbar-inner">
+    <div class="nav-brand-wrap">
+        <a href="index-working.html" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;">
+          <div class="brand-logo-box" style="width:34px;height:34px;background:#FFFFFF;border:1px solid var(--line);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,0.04);padding:4px;">
+            <img src="assets/logo/nav-logo.webp" alt="Nitin Systems brand logo" style="width:100%;height:100%;object-fit:contain;" />
+          </div>
+          <span style="font-family:var(--font-serif);font-size:1.15rem;font-weight:700;letter-spacing:-0.02em;color:var(--ink);">Nitin Systems</span>
+        </a>
+      </div>
+
+    <nav class="nav-links-wrap">
+      <a href="index-working.html" class="nav-link">Home</a>
+      <div class="nav-dropdown">
+        <a href="systems-working.html" class="nav-link active" style="display:flex;align-items:center;gap:0.25rem;">
+          Systems <span style="font-size:0.65rem;opacity:0.7;">▾</span>
+        </a>
+        <div class="nav-dropdown-menu">
+          <a href="system-lead-capture-working.html" class="dropdown-item">
+            <div class="dropdown-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <div class="dropdown-item-content">
+              <span class="dropdown-item-title">Lead Capture to Booking</span>
+              <span class="dropdown-item-desc">GoHighLevel · Calendar · Instant Routing</span>
+            </div>
+          </a>
+          <a href="system-lead-intake-working.html" class="dropdown-item">
+            <div class="dropdown-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+            <div class="dropdown-item-content">
+              <span class="dropdown-item-title">Lead Intake &amp; Duplicate Verification</span>
+              <span class="dropdown-item-desc">Make.com · Airtable · HubSpot Sync</span>
+            </div>
+          </a>
+          <a href="system-ai-journey-working.html" class="dropdown-item">
+            <div class="dropdown-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3"/><path d="M15 1v3"/><path d="M9 20v3"/><path d="M15 20v3"/><path d="M20 9h3"/><path d="M20 14h3"/><path d="M1 9h3"/><path d="M1 14h3"/></svg>
+            </div>
+            <div class="dropdown-item-content">
+              <span class="dropdown-item-title">AI Customer Journey Ops</span>
+              <span class="dropdown-item-desc">7 Scenarios · Multi-Branch Logic · Make.com AI Agent</span>
+            </div>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="systems-working.html" class="dropdown-item" style="background:rgba(241, 245, 249, 0.65);">
+            <div class="dropdown-item-content">
+              <span class="dropdown-item-title" style="color:var(--cobalt);font-size:0.8rem;">
+                <span>View All Systems &amp; Blueprints</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <a href="approach-working.html" class="nav-link">Approach</a>
+      <a href="about-working.html" class="nav-link">About</a>
+      <a href="insights-working.html" class="nav-link">Insights</a>
+    </nav>
+
+    <div class="nav-actions-wrap">
+      <a href="audit-working.html" class="btn btn-primary" style="padding:0.45rem 1rem;font-size:0.85rem;">Discuss a Project →</a>
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAVIGATION DRAWER & BACKDROP -->
+<div id="mobile-drawer" class="mobile-drawer" style="display:none;">
+  <div class="mobile-drawer-header">
+    <div style="display:flex;align-items:center;gap:0.6rem;">
+      <div class="brand-logo-box" style="width:28px;height:28px;background:#FFFFFF;border:1px solid var(--line);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;padding:3px;">
+        <img src="assets/logo/nav-logo.webp" alt="Nitin Systems brand logo" style="width:100%;height:100%;object-fit:contain;" />
+      </div>
+      <span style="font-family:var(--font-serif);font-weight:700;font-size:1.05rem;color:var(--ink);">Nitin Systems</span>
+    </div>
+    <button class="mobile-drawer-close" onclick="closeMobileMenu()" aria-label="Close menu">✕</button>
+  </div>
+  <nav class="mobile-nav-links">
+    <a href="index-working.html" class="mobile-nav-link" onclick="closeMobileMenu()">Home</a>
+    <a href="systems-working.html" class="mobile-nav-link active" onclick="closeMobileMenu()">Systems Library</a>
+    <a href="approach-working.html" class="mobile-nav-link" onclick="closeMobileMenu()">Approach</a>
+    <a href="about-working.html" class="mobile-nav-link" onclick="closeMobileMenu()">About</a>
+    <a href="insights-working.html" class="mobile-nav-link" onclick="closeMobileMenu()">Insights</a>
+  </nav>
+  <div class="mobile-drawer-footer">
+    <a href="audit-working.html" class="btn btn-primary" style="width:100%;text-align:center;padding:0.75rem 1rem;" onclick="closeMobileMenu()">Discuss a Project →</a>
+    <div style="margin-top:0.75rem;font-size:0.7rem;color:var(--ink-muted);text-align:center;">
+      <span>B2B Automation Systems</span>
+    </div>
+  </div>
+</div>
+<div id="mobile-backdrop" class="mobile-backdrop" onclick="closeMobileMenu()"></div>
+
+<main>
+<!-- CASE STUDY HERO -->
+<section class="section bg-pattern-grid-light" style="padding-top:clamp(6.25rem, 8vw, 7.25rem);padding-bottom:2.25rem;background:linear-gradient(180deg, #EAF3FC 0%, #FFFFFF 100%);">
+  <div class="ambient-glow animate-hero-glow"></div>
+  <div class="container" style="max-width:960px;">
+    <div style="margin-bottom:0.75rem;" class="animate-hero-badge">
+      <a href="systems-working.html" style="font-size:0.8rem;color:var(--cobalt);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:0.35rem;">
+        ← Back to Systems Library
+      </a>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;margin-bottom:0.85rem;" class="animate-hero-badge">
+      <span style="font-size:0.68rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);background:var(--cobalt-light);border:1px solid var(--cobalt-border);padding:0.25rem 0.75rem;border-radius:9999px;">Architecture Case Study</span>
+      <span style="font-size:0.72rem;font-family:var(--font-mono);color:var(--ink-soft);">AI-Assisted RevOps Blueprint</span>
+    </div>
+    <h1 class="animate-hero-title" style="font-size:clamp(2.1rem,4.2vw,3rem);color:var(--ink);line-height:1.2;margin-bottom:0.75rem;font-weight:700;">
+      AI Customer Journey Operations &amp; Recovery System
+    </h1>
+    <p class="animate-hero-sub" style="font-size:1.05rem;color:var(--ink-soft);line-height:1.7;margin-bottom:1.25rem;">
+      A multi-scenario operational architecture demonstrating how Make.com, relational Airtable records, and Make.com AI Agent modules can monitor lifecycle states, identify stalled opportunities, and route recovery actions.
+    </p>
+
+    <!-- METRICS & TECH PILLS -->
+    <div class="animate-hero-console" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.5rem;">
+      <div class="glass-card" style="padding:1.15rem 1.25rem;background:#FFFFFF;border-left:3px solid var(--cobalt);">
+        <div style="font-size:0.65rem;font-family:var(--font-mono);color:var(--ink-muted);text-transform:uppercase;">Automation Engine</div>
+        <div style="font-size:1.05rem;font-weight:700;color:var(--ink);margin-top:0.25rem;">Make.com (7 Scenarios)</div>
+        <div style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.2rem;">Decoupled operational routers</div>
+      </div>
+      <div class="glass-card" style="padding:1.15rem 1.25rem;background:#FFFFFF;border-left:3px solid var(--cobalt);">
+        <div style="font-size:0.65rem;font-family:var(--font-mono);color:var(--ink-muted);text-transform:uppercase;">Data Architecture</div>
+        <div style="font-size:1.05rem;font-weight:700;color:var(--ink);margin-top:0.25rem;">Airtable Relational DB</div>
+        <div style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.2rem;">5 linked tables &amp; audit records</div>
+      </div>
+      <div class="glass-card" style="padding:1.15rem 1.25rem;background:#FFFFFF;border-left:3px solid var(--cobalt);">
+        <div style="font-size:0.65rem;font-family:var(--font-mono);color:var(--ink-muted);text-transform:uppercase;">Reasoning Layer</div>
+        <div style="font-size:1.05rem;font-weight:700;color:var(--ink);margin-top:0.25rem;">Make.com AI Agent</div>
+        <div style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.2rem;">Native Make AI logic &amp; triage</div>
+      </div>
+    </div>
+
+    <!-- SCOPE DISCLOSURE -->
+    <div class="animate-hero-console" style="margin-top:1.25rem;padding:0.75rem 1.25rem;background:var(--cloud);border:1px dashed var(--line);border-radius:8px;font-size:0.78rem;color:var(--ink-soft);line-height:1.6;">
+      <strong style="color:var(--ink);">Architectural Study Disclosure:</strong> Engineered as a self-initiated operational architecture exploring lifecycle monitoring, database governance, and Make.com AI Agent decision logic for a representative B2B scenario.
+    </div>
+  </div>
+</section>
+
+<!-- DEEP DIVE BODY -->
+<section class="section" style="background:var(--paper);padding-top:3rem;padding-bottom:5rem;">
+  <div class="container" style="max-width:960px;">
+    
+    <!-- 01 THE OPERATIONAL PROBLEM -->
+    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;">
+      <span class="badge-pill" style="margin-bottom:0.75rem;">01 THE OPERATIONAL PROBLEM</span>
+      <h2 style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Where Inactive Leads Get Lost in the Pipeline</h2>
+      <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1rem;">
+        In most B2B service firms, deals stall between consultation calls, proposal delivery, and contract signing. Because CRM updates depend on manual rep data entry, stalled accounts sit silently without detection until opportunities turn cold.
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1.25rem;background:var(--cloud);padding:1.25rem;border-radius:8px;">
+        <div>
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:#F43F5E;">❌ STALLED DEAL INVISIBILITY</div>
+          <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.6;margin-top:0.25rem;">Deals languish in mid-pipeline stages with zero automated inactivity monitoring or SLA tracking.</p>
+        </div>
+        <div>
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:#F43F5E;">❌ LACK OF CONTEXTUAL RECOVERY</div>
+          <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.6;margin-top:0.25rem;">Reps send generic check-ins rather than addressing specific stalled journey objections.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 ARCHITECTURE & DATA FLOW DIAGRAMS -->
+    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;">
+      <span class="badge-pill" style="margin-bottom:0.75rem;">02 SYSTEM &amp; DATA ARCHITECTURE</span>
+      <h2 style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">System &amp; Data Architecture Blueprint</h2>
+      <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.5rem;">
+        The system maps an end-to-end operational loop across 7 Make.com scenarios: Intake → Leakage Detection → Make.com AI Agent → Recovery Execution → Outcome Evaluation. Click the architecture diagram below to inspect the full data model:
+      </p>
+      
+      <!-- DIAGRAM PREVIEW CONTAINER -->
+      <div style="background:var(--cloud);padding:1.25rem;border-radius:8px;border:1px solid var(--line);text-align:center;margin-bottom:1.5rem;">
+        <img 
+          src="assets/images/case-study/ai-journey/diagram-operational.png" 
+          alt="System Operational Diagram" 
+          style="width:100%;height:auto;max-height:500px;object-fit:contain;cursor:pointer;border-radius:6px;transition:transform 0.3s ease;"
+          onclick="openImgModal('System Operational Diagram', 'assets/images/case-study/ai-journey/diagram-operational.png')"
+          class="raycast-hover"
+        />
+        <div style="margin-top:0.75rem;font-size:0.75rem;color:var(--ink-soft);display:flex;align-items:center;justify-content:center;gap:0.4rem;">
+          <span>🔍 Click diagram to expand full screen</span>
+        </div>
+      </div>
+
+      <!-- DEDICATED 2-COLUMN SCHEMATICS POD -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;">
+        <!-- SCHEMATIC 01 -->
+        <div class="glass-card" style="padding:1.25rem;background:#FFFFFF;border-left:3px solid var(--cobalt);display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <div style="font-size:0.68rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;letter-spacing:0.04em;">📐 01 · SYSTEM ARCHITECTURE SCHEMATIC</div>
+            <div style="font-size:0.95rem;font-weight:700;color:var(--ink);margin:0.35rem 0 0.35rem 0;">System Module Topology Blueprint</div>
+            <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;margin-bottom:1rem;">
+              Full vector diagram detailing multi-module orchestration, Make.com AI Agent prompts, and Airtable relational sync.
+            </p>
+          </div>
+          <a href="assets/images/case-study/ai-journey/diagram-system.pdf" target="_blank" class="btn btn-primary raycast-hover" style="width:100%;text-align:center;padding:0.65rem 1rem;font-size:0.82rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:0.4rem;">
+            <span>Open System Architecture PDF</span>
+            <span class="arrow-icon">↗</span>
+          </a>
+        </div>
+
+        <!-- SCHEMATIC 02 -->
+        <div class="glass-card" style="padding:1.25rem;background:#FFFFFF;border-left:3px solid var(--cobalt);display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <div style="font-size:0.68rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;letter-spacing:0.04em;">📊 02 · OPERATIONAL SYSTEM FLOW</div>
+            <div style="font-size:0.95rem;font-weight:700;color:var(--ink);margin:0.35rem 0 0.35rem 0;">Relational Data Flow Schematic</div>
+            <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;margin-bottom:1rem;">
+              Complete schema detailing the 5 linked Airtable tables, field mappings, SLA inactivity timers, and recovery dispatch.
+            </p>
+          </div>
+          <a href="assets/images/case-study/ai-journey/diagram-data.pdf" target="_blank" class="btn btn-secondary raycast-hover" style="width:100%;text-align:center;padding:0.65rem 1rem;font-size:0.82rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:0.4rem;">
+            <span>Open Operational Diagram PDF</span>
+            <span class="arrow-icon">↗</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 03 INTAKE LAYER & INTERNAL NOTIFICATIONS -->
+    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;">
+      <span class="badge-pill" style="margin-bottom:0.75rem;">03 INTAKE &amp; NOTIFICATION PROOF</span>
+      <h2 style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Intake Capture, Webhook Engine &amp; Team Alerts</h2>
+      <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.5rem;">
+        System Build &amp; Workflow Architecture Proof via structured forms, processed through Make.com Scenario 00, and how internal team alerts are fired when an exception occurs:
+      </p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;">
+        <!-- INTAKE FORM -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);margin-bottom:0.4rem;">01 · INTAKE FORM UI</div>
+          <img 
+            src="assets/images/case-study/ai-journey/intake-form.png" 
+            alt="Customer Journey Intake Form" 
+            style="width:100%;height:180px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid var(--line);"
+            onclick="openImgModal('Customer Journey Intake Form', 'assets/images/case-study/ai-journey/intake-form.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;">Frontend intake form capturing customer milestones and project scope.</p>
+        </div>
+
+        <!-- INTAKE SCENARIO 00 -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);margin-bottom:0.4rem;">02 · SCENARIO 00: INTAKE ENGINE</div>
+          <img 
+            src="assets/images/case-study/ai-journey/intake-scenario.png" 
+            alt="Scenario 00 Customer Journey Intake Engine" 
+            style="width:100%;height:180px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid var(--line);"
+            onclick="openImgModal('Scenario 00: Customer Journey Intake Engine', 'assets/images/case-study/ai-journey/intake-scenario.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;">Make.com webhook listener mapping data to Airtable customer journey table.</p>
+        </div>
+
+        <!-- ESCALATION EMAIL -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);margin-bottom:0.4rem;">03 · ESCALATION EMAIL ALERT</div>
+          <img 
+            src="assets/images/case-study/ai-journey/intake-alert.png" 
+            alt="Internal Escalation Notification Email" 
+            style="width:100%;height:180px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid var(--line);"
+            onclick="openImgModal('Internal Escalation Notification Email', 'assets/images/case-study/ai-journey/intake-alert.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;">Real-time internal team email with Make.com AI Agent recovery suggestions.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 MAKE.COM AUTOMATION SCENARIOS PROOF GALLERY -->
+    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;">
+      <span class="badge-pill" style="margin-bottom:0.75rem;">04 MAKE.COM AUTOMATION ENGINE</span>
+      <h2 style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Multi-Scenario Module Proof Gallery</h2>
+      <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.5rem;">
+        Each scenario operates as an independent, practical, reliable module inside Make.com. Click any scenario below to inspect module logic, filters, and routing:
+      </p>
+
+      <!-- MASTER SCENARIO INVENTORY -->
+      <div style="background:var(--cloud);padding:1.25rem;border-radius:8px;border:1px solid var(--line);margin-bottom:1.5rem;text-align:center;">
+        <div style="font-size:0.75rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-align:left;margin-bottom:0.5rem;">MASTER SCENARIO INVENTORY (ALL MODULES)</div>
+        <img 
+          src="assets/images/case-study/ai-journey/scenario-inventory.png" 
+          alt="System Scenario Inventory Overview" 
+          style="width:100%;height:auto;max-height:360px;object-fit:contain;border-radius:6px;cursor:pointer;"
+          onclick="openImgModal('Make.com System Scenario Inventory', 'assets/images/case-study/ai-journey/scenario-inventory.png')"
+          class="raycast-hover"
+        />
+        <div style="margin-top:0.5rem;font-size:0.75rem;color:var(--ink-soft);">🔍 Click to zoom full Make.com scenario inventory</div>
+      </div>
+
+      <!-- 6 SCENARIO CARDS -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;">
+        <!-- SCENARIO 01 -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);">SCENARIO 01 · LEAKAGE DETECTION</div>
+          <div style="font-size:0.85rem;font-weight:600;color:var(--ink);margin:0.2rem 0 0.5rem 0;">Inactivity &amp; Dormancy Trigger</div>
+          <img 
+            src="assets/images/case-study/ai-journey/scenario-01.png" 
+            alt="Scenario 01 Leakage Detection Flow" 
+            style="width:100%;height:150px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid var(--line);"
+            onclick="openImgModal('Scenario 01: Leakage Detection Flow', 'assets/images/case-study/ai-journey/scenario-01.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.4rem;">Periodically queries journey records for stalled stages exceeding defined SLA limits.</p>
+        </div>
+
+        <!-- SCENARIO 02 -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);">SCENARIO 02 · MAKE.COM AI AGENT</div>
+          <div style="font-size:0.85rem;font-weight:600;color:var(--ink);margin:0.2rem 0 0.5rem 0;">Intelligent Lifecycle Decision Engine</div>
+          <img 
+            src="assets/images/case-study/ai-journey/scenario-02.png" 
+            alt="Scenario 02 Make.com AI Agent Decision Engine" 
+            style="width:100%;height:150px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid var(--line);"
+            onclick="openImgModal('Scenario 02: Make.com AI Agent Decision Engine', 'assets/images/case-study/ai-journey/scenario-02.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.4rem;">Analyzes stalled deal history, evaluates drop-off reasons, and determines whether to trigger an automated recovery flow or escalate to a human rep.</p>
+        </div>
+
+        <!-- SCENARIO 03 -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);">SCENARIO 03 · RECOVERY EXECUTION</div>
+          <div style="font-size:0.85rem;font-weight:600;color:var(--ink);margin:0.2rem 0 0.5rem 0;">Multi-Channel Action Dispatch</div>
+          <img 
+            src="assets/images/case-study/ai-journey/scenario-03.png" 
+            alt="Scenario 03 Recovery Execution Engine" 
+            style="width:100%;height:150px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid var(--line);"
+            onclick="openImgModal('Scenario 03: Recovery Execution Engine', 'assets/images/case-study/ai-journey/scenario-03.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.4rem;">Dispatches contextual follow-ups and creates task reminders.</p>
+        </div>
+
+        <!-- SCENARIO 04 -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);">SCENARIO 04 · ESCALATION MGMT</div>
+          <div style="font-size:0.85rem;font-weight:600;color:var(--ink);margin:0.2rem 0 0.5rem 0;">Exception Handling Layer</div>
+          <img 
+            src="assets/images/case-study/ai-journey/scenario-04.png" 
+            alt="Scenario 04 Escalation Management Engine" 
+            style="width:100%;height:150px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid var(--line);"
+            onclick="openImgModal('Scenario 04: Escalation Management Engine', 'assets/images/case-study/ai-journey/scenario-04.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.4rem;">Routes blocked journey exceptions to human leadership review.</p>
+        </div>
+
+        <!-- SCENARIO 05 -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);">SCENARIO 05 · NOTIFICATIONS</div>
+          <div style="font-size:0.85rem;font-weight:600;color:var(--ink);margin:0.2rem 0 0.5rem 0;">Internal Alert Dispatcher</div>
+          <img 
+            src="assets/images/case-study/ai-journey/scenario-05.png" 
+            alt="Scenario 05 Escalation Notification Engine" 
+            style="width:100%;height:150px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid var(--line);"
+            onclick="openImgModal('Scenario 05: Escalation Notification Engine', 'assets/images/case-study/ai-journey/scenario-05.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.4rem;">Sends rich HTML notification emails to assigned account executives.</p>
+        </div>
+
+        <!-- SCENARIO 05B -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);">SCENARIO 05B · OUTCOME EVALUATION</div>
+          <div style="font-size:0.85rem;font-weight:600;color:var(--ink);margin:0.2rem 0 0.5rem 0;">Audit &amp; Feedback Loop</div>
+          <img 
+            src="assets/images/case-study/ai-journey/scenario-06.png" 
+            alt="SCENARIO 05B Outcome Evaluation Engine" 
+            style="width:100%;height:150px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid var(--line);"
+            onclick="openImgModal('SCENARIO 05B: Outcome Evaluation Engine', 'assets/images/case-study/ai-journey/scenario-06.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.4rem;">Logs recovery responses back into database, closing the operational loop.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 AIRTABLE RELATIONAL DATABASE SCHEMA PROOF -->
+    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;">
+      <span class="badge-pill" style="margin-bottom:0.75rem;">05 RELATIONAL DATABASE PROOF</span>
+      <h2 style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Airtable 5-Table Relational Schema</h2>
+      <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.5rem;">
+        The system relies on strict database governance across 5 linked tables. Click any database screenshot below to inspect field types, foreign keys, and status formulas:
+      </p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;">
+        <!-- TABLE 01 -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);">TABLE 01 · CUSTOMER JOURNEYS</div>
+          <img 
+            src="assets/images/case-study/ai-journey/table-01.png" 
+            alt="Airtable Table 01 Customer Journey Records" 
+            style="width:100%;height:150px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid var(--line);"
+            onclick="openImgModal('Airtable Table 01: Customer Journey Records', 'assets/images/case-study/ai-journey/table-01.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.4rem;">Primary account records, milestones, and active journey health status.</p>
+        </div>
+
+        <!-- TABLE 02 -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);">TABLE 02 · LEAKAGE EVENTS</div>
+          <img 
+            src="assets/images/case-study/ai-journey/table-02.png" 
+            alt="Airtable Table 02 Leakage Events" 
+            style="width:100%;height:150px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid var(--line);"
+            onclick="openImgModal('Airtable Table 02: Leakage Events', 'assets/images/case-study/ai-journey/table-02.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.4rem;">Logs detected dormancy incidents, SLA timestamps, and severity levels.</p>
+        </div>
+
+        <!-- TABLE 03 -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);">TABLE 03 · RECOVERY ACTIONS</div>
+          <img 
+            src="assets/images/case-study/ai-journey/table-03.png" 
+            alt="Airtable Table 03 Recovery Actions" 
+            style="width:100%;height:150px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid var(--line);"
+            onclick="openImgModal('Airtable Table 03: Recovery Actions', 'assets/images/case-study/ai-journey/table-03.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.4rem;">Make.com AI Agent recovery strategies, outreach text, and action owners.</p>
+        </div>
+
+        <!-- TABLE 04 -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);">TABLE 04 · ESCALATIONS</div>
+          <img 
+            src="assets/images/case-study/ai-journey/table-04.png" 
+            alt="Airtable Table 04 Escalation Records" 
+            style="width:100%;height:150px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid var(--line);"
+            onclick="openImgModal('Airtable Table 04: Escalation Records', 'assets/images/case-study/ai-journey/table-04.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.4rem;">Exception table routing high-value stalled accounts to management.</p>
+        </div>
+
+        <!-- TABLE 05 -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);">TABLE 05 · OUTCOMES</div>
+          <img 
+            src="assets/images/case-study/ai-journey/table-05.png" 
+            alt="Airtable Table 05 Outcome Records" 
+            style="width:100%;height:150px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid var(--line);"
+            onclick="openImgModal('Airtable Table 05: Outcome Records', 'assets/images/case-study/ai-journey/table-05.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.4rem;">Historical resolution audit logging client responses and outcome records and recovery resolution status.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 ARCHITECTURE CASE STUDY -->
+    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:3rem;text-align:center;">
+      <span class="badge-pill" style="margin-bottom:0.75rem;display:inline-flex;">06 ARCHITECTURE CASE STUDY</span>
+      <h2 style="font-size:1.4rem;color:var(--ink);margin-bottom:0.5rem;">30+ Page Architecture &amp; Operations Case Study</h2>
+      <p style="font-size:0.88rem;color:var(--ink-soft);max-width:580px;margin:0 auto 1.5rem auto;line-height:1.7;">
+        The full downloadable case study document containing data dictionaries, scenario JSON structures, and complete operational governance documentation.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;">
+        <a href="assets/images/case-study/ai-journey/case-study-whitepaper.pdf" target="_blank" class="btn btn-primary raycast-hover" style="padding:0.75rem 1.75rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;">
+          <span>Open Case Study PDF ↗</span>
+        </a>
+        <a href="assets/images/case-study/ai-journey/case-study-whitepaper.pdf" download class="btn btn-secondary raycast-hover" style="padding:0.75rem 1.75rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;">
+          <span>Download Case Study PDF</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- EXPLORE OTHER SYSTEMS -->
+    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;">
+      <span class="badge-pill" style="margin-bottom:0.75rem;">EXPLORE OTHER SYSTEMS</span>
+      <h2 style="font-size:1.35rem;color:var(--ink);margin-bottom:0.5rem;">Related Production Systems &amp; Blueprints</h2>
+      <p style="font-size:0.88rem;color:var(--ink-soft);margin-bottom:1.5rem;line-height:1.6;">
+        Explore other deployed client pipelines and multi-channel data deduplication architectures:
+      </p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;">
+        <!-- SYSTEM 01 -->
+        <div class="glass-card raycast-hover" style="padding:1.25rem;background:var(--cloud);border-radius:8px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <div style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);text-transform:uppercase;">SYSTEM 01 · CLIENT BUILD</div>
+            <h3 style="font-size:1.05rem;color:var(--ink);margin:0.35rem 0 0.35rem 0;font-weight:700;">Lead Capture to Booking</h3>
+            <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;margin-bottom:1rem;">
+              GoHighLevel calendar automation, 2-way Google sync, and instant SMS reminders.
+            </p>
+          </div>
+          <a href="system-lead-capture-working.html" class="btn btn-secondary" style="font-size:0.8rem;padding:0.5rem 1rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:0.35rem;">
+            <span>Explore Booking System →</span>
+          </a>
+        </div>
+
+        <!-- SYSTEM 02 -->
+        <div class="glass-card raycast-hover" style="padding:1.25rem;background:var(--cloud);border-radius:8px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <div style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;">SYSTEM 02 · BLUEPRINT</div>
+            <h3 style="font-size:1.05rem;color:var(--ink);margin:0.35rem 0 0.35rem 0;font-weight:700;">Lead Intake &amp; Duplicate Verification System</h3>
+            <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;margin-bottom:1rem;">
+              Multi-source webhook ingestion, E.164 normalization, and clean HubSpot CRM sync.
+            </p>
+          </div>
+          <a href="system-lead-intake-working.html" class="btn btn-secondary" style="font-size:0.8rem;padding:0.5rem 1rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:0.35rem;">
+            <span>Explore System Case Study →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 DIRECT CLOSING CTA -->
+    <div class="glass-card reveal" style="padding:2.5rem;background:linear-gradient(180deg,#EAF3FC 0%,#FFFFFF 100%);border:1px solid var(--cobalt-border);text-align:center;">
+      <span class="badge-pill animate-hero-badge" style="margin-bottom:0.75rem;display:inline-flex;"><span class="dot animate-pulse"></span>DIRECT SPECIALIST ENGAGEMENT</span>
+      <h2 style="font-size:1.6rem;color:var(--ink);margin-bottom:0.5rem;">Need structured visibility across your pipeline?</h2>
+      <p style="font-size:0.95rem;color:var(--ink-soft);max-width:540px;margin:0.5rem auto 1.5rem auto;line-height:1.7;">
+        I can design custom lifecycle tracking, database architectures, and automated triage workflows for your operations.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1rem;">
+        <a href="audit-working.html" class="btn btn-primary raycast-hover" style="padding:0.85rem 2.25rem;"><span>Discuss a Project</span><span class="arrow-icon">→</span></a>
+        <a href="mailto:NitinSystems@outlook.com" class="btn btn-secondary raycast-hover" style="padding:0.85rem 2rem;">✉ NitinSystems@outlook.com</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+</main>
+
+<!-- Image Lightbox Modal Container (Anti-Clipping / Full Scroll) -->
+<div id="cert-lightbox" class="lightbox-overlay" onclick="closeCertLightbox()">
+  <div class="lightbox-card" onclick="event.stopPropagation()">
+    <div class="lightbox-header">
+      <h3 id="lightbox-title" class="lightbox-title">Image Preview</h3>
+      <button class="lightbox-close-btn" onclick="closeCertLightbox()" aria-label="Close">✕</button>
+    </div>
+    <div style="width:100%;max-height:82vh;overflow-y:auto;border-radius:8px;border:1px solid var(--line);background:#0F172A;text-align:center;padding:0.75rem;box-sizing:border-box;">
+      <img id="lightbox-img" src="" alt="Proof Preview" style="max-width:100%;height:auto;display:inline-block;vertical-align:middle;border-radius:4px;" />
+    </div>
+  </div>
+</div>
+
+<footer id="footer">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--line);">
+      <!-- Column 1: Brand & Contact/Social -->
+      <div>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <div class="brand-logo-box"><img src="assets/logo/nav-logo.webp" alt="Nitin Systems brand logo" style="width:24px;height:24px;object-fit:contain;" /></div>
+          <span style="font-family:var(--font-serif);font-weight:700;font-size:1.2rem;color:var(--ink);">Nitin Systems</span>
+        </div>
+        <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.7;margin-top:0.85rem;max-width:380px;">Solo-led B2B automation systems business operated directly by Nitin Mishra. Designing, architecting, and delivering practical, reliable automation pipelines for growing service businesses.</p>
+        
+        <p style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;letter-spacing:0.08em;margin-top:0.65rem;margin-bottom:0;line-height:1.45;">SERVING FOUNDERS &amp; GROWING TEAMS<br>INDIA &middot; US &middot; UK &middot; EUROPE</p>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.6rem;margin-top:1.25rem;">
+          <a href="mailto:NitinSystems@outlook.com" style="display:inline-flex;align-items:center;gap:0.45rem;padding:0.45rem 0.85rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.75rem;font-weight:600;color:var(--ink);text-decoration:none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>Email</span>
+          </a>
+          <a href="https://linkedin.com/in/nitin-mishra" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.45rem;padding:0.45rem 0.85rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.75rem;font-weight:600;color:var(--cobalt);text-decoration:none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.4 1.4 0 0 0 1.4-1.4 1.4 1.4 0 0 0-1.4-1.4 1.4 1.4 0 0 0-1.4 1.4c0 .77.62 1.4 1.4 1.4m1.39 9.74v-8.37H5.07v8.37h2.78Z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Direct Navigation -->
+      <div>
+        <h3 style="font-family:var(--font-serif);font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink);margin-bottom:0.85rem;">Navigation</h3>
+        <ul style="display:flex;flex-direction:column;gap:0.5rem;list-style:none;padding:0;margin:0;">
+          <li><a href="index-working.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Home</a></li>
+          <li><a href="systems-working.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Systems Library</a></li>
+          <li><a href="approach-working.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Approach</a></li>
+          <li><a href="about-working.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">About</a></li>
+          <li><a href="insights-working.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Insights</a></li>
+          <li><a href="audit-working.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Discuss a Project</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Systems & Case Studies Single CTA Card -->
+      <div>
+        <h3 style="font-family:var(--font-serif);font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink);margin-bottom:0.85rem;">Systems &amp; Proof</h3>
+        <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.65;margin-bottom:1.15rem;max-width:320px;">Explore documented client implementations, architecture blueprints, and end-to-end workflow case studies.</p>
+        <a href="systems-working.html" class="btn btn-secondary raycast-hover" style="display:inline-flex;align-items:center;gap:0.45rem;font-size:0.78rem;padding:0.55rem 1.15rem;text-decoration:none;border-radius:0.5rem;font-weight:600;">
+          <span>Explore Systems Library</span>
+          <span style="color:var(--cobalt);">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div style="padding-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;font-size:0.72rem;color:var(--ink-muted);">
+      <p style="font-weight:400;color:#64748B;margin:0;">© 2026 Nitin Systems - Founder-Led B2B Automation &amp; Operations Infrastructure.</p>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem;">
+        <a href="privacy-working.html" style="color:var(--ink-muted);text-decoration:none;">Privacy Policy</a>
+        <span style="color:var(--line);">·</span>
+        <a href="terms-working.html" style="color:var(--ink-muted);text-decoration:none;">Terms of Service</a>
+        <span style="color:var(--line);">·</span>
+        <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:0.35rem 0.75rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.72rem;cursor:pointer;color:var(--ink-soft);">Back to top ↑</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js?v=999.0"></script>
+<script src="assets/js/components.js?v=999.0"></script>
+<script src="assets/js/interactions-working.js?v=1.0"></script>
+<script src="assets/js/main.js?v=999.0"></script>
+</body>
+</html>
