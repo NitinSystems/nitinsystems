@@ -253,3 +253,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 });
+
+// Form Submission & Redirect Handler for Audit / Written Inquiry
+function handleAuditSubmit(e) {
+  if (e) e.preventDefault();
+  const name = document.getElementById('audit-name')?.value || '';
+  const email = document.getElementById('audit-email')?.value || '';
+  
+  if (!name.trim() || !email.trim()) {
+    alert('Please fill in required fields (Name & Email).');
+    return false;
+  }
+
+  // Redirect cleanly to thank-you.html
+  window.location.href = 'thank-you.html';
+  return false;
+}
