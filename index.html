@@ -50,6 +50,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style-working.css?v=1.0">
+  <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
 </head>
 <body>
 
@@ -722,9 +723,9 @@
         <h3 style="font-family:var(--font-serif);font-weight:700;color:var(--ink);margin-top:0.25rem;">Subscribed.</h3>
         <p style="font-size:0.78rem;color:var(--ink-soft);margin-top:0.2rem;">You are on the list for the first systems dispatch.</p>
       </div>
-      <form id="newsletter-form" onsubmit="handleNewsletterSubmit(event)" style="display:flex;flex-direction:column;gap:0.85rem;">
+      <form id="newsletter-form" action="https://subscribe-forms.beehiiv.com/v3/8a89fa95-1ee8-4ffd-b0a9-88d1ccb95ce8" method="POST" target="_blank" style="display:flex;flex-direction:column;gap:0.85rem;">
         <label class="form-label" for="nl-email-input" style="font-size:0.75rem;color:var(--ink);">Work Email</label>
-        <input type="email" id="nl-email-input" placeholder="you@company.com" required class="form-input" style="font-size:0.9rem;padding:0.75rem 1rem;" />
+        <input type="email" id="nl-email-input" placeholder="you@company.com" required class="form-input" style="font-size:0.9rem;padding:0.75rem 1rem;" / name="email">
         <button type="submit" class="btn btn-primary raycast-hover" style="padding:0.75rem;font-size:0.85rem;width:100%;">Get Systems Notes →</button>
         <div style="display:flex;align-items:center;justify-content:space-between;font-size:0.72rem;color:var(--ink-soft);">
           <span>Free. Unsubscribe anytime.</span>
