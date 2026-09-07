@@ -136,60 +136,101 @@
   </div>
 </section>
 
-<section class="section" style="background:var(--paper);padding-top:3rem;padding-bottom:5rem;">
-  <div class="container" style="max-width:840px;">
+<section class="section" style="background:var(--paper);padding-top:2.5rem;padding-bottom:5rem;">
+  <div class="container" style="max-width:860px;">
     
-    <!-- Newsletter / Subscribe Hero Box -->
-    <div class="glass-card reveal" style="padding:2.5rem;background:#FFFFFF;border:1px solid var(--line);box-shadow:0 8px 30px rgba(0,0,0,0.04);margin-bottom:3rem;text-align:center;">
-      <span class="badge-pill" style="margin-bottom:0.75rem;display:inline-flex;">DIRECT FOUNDER DISPATCHES</span>
-      <h2 style="font-size:1.5rem;color:var(--ink);margin-bottom:0.5rem;">Systems Notes in Progress</h2>
-      <p style="font-size:0.88rem;color:var(--ink-soft);max-width:540px;margin:0 auto 1.5rem auto;line-height:1.7;">Dispatches are written directly from real build observations, workflow experiments, and lessons from designing practical systems - dissecting real failure modes in GoHighLevel, Make.com, Airtable, and Zapier. First edition in progress.</p>
-      
-      <div id="newsletter-success" style="display:none;padding:1.25rem;background:var(--emerald-light);border:1px solid var(--emerald-border);border-radius:var(--radius-md);text-align:center;margin-bottom:1.25rem;max-width:480px;margin-left:auto;margin-right:auto;">
-        <div style="font-size:1.5rem;color:var(--emerald);">✓</div>
-        <h3 style="font-family:var(--font-serif);font-weight:700;color:var(--ink);margin-top:0.25rem;">Subscribed.</h3>
-        <p style="font-size:0.78rem;color:var(--ink-soft);margin-top:0.2rem;">You are on the list for the first systems dispatch.</p>
-      </div>
-
-      <form id="newsletter-form" action="https://subscribe-forms.beehiiv.com/v3/forms/8a89fa95-1ee8-4ffd-b0a9-88d1ccb95ce8" method="POST" target="_blank" style="display:flex;flex-direction:column;gap:0.85rem;">
-        <input type="email" id="nl-email-input" placeholder="Enter your work email..." required class="form-input" style="flex:1;min-width:240px;font-size:0.88rem;padding:0.75rem 1rem;" / name="email">
-        <button type="submit" class="btn btn-primary raycast-hover" style="padding:0.75rem 1.5rem;font-size:0.85rem;">Get Systems Notes →</button>
-      </form>
-      <div style="font-size:0.72rem;color:var(--ink-muted);margin-top:0.85rem;">No spam. Unsubscribe with 1 click anytime.</div>
+    <div class="section-header reveal" style="text-align:left;margin-bottom:2rem;">
+      <span class="badge-pill" style="margin-bottom:0.5rem;display:inline-flex;">PRODUCTION FIELD NOTES</span>
+      <h2 style="font-size:1.45rem;color:var(--ink);">Technical Architecture Notes</h2>
+      <p style="font-size:0.88rem;color:var(--ink-soft);margin-top:0.35rem;line-height:1.6;">Direct engineering breakdowns, failure recovery patterns, and live blueprints from client production deployments.</p>
     </div>
 
-    <!-- Planned Field Topics (Honest Architecture Topics) -->
-    <div class="section-header reveal" style="text-align:left;margin-bottom:1.5rem;">
-      <h3 style="font-family:var(--font-serif);font-size:1.25rem;color:var(--ink);">Upcoming Topics in Writing</h3>
-      <p style="font-size:0.82rem;color:var(--ink-soft);margin-top:0.25rem;">Direct breakdowns of architecture patterns and operational problems.</p>
-    </div>
-
-    <div style="display:flex;flex-direction:column;gap:1rem;">
-      <div class="glass-card reveal" style="padding:1.5rem;background:#FFFFFF;border-left:3px solid var(--cobalt);">
-        <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.35rem;">
-          <span style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;">TOPIC 01 · DATA HYGIENE</span>
-          <span style="font-size:0.62rem;color:var(--ink-muted);font-family:var(--font-mono);">IN DRAFT</span>
+    <div style="display:flex;flex-direction:column;gap:1.5rem;">
+      <!-- ARCHITECTURE NOTE 01 -->
+      <div class="glass-card reveal" style="padding:2rem;background:#FFFFFF;border:1px solid var(--line);border-radius:8px;border-left:4px solid var(--cobalt);">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.75rem;">
+          <span style="font-size:0.68rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;letter-spacing:0.05em;">ARCHITECTURE NOTE 01 · SCHEDULING &amp; RETENTION</span>
+          <span style="font-size:0.68rem;font-family:var(--font-mono);color:var(--emerald);font-weight:600;">VERIFIED BUILD</span>
         </div>
-        <h4 style="font-size:1.05rem;color:var(--ink);margin-bottom:0.35rem;">Preventing Duplicate CRM Records with Existing-Record Verification</h4>
-        <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.65;">How to combine email and normalized phone strings into single unique keys before writing into HubSpot or Airtable pipelines.</p>
+        <h3 style="font-size:1.25rem;color:var(--ink);margin-bottom:0.5rem;font-weight:700;">Real-Time 2-Way Calendar Sync &amp; Retention Cadence</h3>
+        
+        <div style="margin:1rem 0;background:var(--cloud);padding:1rem 1.25rem;border-radius:6px;">
+          <div style="font-size:0.75rem;font-family:var(--font-mono);font-weight:700;color:var(--ink);text-transform:uppercase;margin-bottom:0.35rem;">The Challenge:</div>
+          <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.6;margin:0;">When inbound prospects book across separate calendar interfaces and CRM forms, race conditions cause double bookings, while missing multi-stage reminders result in 25–40% consultation no-shows.</p>
+        </div>
+
+        <div style="margin:1rem 0;">
+          <div style="font-size:0.75rem;font-family:var(--font-mono);font-weight:700;color:var(--ink);text-transform:uppercase;margin-bottom:0.35rem;">What Was Engineered:</div>
+          <ul style="font-size:0.82rem;color:var(--ink-soft);line-height:1.65;padding-left:1.2rem;margin:0;">
+            <li>Bidirectional Google Calendar &amp; GoHighLevel sync locking ISO 8601 slots in real time.</li>
+            <li>3-tier automated email retention sequence (12-hour, 1-hour, and 5-minute pre-call).</li>
+            <li>Programmatic reschedule and cancellation workflows populated dynamically via merge tags.</li>
+          </ul>
+        </div>
+
+        <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--line);">
+          <a href="system-lead-capture.html" class="btn btn-primary raycast-hover" style="font-size:0.82rem;padding:0.65rem 1.25rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;">
+            <span>Explore Full Architecture Breakdown →</span>
+          </a>
+        </div>
       </div>
 
-      <div class="glass-card reveal" style="padding:1.5rem;background:#FFFFFF;border-left:3px solid var(--cobalt);">
-        <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.35rem;">
-          <span style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;">TOPIC 02 · CRM RELIABILITY</span>
-          <span style="font-size:0.62rem;color:var(--ink-muted);font-family:var(--font-mono);">IN DRAFT</span>
+      <!-- ARCHITECTURE NOTE 02 -->
+      <div class="glass-card reveal" style="padding:2rem;background:#FFFFFF;border:1px solid var(--line);border-radius:8px;border-left:4px solid var(--cobalt);">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.75rem;">
+          <span style="font-size:0.68rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;letter-spacing:0.05em;">ARCHITECTURE NOTE 02 · DATA INTEGRITY</span>
+          <span style="font-size:0.68rem;font-family:var(--font-mono);color:var(--emerald);font-weight:600;">VERIFIED BUILD</span>
         </div>
-        <h4 style="font-size:1.05rem;color:var(--ink);margin-bottom:0.35rem;">Designing Reliable GoHighLevel Booking &amp; Follow-Up Workflows</h4>
-        <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.65;">Building fallback retry triggers and admin alerts when external booking webhooks fail or contact tags desync.</p>
+        <h3 style="font-size:1.25rem;color:var(--ink);margin-bottom:0.5rem;font-weight:700;">Multi-Source Lead Ingestion &amp; Duplicate Verification</h3>
+        
+        <div style="margin:1rem 0;background:var(--cloud);padding:1rem 1.25rem;border-radius:6px;">
+          <div style="font-size:0.75rem;font-family:var(--font-mono);font-weight:700;color:var(--ink);text-transform:uppercase;margin-bottom:0.35rem;">The Challenge:</div>
+          <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.6;margin:0;">Simultaneous ad campaigns and landing page forms cause prospects to submit multiple inquiries, polluting HubSpot CRM with duplicate records, crossing sales wires, and splitting interaction history.</p>
+        </div>
+
+        <div style="margin:1rem 0;">
+          <div style="font-size:0.75rem;font-family:var(--font-mono);font-weight:700;color:var(--ink);text-transform:uppercase;margin-bottom:0.35rem;">What Was Engineered:</div>
+          <ul style="font-size:0.82rem;color:var(--ink-soft);line-height:1.65;padding-left:1.2rem;margin:0;">
+            <li>Centralized Make.com ingestion webhook normalizing emails and phone numbers to E.164.</li>
+            <li>24-hour rolling verification query against historical Airtable records before CRM insertion.</li>
+            <li>Front-end modal intercept triggering PATCH updates instead of duplicate POST/CREATE commands.</li>
+          </ul>
+        </div>
+
+        <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--line);">
+          <a href="system-lead-intake.html" class="btn btn-primary raycast-hover" style="font-size:0.82rem;padding:0.65rem 1.25rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;">
+            <span>Explore Full Architecture Breakdown →</span>
+          </a>
+        </div>
       </div>
 
-      <div class="glass-card reveal" style="padding:1.5rem;background:#FFFFFF;border-left:3px solid var(--cobalt);">
-        <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.35rem;">
-          <span style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;">TOPIC 03 · INTEGRATION ARCHITECTURE</span>
-          <span style="font-size:0.62rem;color:var(--ink-muted);font-family:var(--font-mono);">IN DRAFT</span>
+      <!-- ARCHITECTURE NOTE 03 -->
+      <div class="glass-card reveal" style="padding:2rem;background:#FFFFFF;border:1px solid var(--line);border-radius:8px;border-left:4px solid var(--cobalt);">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.75rem;">
+          <span style="font-size:0.68rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;letter-spacing:0.05em;">ARCHITECTURE NOTE 03 · AI RECOVERY</span>
+          <span style="font-size:0.68rem;font-family:var(--font-mono);color:var(--emerald);font-weight:600;">VERIFIED BUILD</span>
         </div>
-        <h4 style="font-size:1.05rem;color:var(--ink);margin-bottom:0.35rem;">Structuring Make.com Scenarios Around Operational Responsibilities</h4>
-        <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.65;">How separate scenarios handle intake, record verification, lifecycle logic, notifications, and outcome evaluations across 7 Make.com scenarios and 5 Airtable tables.</p>
+        <h3 style="font-size:1.25rem;color:var(--ink);margin-bottom:0.5rem;font-weight:700;">Autonomous Drop-Off Detection &amp; Client Journey Recovery</h3>
+        
+        <div style="margin:1rem 0;background:var(--cloud);padding:1rem 1.25rem;border-radius:6px;">
+          <div style="font-size:0.75rem;font-family:var(--font-mono);font-weight:700;color:var(--ink);text-transform:uppercase;margin-bottom:0.35rem;">The Challenge:</div>
+          <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.6;margin:0;">Prospects drop off during multi-step customer journeys without triggering server errors, resulting in silent client drop-offs that human sales teams notice too late to recover.</p>
+        </div>
+
+        <div style="margin:1rem 0;">
+          <div style="font-size:0.75rem;font-family:var(--font-mono);font-weight:700;color:var(--ink);text-transform:uppercase;margin-bottom:0.35rem;">What Was Engineered:</div>
+          <ul style="font-size:0.82rem;color:var(--ink-soft);line-height:1.65;padding-left:1.2rem;margin:0;">
+            <li>7-scenario Make.com listener network detecting drop-offs and pipeline stall events.</li>
+            <li>Google Gemini API integration evaluating failure severity and drafting personalized recovery emails.</li>
+            <li>Urgent internal Slack dispatch with 1-click review action for account executives.</li>
+          </ul>
+        </div>
+
+        <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--line);">
+          <a href="system-ai-journey.html" class="btn btn-primary raycast-hover" style="font-size:0.82rem;padding:0.65rem 1.25rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;">
+            <span>Explore Full Architecture Breakdown →</span>
+          </a>
+        </div>
       </div>
     </div>
 
