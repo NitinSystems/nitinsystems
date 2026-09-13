@@ -78,7 +78,13 @@ function initSpotlightCards() {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      spotlight.style.background = `radial-gradient(400px circle at ${x}px ${y}px, rgba(37, 99, 235, 0.08), transparent 80%)`;
+      const customGlow = card.getAttribute('data-spotlight-color');
+      if (customGlow === 'none') {
+        spotlight.style.background = 'transparent';
+      } else {
+        const glowColor = customGlow || 'rgba(37, 99, 235, 0.08)';
+        spotlight.style.background = `radial-gradient(400px circle at ${x}px ${y}px, ${glowColor}, transparent 80%)`;
+      }
     });
   });
 }
@@ -222,6 +228,7 @@ function initNavDropdown() {
 
 // Master Initialization
 document.addEventListener('DOMContentLoaded', () => {
+  initSystemsFilter();
   initSmoothScroll();
   initWaveScrollReveals();
   initScrollNavbar();
@@ -253,3 +260,72 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 });
+
+// Form Submission & Redirect Handler for Audit / Written Inquiry
+function handleAuditSubmit(e) {
+  if (e) e.preventDefault();
+  const name = document.getElementById('audit-name')?.value || '';
+  const email = document.getElementById('audit-email')?.value || '';
+  
+  if (!name.trim() || !email.trim()) {
+    alert('Please fill in required fields (Name & Email).');
+    return false;
+  }
+
+  // Redirect cleanly to thank-you.html
+  window.location.href = 'thank-you.html';
+  return false;
+}
+
+// Systems Library Category Filter Engine
+function initSystemsFilter() {
+  const pills = document.querySelectorAll('.system-filter-pill');
+  const cards = document.querySelectorAll('.system-card');
+  if (!pills.length || !cards.length) return;
+
+  function applyFilter(category) {
+    pills.forEach(p => {
+      if (p.getAttribute('data-filter') === category) {
+        p.classList.add('active');
+        p.style.background = 'var(--paper)';
+        p.style.borderColor = 'var(--cobalt)';
+      } else {
+        p.classList.remove('active');
+        p.style.background = '#FFFFFF';
+        p.style.borderColor = 'var(--line)';
+      }
+    });
+
+    cards.forEach(card => {
+      const cardCat = card.getAttribute('data-category');
+      if (category === 'all' || cardCat === category) {
+        card.style.display = 'block';
+        card.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      } else {
+        card.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(10px)';
+        setTimeout(() => {
+          if (card.getAttribute('data-category') !== category && category !== 'all') {
+            card.style.display = 'none';
+          }
+        }, 220);
+      }
+    });
+  }
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const filter = pill.getAttribute('data-filter');
+      applyFilter(filter);
+    });
+  });
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const catParam = urlParams.get('category');
+  if (catParam) {
+    applyFilter(catParam);
+  }
+}

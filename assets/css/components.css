@@ -567,14 +567,23 @@
   font-size: 0.85rem;
 }
 
-/* ── 10. LIGHT FOOTER ── */
+/* ── 10. LIGHT FOOTER (ReactBD Top Gradient Radial with Nitin Systems Blue Touch) ── */
 #footer,
 footer {
-  background: var(--cloud) !important;
+  background: radial-gradient(125% 125% at 50% 10%, #FFFFFF 40%, #60a5fa 100%) !important;
   color: var(--ink-soft) !important;
-  border-top: 1px solid var(--line) !important;
+  border-top: 1px solid rgba(226, 232, 240, 0.75) !important;
   padding: 4rem 1.25rem 2.5rem 1.25rem !important;
+  position: relative;
 }
+
+@media (max-width: 768px) {
+  #footer,
+  footer {
+    background: radial-gradient(125% 125% at 50% 10%, #FFFFFF 45%, #93c5fd 100%) !important;
+  }
+}
+
 
 #footer a,
 footer a {
@@ -590,3 +599,33 @@ footer a:hover {
 footer h4 {
   color: var(--ink) !important;
 }
+
+/* Mobile Terminal & Flow Console Header Fix (Unbroken Single Line + 2-Row Stack) */
+@media (max-width: 640px) {
+  .flow-console-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    padding: 0.75rem 1rem !important;
+  }
+  .flow-console-header .console-title-wrap {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+  }
+  .flow-console-header .console-title-text {
+    font-size: clamp(0.64rem, 2.7vw, 0.72rem) !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    margin-left: 0.25rem !important;
+  }
+  .flow-console-header .console-status-wrap {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+    padding-left: 0.15rem !important;
+  }
+}
+

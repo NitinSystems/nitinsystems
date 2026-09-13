@@ -28,6 +28,39 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style-working.css?v=1.0" />
   <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+
+<style id="mobile-footer-layout-fix">
+@media (max-width: 640px) {
+  .footer-bottom-bar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    gap: 0.75rem !important;
+  }
+  .footer-legal-links {
+    order: 1 !important;
+    justify-content: flex-start !important;
+  }
+  .footer-copyright {
+    order: 2 !important;
+    text-align: left !important;
+  }
+  .footer-pipe-sep {
+    display: none !important;
+  }
+  .footer-back-to-top {
+    order: 3 !important;
+    margin-top: 0.35rem !important;
+    display: inline-block !important;
+  }
+  .responsive-ribbon-pill {
+    border-radius: 12px !important;
+    padding: 1rem 1.25rem !important;
+    gap: 0.85rem !important;
+  }
+}
+</style>
 </head>
 <body>
 <header id="navbar" class="animate-hero-nav">
@@ -43,6 +76,7 @@
 
     <nav class="nav-links-wrap">
       <a href="index.html" class="nav-link">Home</a>
+      <a href="services.html" class="nav-link">Services</a>
       <div class="nav-dropdown">
         <a href="systems.html" class="nav-link active" style="display:flex;align-items:center;gap:0.25rem;">
           Systems <span style="font-size:0.65rem;opacity:0.7;">▾</span>
@@ -111,6 +145,7 @@
   </div>
   <nav class="mobile-nav-links">
     <a href="index.html" class="mobile-nav-link" onclick="closeMobileMenu()">Home</a>
+    <a href="services.html" class="mobile-nav-link" onclick="closeMobileMenu()">Services</a>
     <a href="systems.html" class="mobile-nav-link active" onclick="closeMobileMenu()">Systems Library</a>
     <a href="approach.html" class="mobile-nav-link" onclick="closeMobileMenu()">Approach</a>
     <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()">About</a>
@@ -127,9 +162,9 @@
 
 <main>
 <!-- CASE STUDY HERO -->
-<section class="section bg-pattern-grid-light" style="padding-top:clamp(6.25rem, 8vw, 7.25rem);padding-bottom:2.25rem;background:linear-gradient(180deg, #EAF3FC 0%, #FFFFFF 100%);">
+<section class="section bg-pattern-grid-light" style="min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box;padding-top:clamp(6.25rem, 8vw, 7.25rem);padding-bottom:clamp(2.5rem, 4vw, 3.5rem);background:linear-gradient(180deg, #EAF3FC 0%, #FFFFFF 100%);position:relative;">
   <div class="ambient-glow animate-hero-glow"></div>
-  <div class="container" style="max-width:960px;">
+  <div class="container" style="max-width:960px;width:100%;">
     <div style="margin-bottom:0.75rem;" class="animate-hero-badge">
       <a href="systems.html" style="font-size:0.8rem;color:var(--cobalt);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:0.35rem;">
         ← Back to Systems Library
@@ -602,6 +637,7 @@
         <h3 style="font-family:var(--font-serif);font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink);margin-bottom:0.85rem;">Navigation</h3>
         <ul style="display:flex;flex-direction:column;gap:0.5rem;list-style:none;padding:0;margin:0;">
           <li><a href="index.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Home</a></li>
+          <li><a href="services.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Services</a></li>
           <li><a href="systems.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Systems Library</a></li>
           <li><a href="approach.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Approach</a></li>
           <li><a href="about.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">About</a></li>
@@ -622,14 +658,14 @@
     </div>
 
     <!-- Bottom Bar -->
-    <div style="padding-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;font-size:0.72rem;color:var(--ink-muted);">
-      <p style="font-weight:400;color:#64748B;margin:0;">© 2026 Nitin Systems. All rights reserved.</p>
-      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem;">
+    <div class="footer-bottom-bar" style="padding-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;font-size:0.72rem;color:var(--ink-muted);">
+      <p style="font-weight:400;color:#64748B;margin:0;" class="footer-copyright">© 2026 Nitin Systems. All rights reserved.</p>
+      <div class="footer-legal-links" style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem;">
         <a href="privacy.html" style="color:var(--ink-muted);text-decoration:none;">Privacy Policy</a>
         <span style="color:var(--line);">·</span>
         <a href="terms.html" style="color:var(--ink-muted);text-decoration:none;">Terms of Service</a>
-        <span style="color:var(--line);">·</span>
-        <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:0.35rem 0.75rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.72rem;cursor:pointer;color:var(--ink-soft);">Back to top ↑</button>
+        <span style="color:var(--line);" class="footer-pipe-sep">·</span>
+        <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="footer-back-to-top" style="padding:0.35rem 0.75rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.72rem;cursor:pointer;color:var(--ink-soft);">Back to top ↑</button>
       </div>
     </div>
   </div>
@@ -639,5 +675,8 @@
 <script src="assets/js/components.js?v=999.0"></script>
 <script src="assets/js/interactions-working.js?v=1.0"></script>
 <script src="assets/js/main.js?v=999.0"></script>
+
+<script src="assets/js/lenis.min.js"></script>
+<script src="motion-engine.js"></script>
 </body>
 </html>

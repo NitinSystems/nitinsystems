@@ -973,6 +973,10 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-between;
   gap: 0.4rem;
   padding: 1.25rem;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  isolation: isolate;
 }
 
 .pipeline-node {
@@ -983,6 +987,11 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 8px;
   border: 1px solid rgba(56, 189, 248, 0.3);
   transition: transform 0.2s ease, border-color 0.2s ease;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform, border-color, box-shadow;
+  isolation: isolate;
 }
 
 .pipeline-node:hover {
@@ -1435,14 +1444,23 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* ── Clean Light Footer (No Underlines, No Bullets) ── */
+/* ── Clean Light Footer (ReactBD Top Gradient Radial with Nitin Systems Blue Touch) ── */
 #footer,
 footer {
-  background: var(--cloud) !important;
+  background: radial-gradient(125% 125% at 50% 10%, #FFFFFF 40%, #60a5fa 100%) !important;
   color: var(--ink-soft) !important;
-  border-top: 1px solid var(--line) !important;
+  border-top: 1px solid rgba(226, 232, 240, 0.75) !important;
   padding: 4rem 1.25rem 2.5rem 1.25rem !important;
+  position: relative;
 }
+
+@media (max-width: 768px) {
+  #footer,
+  footer {
+    background: radial-gradient(125% 125% at 50% 10%, #FFFFFF 45%, #93c5fd 100%) !important;
+  }
+}
+
 
 #footer ul,
 footer ul {
@@ -1489,3 +1507,33 @@ footer h4 {
   pointer-events: none;
   z-index: 0;
 }
+
+/* Mobile Terminal & Flow Console Header Fix (Unbroken Single Line + 2-Row Stack) */
+@media (max-width: 640px) {
+  .flow-console-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    padding: 0.75rem 1rem !important;
+  }
+  .flow-console-header .console-title-wrap {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+  }
+  .flow-console-header .console-title-text {
+    font-size: clamp(0.64rem, 2.7vw, 0.72rem) !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    margin-left: 0.25rem !important;
+  }
+  .flow-console-header .console-status-wrap {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+    padding-left: 0.15rem !important;
+  }
+}
+

@@ -51,6 +51,65 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style-working.css?v=1.0">
   <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+
+<style id="mobile-footer-layout-fix">
+@media (max-width: 640px) {
+  .footer-bottom-bar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    gap: 0.75rem !important;
+  }
+  .footer-legal-pair {
+    order: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    white-space: nowrap !important;
+  }
+  .footer-copyright {
+    order: 2 !important;
+    margin-right: 0 !important;
+    text-align: left !important;
+  }
+  .footer-desktop-sep {
+    display: none !important;
+  }
+  .footer-back-to-top {
+    order: 3 !important;
+    margin-top: 0.25rem !important;
+    display: inline-block !important;
+  }
+  .responsive-ribbon-pill {
+    border-radius: 8px !important;
+    padding: 0.85rem 1.25rem !important;
+    gap: 0.85rem !important;
+  }
+}
+</style>
+<style id="blueprint-patterns-system">
+.pattern-blueprint-grid {
+  position: relative;
+}
+.pattern-blueprint-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to right, rgba(0,29,61,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,29,61,0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+.dark-shimmer-title {
+  background: linear-gradient(110deg, #FFFFFF 0%, #38BDF8 50%, #FFFFFF 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #FFFFFF !important;
+}
+</style>
 </head>
 <body>
 
@@ -67,6 +126,7 @@
 
     <nav class="nav-links-wrap">
       <a href="index.html" class="nav-link active">Home</a>
+      <a href="services.html" class="nav-link">Services</a>
       <div class="nav-dropdown">
         <a href="systems.html" class="nav-link" style="display:flex;align-items:center;gap:0.25rem;">
           Systems <span style="font-size:0.65rem;opacity:0.7;">▾</span>
@@ -115,8 +175,7 @@
       <a href="insights.html" class="nav-link">Insights</a>
     </nav>
 
-    <main>
-<div class="nav-actions-wrap">
+    <div class="nav-actions-wrap">
       <a href="audit.html" class="btn btn-primary" style="padding:0.45rem 1rem;font-size:0.85rem;">Discuss a Project →</a>
       <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle menu">☰</button>
     </div>
@@ -136,6 +195,7 @@
   </div>
   <nav class="mobile-nav-links">
     <a href="index.html" class="mobile-nav-link active" onclick="closeMobileMenu()">Home</a>
+    <a href="services.html" class="mobile-nav-link" onclick="closeMobileMenu()">Services</a>
     <a href="systems.html" class="mobile-nav-link" onclick="closeMobileMenu()">Systems Library</a>
     <a href="approach.html" class="mobile-nav-link" onclick="closeMobileMenu()">Approach</a>
     <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()">About</a>
@@ -150,21 +210,32 @@
 </div>
 <div id="mobile-backdrop" class="mobile-backdrop" onclick="closeMobileMenu()"></div>
 
-<!-- 01 HERO -->
-<section id="hero" class="section pattern-dots-radial" style="padding-top:8rem; padding-bottom: 3.5rem; background: linear-gradient(180deg, #EAF3FC 0%, #FFFFFF 100%);">
+<main>
+
+<section id="hero" class="section pattern-dots-radial" style="padding-top:8rem; padding-bottom: 3.5rem; background: radial-gradient(ellipse 100% 60% at 50% -10%, #F0F7FF 0%, #F8FAFC 45%, #FFFFFF 85%);">
   <div class="ambient-glow animate-hero-glow"></div>
+  <div class="pattern-sky-glow"></div>
   <div class="container" style="max-width:960px;text-align:center;">
-    <div class="badge-pill animate-hero-badge" style="margin-bottom:1.25rem;"><span class="dot animate-pulse"></span>B2B AUTOMATION &amp; OPERATIONS</div>
-    <h1 class="animate-hero-title " style="font-size:clamp(2.2rem,5vw,3.6rem);color:var(--ink);line-height:1.15;margin-bottom:0.85rem;">
-      Automation Systems That <span class="text-accent" style="font-style:italic;">Stop Leads From Dying</span> in Your Inbox.
+    <div style="display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;">
+      <div class="badge-pill animate-hero-badge"><span class="dot animate-pulse"></span>B2B AUTOMATION &amp; OPERATIONS</div>
+    </div>
+    <h1 class="animate-hero-title" style="font-size:clamp(2.15rem,4.8vw,3.5rem);color:var(--ink);line-height:1.2;margin-bottom:0.85rem;max-width:940px;margin-left:auto;margin-right:auto;">
+      <span style="display:inline-block;">Automation Systems That <span class="text-accent" style="font-style:italic;">Stop</span></span>
+      <span style="display:inline-block;"><span class="text-accent" style="font-style:italic;">Leads From Dying</span> in Your Inbox.</span>
     </h1>
     <p class="animate-hero-sub" style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;letter-spacing:0.08em;margin-top:0.65rem;margin-bottom:1rem;line-height:1.45;">SERVING FOUNDERS &amp; GROWING TEAMS &middot; INDIA &middot; US &middot; UK &middot; EUROPE</p>
-    <p class="animate-hero-sub" style="font-size:1.08rem;color:var(--ink-soft);max-width:720px;margin:0 auto 2rem auto;line-height:1.75;">
+    <p class="animate-hero-sub" style="font-size:1.05rem;color:var(--ink-soft);max-width:740px;margin:0 auto 2rem auto;line-height:1.75;">
       From conversion-focused landing pages to CRM workflows: I build end-to-end systems that capture leads, structure customer data, and move prospects toward booked appointments.
     </p>
-    <div class="animate-hero-cta" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1rem;margin-bottom:3rem;">
-      <a href="audit.html" class="btn btn-primary raycast-hover" style="padding:0.85rem 2.25rem;"><span>Discuss a Project</span><span class="arrow-icon">→</span></a>
-      <a href="systems.html" class="btn btn-secondary raycast-hover" style="padding:0.85rem 2rem;">Explore Systems ↗</a>
+    <div class="animate-hero-cta" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.15rem;margin-bottom:3rem;">
+      <div style="display:inline-flex;align-items:center;gap:0.45rem;font-family:var(--font-mono);font-size:0.72rem;font-weight:600;color:#065F46;background:#ECFDF5;border:1px solid #A7F3D0;padding:0.25rem 0.75rem;border-radius:9999px;">
+        <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#10B981;" class="animate-pulse"></span>
+        Q3 Capacity: 1 of 2 client sprints open
+      </div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1rem;">
+        <a href="audit.html" class="btn btn-primary raycast-hover" style="padding:0.85rem 2.25rem;"><span>Discuss a Project</span><span class="arrow-icon">→</span></a>
+        <a href="systems.html" class="btn btn-secondary raycast-hover" style="padding:0.85rem 2rem;">Explore Systems ↗</a>
+      </div>
     </div>
   </div>
     <!-- OPERATIONAL PIPELINE CONSOLE -->
@@ -241,6 +312,7 @@
   </div>
 </section>
 
+
 <!-- TOOL STACK MARQUEE -->
 <div class="marquee-container" style="padding:1.4rem 2rem;">
   <div class="marquee-track" aria-hidden="true">
@@ -267,40 +339,40 @@
 </div>
 
 <!-- 02 OPERATIONAL PROBLEMS (BEFORE / AFTER) -->
-<section id="problems" class="section" style="background:var(--cloud);padding-top:3.5rem;padding-bottom:3.5rem;">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="badge-pill animate-hero-badge">THE OPERATIONAL PROBLEM</span>
-      <h2 class="section-title shimmer-sweep-title">Where Manual Operations Start Breaking Down</h2>
-      <p class="section-sub animate-hero-sub">When workflows depend on human memory and disconnected tools, execution breaks.</p>
+<section id="problems" class="section pattern-reactbd-center-fade" style="background:#F8FAFC;padding-top:5rem;padding-bottom:5rem;position:relative;overflow:hidden;border-top:1px solid rgba(226,232,240,0.6);border-bottom:1px solid rgba(226,232,240,0.6);">
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="section-header reveal" style="text-align:center;margin-bottom:3rem;">
+      <span class="badge-pill animate-hero-badge" style="background:#DBEAFE;border:1px solid #BFDBFE;color:#1D4ED8;"><span class="dot" style="background:#2563EB;"></span>THE OPERATIONAL PROBLEM</span>
+      <h2 class="section-title shimmer-sweep-title" style="font-family:var(--font-serif);font-size:clamp(1.95rem,3.8vw,2.65rem);color:var(--ink);margin-top:0.65rem;font-weight:700;">Where Manual Operations Start Breaking Down</h2>
+      <p class="section-sub animate-hero-sub" style="color:var(--ink-soft);max-width:640px;margin:0.5rem auto 0 auto;font-size:1rem;line-height:1.65;">When workflows depend on human memory and disconnected tools, execution breaks.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;">
-      <div class="glass-card reveal" style="padding:2rem;border-left:4px solid #F43F5E;background:#FFF5F5;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.75rem;">
+      <div class="glass-card reveal" data-spotlight-color="rgba(244, 63, 94, 0.16)" style="padding:2.25rem 2rem;border-left:4px solid #F43F5E;background:#FFFFFF;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.03);">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.85rem;">
           <span style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:#F43F5E;text-transform:uppercase;">Disconnected / Manual State</span>
-          <span style="font-size:0.68rem;color:#F43F5E;font-weight:600;">High Friction</span>
+          <span style="font-size:0.68rem;color:#F43F5E;font-weight:600;background:rgba(244,63,94,0.08);padding:0.15rem 0.5rem;border-radius:4px;">High Friction</span>
         </div>
-        <div style="font-size:0.82rem;font-family:var(--font-mono);color:var(--ink);line-height:1.85;background:rgba(255,255,255,0.8);padding:1rem;border-radius:8px;border:1px dashed #FECDD3;">
+        <div style="font-size:0.82rem;font-family:var(--font-mono);color:var(--ink);line-height:1.85;background:#FFF5F5;padding:1rem;border-radius:8px;border:1px dashed #FECDD3;">
           Form Submission (Manual Flow)<br>Waits for manual follow-up<br>Manual copy-paste to spreadsheet<br>Duplicate records accumulate<br>Follow-up forgotten
         </div>
-        <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:0.85rem;line-height:1.6;">Inquiries pile up, context gets lost, and promising leads go cold before anyone follows up.</p>
+        <p style="font-size:0.84rem;color:var(--ink-soft);margin-top:1rem;line-height:1.65;margin-bottom:0;">Inquiries pile up, context gets lost, and promising leads go cold before anyone follows up.</p>
       </div>
-      <div class="glass-card reveal" style="padding:2rem;border-left:4px solid #10B981;background:#F0FDF4;">
+      <div class="glass-card reveal" data-spotlight-color="rgba(16, 185, 129, 0.16)" style="padding:2.25rem 2rem;border-left:4px solid #10B981;background:#FFFFFF;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.03);">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.85rem;">
           <span style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:#10B981;text-transform:uppercase;">Connected / Automated State</span>
-          <span style="font-size:0.68rem;color:#10B981;font-weight:600;">Practical &amp; Reliable</span>
+          <span style="font-size:0.68rem;color:#10B981;font-weight:600;background:rgba(16,185,129,0.08);padding:0.15rem 0.5rem;border-radius:4px;">Practical &amp; Reliable</span>
         </div>
-        <div style="font-size:0.82rem;font-family:var(--font-mono);color:var(--ink);line-height:1.85;background:rgba(255,255,255,0.8);padding:1rem;border-radius:8px;border:1px solid #A7F3D0;">
+        <div style="font-size:0.82rem;font-family:var(--font-mono);color:var(--ink);line-height:1.85;background:#F0FDF4;padding:1rem;border-radius:8px;border:1px solid #A7F3D0;">
           Form Submission (Automated Pipeline)<br>Real-time webhook fires instantly<br>Duplicate verification checks existing records<br>CRM deal stage synced<br>Team notified with full context
         </div>
-        <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:0.85rem;line-height:1.6;">Leads can be captured, verified, synchronized, and routed through defined workflows with minimal manual coordination.</p>
+        <p style="font-size:0.84rem;color:var(--ink-soft);margin-top:1rem;line-height:1.65;margin-bottom:0;">Leads can be captured, verified, synchronized, and routed through defined workflows with minimal manual coordination.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- 03 WHO I WORK WITH -->
-<section id="who-this-is-for" class="section" style="background:var(--paper);padding-top:3.5rem;padding-bottom:3.5rem;">
+<section id="who-this-is-for" class="section pattern-reactbd-soft-blue-radial" style="background:var(--paper);padding-top:3.5rem;padding-bottom:3.5rem;">
   <div class="container">
     <div class="section-header reveal">
       <span class="badge-pill animate-hero-badge">CLIENT FIT</span>
@@ -338,83 +410,280 @@
   </div>
 </section>
 
-<!-- 04 SELECTED SYSTEMS (3 CARDS) -->
-<section id="case-studies" class="section" style="background:var(--canvas);padding-top:3.5rem;padding-bottom:3.5rem;">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="badge-pill animate-hero-badge">PROOF &amp; ARCHITECTURE</span>
-      <h2 class="section-title shimmer-sweep-title">Selected Systems &amp; Case Studies</h2>
-      <p class="section-sub">Transparent documentation of how each system was designed, built, and verified.</p>
-    </div>
-    <div class="grid grid-3">
-      <!-- CARD 1 -->
-      <div class="glass-card reveal" data-spotlight><div class="spotlight"></div><div class="card-inner" style="padding:1.75rem;display:flex;flex-direction:column;justify-content:space-between;">
-        <div>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;">
-            <span style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);background:var(--emerald-light);padding:0.2rem 0.6rem;border-radius:9999px;">🟢 REAL-WORLD IMPLEMENTATION</span>
-            <span style="font-size:0.7rem;font-family:var(--font-mono);color:var(--ink-soft);">GoHighLevel · Gmail · Google Calendar</span>
+<!-- 04 SELECTED SYSTEMS (CLEAN HIGH-CONVERSION ARCHITECTURE DECK) -->
+<!-- ==========================================================================
+     CORE SERVICES & WHAT I BUILD (PLAIN ENGLISH B2B SYSTEMS MATRIX)
+     ========================================================================== -->
+  <section id="services" class="section" style="background:#FFFFFF;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-top:5rem;padding-bottom:5rem;">
+    <div class="container" style="max-width:1160px;">
+      
+      <!-- Section Header -->
+      <div class="section-header" style="text-align:center;margin-bottom:3.25rem;">
+        <span class="badge-pill animate-hero-badge"><span class="dot animate-pulse"></span>WHAT I BUILD FOR YOU</span>
+        <h2 class="section-title shimmer-sweep-title" style="font-size:clamp(1.85rem,3.5vw,2.5rem);color:var(--ink);margin-top:0.75rem;font-weight:700;line-height:1.2;">
+          Modular Automation Infrastructure for Growing Businesses
+        </h2>
+        <p class="section-sub" style="font-size:1.02rem;color:var(--ink-soft);max-width:720px;margin:0.75rem auto 0 auto;line-height:1.65;">
+          Eliminate lead drop-off, manual data entry, and slow follow-ups. Every system is engineered as an independent modular block tailored to how your business operates.
+        </p>
+      </div>
+
+      <!-- 3 FOCUSED OPERATIONAL PILLARS (CRO CLEAN & FAST) -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem;">
+        
+        <!-- PILLAR 1: Lead Capture & Booking Engines -->
+        <div class="glass-card" style="padding:2.5rem 2rem;background:#F8FAFC;border:1px solid var(--line);border-radius:14px;display:flex;flex-direction:column;justify-content:space-between;border-top:4px solid var(--cobalt);">
+          <div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;">
+              <span style="font-family:var(--font-mono);font-size:0.72rem;font-weight:700;color:var(--cobalt);background:rgba(37,99,235,0.08);padding:0.25rem 0.65rem;border-radius:6px;">PILLAR 01</span>
+              <span style="font-size:0.72rem;font-family:var(--font-mono);color:var(--ink-muted);">Capture &amp; Booking</span>
+            </div>
+            <h3 style="font-size:1.35rem;font-weight:700;color:var(--ink);margin-bottom:0.75rem;line-height:1.3;">
+              Lead Intake &amp; Booking Engines
+            </h3>
+            <p style="font-size:0.9rem;color:var(--ink-soft);line-height:1.65;margin-bottom:1.5rem;">
+              Sub-second landing funnels, instant Meta ad syncing, and multi-channel reminder sequences engineered to turn cold ad traffic into confirmed calendar meetings.
+            </p>
+
+            <div style="padding:1rem;background:#FFFFFF;border:1px solid var(--line);border-radius:8px;margin-bottom:1.5rem;">
+              <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--ink);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.04em;">Core Capabilities:</div>
+              <ul style="list-style:none;padding:0;margin:0;font-size:0.82rem;color:var(--ink-soft);display:flex;flex-direction:column;gap:0.4rem;">
+                <li style="display:flex;align-items:center;gap:0.45rem;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>2-Page High-Converting Booking Funnels</span>
+                </li>
+                <li style="display:flex;align-items:center;gap:0.45rem;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Real-Time Meta &amp; Social Ad Lead Sync</span>
+                </li>
+                <li style="display:flex;align-items:center;gap:0.45rem;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Automated Anti-No-Show Reminder Protocols</span>
+                </li>
+              </ul>
+            </div>
           </div>
-          <h3 style="font-size:1.1rem;margin-bottom:0.4rem;">Lead Capture to Booking System</h3>
-          <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;margin-bottom:0.75rem;">Direct implementation for an active service business. Connects website intake forms, email confirmations, and 2-way Google Calendar scheduling so inquiries don't sit in inboxes.</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin:0.75rem 0;padding:0.65rem 0.75rem;border-radius:6px;background:var(--cloud);border:1px solid var(--line);font-size:0.72rem;font-family:var(--font-mono);">
-            <div><span style="color:var(--ink-muted);display:block;font-size:0.62rem;letter-spacing:0.04em;">CONFIRMATION</span><strong style="color:var(--emerald);font-weight:700;">Instant Email Trigger</strong></div>
-            <div><span style="color:var(--ink-muted);display:block;font-size:0.62rem;letter-spacing:0.04em;">PIPELINE FLOW</span><strong style="color:var(--ink);font-weight:700;">Automated Booking</strong></div>
+          <a href="services.html#cat-01" class="btn btn-secondary" style="width:100%;font-size:0.85rem;padding:0.75rem 1.15rem;text-align:center;display:flex;align-items:center;justify-content:center;gap:0.4rem;text-decoration:none;border-radius:8px;background:#FFFFFF;border:1px solid var(--line);box-shadow:0 2px 6px rgba(0,0,0,0.02);font-weight:600;">
+            <span>Explore Intake Systems</span>
+            <span class="arrow-icon">→</span>
+          </a>
+        </div>
+
+        <!-- PILLAR 2: CRM Architecture & Rapid Response -->
+        <div class="glass-card" style="padding:2.5rem 2rem;background:#F8FAFC;border:1px solid var(--line);border-radius:14px;display:flex;flex-direction:column;justify-content:space-between;border-top:4px solid #D97706;">
+          <div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;">
+              <span style="font-family:var(--font-mono);font-size:0.72rem;font-weight:700;color:#D97706;background:rgba(217,119,6,0.08);padding:0.25rem 0.65rem;border-radius:6px;">PILLAR 02</span>
+              <span style="font-size:0.72rem;font-family:var(--font-mono);color:var(--ink-muted);">CRM &amp; Response</span>
+            </div>
+            <h3 style="font-size:1.35rem;font-weight:700;color:var(--ink);margin-bottom:0.75rem;line-height:1.3;">
+              CRM Architecture &amp; Rapid Alerts
+            </h3>
+            <p style="font-size:0.9rem;color:var(--ink-soft);line-height:1.65;margin-bottom:1.5rem;">
+              Speed-to-lead mobile alerts that reach reps within 60 seconds, clean deal pipelines, and automated deduplication systems that keep your database spotless.
+            </p>
+
+            <div style="padding:1rem;background:#FFFFFF;border:1px solid var(--line);border-radius:8px;margin-bottom:1.5rem;">
+              <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--ink);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.04em;">Core Capabilities:</div>
+              <ul style="list-style:none;padding:0;margin:0;font-size:0.82rem;color:var(--ink-soft);display:flex;flex-direction:column;gap:0.4rem;">
+                <li style="display:flex;align-items:center;gap:0.45rem;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Sub-60s WhatsApp &amp; Slack Lead Notifications</span>
+                </li>
+                <li style="display:flex;align-items:center;gap:0.45rem;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Clean GHL / HubSpot Deal Stage Routing</span>
+                </li>
+                <li style="display:flex;align-items:center;gap:0.45rem;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Deterministic Duplicate Record Prevention</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <a href="services.html#cat-02" class="btn btn-secondary" style="width:100%;font-size:0.85rem;padding:0.75rem 1.15rem;text-align:center;display:flex;align-items:center;justify-content:center;gap:0.4rem;text-decoration:none;border-radius:8px;background:#FFFFFF;border:1px solid var(--line);box-shadow:0 2px 6px rgba(0,0,0,0.02);font-weight:600;">
+            <span>Explore CRM Systems</span>
+            <span class="arrow-icon">→</span>
+          </a>
+        </div>
+
+        <!-- PILLAR 3: Intelligent AI Automations -->
+        <div class="glass-card" style="padding:2.5rem 2rem;background:#F8FAFC;border:1px solid var(--line);border-radius:14px;display:flex;flex-direction:column;justify-content:space-between;border-top:4px solid #7C3AED;">
+          <div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;">
+              <span style="font-family:var(--font-mono);font-size:0.72rem;font-weight:700;color:#7C3AED;background:rgba(124,58,237,0.08);padding:0.25rem 0.65rem;border-radius:6px;">PILLAR 03</span>
+              <span style="font-size:0.72rem;font-family:var(--font-mono);color:#7C3AED;font-weight:700;">AI-Integrated</span>
+            </div>
+            <h3 style="font-size:1.35rem;font-weight:700;color:var(--ink);margin-bottom:0.75rem;line-height:1.3;">
+              AI-Integrated Workflow Systems
+            </h3>
+            <p style="font-size:0.9rem;color:var(--ink-soft);line-height:1.65;margin-bottom:1.5rem;">
+              LLM intelligence applied to evaluate applicant fit, automatically distribute meeting briefings, and re-engage dormant opportunities in your pipeline.
+            </p>
+
+            <div style="padding:1rem;background:#FFFFFF;border:1px solid var(--line);border-radius:8px;margin-bottom:1.5rem;">
+              <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--ink);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.04em;">Core Capabilities:</div>
+              <ul style="list-style:none;padding:0;margin:0;font-size:0.82rem;color:var(--ink-soft);display:flex;flex-direction:column;gap:0.4rem;">
+                <li style="display:flex;align-items:center;gap:0.45rem;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>AI Lead Qualification &amp; Budget Scoring</span>
+                </li>
+                <li style="display:flex;align-items:center;gap:0.45rem;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Post-Meeting Action Item Recap Delivery</span>
+                </li>
+                <li style="display:flex;align-items:center;gap:0.45rem;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Multi-Branch Pipeline Recovery Protocols</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <a href="services.html#cat-03" class="btn btn-secondary" style="width:100%;font-size:0.85rem;padding:0.75rem 1.15rem;text-align:center;display:flex;align-items:center;justify-content:center;gap:0.4rem;text-decoration:none;border-radius:8px;background:#FFFFFF;border:1px solid var(--line);box-shadow:0 2px 6px rgba(0,0,0,0.02);font-weight:600;">
+            <span>Explore AI Workflows</span>
+            <span class="arrow-icon">→</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- High-Conversion Gateway to Dedicated Services Page -->
+      <div style="margin-top:3.5rem;padding:1.5rem 2.25rem;background:#F8FAFC;border:1px solid var(--line);border-radius:12px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,0.02);">
+        <div>
+          <div style="font-size:0.95rem;font-weight:700;color:var(--ink);margin-bottom:0.25rem;">
+            Looking for detailed technical specifications and exact deliverables?
+          </div>
+          <div style="font-size:0.85rem;color:var(--ink-soft);max-width:640px;line-height:1.5;">
+            Browse the dedicated services catalog to inspect system architectures, tooling stacks, and specific turnaround deliverables.
+          </div>
+        </div>
+        <div style="display:flex;gap:0.85rem;align-items:center;flex-wrap:wrap;">
+          <a href="services.html" class="btn btn-secondary" style="font-size:0.84rem;padding:0.6rem 1.35rem;text-decoration:none;background:#FFFFFF;border:1px solid var(--line);font-weight:600;box-shadow:0 2px 6px rgba(0,0,0,0.02);">
+            <span>Explore All Services &amp; Deliverables</span>
+            <span style="color:var(--cobalt);">→</span>
+          </a>
+          <a href="audit.html" class="btn btn-primary" style="font-size:0.84rem;padding:0.6rem 1.35rem;text-decoration:none;">Discuss a Project →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <section id="case-studies" class="section" style="background:var(--canvas-bg, #FAFAFA);padding-top:4.5rem;padding-bottom:4.5rem;">
+  <div class="container">
+    <div class="section-header reveal" style="text-align:center;max-width:720px;margin:0 auto 2.5rem auto;">
+      <span class="badge-pill animate-hero-badge"><span class="dot" style="background:var(--cobalt);"></span>PROOF &amp; ARCHITECTURE</span>
+      <h2 class="section-title shimmer-sweep-title" style="margin-top:0.6rem;">Selected Systems &amp; Case Studies</h2>
+      <p class="section-sub" style="margin-top:0.4rem;">Transparent documentation of how each operational system was designed, built, and verified.</p>
+    </div>
+
+    <div class="grid grid-3" style="gap:1.5rem;">
+      
+      <!-- CARD 1 -->
+      <div class="glass-card reveal" data-spotlight data-spotlight-color="rgba(16, 185, 129, 0.14)" style="border-left:4px solid var(--emerald);background:#FFFFFF;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,0.03);display:flex;flex-direction:column;justify-content:space-between;padding:1.85rem;">
+        <div class="spotlight"></div>
+        <div>
+          <!-- Clean Stacked Header: Badge on Top, Stack on Row 2 -->
+          <div style="margin-bottom:1.15rem;">
+            <div style="margin-bottom:0.45rem;">
+              <span style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);background:var(--emerald-light);padding:0.2rem 0.65rem;border-radius:9999px;letter-spacing:0.02em;">REAL-WORLD IMPLEMENTATION</span>
+            </div>
+            <div style="font-size:0.72rem;font-family:var(--font-mono);color:var(--ink-soft);">GoHighLevel · Gmail · Google Calendar</div>
+          </div>
+
+          <h3 style="font-size:1.22rem;font-weight:700;color:var(--ink);margin-bottom:0.5rem;font-family:var(--font-serif);line-height:1.25;">Lead Capture to Booking System</h3>
+          <p style="font-size:0.84rem;color:var(--ink-soft);line-height:1.6;margin-bottom:1.25rem;">Direct implementation for an active service firm. Connects website intake forms, instant confirmations, and 2-way Google Calendar scheduling so high-intent inquiries never slip through inboxes.</p>
+          
+          <!-- Core Deliverables Checklist (Immediate Executive Value) -->
+          <div style="border-top:1px solid var(--line);padding-top:1.15rem;margin-bottom:1.25rem;">
+            <div style="font-size:0.68rem;font-family:var(--font-mono);color:var(--ink-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.65rem;font-weight:700;">Engineered Deliverables:</div>
+            <ul style="list-style:none;padding:0;margin:0;font-size:0.82rem;color:var(--ink);display:flex;flex-direction:column;gap:0.45rem;">
+              <li style="display:flex;align-items:flex-start;gap:0.45rem;"><span style="color:#10B981;font-weight:700;line-height:1.2;">✓</span> <span>High-converting intake &amp; qualification form</span></li>
+              <li style="display:flex;align-items:flex-start;gap:0.45rem;"><span style="color:#10B981;font-weight:700;line-height:1.2;">✓</span> <span>2-way live calendar buffer &amp; conflict logic</span></li>
+              <li style="display:flex;align-items:flex-start;gap:0.45rem;"><span style="color:#10B981;font-weight:700;line-height:1.2;">✓</span> <span>Automated 24h &amp; 1h anti-no-show reminders</span></li>
+            </ul>
           </div>
         </div>
         <div style="margin-top:1.25rem;">
-          <a href="system-lead-capture.html" class="btn btn-primary raycast-hover" style="width:100%;font-size:0.85rem;padding:0.65rem 1rem;text-align:center;display:flex;align-items:center;justify-content:center;gap:0.4rem;text-decoration:none;">
+          <a href="system-lead-capture.html" class="btn btn-primary raycast-hover" style="width:100%;font-size:0.85rem;padding:0.7rem 1.15rem;text-align:center;display:flex;align-items:center;justify-content:center;gap:0.4rem;text-decoration:none;">
             <span>Read Case Study</span>
             <span class="arrow-icon">→</span>
           </a>
         </div>
-      </div></div>
+      </div>
 
       <!-- CARD 2 -->
-      <div class="glass-card reveal" data-spotlight><div class="spotlight"></div><div class="card-inner" style="padding:1.75rem;display:flex;flex-direction:column;justify-content:space-between;">
+      <div class="glass-card reveal" data-spotlight data-spotlight-color="rgba(37, 99, 235, 0.14)" style="border-left:4px solid var(--cobalt);background:#FFFFFF;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,0.03);display:flex;flex-direction:column;justify-content:space-between;padding:1.85rem;">
+        <div class="spotlight"></div>
         <div>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;">
-            <span style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);background:var(--cobalt-light);padding:0.2rem 0.6rem;border-radius:9999px;">🔵 SELF-INITIATED SYSTEM DESIGN</span>
-            <span style="font-size:0.7rem;font-family:var(--font-mono);color:var(--ink-soft);">Make Webhook · Make.com · Airtable · HubSpot · Gmail / Outlook</span>
+          <!-- Clean Stacked Header: Badge on Top, Stack on Row 2 -->
+          <div style="margin-bottom:1.15rem;">
+            <div style="margin-bottom:0.45rem;">
+              <span style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);background:var(--cobalt-light);padding:0.2rem 0.65rem;border-radius:9999px;letter-spacing:0.02em;">SELF-INITIATED SYSTEM DESIGN</span>
+            </div>
+            <div style="font-size:0.72rem;font-family:var(--font-mono);color:var(--ink-soft);">Make.com · Airtable · HubSpot CRM</div>
           </div>
-          <h3 style="font-size:1.1rem;margin-bottom:0.4rem;">Lead Intake &amp; Duplicate Verification</h3>
-          <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;margin-bottom:0.75rem;">A designed multi-tool operational system using Make.com webhooks, Airtable record verification, and HubSpot CRM synchronization to identify existing contacts and update records without creating duplicate CRM entries.</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin:0.75rem 0;padding:0.65rem 0.75rem;border-radius:6px;background:var(--cloud);border:1px solid var(--line);font-size:0.72rem;font-family:var(--font-mono);">
-            <div><span style="color:var(--ink-muted);display:block;font-size:0.62rem;letter-spacing:0.04em;">DUPLICATE FILTER</span><strong style="color:var(--cobalt);font-weight:700;">Duplicate Verification</strong></div>
-            <div><span style="color:var(--ink-muted);display:block;font-size:0.62rem;letter-spacing:0.04em;">DATA ACCURACY</span><strong style="color:var(--ink);font-weight:700;">Existing Record Update</strong></div>
+
+          <h3 style="font-size:1.22rem;font-weight:700;color:var(--ink);margin-bottom:0.5rem;font-family:var(--font-serif);line-height:1.25;">Lead Intake &amp; Duplicate Verification</h3>
+          <p style="font-size:0.84rem;color:var(--ink-soft);line-height:1.6;margin-bottom:1.25rem;">A multi-stage pipeline using webhooks, Airtable verification, and CRM synchronization to identify existing accounts and update pipeline records without creating duplicate entries.</p>
+          
+          <!-- Core Deliverables Checklist (Immediate Executive Value) -->
+          <div style="border-top:1px solid var(--line);padding-top:1.15rem;margin-bottom:1.25rem;">
+            <div style="font-size:0.68rem;font-family:var(--font-mono);color:var(--ink-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.65rem;font-weight:700;">Engineered Deliverables:</div>
+            <ul style="list-style:none;padding:0;margin:0;font-size:0.82rem;color:var(--ink);display:flex;flex-direction:column;gap:0.45rem;">
+              <li style="display:flex;align-items:flex-start;gap:0.45rem;"><span style="color:#10B981;font-weight:700;line-height:1.2;">✓</span> <span>Airtable instant duplicate check webhook</span></li>
+              <li style="display:flex;align-items:flex-start;gap:0.45rem;"><span style="color:#10B981;font-weight:700;line-height:1.2;">✓</span> <span>Automated contact enrichment &amp; deduplication</span></li>
+              <li style="display:flex;align-items:flex-start;gap:0.45rem;"><span style="color:#10B981;font-weight:700;line-height:1.2;">✓</span> <span>Instant deal routing with rep notification alerts</span></li>
+            </ul>
           </div>
         </div>
         <div style="margin-top:1.25rem;">
-          <a href="system-lead-intake.html" class="btn btn-primary raycast-hover" style="width:100%;font-size:0.85rem;padding:0.65rem 1rem;text-align:center;display:flex;align-items:center;justify-content:center;gap:0.4rem;text-decoration:none;">
+          <a href="system-lead-intake.html" class="btn btn-primary raycast-hover" style="width:100%;font-size:0.85rem;padding:0.7rem 1.15rem;text-align:center;display:flex;align-items:center;justify-content:center;gap:0.4rem;text-decoration:none;">
             <span>Read Case Study</span>
             <span class="arrow-icon">→</span>
           </a>
         </div>
-      </div></div>
+      </div>
 
       <!-- CARD 3 -->
-      <div class="glass-card reveal" data-spotlight><div class="spotlight"></div><div class="card-inner" style="padding:1.75rem;display:flex;flex-direction:column;justify-content:space-between;">
+      <div class="glass-card reveal" data-spotlight data-spotlight-color="rgba(139, 92, 246, 0.16)" style="border-left:4px solid #8B5CF6;background:#FFFFFF;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,0.03);display:flex;flex-direction:column;justify-content:space-between;padding:1.85rem;">
+        <div class="spotlight"></div>
         <div>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;">
-            <span style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);background:var(--cobalt-light);padding:0.2rem 0.6rem;border-radius:9999px;">🟣 ARCHITECTURE CASE STUDY</span>
-            <span style="font-size:0.7rem;font-family:var(--font-mono);color:var(--ink-soft);">Make.com · Make AI Agent · Airtable</span>
+          <!-- Clean Stacked Header: Badge on Top, Stack on Row 2 -->
+          <div style="margin-bottom:1.15rem;">
+            <div style="margin-bottom:0.45rem;">
+              <span style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:#8B5CF6;background:#F5F3FF;padding:0.2rem 0.65rem;border-radius:9999px;letter-spacing:0.02em;">ADVANCED MULTI-SCENARIO OPS</span>
+            </div>
+            <div style="font-size:0.72rem;font-family:var(--font-mono);color:var(--ink-soft);">7 Scenarios · Gemini AI · Airtable API</div>
           </div>
-          <h3 style="font-size:1.1rem;margin-bottom:0.4rem;">AI Customer Journey Operations</h3>
-          <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;margin-bottom:0.75rem;">A 7-scenario architecture exploring how Make.com, relational Airtable data, and AI context analysis can identify stalled pipeline deals and trigger structured recovery alerts for team review.</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin:0.75rem 0;padding:0.65rem 0.75rem;border-radius:6px;background:var(--cloud);border:1px solid var(--line);font-size:0.72rem;font-family:var(--font-mono);">
-            <div><span style="color:var(--ink-muted);display:block;font-size:0.62rem;letter-spacing:0.04em;">LIFECYCLE TRIAGE</span><strong style="color:var(--cobalt);font-weight:700;">7 Scenarios</strong></div>
-            <div><span style="color:var(--ink-muted);display:block;font-size:0.62rem;letter-spacing:0.04em;">RECOVERY SYSTEM</span><strong style="color:var(--ink);font-weight:700;">Active Stalled Alerts</strong></div>
+
+          <h3 style="font-size:1.22rem;font-weight:700;color:var(--ink);margin-bottom:0.5rem;font-family:var(--font-serif);line-height:1.25;">AI Customer Journey Operations &amp; Recovery</h3>
+          <p style="font-size:0.84rem;color:var(--ink-soft);line-height:1.6;margin-bottom:1.25rem;">A 7-scenario automation infrastructure running autonomous lead scoring, automated re-engagement of stalled conversations, post-service feedback, and error recovery handling.</p>
+          
+          <!-- Core Deliverables Checklist (Immediate Executive Value) -->
+          <div style="border-top:1px solid var(--line);padding-top:1.15rem;margin-bottom:1.25rem;">
+            <div style="font-size:0.68rem;font-family:var(--font-mono);color:var(--ink-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.65rem;font-weight:700;">Engineered Deliverables:</div>
+            <ul style="list-style:none;padding:0;margin:0;font-size:0.82rem;color:var(--ink);display:flex;flex-direction:column;gap:0.45rem;">
+              <li style="display:flex;align-items:flex-start;gap:0.45rem;"><span style="color:#10B981;font-weight:700;line-height:1.2;">✓</span> <span>Autonomous AI lead qualification &amp; sentiment score</span></li>
+              <li style="display:flex;align-items:flex-start;gap:0.45rem;"><span style="color:#10B981;font-weight:700;line-height:1.2;">✓</span> <span>Stalled pipeline re-engagement sequences</span></li>
+              <li style="display:flex;align-items:flex-start;gap:0.45rem;"><span style="color:#10B981;font-weight:700;line-height:1.2;">✓</span> <span>Built-in webhook error queues &amp; automatic retries</span></li>
+            </ul>
           </div>
         </div>
         <div style="margin-top:1.25rem;">
-          <a href="system-ai-journey.html" class="btn btn-primary raycast-hover" style="width:100%;font-size:0.85rem;padding:0.65rem 1rem;text-align:center;display:flex;align-items:center;justify-content:center;gap:0.4rem;text-decoration:none;">
+          <a href="system-ai-journey.html" class="btn btn-primary raycast-hover" style="width:100%;font-size:0.85rem;padding:0.7rem 1.15rem;text-align:center;display:flex;align-items:center;justify-content:center;gap:0.4rem;text-decoration:none;">
             <span>Read Case Study</span>
             <span class="arrow-icon">→</span>
           </a>
         </div>
-      </div></div>
+      </div>
+
     </div>
-    <div style="text-align:center;margin-top:2.5rem;">
-      <a href="systems.html" class="btn btn-primary raycast-hover" style="padding:0.75rem 2rem;">View All Systems in Library →</a>
+
+    <div style="text-align:center;margin-top:2.75rem;">
+      <a href="systems.html" class="btn btn-primary raycast-hover" style="padding:0.75rem 2rem;font-size:0.9rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;">
+        <span>View All Systems in Library</span>
+        <span class="arrow-icon">→</span>
+      </a>
     </div>
   </div>
 </section>
@@ -436,7 +705,7 @@
             <span style="font-size:0.7rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;letter-spacing:0.06em;">BUILD CASE STUDY &middot; VERIFIED IMPLEMENTATION</span>
             <span style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);background:var(--emerald-light);padding:0.2rem 0.55rem;border-radius:4px;border:1px solid var(--emerald-border);">REAL IMPLEMENTATION</span>
           </div>
-          <h4 style="font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:0.75rem;">Lead Capture &amp; Appointment Scheduling Pipeline</h4>
+          <h3 style="font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:0.75rem;">Lead Capture &amp; Appointment Scheduling Pipeline</h3>
           <p style="font-size:0.88rem;color:var(--ink-soft);line-height:1.7;margin-bottom:1.25rem;">
             <strong>Operational Context:</strong> Before implementation, incoming client inquiries required manual follow-ups and back-and-forth calendar coordination.<br><br>
             <strong>System Built:</strong> Architected a GoHighLevel workflow integrated with Gmail communication triggers and 2-way Google Calendar synchronization, establishing automated lead intake and continuous booking availability.
@@ -461,7 +730,7 @@
             <span style="font-size:0.7rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;letter-spacing:0.06em;">DELIVERY PRINCIPLE</span>
             <span style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);background:var(--cobalt-light);padding:0.2rem 0.55rem;border-radius:4px;border:1px solid var(--cobalt-border);">DIRECT FOUNDER DELIVERY</span>
           </div>
-          <h4 style="font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:0.75rem;">Direct Specialist Accountability &amp; Handoff</h4>
+          <h3 style="font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:0.75rem;">Direct Specialist Accountability &amp; Handoff</h3>
           <p style="font-size:0.88rem;color:var(--ink-soft);line-height:1.7;margin-bottom:1.25rem;">
             Every system is designed, configured, and documented directly by Nitin Mishra with zero junior handoffs. Every delivery includes complete workflow documentation, architecture walkthroughs, and post-handoff support.
           </p>
@@ -546,7 +815,7 @@
 </section>
 
 <!-- 06 FOUNDER SPOTLIGHT (SKY BLUE BACKGROUND + REAL PHOTO) -->
-<section id="founder" class="section" style="background:linear-gradient(135deg,#EAF3FC 0%,#DBEAFE 100%);padding-top:4rem;padding-bottom:4rem;">
+<section id="founder" class="section pattern-reactbd-corner-glow" style="background:linear-gradient(135deg,#EAF3FC 0%,#DBEAFE 100%);padding-top:4rem;padding-bottom:4rem;">
   <div class="container" style="max-width:960px;">
     <div class="glass-card reveal" style="padding:2.5rem 2rem;background:#FFFFFF;">
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2.5rem;align-items:center;">
@@ -572,7 +841,7 @@
             <div style="font-size:0.78rem;color:var(--ink-soft);line-height:1.75;">
               <div>One specialist. No handoffs.</div>
               <div>Full architecture blueprints.</div>
-              <div>Complete video documentation.</div>
+              <div>Loom video walkthroughs &amp; full SOPs.</div>
             </div>
           </div>
         </div>
@@ -714,18 +983,24 @@
 
 <!-- 10 FINAL CTA PANEL -->
 <!-- PRE-FOOTER CTA (LIGHT THEME) -->
-<section class="section bg-pattern-grid-light" style="padding:5rem 0;background:linear-gradient(180deg, #EAF3FC 0%, #FFFFFF 100%);text-align:center;">
-  <div class="container" style="max-width:740px;">
-    <span class="badge-pill animate-hero-badge" style="margin-bottom:1rem;"><span class="dot animate-pulse"></span>DIRECT SPECIALIST ENGAGEMENT</span>
-    <h2 class="section-title shimmer-sweep-title" style="font-size:clamp(1.85rem,4vw,2.65rem);color:var(--ink);line-height:1.25;">Have a process that takes more manual effort than it should?</h2>
-    <p class="section-sub animate-hero-sub" style="font-size:1rem;color:var(--ink-soft);margin:1rem auto 2rem auto;">Tell me what process you are trying to improve. I will map a clean, reliable workflow for you.</p>
-    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1rem;">
-      <a href="audit.html" class="btn btn-primary raycast-hover" style="padding:0.85rem 2.25rem;"><span>Discuss a Project</span><span class="arrow-icon">→</span></a>
-      <a href="mailto:NitinSystems@outlook.com" class="btn btn-secondary raycast-hover" style="padding:0.85rem 2rem;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:0.35rem;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>NitinSystems@outlook.com</a>
+<section class="section pattern-reactbd-bottom-radial" style="padding:5.5rem 0;text-align:center;position:relative;overflow:hidden;border-top:1px solid rgba(226,232,240,0.6);border-bottom:1px solid rgba(226,232,240,0.6);">
+  <div class="container" style="max-width:820px;position:relative;z-index:2;">
+    <div style="display:inline-flex;align-items:center;gap:0.5rem;background:#DBEAFE;border:1px solid #BFDBFE;padding:0.3rem 0.85rem;border-radius:9999px;margin-bottom:1.25rem;">
+      <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#2563EB;" class="animate-pulse"></span>
+      <span style="font-family:var(--font-mono);font-size:0.72rem;font-weight:700;color:#1D4ED8;letter-spacing:0.06em;text-transform:uppercase;">DIRECT SPECIALIST ENGAGEMENT</span>
+    </div>
+    <h2 style="font-family:var(--font-serif);font-size:clamp(2rem,4.2vw,2.75rem);line-height:1.22;margin-bottom:1rem;font-weight:700;color:var(--ink);">
+      Have a Process That Takes More Manual Effort Than It Should?
+    </h2>
+    <p style="font-size:1.02rem;line-height:1.75;margin:0 auto 2.25rem auto;color:var(--ink-soft);max-width:640px;">
+      Tell me what process you are trying to improve. I will map a clean, reliable workflow for you. Direct engineering execution, zero sales reps, zero handoffs.
+    </p>
+    <div class="animate-hero-cta" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1.15rem;">
+      <a href="audit.html" class="btn btn-primary raycast-hover" style="padding:0.95rem 2.5rem;box-shadow:0 8px 24px rgba(37,99,235,0.28);"><span>Discuss a Project</span><span class="arrow-icon">→</span></a>
+      <a href="mailto:NitinSystems@outlook.com" class="btn btn-secondary raycast-hover" style="padding:0.95rem 2rem;background:#FFFFFF;color:var(--ink);border:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,0.04);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:0.35rem;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>NitinSystems@outlook.com</a>
     </div>
   </div>
 </section>
-</main>
 </main>
 
 <footer id="footer">
@@ -756,6 +1031,7 @@
         <h3 style="font-family:var(--font-serif);font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink);margin-bottom:0.85rem;">Navigation</h3>
         <ul style="display:flex;flex-direction:column;gap:0.5rem;list-style:none;padding:0;margin:0;">
           <li><a href="index.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Home</a></li>
+          <li><a href="services.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Services</a></li>
           <li><a href="systems.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Systems Library</a></li>
           <li><a href="approach.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Approach</a></li>
           <li><a href="about.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">About</a></li>
@@ -776,15 +1052,15 @@
     </div>
 
     <!-- Bottom Bar -->
-    <div style="padding-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;font-size:0.72rem;color:var(--ink-muted);">
-      <p style="font-weight:400;color:#64748B;margin:0;">© 2026 Nitin Systems. All rights reserved.</p>
-      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem;">
+    <div class="footer-bottom-bar" style="padding-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;font-size:0.72rem;color:var(--ink-muted);">
+      <p class="footer-copyright" style="font-weight:400;color:#64748B;margin:0;margin-right:auto;">© 2026 Nitin Systems. All rights reserved.</p>
+      <div class="footer-legal-pair" style="display:inline-flex;align-items:center;gap:0.5rem;white-space:nowrap;">
         <a href="privacy.html" style="color:var(--ink-muted);text-decoration:none;">Privacy Policy</a>
         <span style="color:var(--line);">·</span>
         <a href="terms.html" style="color:var(--ink-muted);text-decoration:none;">Terms of Service</a>
-        <span style="color:var(--line);">·</span>
-        <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:0.35rem 0.75rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.72rem;cursor:pointer;color:var(--ink-soft);">Back to top ↑</button>
       </div>
+      <span class="footer-desktop-sep" style="color:var(--line);">·</span>
+      <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="footer-back-to-top" style="padding:0.35rem 0.75rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.72rem;cursor:pointer;color:var(--ink-soft);">Back to top ↑</button>
     </div>
   </div>
 </footer>
@@ -794,8 +1070,8 @@
     <button class="modal-close-btn" onclick="closePdfModal()">✕</button>
     <h3 id="modal-pdf-title" style="font-family:var(--font-serif);font-weight:700;font-size:1.25rem;color:var(--ink);margin-bottom:0.4rem;"></h3>
     <p style="font-size:0.8rem;color:var(--ink-soft);margin-bottom:1.5rem;">Access the verified technical case study document.</p>
-    <a id="modal-pdf-open" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%;margin-bottom:0.5rem;">Open in New Tab ↗</a>
-    <a id="modal-pdf-download" href="#" download class="btn btn-secondary" style="width:100%;">Download PDF</a>
+    <a id="modal-pdf-open" href="javascript:void(0)" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%;margin-bottom:0.5rem;">Open in New Tab ↗</a>
+    <a id="modal-pdf-download" href="javascript:void(0)" download class="btn btn-secondary" style="width:100%;">Download PDF</a>
   </div>
 </div>
 <!-- IMAGE LIGHTBOX MODAL -->
@@ -812,5 +1088,9 @@
 <script src="assets/js/components.js?v=999.0"></script>
 <script src="assets/js/interactions-working.js?v=1.0"></script>
 <script src="assets/js/main.js?v=999.0"></script>
+
+<script src="assets/js/lenis.min.js"></script>
+<script src="motion-engine.js"></script>
+
 </body>
 </html>

@@ -28,6 +28,39 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style-working.css?v=1.0" />
   <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+
+<style id="mobile-footer-layout-fix">
+@media (max-width: 640px) {
+  .footer-bottom-bar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    gap: 0.75rem !important;
+  }
+  .footer-legal-links {
+    order: 1 !important;
+    justify-content: flex-start !important;
+  }
+  .footer-copyright {
+    order: 2 !important;
+    text-align: left !important;
+  }
+  .footer-pipe-sep {
+    display: none !important;
+  }
+  .footer-back-to-top {
+    order: 3 !important;
+    margin-top: 0.35rem !important;
+    display: inline-block !important;
+  }
+  .responsive-ribbon-pill {
+    border-radius: 12px !important;
+    padding: 1rem 1.25rem !important;
+    gap: 0.85rem !important;
+  }
+}
+</style>
 </head>
 <body>
 <header id="navbar" class="animate-hero-nav">
@@ -43,6 +76,7 @@
 
     <nav class="nav-links-wrap">
       <a href="index.html" class="nav-link">Home</a>
+      <a href="services.html" class="nav-link">Services</a>
       <div class="nav-dropdown">
         <a href="systems.html" class="nav-link" style="display:flex;align-items:center;gap:0.25rem;">
           Systems <span style="font-size:0.65rem;opacity:0.7;">▾</span>
@@ -91,8 +125,7 @@
       <a href="insights.html" class="nav-link">Insights</a>
     </nav>
 
-    <main>
-<div class="nav-actions-wrap">
+    <div class="nav-actions-wrap">
       <a href="audit.html" class="btn btn-primary" style="padding:0.45rem 1rem;font-size:0.85rem;">Discuss a Project →</a>
       <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle menu">☰</button>
     </div>
@@ -112,6 +145,7 @@
   </div>
   <nav class="mobile-nav-links">
     <a href="index.html" class="mobile-nav-link" onclick="closeMobileMenu()">Home</a>
+    <a href="services.html" class="mobile-nav-link" onclick="closeMobileMenu()">Services</a>
     <a href="systems.html" class="mobile-nav-link" onclick="closeMobileMenu()">Systems Library</a>
     <a href="approach.html" class="mobile-nav-link active" onclick="closeMobileMenu()">Approach</a>
     <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()">About</a>
@@ -126,15 +160,68 @@
 </div>
 <div id="mobile-backdrop" class="mobile-backdrop" onclick="closeMobileMenu()"></div>
 
-<section class="section pattern-dots-radial" style="padding-top:clamp(6.75rem, 9vw, 8rem);padding-bottom:clamp(5rem, 7vw, 6.5rem);background:linear-gradient(180deg, #EAF3FC 0%, #FFFFFF 100%);">
-  <div class="ambient-glow animate-hero-glow"></div>
-  <div class="container" style="max-width:860px;text-align:center;">
-    <div class="badge-pill animate-hero-badge"><span class="dot animate-pulse"></span>SYSTEMS-FIRST METHODOLOGY</div>
-    <h1 class="animate-hero-title" style="font-size:clamp(2.2rem,4.5vw,3.2rem);margin-top:1rem;color:var(--ink);">How I Approach Systems</h1>
-    <p class="section-sub animate-hero-sub" style="font-size:1.05rem;max-width:640px;margin:0.85rem auto 0 auto;">Automation isn't just connecting apps; it is designing a repeatable, practical, reliable operating process that you and your team can trust.</p>
+<main>
+
+<section class="section pattern-dots-radial " style="min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;box-sizing:border-box;padding-top:8rem;padding-bottom:3.5rem;background:radial-gradient(circle at 50% 0%, #DBEAFE 0%, #EAF3FC 35%, #FFFFFF 75%);position:relative;">
+  <div class="container" style="max-width:980px;width:100%;text-align:center;">
+    <div class="badge-pill animate-hero-badge"><span class="dot animate-pulse"></span>OPERATING ARCHITECTURE &amp; METHODOLOGY</div>
+    <h1 class="animate-hero-title" style="font-size:clamp(2.2rem,4.5vw,3.3rem);margin-top:0.85rem;color:var(--ink);font-weight:700;line-height:1.2;">
+      Engineering Systematic Reliability
+    </h1>
+    <p class="section-sub animate-hero-sub" style="font-size:1.05rem;max-width:660px;margin:0.85rem auto 0 auto;color:var(--ink-soft);line-height:1.65;">
+      Automation is not merely connecting software with webhooks; it is engineering a predictable, observable, and fail-safe operating process your business can rely on under high lead volume.
+    </p>
+
+    <!-- 4-Stage Operating Track Preview Deck -->
+    <div class="animate-hero-console" style="margin-top:2.25rem;background:#0F172A;border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:1.25rem;box-shadow:0 20px 40px -12px rgba(15,23,42,0.25);text-align:left;">
+      <div class="flow-console-header" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:0.75rem;border-bottom:1px solid rgba(255,255,255,0.08);">
+        <div class="console-title-wrap" style="display:flex;align-items:center;gap:0.5rem;">
+          <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#38BDF8;box-shadow:0 0 8px #38BDF8;"></span>
+          <span class="console-title-text" style="font-size:0.72rem;font-family:var(--font-mono);color:#94A3B8;text-transform:uppercase;letter-spacing:0.05em;">Operating Lifecycle</span>
+        </div>
+        <div class="console-status-wrap">
+          <span style="font-size:0.68rem;font-family:var(--font-mono);color:rgba(255,255,255,0.45);">4 STAGES • ZERO DOWNTIME CUTOVER</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0.75rem;">
+        
+        <div style="text-decoration:none;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.9rem;transition:transform 0.2s,border-color 0.2s;display:block;">
+          <div style="font-size:0.65rem;font-family:var(--font-mono);color:#38BDF8;font-weight:700;">STAGE 01</div>
+          <div style="font-size:0.88rem;font-weight:600;color:#FFFFFF;margin-top:0.25rem;">Discovery &amp; Audit</div>
+          <div style="font-size:0.72rem;color:#94A3B8;margin-top:0.25rem;line-height:1.4;">Find bottlenecks &amp; review current tools</div>
+        </div>
+
+        <div style="text-decoration:none;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.9rem;transition:transform 0.2s,border-color 0.2s;display:block;">
+          <div style="font-size:0.65rem;font-family:var(--font-mono);color:#38BDF8;font-weight:700;">STAGE 02</div>
+          <div style="font-size:0.88rem;font-weight:600;color:#FFFFFF;margin-top:0.25rem;">System Blueprint</div>
+          <div style="font-size:0.72rem;color:#94A3B8;margin-top:0.25rem;line-height:1.4;">Plan data flow &amp; error rules before building</div>
+        </div>
+
+        <div style="text-decoration:none;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.9rem;transition:transform 0.2s,border-color 0.2s;display:block;">
+          <div style="font-size:0.65rem;font-family:var(--font-mono);color:#38BDF8;font-weight:700;">STAGE 03</div>
+          <div style="font-size:0.88rem;font-weight:600;color:#FFFFFF;margin-top:0.25rem;">Build &amp; Testing</div>
+          <div style="font-size:0.72rem;color:#94A3B8;margin-top:0.25rem;line-height:1.4;">Build in sandbox &amp; test so live work never breaks</div>
+        </div>
+
+        <div style="text-decoration:none;background:rgba(16,185,129,0.08);border:1px solid rgba(52,211,153,0.3);border-radius:8px;padding:0.9rem;transition:transform 0.2s,border-color 0.2s;display:block;">
+          <div style="font-size:0.65rem;font-family:var(--font-mono);color:#34D399;font-weight:700;">STAGE 04</div>
+          <div style="font-size:0.88rem;font-weight:600;color:#FFFFFF;margin-top:0.25rem;">Launch &amp; Handover</div>
+          <div style="font-size:0.72rem;color:#A7F3D0;margin-top:0.25rem;line-height:1.4;">Zero-downtime launch, Loom SOPs &amp; 30-day care</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Scroll Down Affordance -->
+    <div class="animate-hero-sub" style="margin-top:1.85rem;">
+      <a href="#stages" style="text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;font-size:0.75rem;font-family:var(--font-mono);color:var(--ink-muted);letter-spacing:0.04em;text-transform:uppercase;">
+        <span>Read In-Depth Stage Specifications</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+      </a>
+    </div>
   </div>
 </section>
-<section class="section" style="background: var(--paper); padding-top: 2rem; padding-bottom: 5rem;">
+<section id="stages" class="section" style="background: #F8FAFC; padding-top: 3rem; padding-bottom: 5rem;">
   <div class="container" style="max-width: 920px;">
     <div style="display: flex; flex-direction: column; gap: 2rem;">
       <!-- STAGE 01 -->
@@ -198,7 +285,6 @@
   </div>
 </section>
 </main>
-</main>
 
 <footer id="footer">
   <div class="container">
@@ -229,6 +315,7 @@
         <h3 style="font-family:var(--font-serif);font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink);margin-bottom:0.85rem;">Navigation</h3>
         <ul style="display:flex;flex-direction:column;gap:0.5rem;list-style:none;padding:0;margin:0;">
           <li><a href="index.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Home</a></li>
+          <li><a href="services.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Services</a></li>
           <li><a href="systems.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Systems Library</a></li>
           <li><a href="approach.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Approach</a></li>
           <li><a href="about.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">About</a></li>
@@ -249,14 +336,14 @@
     </div>
 
     <!-- Bottom Bar -->
-    <div style="padding-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;font-size:0.72rem;color:var(--ink-muted);">
-      <p style="font-weight:400;color:#64748B;margin:0;">© 2026 Nitin Systems. All rights reserved.</p>
-      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem;">
+    <div class="footer-bottom-bar" style="padding-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;font-size:0.72rem;color:var(--ink-muted);">
+      <p style="font-weight:400;color:#64748B;margin:0;" class="footer-copyright">© 2026 Nitin Systems. All rights reserved.</p>
+      <div class="footer-legal-links" style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem;">
         <a href="privacy.html" style="color:var(--ink-muted);text-decoration:none;">Privacy Policy</a>
         <span style="color:var(--line);">·</span>
         <a href="terms.html" style="color:var(--ink-muted);text-decoration:none;">Terms of Service</a>
-        <span style="color:var(--line);">·</span>
-        <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:0.35rem 0.75rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.72rem;cursor:pointer;color:var(--ink-soft);">Back to top ↑</button>
+        <span style="color:var(--line);" class="footer-pipe-sep">·</span>
+        <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="footer-back-to-top" style="padding:0.35rem 0.75rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.72rem;cursor:pointer;color:var(--ink-soft);">Back to top ↑</button>
       </div>
     </div>
   </div>
@@ -267,8 +354,8 @@
     <button class="modal-close-btn" onclick="closePdfModal()">✕</button>
     <h3 id="modal-pdf-title" style="font-family:var(--font-serif);font-weight:700;font-size:1.25rem;color:var(--ink);margin-bottom:0.4rem;"></h3>
     <p style="font-size:0.8rem;color:var(--ink-soft);margin-bottom:1.5rem;">Access the verified technical case study document.</p>
-    <a id="modal-pdf-open" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%;margin-bottom:0.5rem;">Open in New Tab ↗</a>
-    <a id="modal-pdf-download" href="#" download class="btn btn-secondary" style="width:100%;">Download PDF</a>
+    <a id="modal-pdf-open" href="javascript:void(0)" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%;margin-bottom:0.5rem;">Open in New Tab ↗</a>
+    <a id="modal-pdf-download" href="javascript:void(0)" download class="btn btn-secondary" style="width:100%;">Download PDF</a>
   </div>
 </div>
 <!-- IMAGE LIGHTBOX MODAL -->
@@ -284,5 +371,8 @@
 <script src="assets/js/components.js?v=999.0"></script>
 <script src="assets/js/interactions-working.js?v=1.0"></script>
 <script src="assets/js/main.js?v=999.0"></script>
+
+<script src="assets/js/lenis.min.js"></script>
+<script src="motion-engine.js"></script>
 </body>
 </html>

@@ -44,6 +44,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style-working.css?v=1.0" />
   <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+
+<style id="mobile-footer-layout-fix">
+@media (max-width: 640px) {
+  .footer-bottom-bar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    gap: 0.75rem !important;
+  }
+  .footer-legal-pair {
+    order: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    white-space: nowrap !important;
+  }
+  .footer-copyright {
+    order: 2 !important;
+    margin-right: 0 !important;
+    text-align: left !important;
+  }
+  .footer-desktop-sep {
+    display: none !important;
+  }
+  .footer-back-to-top {
+    order: 3 !important;
+    margin-top: 0.25rem !important;
+    display: inline-block !important;
+  }
+  .responsive-ribbon-pill {
+    border-radius: 8px !important;
+    padding: 0.85rem 1.25rem !important;
+    gap: 0.85rem !important;
+  }
+}
+</style>
 </head>
 <body>
 <header id="navbar" class="animate-hero-nav">
@@ -59,6 +96,7 @@
 
     <nav class="nav-links-wrap">
       <a href="index.html" class="nav-link">Home</a>
+      <a href="services.html" class="nav-link">Services</a>
       <div class="nav-dropdown">
         <a href="systems.html" class="nav-link" style="display:flex;align-items:center;gap:0.25rem;">
           Systems <span style="font-size:0.65rem;opacity:0.7;">▾</span>
@@ -127,6 +165,7 @@
   </div>
   <nav class="mobile-nav-links">
     <a href="index.html" class="mobile-nav-link" onclick="closeMobileMenu()">Home</a>
+    <a href="services.html" class="mobile-nav-link" onclick="closeMobileMenu()">Services</a>
     <a href="systems.html" class="mobile-nav-link" onclick="closeMobileMenu()">Systems Library</a>
     <a href="approach.html" class="mobile-nav-link" onclick="closeMobileMenu()">Approach</a>
     <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()">About</a>
@@ -142,56 +181,58 @@
 <div id="mobile-backdrop" class="mobile-backdrop" onclick="closeMobileMenu()"></div>
 
 <main>
-<!-- HERO SECTION -->
-<section class="section bg-pattern-grid-light" style="padding-top:clamp(6.25rem, 8vw, 7.25rem);padding-bottom:2.5rem;background:linear-gradient(180deg, #EAF3FC 0%, #FFFFFF 100%);">
+<!-- UNIFIED COMPACT ABOVE-THE-FOLD STAGE -->
+<section class="section bg-pattern-grid-light" style="padding-top:7.25rem;padding-bottom:3.5rem;background:linear-gradient(180deg, #EAF3FC 0%, #FFFFFF 100%);position:relative;">
   <div class="ambient-glow animate-hero-glow"></div>
-  <div class="container" style="max-width:860px;text-align:center;">
-    <div class="badge-pill animate-hero-badge"><span class="dot animate-pulse"></span>DIRECT FOUNDER ENGAGEMENT</div>
-    <h1 class="animate-hero-title" style="font-size:clamp(2.1rem,4.2vw,3.1rem);margin-top:0.85rem;color:var(--ink);font-weight:700;">Discuss a Project</h1>
-    <p class="section-sub animate-hero-sub" style="font-size:1.05rem;max-width:620px;margin:0.75rem auto 0 auto;line-height:1.65;color:var(--ink-soft);">
-      Choose the engagement path that works best for your schedule: book a short technical discovery call on the live calendar or submit your workflow scope for a written response within 24 hours.
-    </p>
-  </div>
-</section>
+  <div class="container" style="max-width:1100px;width:100%;">
+    
+    <!-- Compact Header -->
+    <div style="text-align:center;max-width:760px;margin:0 auto 2rem auto;">
+      <div class="badge-pill animate-hero-badge"><span class="dot animate-pulse"></span>DIRECT FOUNDER ENGAGEMENT</div>
+      <h1 class="animate-hero-title" style="font-size:clamp(1.9rem,3.8vw,2.8rem);margin-top:0.6rem;color:var(--ink);font-weight:700;line-height:1.15;">
+        Discuss a Project
+      </h1>
+      <p class="section-sub animate-hero-sub" style="font-size:0.98rem;max-width:640px;margin:0.5rem auto 0 auto;line-height:1.55;color:var(--ink-soft);">
+        Choose the engagement path that fits your schedule: lock in a live 15-minute scoping call on the calendar or submit written details for a direct reply within 24 hours.
+      </p>
+    </div>
 
-<!-- 2-COLUMN DUAL CONVERSION SECTION -->
-<section class="section" style="background: var(--paper); padding-top: 1rem; padding-bottom: 5rem;">
-  <div class="container" style="max-width: 1080px;">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; align-items: stretch;">
+    <!-- 2-Column Dual Conversion Layout (Immediately Visible Above the Fold) -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.75rem;align-items:stretch;">
       
       <!-- OPTION A: DIRECT CALENDAR BOOKING -->
-      <div class="glass-card reveal" style="padding: 2.25rem 2rem; background: #FFFFFF; border-top: 4px solid var(--emerald); display: flex; flex-direction: column; justify-content: space-between;">
+      <div class="glass-card reveal" style="padding:1.85rem;background:#FFFFFF;border-top:4px solid var(--emerald);border-radius:12px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 20px rgba(0,0,0,0.03);">
         <div>
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.65rem;">
             <span style="font-size:0.68rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);background:var(--emerald-light);border:1px solid var(--emerald-border);padding:0.2rem 0.65rem;border-radius:9999px;">
-              ⚡ FAST TRACK · ZERO FRICTION
+              <span style="display:inline-flex;align-items:center;gap:0.35rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>FAST TRACK · ZERO FRICTION</span>
             </span>
-            <span style="font-size:0.72rem;font-family:var(--font-mono);color:var(--ink-muted);">Short Call</span>
+            <span style="font-size:0.72rem;font-family:var(--font-mono);color:var(--ink-muted);">Live Calendar</span>
           </div>
 
-          <h2 style="font-size: 1.35rem; color: var(--ink); margin-bottom: 0.5rem; font-weight: 700;">
-            Book a Short Strategy Call
+          <h2 style="font-size:1.25rem;color:var(--ink);margin-bottom:0.35rem;font-weight:700;">
+            Book a 15-Min Scoping Call
           </h2>
-          <p style="font-size: 0.88rem; color: var(--ink-soft); line-height: 1.65; margin-bottom: 1.5rem;">
-            Skip the back-and-forth emails. Lock in a convenient slot for a focused technical scoping conversation.
+          <p style="font-size:0.84rem;color:var(--ink-soft);line-height:1.55;margin-bottom:1.25rem;">
+            Skip back-and-forth emails. Select a time on the live calendar to discuss your current bottleneck directly with Nitin Mishra.
           </p>
 
-          <div style="background: var(--cloud); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--line); margin-bottom: 1.5rem;">
-            <div style="font-size: 0.72rem; font-family: var(--font-mono); font-weight: 700; color: var(--ink); text-transform: uppercase; margin-bottom: 0.75rem;">
+          <div style="background:var(--cloud);padding:1rem 1.15rem;border-radius:8px;border:1px solid var(--line);margin-bottom:1.25rem;">
+            <div style="font-size:0.68rem;font-family:var(--font-mono);font-weight:700;color:var(--ink);text-transform:uppercase;margin-bottom:0.6rem;letter-spacing:0.04em;">
               WHAT WE WILL COVER:
             </div>
-            <ul style="display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.82rem; color: var(--ink-soft); list-style: none; padding: 0;">
-              <li style="display: flex; align-items: flex-start; gap: 0.5rem;">
-                <span style="color: var(--emerald); font-weight: bold;">✓</span>
-                <span>Review your current CRM, lead flow, and manual bottlenecks</span>
+            <ul style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.8rem;color:var(--ink-soft);list-style:none;padding:0;margin:0;">
+              <li style="display:flex;align-items:flex-start;gap:0.45rem;">
+                <span style="color:var(--emerald);font-weight:bold;line-height:1.2;">✓</span>
+                <span>Review your current CRM, form intake, and manual friction</span>
               </li>
-              <li style="display: flex; align-items: flex-start; gap: 0.5rem;">
-                <span style="color: var(--emerald); font-weight: bold;">✓</span>
+              <li style="display:flex;align-items:flex-start;gap:0.45rem;">
+                <span style="color:var(--emerald);font-weight:bold;line-height:1.2;">✓</span>
                 <span>Identify quick-win automation vs. custom architecture</span>
               </li>
-              <li style="display: flex; align-items: flex-start; gap: 0.5rem;">
-                <span style="color: var(--emerald); font-weight: bold;">✓</span>
-                <span>Direct Google Meet video invite with zero sales pressure</span>
+              <li style="display:flex;align-items:flex-start;gap:0.45rem;">
+                <span style="color:var(--emerald);font-weight:bold;line-height:1.2;">✓</span>
+                <span>Direct Google Meet video link with zero sales pressure</span>
               </li>
             </ul>
           </div>
@@ -199,8 +240,8 @@
 
         <div>
           <!-- Cal.com Popup Modal Trigger -->
-          <button data-cal-namespace="30min" data-cal-link="nitinmishra/30min" data-cal-config='{"layout":"month_view"}' class="btn btn-primary raycast-hover" style="width: 100%; text-align: center; padding: 0.95rem; font-size: 0.95rem; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; cursor: pointer; border: none;">
-            <span>Book Your Slot</span>
+          <button data-cal-namespace="30min" data-cal-link="nitinmishra/30min" data-cal-config='{"layout":"month_view"}' class="btn btn-primary raycast-hover" style="width:100%;text-align:center;padding:0.85rem;font-size:0.92rem;display:inline-flex;align-items:center;justify-content:center;gap:0.45rem;cursor:pointer;border:none;border-radius:8px;">
+            <span>Choose Date &amp; Time Slot</span>
             <span class="arrow-icon">→</span>
           </button>
           
@@ -210,59 +251,112 @@
             Cal.ns["30min"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#2563EB"},"dark":{"cal-brand":"#0F172A"}},"hideEventTypeDetails":false,"layout":"month_view"});
           </script>
 
-          <div style="margin-top: 0.75rem; font-size: 0.75rem; color: var(--ink-soft); text-align: center;">
+          <div style="margin-top:0.65rem;font-size:0.72rem;color:var(--ink-soft);text-align:center;">
             Direct consultation with Nitin Mishra · Mon - Fri availability
           </div>
         </div>
       </div>
 
       <!-- OPTION B: WRITTEN PROJECT INQUIRY -->
-      <div class="glass-card reveal" style="padding: 2.25rem 2rem; background: #FFFFFF; border-top: 4px solid var(--cobalt);">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;">
+      <div class="glass-card reveal" style="padding:1.85rem;background:#FFFFFF;border-top:4px solid var(--cobalt);border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.03);">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.65rem;">
           <span style="font-size:0.68rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);background:var(--cobalt-light);border:1px solid var(--cobalt-border);padding:0.2rem 0.65rem;border-radius:9999px;">
-            📝 WRITTEN INQUIRY · 24H REPLY
+            <span style="display:inline-flex;align-items:center;gap:0.35rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>WRITTEN INQUIRY · 24H REPLY</span>
           </span>
-          <span style="font-size:0.72rem;font-family:var(--font-mono);color:var(--ink-muted);">Direct Message</span>
+          <span style="font-size:0.72rem;font-family:var(--font-mono);color:var(--ink-muted);">Direct Form</span>
         </div>
 
-        <h2 style="font-size: 1.35rem; color: var(--ink); margin-bottom: 0.5rem; font-weight: 700;">
-          Send Project Details
+        <h2 style="font-size:1.25rem;color:var(--ink);margin-bottom:0.35rem;font-weight:700;">
+          Send Project Scope
         </h2>
-        <p style="font-size: 0.88rem; color: var(--ink-soft); line-height: 1.65; margin-bottom: 1.25rem;">
-          Prefer writing? Tell me what process or tool is slowing you down, and I will review it and email you back within 24 hours.
+        <p style="font-size:0.84rem;color:var(--ink-soft);line-height:1.55;margin-bottom:1.15rem;">
+          Prefer writing? Tell me what bottleneck you need resolved, and I will review your requirements and reply within 24 hours.
         </p>
 
-        <form id="audit-form" onsubmit="handleAuditSubmit(event)" style="display: flex; flex-direction: column; gap: 1rem;">
+        <form id="audit-form" onsubmit="handleAuditSubmit(event)" style="display:flex;flex-direction:column;gap:0.85rem;">
           <div class="form-field">
-            <label class="form-label" style="font-size:0.78rem;font-weight:600;">Full Name *</label>
-            <input type="text" id="audit-name" name="full_name" aria-label="Your Name" required placeholder="Alex Morgan" class="form-input" style="padding:0.65rem 0.85rem;font-size:0.85rem;" />
+            <label class="form-label" style="font-size:0.76rem;font-weight:600;">System or Service Needed *</label>
+            <select id="audit-service" name="service_interest" class="form-input" style="padding:0.6rem 0.8rem;font-size:0.84rem;background:#FFFFFF;border:1px solid var(--line);border-radius:6px;">
+              <option value="general">General Operations &amp; Systems Audit</option>
+              <option value="2-page-booking-funnel">2-Page Booking Funnel &amp; Fast Landing Page</option>
+              <option value="anti-no-show-engine">Automated Anti-No-Show Reminder Engine (12h/1h/5m)</option>
+              <option value="crm-pipeline">Clean CRM &amp; Sales Pipeline Setup (GHL / HubSpot)</option>
+              <option value="duplicate-verification">Lead Intake &amp; Duplicate Record Verification</option>
+              <option value="speed-to-lead">Speed-to-Lead Instant WhatsApp/Slack Alert Engine</option>
+              <option value="ai-lead-scoring">AI Lead Qualification &amp; Screening System</option>
+              <option value="post-meeting-seal">Post-Meeting AI Summary &amp; Action Item Engine</option>
+              <option value="multi-app-sync">Multi-App System Integration (Make / Zapier / Stripe)</option>
+              <option value="ai-journey-recovery">AI Customer Journey &amp; Pipeline Recovery Operations</option>
+            </select>
           </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+            <div class="form-field">
+              <label class="form-label" style="font-size:0.76rem;font-weight:600;">Full Name *</label>
+              <input type="text" id="audit-name" name="full_name" aria-label="Your Name" required placeholder="Alex Morgan" class="form-input" style="padding:0.6rem 0.8rem;font-size:0.84rem;border:1px solid var(--line);border-radius:6px;" />
+            </div>
+            <div class="form-field">
+              <label class="form-label" style="font-size:0.76rem;font-weight:600;">Work Email *</label>
+              <input type="email" id="audit-email" name="work_email" aria-label="Work Email" required placeholder="alex@company.com" class="form-input" style="padding:0.6rem 0.8rem;font-size:0.84rem;border:1px solid var(--line);border-radius:6px;" />
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+            <div class="form-field">
+              <label for="audit-industry" class="form-label" style="font-size:0.76rem;font-weight:600;">Company / Industry *</label>
+              <input type="text" id="audit-industry" aria-label="Company or Industry" name="industry_type" required placeholder="e.g. B2B Agency, Clinic, Consulting" class="form-input" style="padding:0.6rem 0.8rem;font-size:0.84rem;border:1px solid var(--line);border-radius:6px;" />
+            </div>
+            <div class="form-field">
+              <label for="audit-stack" class="form-label" style="font-size:0.76rem;font-weight:600;">Current Software / CRM</label>
+              <input type="text" id="audit-stack" aria-label="Current Software or CRM" name="tech_stack" placeholder="e.g. HubSpot, GHL, Make, Airtable" class="form-input" style="padding:0.6rem 0.8rem;font-size:0.84rem;border:1px solid var(--line);border-radius:6px;" />
+            </div>
+          </div>
+
           <div class="form-field">
-            <label class="form-label" style="font-size:0.78rem;font-weight:600;">Work Email *</label>
-            <input type="email" id="audit-email" name="work_email" aria-label="Work Email" required placeholder="alex@company.com" class="form-input" style="padding:0.65rem 0.85rem;font-size:0.85rem;" />
+            <label class="form-label" style="font-size:0.76rem;font-weight:600;">What workflow or bottleneck are you solving? *</label>
+            <textarea required rows="2" name="operational_bottleneck" placeholder="Describe manual steps, dropped leads, or tools that need connecting..." class="form-input" style="padding:0.6rem 0.8rem;font-size:0.84rem;border:1px solid var(--line);border-radius:6px;resize:vertical;"></textarea>
           </div>
-          <div class="form-field">
-            <label class="form-label" style="font-size:0.78rem;font-weight:600;">Company / Industry Type *</label>
-            <input type="text" id="audit-industry" name="industry_type" aria-label="Company or Industry Type" required placeholder="e.g. B2B AI Agency, Med Spa, Real Estate, Consulting" class="form-input" style="padding:0.65rem 0.85rem;font-size:0.85rem;" />
-          </div>
-          <div class="form-field">
-            <label class="form-label" style="font-size:0.78rem;font-weight:600;">Current Software / CRM Stack</label>
-            <input type="text" id="audit-stack" name="tech_stack" aria-label="Current Tech Stack" placeholder="e.g. HubSpot, Make.com, GoHighLevel, Airtable" class="form-input" style="padding:0.65rem 0.85rem;font-size:0.85rem;" />
-          </div>
-          <div class="form-field">
-            <label class="form-label" style="font-size:0.78rem;font-weight:600;">What workflow or bottleneck are you solving? *</label>
-            <textarea required rows="3" name="operational_bottleneck" placeholder="Describe the manual steps, data friction, or dropped follow-ups you are experiencing..." class="form-input" style="padding:0.65rem 0.85rem;font-size:0.85rem;"></textarea>
-          </div>
-          <button type="submit" class="btn btn-secondary raycast-hover" style="padding: 0.85rem; font-size: 0.92rem; width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
+
+          <button type="submit" class="btn btn-primary raycast-hover" style="padding:0.85rem;font-size:0.92rem;width:100%;display:flex;align-items:center;justify-content:center;gap:0.45rem;border-radius:8px;background:var(--cobalt);color:#FFFFFF;border:none;cursor:pointer;font-weight:600;box-shadow:0 4px 14px rgba(37,99,235,0.25);">
             <span>Send Project Details</span>
             <span class="arrow-icon">→</span>
           </button>
-          <div style="font-size: 0.72rem; color: var(--ink-soft); text-align: center;">
+          <div style="font-size:0.7rem;color:var(--ink-soft);text-align:center;">
             Direct review by Nitin Mishra · Reply within 24 business hours
           </div>
         </form>
       </div>
 
+    </div>
+  </div>
+</section>
+<!-- 3-STEP ENGAGEMENT ROADMAP -->
+<section class="section" style="background:var(--cloud);padding-top:3.5rem;padding-bottom:4rem;border-top:1px solid var(--line);">
+  <div class="container" style="max-width:960px;">
+    <div style="text-align:center;margin-bottom:2.5rem;">
+      <span class="badge-pill animate-hero-badge"><span class="dot animate-pulse"></span>CLEAR ENGAGEMENT ROADMAP</span>
+      <h2 style="font-size:clamp(1.5rem,3vw,2.1rem);color:var(--ink);margin-top:0.75rem;">What Happens After You Reach Out</h2>
+      <p style="font-size:0.92rem;color:var(--ink-soft);max-width:560px;margin:0.5rem auto 0 auto;line-height:1.65;">No high-pressure sales calls. Direct technical diagnosis followed by fixed-scope architecture delivery.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;">
+      <div class="glass-card" style="padding:1.75rem;background:#FFFFFF;border-top:3px solid var(--cobalt);">
+        <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);margin-bottom:0.5rem;">STEP 01 · DIAGNOSIS</div>
+        <h3 style="font-size:1.05rem;color:var(--ink);margin-bottom:0.4rem;font-weight:700;">15-Min System Discovery</h3>
+        <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.65;margin:0;">A focused technical call to review your current tech stack, lead drop-offs, and map your high-impact automation quick-wins.</p>
+      </div>
+
+      <div class="glass-card" style="padding:1.75rem;background:#FFFFFF;border-top:3px solid var(--sky-accent);">
+        <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);margin-bottom:0.5rem;">STEP 02 · BLUEPRINT</div>
+        <h3 style="font-size:1.05rem;color:var(--ink);margin-bottom:0.4rem;font-weight:700;">Fixed Scope &amp; Architecture</h3>
+        <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.65;margin:0;">Within 24 hours, you receive a visual architecture blueprint, guaranteed delivery timeline, and transparent fixed-price proposal.</p>
+      </div>
+
+      <div class="glass-card" style="padding:1.75rem;background:#FFFFFF;border-top:3px solid var(--emerald);">
+        <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);margin-bottom:0.5rem;">STEP 03 · HANDOVER</div>
+        <h3 style="font-size:1.05rem;color:var(--ink);margin-bottom:0.4rem;font-weight:700;">Sprint Build &amp; Video Handover</h3>
+        <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.65;margin:0;">Workflows built and validated in staging, accompanied by a complete recorded Loom walkthrough and 30-day warranty.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -297,6 +391,7 @@
         <h3 style="font-family:var(--font-serif);font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink);margin-bottom:0.85rem;">Navigation</h3>
         <ul style="display:flex;flex-direction:column;gap:0.5rem;list-style:none;padding:0;margin:0;">
           <li><a href="index.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Home</a></li>
+          <li><a href="services.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Services</a></li>
           <li><a href="systems.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Systems Library</a></li>
           <li><a href="approach.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Approach</a></li>
           <li><a href="about.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">About</a></li>
@@ -317,15 +412,15 @@
     </div>
 
     <!-- Bottom Bar -->
-    <div style="padding-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;font-size:0.72rem;color:var(--ink-muted);">
-      <p style="font-weight:400;color:#64748B;margin:0;">© 2026 Nitin Systems. All rights reserved.</p>
-      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem;">
+    <div class="footer-bottom-bar" style="padding-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;font-size:0.72rem;color:var(--ink-muted);">
+      <p class="footer-copyright" style="font-weight:400;color:#64748B;margin:0;margin-right:auto;">© 2026 Nitin Systems. All rights reserved.</p>
+      <div class="footer-legal-pair" style="display:inline-flex;align-items:center;gap:0.5rem;white-space:nowrap;">
         <a href="privacy.html" style="color:var(--ink-muted);text-decoration:none;">Privacy Policy</a>
         <span style="color:var(--line);">·</span>
         <a href="terms.html" style="color:var(--ink-muted);text-decoration:none;">Terms of Service</a>
-        <span style="color:var(--line);">·</span>
-        <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:0.35rem 0.75rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.72rem;cursor:pointer;color:var(--ink-soft);">Back to top ↑</button>
       </div>
+      <span class="footer-desktop-sep" style="color:var(--line);">·</span>
+      <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="footer-back-to-top" style="padding:0.35rem 0.75rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.72rem;cursor:pointer;color:var(--ink-soft);">Back to top ↑</button>
     </div>
   </div>
 </footer>
@@ -334,5 +429,27 @@
 <script src="assets/js/components.js?v=999.0"></script>
 <script src="assets/js/interactions-working.js?v=1.0"></script>
 <script src="assets/js/main.js?v=999.0"></script>
+
+<script src="assets/js/lenis.min.js"></script>
+<script src="motion-engine.js"></script>
+
+<script>
+  // Auto-select service dropdown based on URL query parameter (?service=...)
+  document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const serviceParam = urlParams.get('service');
+    if (serviceParam) {
+      const selectEl = document.getElementById('audit-service');
+      if (selectEl) {
+        for (let i = 0; i < selectEl.options.length; i++) {
+          if (selectEl.options[i].value === serviceParam) {
+            selectEl.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+  });
+</script>
 </body>
 </html>

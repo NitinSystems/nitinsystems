@@ -26,6 +26,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style-working.css">
   <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+
+<style id="mobile-footer-layout-fix">
+@media (max-width: 640px) {
+  .footer-bottom-bar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    gap: 0.75rem !important;
+  }
+  .footer-legal-pair {
+    order: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    white-space: nowrap !important;
+  }
+  .footer-copyright {
+    order: 2 !important;
+    margin-right: 0 !important;
+    text-align: left !important;
+  }
+  .footer-desktop-sep {
+    display: none !important;
+  }
+  .footer-back-to-top {
+    order: 3 !important;
+    margin-top: 0.25rem !important;
+    display: inline-block !important;
+  }
+  .responsive-ribbon-pill {
+    border-radius: 8px !important;
+    padding: 0.85rem 1.25rem !important;
+    gap: 0.85rem !important;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -42,6 +79,7 @@
 
     <nav class="nav-links-wrap">
       <a href="index.html" class="nav-link active">Home</a>
+      <a href="services.html" class="nav-link">Services</a>
       <div class="nav-dropdown">
         <a href="systems.html" class="nav-link" style="display:flex;align-items:center;gap:0.25rem;">
           Systems <span style="font-size:0.65rem;opacity:0.7;">▾</span>
@@ -90,8 +128,7 @@
       <a href="insights.html" class="nav-link">Insights</a>
     </nav>
 
-    <main>
-<div class="nav-actions-wrap">
+    <div class="nav-actions-wrap">
       <a href="audit.html" class="btn btn-primary" style="padding:0.45rem 1rem;font-size:0.85rem;">Discuss a Project →</a>
       <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle menu">☰</button>
     </div>
@@ -111,6 +148,7 @@
   </div>
   <nav class="mobile-nav-links">
     <a href="index.html" class="mobile-nav-link active" onclick="closeMobileMenu()">Home</a>
+    <a href="services.html" class="mobile-nav-link" onclick="closeMobileMenu()">Services</a>
     <a href="systems.html" class="mobile-nav-link" onclick="closeMobileMenu()">Systems Library</a>
     <a href="approach.html" class="mobile-nav-link" onclick="closeMobileMenu()">Approach</a>
     <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()">About</a>
@@ -125,21 +163,28 @@
 </div>
 <div id="mobile-backdrop" class="mobile-backdrop" onclick="closeMobileMenu()"></div>
 
+<main>
 
-<section class="section" style="padding-top:8rem;padding-bottom:4rem;background:linear-gradient(180deg,#EAF3FC 0%,#FFFFFF 100%);position:relative;overflow:hidden;">
-  <div class="ambient-glow animate-hero-glow"></div>
-  <div class="container" style="max-width:820px;text-align:center;position:relative;z-index:2;">
-    <div class="badge-pill animate-hero-badge"><span class="dot animate-pulse"></span>LEGAL &amp; COMPLIANCE</div>
-    <h1 class="animate-hero-title" style="font-size:clamp(2.2rem,4.5vw,3.2rem);margin-top:1rem;color:var(--ink);">Privacy Policy</h1>
-    <p class="section-sub animate-hero-sub" style="font-size:1.05rem;max-width:640px;margin:0.85rem auto 0 auto;">Data governance, client operational confidentiality, and privacy commitments.</p>
-  </div>
-</section>
-
-<section class="section" style="background:var(--paper);padding-top:3rem;padding-bottom:5rem;">
+<article class="section" style="padding-top:8rem;padding-bottom:5rem;background:#FFFFFF;position:relative;">
   <div class="container" style="max-width:820px;">
-    <div class="glass-card" style="padding:2.75rem 2.25rem;background:#FFFFFF;border:1px solid var(--line);box-shadow:0 8px 30px rgba(0,0,0,0.04);">
+    
+    <!-- Document Header -->
+    <div style="text-align:center;margin-bottom:3rem;">
+      <div class="badge-pill animate-hero-badge"><span class="dot animate-pulse"></span>LEGAL &amp; COMPLIANCE</div>
+      <h1 class="animate-hero-title" style="font-size:clamp(2.2rem,4.5vw,3.3rem);margin-top:0.85rem;color:var(--ink);font-weight:700;line-height:1.2;">
+        Privacy Policy
+      </h1>
+      <p class="section-sub animate-hero-sub" style="font-size:1.05rem;max-width:640px;margin:0.85rem auto 1.25rem auto;color:var(--ink-soft);line-height:1.65;">
+        How Nitin Systems collects, uses, and protects your technical data and business communications.
+      </p>
+      <div style="font-family:var(--font-mono);font-size:0.75rem;color:var(--ink-muted);">Last Updated: September 2026 · Effective Immediately</div>
+      <hr style="border:0;border-top:1px solid var(--line);margin:2rem auto 0 auto;max-width:100%;" />
+    </div>
+
+    <!-- Document Content Flowing Naturally (Zero nested card boxes, zero shadow borders) -->
+    <div class="legal-document-content" style="line-height:1.75;">
       <h2 style="font-size:1.25rem;color:var(--ink);margin-bottom:0.75rem;">1. Who We Are &amp; Data Governance</h2>
-      <p style="color:var(--ink-soft);font-size:0.92rem;line-height:1.75;margin-bottom:1.75rem;">Nitin Systems is an independent B2B automation systems consultancy founded and operated by Nitin Mishra, based in New Delhi, India. We operate <a href="index.html" style="color:var(--cobalt);font-weight:600;">https://nitinsystems.com</a>. When you submit inquiries through our site, Nitin Systems acts as a Data Controller. When implementing automation systems within client platforms, Nitin Systems acts as a Data Processor operating strictly under client instruction.</p>
+      <p style="color:var(--ink-soft);font-size:0.92rem;line-height:1.75;margin-bottom:1.75rem;">Nitin Systems is an independent B2B automation systems consultancy founded and operated by Nitin Mishra, based in New Delhi, India. When you interact with our digital portfolio and submit project inquiries through this website, Nitin Systems acts as a Data Controller. When implementing automation systems within client platforms, Nitin Systems acts as a Data Processor operating strictly under client instruction.</p>
 
       <h2 style="font-size:1.25rem;color:var(--ink);margin-bottom:0.75rem;">2. Information We Collect</h2>
       <p style="color:var(--ink-soft);font-size:0.92rem;line-height:1.75;margin-bottom:1.75rem;">We collect information only as necessary to evaluate project feasibility and deliver technical engineering:
@@ -152,7 +197,7 @@
 
       <h2 style="font-size:1.25rem;color:var(--ink);margin-bottom:0.75rem;">4. Third-Party Sub-Processors &amp; Service Providers</h2>
       <p style="color:var(--ink-soft);font-size:0.92rem;line-height:1.75;margin-bottom:1.75rem;">To deliver high-availability web and automation services, data may be processed through reputable third-party infrastructure providers that comply with international data security standards:
-      <br>• <strong>Hosting &amp; Delivery:</strong> GitHub Pages (static site hosting and SSL certificate management).
+      <br>• <strong>Hosting &amp; Delivery:</strong> Cloud Edge Network (secure static site hosting and SSL certificate management).
       <br>• <strong>Scheduling:</strong> Cal.com (appointment bookings and calendar scheduling).
       <br>• <strong>Workflow Orchestration:</strong> Make.com, Airtable, HubSpot, GoHighLevel, and Zapier (used strictly for client pipeline configuration and intake processing).</p>
 
@@ -167,15 +212,15 @@
 
       <h2 style="font-size:1.25rem;color:var(--ink);margin-bottom:0.75rem;">8. Contact Information</h2>
       <p style="color:var(--ink-soft);font-size:0.92rem;line-height:1.75;">For all privacy inquiries, data subject requests, or governance questions, contact Nitin Mishra directly at <a href="mailto:NitinSystems@outlook.com" style="color:var(--cobalt);font-weight:600;">NitinSystems@outlook.com</a>.</p>
+    
     </div>
   </div>
-</section>
+</article>
 </main>
-
 
 <footer id="footer">
   <div class="container">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--line);">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2.5rem;padding-bottom:2.5rem;">
       <!-- Column 1: Brand & Contact/Social -->
       <div>
         <div style="display:flex;align-items:center;gap:0.75rem;">
@@ -202,6 +247,7 @@
         <h3 style="font-family:var(--font-serif);font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink);margin-bottom:0.85rem;">Navigation</h3>
         <ul style="display:flex;flex-direction:column;gap:0.5rem;list-style:none;padding:0;margin:0;">
           <li><a href="index.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Home</a></li>
+          <li><a href="services.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Services</a></li>
           <li><a href="systems.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Systems Library</a></li>
           <li><a href="approach.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Approach</a></li>
           <li><a href="about.html" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">About</a></li>
@@ -222,15 +268,15 @@
     </div>
 
     <!-- Bottom Bar -->
-    <div style="padding-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;font-size:0.72rem;color:var(--ink-muted);">
-      <p style="font-weight:400;color:#64748B;margin:0;">© 2026 Nitin Systems. All rights reserved.</p>
-      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem;">
+    <div class="footer-bottom-bar" style="padding-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;font-size:0.72rem;color:var(--ink-muted);">
+      <p class="footer-copyright" style="font-weight:400;color:#64748B;margin:0;margin-right:auto;">© 2026 Nitin Systems. All rights reserved.</p>
+      <div class="footer-legal-pair" style="display:inline-flex;align-items:center;gap:0.5rem;white-space:nowrap;">
         <a href="privacy.html" style="color:var(--ink-muted);text-decoration:none;">Privacy Policy</a>
         <span style="color:var(--line);">·</span>
         <a href="terms.html" style="color:var(--ink-muted);text-decoration:none;">Terms of Service</a>
-        <span style="color:var(--line);">·</span>
-        <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:0.35rem 0.75rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.72rem;cursor:pointer;color:var(--ink-soft);">Back to top ↑</button>
       </div>
+      <span class="footer-desktop-sep" style="color:var(--line);">·</span>
+      <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="footer-back-to-top" style="padding:0.35rem 0.75rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.72rem;cursor:pointer;color:var(--ink-soft);">Back to top ↑</button>
     </div>
   </div>
 </footer>
@@ -240,8 +286,8 @@
     <button class="modal-close-btn" onclick="closePdfModal()">✕</button>
     <h3 id="modal-pdf-title" style="font-family:var(--font-serif);font-weight:700;font-size:1.25rem;color:var(--ink);margin-bottom:0.4rem;"></h3>
     <p style="font-size:0.8rem;color:var(--ink-soft);margin-bottom:1.5rem;">Access the verified technical case study document.</p>
-    <a id="modal-pdf-open" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%;margin-bottom:0.5rem;">Open in New Tab ↗</a>
-    <a id="modal-pdf-download" href="#" download class="btn btn-secondary" style="width:100%;">Download PDF</a>
+    <a id="modal-pdf-open" href="javascript:void(0)" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%;margin-bottom:0.5rem;">Open in New Tab ↗</a>
+    <a id="modal-pdf-download" href="javascript:void(0)" download class="btn btn-secondary" style="width:100%;">Download PDF</a>
   </div>
 </div>
 <!-- IMAGE LIGHTBOX MODAL -->
@@ -258,5 +304,8 @@
 <script src="assets/js/components.js?v=999.0"></script>
 <script src="assets/js/interactions-working.js?v=1.0"></script>
 <script src="assets/js/main.js?v=999.0"></script>
+
+<script src="assets/js/lenis.min.js"></script>
+<script src="motion-engine.js"></script>
 </body>
 </html>
