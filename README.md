@@ -47,11 +47,16 @@ A 7-scenario architecture case study demonstrating how Make.com, relational Airt
 
 ---
 
-## 5. Architectural & Design Documentation
+## 5. Live Architecture & Deployed Pages
 
-- **Master Design & Effects Catalog:** [`MASTER_DESIGN_&_EFFECTS_CATALOG.md`](MASTER_DESIGN_&_EFFECTS_CATALOG.md)
-- **Master Build Specification:** `../NITIN_SYSTEMS_FINAL_BUILD_SPECIFICATION.md`
-- **Systems Library Blueprint:** [`SYSTEMS_LIBRARY_ARCHITECTURE_SPEC.md`](SYSTEMS_LIBRARY_ARCHITECTURE_SPEC.md)
+- **Live Deployment:** [https://nitinsystems.github.io/nitinsystems/](https://nitinsystems.github.io/nitinsystems/)
+- **Core Services:** [`services.html`](services.html)
+- **Systems Architecture Library:** [`systems.html`](systems.html)
+- **Architecture Audit & Booking:** [`audit.html`](audit.html)
+- **Live Case Studies:**
+  - Lead Capture & Booking: [`system-lead-capture.html`](system-lead-capture.html)
+  - Ingestion & Duplicate Verification: [`system-lead-intake.html`](system-lead-intake.html)
+  - AI Customer Journey Operations: [`system-ai-journey.html`](system-ai-journey.html)
 
 ---
 
