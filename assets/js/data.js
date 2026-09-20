@@ -31,7 +31,7 @@ const SITE_DATA = {
       shortDesc: 'Connect repetitive processes, route data across business tools, and eliminate manual copy-paste execution.',
       category: 'Core Automation',
       tools: ['Make.com', 'Zapier', 'Webhooks', 'REST APIs'],
-      icon: '⚡',
+      icon: 'zap',
       latency: 'Event-Driven'
     },
     {
@@ -41,7 +41,7 @@ const SITE_DATA = {
       shortDesc: 'Structure, synchronize, and maintain operational data across HubSpot, GoHighLevel, and Airtable databases.',
       category: 'CRM Architecture',
       tools: ['HubSpot CRM', 'GoHighLevel', 'Airtable', 'Make.com'],
-      icon: '🗂️',
+      icon: 'database',
       latency: 'Instant Sync'
     },
     {
@@ -51,7 +51,7 @@ const SITE_DATA = {
       shortDesc: 'Connect intake forms, qualification filters, calendar bookings, automated notifications, and reminder sequences.',
       category: 'Intake & Scheduling',
       tools: ['GoHighLevel', 'Cal.com', 'Google Calendar', 'Gmail'],
-      icon: '📅',
+      icon: 'calendar',
       latency: 'Two-Way Sync'
     },
     {
@@ -61,7 +61,7 @@ const SITE_DATA = {
       shortDesc: 'Monitor journey states, flag stalled inquiries, and trigger structured follow-up sequences to recover pipeline interest.',
       category: 'Lifecycle Operations',
       tools: ['Make.com', 'Airtable', 'Twilio', 'Email'],
-      icon: '🔁',
+      icon: 'refresh-cw',
       latency: 'Trigger-Based'
     },
     {
@@ -71,7 +71,7 @@ const SITE_DATA = {
       shortDesc: 'Connect forms, relational databases, CRMs, calendars, email platforms, and internal business tools into a unified flow.',
       category: 'Integrations',
       tools: ['Make.com', 'Zapier', 'Webhooks', 'JSON API'],
-      icon: '🔗',
+      icon: 'link',
       latency: 'Reliable Delivery'
     }
   ],

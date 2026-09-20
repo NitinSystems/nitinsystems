@@ -4,8 +4,10 @@ if ('scrollRestoration' in history) {
 }
 
 function initSmoothScroll() {
-  // Use native smooth scrolling for instant, silky-smooth responsiveness without wheel lag
-  document.documentElement.style.scrollBehavior = 'smooth';
+  // Smooth scrolling is managed by Lenis momentum engine; native fallback kept auto to prevent dual-interpolation jitter
+  if (typeof Lenis === 'undefined') {
+    document.documentElement.style.scrollBehavior = 'smooth';
+  }
 }
 
 function initWaveScrollReveals() {
@@ -168,20 +170,18 @@ function closeCertLightbox() {
   }
 }
 
-// Mobile Menu Handlers
+// Mobile Menu Handlers (Refined with Smooth CSS Transition & Flexbox Preservation)
 function toggleMobileMenu() {
   const drawer = document.getElementById('mobile-drawer');
   const backdrop = document.getElementById('mobile-backdrop');
   if (!drawer) return;
   const isOpen = drawer.classList.contains('open');
   if (isOpen) {
-    drawer.classList.remove('open');
-    drawer.removeAttribute("aria-hidden"); drawer.style.display = "none";
-    if (backdrop) backdrop.classList.remove('open');
-    document.body.style.overflow = '';
+    closeMobileMenu();
   } else {
+    drawer.style.display = 'flex';
+    void drawer.offsetWidth; // Force reflow for smooth CSS entrance
     drawer.classList.add('open');
-    drawer.style.display = "block";
     if (backdrop) backdrop.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -192,7 +192,11 @@ function closeMobileMenu() {
   const backdrop = document.getElementById('mobile-backdrop');
   if (drawer) {
     drawer.classList.remove('open');
-    drawer.removeAttribute("aria-hidden"); drawer.style.display = "none";
+    setTimeout(() => {
+      if (!drawer.classList.contains('open')) {
+        drawer.style.display = 'none';
+      }
+    }, 260);
   }
   if (backdrop) {
     backdrop.classList.remove('open');
@@ -244,12 +248,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Close drawer if user presses Escape key
+  // Universal Escape Key listener: close drawers, modals, lightboxes, and open dropdowns
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeMobileMenu();
-      closePdfModal();
-      closeImgModal();
+    if (e.key === 'Escape' || e.keyCode === 27) {
+      if (typeof closeMobileMenu === 'function') closeMobileMenu();
+      if (typeof closePdfModal === 'function') closePdfModal();
+      if (typeof closeImgModal === 'function') closeImgModal();
+      if (typeof closeCertLightbox === 'function') closeCertLightbox();
+      // Close any active navigation dropdown
+      document.querySelectorAll('.dropdown-menu.active, .nav-dropdown-menu.active').forEach(m => m.classList.remove('active'));
     }
   });
 
@@ -261,19 +268,139 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 });
 
-// Form Submission & Redirect Handler for Audit / Written Inquiry
-function handleAuditSubmit(e) {
+// Form Submission & Webhook Handler for Audit / Written Inquiry with Triple-Layer Anti-Duplicate Shield
+async function handleAuditSubmit(e) {
   if (e) e.preventDefault();
-  const name = document.getElementById('audit-name')?.value || '';
-  const email = document.getElementById('audit-email')?.value || '';
-  
-  if (!name.trim() || !email.trim()) {
-    alert('Please fill in required fields (Name & Email).');
+
+  const form = document.getElementById('audit-form');
+  const submitBtn = form?.querySelector('button[type="submit"]');
+  const serviceEl = document.getElementById('audit-service');
+  const nameEl = document.getElementById('audit-name');
+  const emailEl = document.getElementById('audit-email');
+  const industryEl = document.getElementById('audit-industry');
+  const stackEl = document.getElementById('audit-stack');
+  const bottleneckEl = form?.querySelector('textarea[name="operational_bottleneck"]');
+
+  const name = nameEl?.value?.trim() || '';
+  const email = emailEl?.value?.trim() || '';
+  const service = serviceEl?.value || '';
+  const industry = industryEl?.value?.trim() || '';
+  const techStack = stackEl?.value?.trim() || '';
+  const bottleneck = bottleneckEl?.value?.trim() || '';
+
+  if (!name || !email) {
+    alert('Please fill in required fields (Full Name & Work Email).');
     return false;
   }
 
-  // Redirect cleanly to thank-you.html
-  window.location.href = 'thank-you.html';
+  // LAYER 1: Button Lock & Click Debounce
+  if (submitBtn) {
+    if (submitBtn.disabled) return false;
+    submitBtn.disabled = true;
+    submitBtn.dataset.originalHtml = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<span>Processing Details...</span> <span class="animate-pulse">●</span>';
+    submitBtn.style.opacity = '0.75';
+    submitBtn.style.cursor = 'not-allowed';
+  }
+
+  // LAYER 2: Browser Session Idempotency Guard (5-minute deduplication cache)
+  const submissionSignature = 'lead_sub_' + btoa(unescape(encodeURIComponent(email.toLowerCase() + '_' + service))).replace(/[^a-zA-Z0-9]/g, '').slice(0, 32);
+  const previousSubmissionTime = sessionStorage.getItem(submissionSignature);
+  const now = Date.now();
+
+  if (previousSubmissionTime && (now - parseInt(previousSubmissionTime, 10)) < 300000) {
+    console.info('[Nitin Systems] Duplicate submission prevented by browser session guard.');
+    window.location.href = 'thank-you.html';
+    return false;
+  }
+
+  // Generate unique idempotency key for this transmission
+  const idempotencyKey = 'sub_' + now + '_' + Math.random().toString(36).substring(2, 9);
+  
+  // Mark in sessionStorage before sending
+  sessionStorage.setItem(submissionSignature, now.toString());
+
+  // LAYER 3: Structured Payload with Idempotency Token
+  const payload = {
+    event: 'audit_form_submission',
+    idempotency_key: idempotencyKey,
+    submitted_at: new Date().toISOString(),
+    source_page: window.location.href || 'https://nitinsystems.com/audit.html',
+    lead_data: {
+      service_interest: service,
+      full_name: name,
+      work_email: email,
+      industry_type: industry,
+      current_tech_stack: techStack,
+      operational_bottleneck: bottleneck
+    }
+  };
+
+  const WEBHOOK_URL = 'https://hook.eu1.make.com/3ydi2fjlxni7qlpdtut2r8phkqinyizp';
+
+  // 4-Second Timeout Guard with AbortController
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 4000);
+
+    let isSuccess = false;
+
+  try {
+    const res = await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload),
+      signal: controller.signal
+    });
+    if (res.ok || res.status === 200 || res.status === 204) {
+      isSuccess = true;
+    } else {
+      console.warn('[Nitin Systems Webhook Non-200 Status]', res.status);
+    }
+  } catch (err) {
+    console.warn('[Nitin Systems Webhook]', err);
+  } finally {
+    clearTimeout(timeoutId);
+    if (isSuccess) {
+      try { localStorage.removeItem('nitin_pending_lead'); } catch(e) {}
+      window.location.href = 'thank-you.html';
+    } else {
+      // Offline-Resilient Lead Queue & Email Failover Guard
+      try {
+        localStorage.setItem('nitin_pending_lead', JSON.stringify(payload));
+      } catch(e) {}
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = submitBtn.dataset.originalHtml || '<span>Send Project Details</span> <span class="arrow-icon">→</span>';
+        submitBtn.style.opacity = '1';
+        submitBtn.style.cursor = 'pointer';
+      }
+
+      const fallbackCard = document.getElementById('audit-fallback-card');
+      const emailBtn = document.getElementById('audit-fallback-email-btn');
+      if (fallbackCard) {
+        fallbackCard.style.display = 'block';
+        if (emailBtn) {
+          const subject = encodeURIComponent('Project Scope Inquiry: ' + service);
+          const body = encodeURIComponent(
+            'Hi Nitin,\n\nI submitted my project scope through your website, but the webhook timed out. Here are my preserved details:\n\n' +
+            'Full Name: ' + name + '\n' +
+            'Work Email: ' + email + '\n' +
+            'Service Needed: ' + service + '\n' +
+            'Company / Industry: ' + industry + '\n' +
+            'Current Tech Stack: ' + techStack + '\n' +
+            'Operational Bottleneck: ' + bottleneck + '\n\n' +
+            'Submitted at: ' + new Date().toISOString()
+          );
+          emailBtn.href = 'mailto:NitinSystems@outlook.com?subject=' + subject + '&body=' + body;
+        }
+      }
+    }
+  }
+
   return false;
 }
 
@@ -328,4 +455,76 @@ function initSystemsFilter() {
   if (catParam) {
     applyFilter(catParam);
   }
+}
+
+
+/* ==========================================================================
+   GLOBAL BIDIRECTIONAL AIR-WAVEFORM & SPECULAR ENGINE (APPLE / LINEAR PHYSICS)
+   ========================================================================== */
+function initAirWaveformEngine() {
+  const targets = document.querySelectorAll('.air-wave-target');
+  if (!targets.length) return;
+
+  targets.forEach(target => {
+    if (target.querySelector('.air-word-outer')) return;
+    const rawText = target.textContent.replace(/\s+/g, ' ').trim();
+    if (!rawText) return;
+    const words = rawText.split(' ');
+    const speed = parseInt(target.getAttribute('data-air-speed') || '30', 10);
+    const isHero = target.closest('#hero') !== null;
+    
+    let htmlBuilder = '';
+    words.forEach((word, idx) => {
+      const delay = (idx * (speed / 1000)).toFixed(3);
+      // Hero H1 preserves exact index (idx >= 3)
+      // Subpages & sub-sections accent second half
+      const isAccent = isHero 
+        ? (idx >= 3) 
+        : (words.length <= 3 ? (idx === words.length - 1) : (idx >= Math.floor(words.length / 2)));
+      const gradClass = isAccent ? 'air-word-gradient' : '';
+      htmlBuilder += '<span class="air-word-outer"><span class="air-word-inner ' + gradClass + '" style="--air-delay: ' + delay + 's;">' + word + '</span></span>';
+    });
+    target.innerHTML = htmlBuilder;
+  });
+
+  // High-Performance Single-Pass Scroll Reveal Observer (Zero Jitter / Lock on Enter)
+  const revealTargets = document.querySelectorAll('.air-wave-target, .animate-hero-console, .section-header, .glass-card');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+    revealTargets.forEach(el => observer.observe(el));
+  } else {
+    revealTargets.forEach(el => el.classList.add('is-visible'));
+  }
+
+  // Trigger hero/top headlines smoothly on load
+  function triggerTopHeadlines() {
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        document.querySelectorAll('section:first-of-type .air-wave-target, [class*="hero"] .air-wave-target, header + main section .air-wave-target, #hero .air-wave-target, #hero .animate-hero-console').forEach(el => {
+          el.classList.add('is-visible');
+        });
+      }, 50);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', triggerTopHeadlines);
+  } else {
+    triggerTopHeadlines();
+  }
+  window.addEventListener('load', triggerTopHeadlines);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAirWaveformEngine);
+} else {
+  initAirWaveformEngine();
 }

@@ -236,7 +236,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes heroTitleFloat {
-  0% { opacity: 0; transform: translateY(34px); }
+  0% { opacity: 0; transform: translateY(0); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
@@ -260,21 +260,14 @@ h1, h2, h3, h4, h5, h6 {
   100% { opacity: 0.95; transform: translateX(-50%) scale(1); }
 }
 
-/* ── Continuous Zero-Gravity Balloon Levitation ── */
-@keyframes balloonLevitate {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-5px); }
-  100% { transform: translateY(0px); }
-}
+/* Cleaned legacy keyframes */
 
 /* ── Hero Stagger Classes ── */
 .animate-hero-nav {
   animation: heroNavDrop 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
 }
 
-.animate-hero-badge {
-  animation: heroBadgeEntrance 1.25s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both, balloonLevitate 4.5s ease-in-out 1.5s infinite !important;
-}
+
 
 .animate-hero-title {
   animation: heroTitleFloat 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both !important;
@@ -297,9 +290,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Standalone Badge Pills (Lower on page) */
-.badge-pill:not(.animate-hero-badge) {
-  animation: balloonLevitate 4.5s ease-in-out infinite;
-}
+
 
 /* ── Wave Airflow Scroll Reveals ── */
 .wave-reveal {
@@ -403,7 +394,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid rgba(226, 232, 240, 0.8);
   box-shadow: 0 8px 32px rgba(37, 99, 235, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
   box-sizing: border-box;
-  transition: all 0.25s ease;
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   pointer-events: auto;
 }
 
@@ -719,8 +710,8 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.4);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-/* blur removed for crisp rendering */
+  -webkit-backdrop-/* blur removed for crisp rendering */
   z-index: 1099;
   opacity: 0;
   pointer-events: none;
@@ -981,12 +972,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .pipeline-node {
   flex: 1;
-  min-width: 110px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 0.85rem 0.75rem;
+  min-width: 130px;
+  position: relative !important;
+  z-index: 2 !important;
+  background: #0B1120 !important;
+  padding: 0.95rem 0.85rem;
   border-radius: 8px;
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -1050,8 +1044,9 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.78rem;
   font-weight: 600;
   color: #FFFFFF;
-  margin-top: 0.15rem;
-  white-space: nowrap;
+  margin-top: 0.2rem;
+  white-space: normal;
+  line-height: 1.3;
 }
 
 .pipeline-title-done {
@@ -1080,19 +1075,49 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 100% !important;
     border-radius: var(--radius-lg) !important;
   }
+  .topology-mode-bar {
+    padding: 0 0.75rem !important;
+    margin-bottom: 0.85rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.5rem !important;
+  }
+  .topology-tabs {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.35rem !important;
+    padding: 0.3rem !important;
+  }
+  .topology-tab-btn {
+    text-align: center !important;
+    font-size: 0.65rem !important;
+    padding: 0.45rem 0.35rem !important;
+    white-space: normal !important;
+    line-height: 1.25 !important;
+  }
   .pipeline-flow-container {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
-    padding: 1rem 0.85rem;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.65rem !important;
+    padding: 1.15rem 1rem !important;
+  }
+  .pipeline-node {
+    width: 100% !important;
+    min-width: 100% !important;
+    padding: 0.85rem 1rem !important;
   }
   .pipeline-connector {
-    transform: rotate(90deg);
-    padding: 0.25rem 0;
+    display: flex !important;
+    justify-content: center !important;
+    transform: rotate(90deg) !important;
+    padding: 0.15rem 0 !important;
+    opacity: 0.6 !important;
   }
-  @keyframes pulseConnector {
-    0%, 100% { opacity: 0.4; transform: translateY(0) rotate(90deg); }
-    50% { opacity: 1; transform: translateY(2px) rotate(90deg); color: #38BDF8; }
+  .pipeline-svg-stream {
+    display: none !important;
   }
 }
 
@@ -1709,3 +1734,380 @@ footer h4 {
   }
 }
 
+
+
+/* === MASTER PRODUCTION-GRADE VISUAL & MOTION ARCHITECTURE === */
+
+/* 1. Eliminate Text Jitter / Shivering on Pill Badges */
+.badge-pill {
+  will-change: transform !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: geometricPrecision !important;
+  
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+
+
+
+
+/* 2. Rich Light Horizon Background (Zero Blinding White Void) */
+#hero,
+.section:first-of-type,
+.orbital-hero-section,
+.systems-hero-section {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F4F8FD 40%, #E2EEFC 80%, #D6E8FC 100%) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* 3. Quiet Architectural Dotted Matrix (Reduced by 40% - No moire vibration) */
+.pattern-dots-radial,
+.bg-pattern-dots {
+  background-image: radial-gradient(circle, rgba(30, 58, 138, 0.09) 1.1px, transparent 1.1px) !important;
+  background-size: 26px 26px !important;
+}
+
+/* 4. Ambient Horizon Flow Aura */
+.ambient-glow {
+  position: absolute !important;
+  top: -10% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 900px !important;
+  height: 520px !important;
+  background: radial-gradient(ellipse 70% 60% at 50% 30%, rgba(56, 189, 248, 0.28) 0%, rgba(37, 99, 235, 0.14) 50%, transparent 80%) !important;
+  filter: blur(45px) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* 5. Kinetic Amber / Copper Operational Pipeline Engine */
+.workflow-console {
+  border: 1px solid rgba(234, 88, 12, 0.3) !important;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.45), 0 0 35px -8px rgba(234, 88, 12, 0.2) !important;
+}
+
+@keyframes dataPacketStream {
+  0% {
+    opacity: 0.2;
+    color: #64748B;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    color: #F97316;
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.8));
+  }
+  100% {
+    opacity: 0.2;
+    color: #64748B;
+    transform: scale(0.95);
+  }
+}
+
+.pipeline-connector svg {
+  animation: dataPacketStream 2.6s infinite ease-in-out !important;
+}
+.pipeline-connector:nth-of-type(1) svg { animation-delay: 0s !important; }
+.pipeline-connector:nth-of-type(2) svg { animation-delay: 0.65s !important; }
+.pipeline-connector:nth-of-type(3) svg { animation-delay: 1.3s !important; }
+.pipeline-connector:nth-of-type(4) svg { animation-delay: 1.95s !important; }
+
+/* 6. Systems Library Dashed Blueprint Grid & Tactile Pills */
+.systems-blueprint-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.25) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.25) 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 40%, #000 35%, transparent 85%);
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 40%, #000 35%, transparent 85%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.system-filter-pill {
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+  border-color: rgba(203, 213, 225, 0.95) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.system-filter-pill:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.12) !important;
+  border-color: var(--cobalt) !important;
+}
+
+
+/* ==========================================================================
+   MASTER KINETIC ENGINE & PRECISION DASHBOARD STYLING
+   ========================================================================== */
+
+/* (Pruned legacy floatBadgeSmooth - Unified into floatSlowGemini) */
+
+/* 2. Razor-Thin Top Scroll Progress Gauge */
+#scrollProgressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2.5px;
+  background: linear-gradient(90deg, #2563EB 0%, #38BDF8 50%, #EA580C 100%);
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.08s ease-out;
+  pointer-events: none;
+}
+
+/* 3. Interactive Topology Mode Selector Tabs */
+.topology-mode-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.topology-tabs {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  background: rgba(15, 23, 42, 0.06);
+  padding: 0.25rem;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.topology-tab-btn {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.topology-tab-btn.active {
+  background: #FFFFFF;
+  color: var(--ink);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.topology-tab-btn:hover:not(.active) {
+  color: var(--ink);
+}
+
+/* 4. Telemetry Terminal Inside Workflow Console */
+.telemetry-terminal {
+  background: #090D16;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.85rem 1.15rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #94A3B8;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+.telemetry-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.telemetry-log-output {
+  max-height: 75px;
+  overflow-y: auto;
+  line-height: 1.6;
+}
+
+.btn-simulate-webhook {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  background: rgba(234, 88, 12, 0.2);
+  border: 1px solid rgba(234, 88, 12, 0.5);
+  color: #FB923C;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.btn-simulate-webhook:hover {
+  background: rgba(234, 88, 12, 0.35);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.btn-simulate-webhook:active {
+  transform: scale(0.97);
+}
+
+/* 5. Live SVG Transit Spline on Desktop */
+.pipeline-canvas-wrap {
+  position: relative;
+}
+
+.pipeline-svg-stream {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0 !important;
+  opacity: 0.45;
+}
+
+@media (max-width: 768px) {
+  .pipeline-svg-stream {
+    display: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   GEMINI-CALIBRATED LIQUID MOTION: FLOAT-SLOW & BIDIRECTIONAL AIR-WAVEFORM
+   ========================================================================== */
+
+/* 1. Pure Butter-Smooth Floating Badge (Zero Jitter / Zero Stutter) */
+@keyframes floatSlowGemini {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlowGemini 4.8s ease-in-out infinite !important;
+}
+
+
+
+/* 2. Topology Mode Bar Load-Entrance */
+.topology-mode-bar {
+  animation: heroConsoleExpand 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.9s both;
+}
+
+/* 3. Bidirectional Air-Waveform Text Physics (Apple / Linear / Gemini Canvas) */
+.air-wave-target {
+  opacity: 1 !important;
+  -webkit-text-fill-color: initial !important;
+  color: var(--ink, #0F172A) !important;
+}
+
+.air-word-outer {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  margin-right: 0.28em;
+  padding-top: 0.05em;
+  padding-bottom: 0.18em;
+}
+
+@media (max-width: 640px) {
+  .hero-br {
+    display: none;
+  }
+}
+
+.air-word-inner {
+  display: inline-block;
+  color: var(--ink, #0F172A) !important;
+  -webkit-text-fill-color: var(--ink, #0F172A) !important;
+  transform: translateY(115%) rotate(1.5deg);
+  opacity: 0;
+  transition: transform 1.20s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 1.05s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+  transition-delay: var(--air-delay, 0s);
+}
+
+.is-visible .air-word-inner,
+.is-visible.air-wave-target .air-word-inner,
+.in-view .air-word-inner,
+.in-view.air-wave-target .air-word-inner {
+  transform: translateY(0%) rotate(0deg) !important;
+  opacity: 1 !important;
+  
+}
+
+/* Continuous Liquid Specular Shimmer Sweep (Resting Flashing Effect) */
+.air-word-inner.air-word-gradient {
+  background: linear-gradient(115deg, #0F172A 5%, #2563EB 35%, #38BDF8 55%, #60A5FA 70%, #0F172A 95%) !important;
+  background-size: 250% 100% !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  animation: continuousSpecularShimmer 3.2s ease-in-out infinite alternate !important;
+  will-change: background-position;
+}
+
+@keyframes continuousSpecularShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+
+/* ==========================================================================
+   UNIFIED PILL BADGE ARCHITECTURE: LOAD ENTRANCE + SILKY 60FPS FLOAT
+   ========================================================================== */
+
+
+
+
+/* Hero Badge Entrance Wrapper (fires smoothly on load) */
+.animate-hero-badge,
+.hero-badge-wrap {
+  animation: heroBadgeEntrance 1.15s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both !important;
+}
+
+/* Global Pill Badge: Silky 60fps continuous float across all pages with zero font-jitter */
+.badge-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  will-change: transform !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: geometricPrecision !important;
+  animation: floatSlowGemini 4.8s ease-in-out infinite !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+.animate-float-slow {
+  animation: floatSlowGemini 4.8s ease-in-out infinite !important;
+}
+
+/* Section Header Badges in Lower Sections */
+.section-header .badge-pill,
+.reveal .badge-pill {
+  animation: floatSlowGemini 4.8s ease-in-out infinite !important;
+}
