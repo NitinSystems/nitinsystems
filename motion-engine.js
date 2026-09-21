@@ -263,6 +263,7 @@
     let currentNodeIndex = 0;
 
     setInterval(function() {
+      if (document.hidden) return;
       nodes.forEach(function(node, idx) {
         if (idx === currentNodeIndex) {
           node.style.borderColor = 'var(--cobalt, #2563EB)';

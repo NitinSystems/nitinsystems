@@ -26,7 +26,7 @@ function renderCapabilities(targetId = 'capabilities-grid') {
           </div>
         </div>
         <div style="padding-top: 1.25rem; border-top: 1px solid var(--line); margin-top: 1.25rem;">
-          <a href="systems.html" style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; font-weight: 600; color: var(--cobalt);">
+          <a href="/systems" style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; font-weight: 600; color: var(--cobalt);">
             View System Blueprint ↗
           </a>
         </div>

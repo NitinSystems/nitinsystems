@@ -258,6 +258,7 @@ function initNavDropdown() {
 
 // Master Initialization
 document.addEventListener('DOMContentLoaded', () => {
+  initDynamicHomeRouting();
   initSystemsFilter();
   initSmoothScroll();
   initWaveScrollReveals();
@@ -336,7 +337,7 @@ async function handleAuditSubmit(e) {
 
   if (previousSubmissionTime && (now - parseInt(previousSubmissionTime, 10)) < 300000) {
     console.info('[Nitin Systems] Duplicate submission prevented by browser session guard.');
-    window.location.href = 'thank-you.html';
+    window.location.href = '/thank-you';
     return false;
   }
 
@@ -351,7 +352,7 @@ async function handleAuditSubmit(e) {
     event: 'audit_form_submission',
     idempotency_key: idempotencyKey,
     submitted_at: new Date().toISOString(),
-    source_page: window.location.href || 'https://nitinsystems.com/audit.html',
+    source_page: window.location.href || 'https://nitinsystems.com/audit',
     lead_data: {
       service_interest: service,
       full_name: name,
@@ -391,7 +392,7 @@ async function handleAuditSubmit(e) {
     clearTimeout(timeoutId);
     if (isSuccess) {
       try { localStorage.removeItem('nitin_pending_lead'); } catch(e) {}
-      window.location.href = 'thank-you.html';
+      window.location.href = '/thank-you';
     } else {
       // Offline-Resilient Lead Queue & Email Failover Guard
       try {
@@ -553,4 +554,41 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initAirWaveformEngine);
 } else {
   initAirWaveformEngine();
+}
+
+
+// DUAL-LAYER ROUTING: Dynamic Client-Side Address Bar State for Logo (/) vs Home (/home)
+function initDynamicHomeRouting() {
+  const isHomePage = window.location.pathname === '/' || 
+                     window.location.pathname === '/home' || 
+                     window.location.pathname.endsWith('index.html') ||
+                     window.location.pathname === '';
+
+  // 1. Logo / Brand Clicks: Update to pure root '/'
+  document.querySelectorAll('.nav-brand-wrap a').forEach(logoLink => {
+    logoLink.addEventListener('click', (e) => {
+      if (isHomePage) {
+        e.preventDefault();
+        if (window.location.pathname !== '/') {
+          window.history.pushState({ page: 'root' }, '', '/');
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (typeof closeMobileMenu === 'function') closeMobileMenu();
+      }
+    });
+  });
+
+  // 2. Nav Home Button Clicks: Update to '/home'
+  document.querySelectorAll('a[href="/home"]').forEach(homeLink => {
+    homeLink.addEventListener('click', (e) => {
+      if (isHomePage) {
+        e.preventDefault();
+        if (window.location.pathname !== '/home') {
+          window.history.pushState({ page: 'home' }, '', '/home');
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (typeof closeMobileMenu === 'function') closeMobileMenu();
+      }
+    });
+  });
 }
