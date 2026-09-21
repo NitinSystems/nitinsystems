@@ -21,6 +21,14 @@
       return;
     }
 
+    // Touch devices (phones & tablets) have native 120Hz hardware momentum.
+    // Bypass Lenis on touch to prevent loose inertia or overshoot on mobile flicks.
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth < 768);
+    if (isTouch) {
+      console.log('[MotionEngine] Touch device detected: using native hardware momentum scrolling.');
+      return;
+    }
+
     lenisInstance = new Lenis({
       duration: 1.0,
       wheelMultiplier: 1.0,
@@ -47,7 +55,12 @@
         const targetId = this.getAttribute('href');
         if (targetId && targetId !== '#' && document.querySelector(targetId)) {
           e.preventDefault();
-          lenisInstance.scrollTo(targetId, { offset: -40, duration: 1.2 });
+          if (lenisInstance) {
+            lenisInstance.scrollTo(targetId, { offset: -40, duration: 1.2 });
+          } else {
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
+          }
         }
       });
     });

@@ -204,6 +204,32 @@ function closeMobileMenu() {
   document.body.style.overflow = '';
 }
 
+// Global outside-tap and backdrop listeners for instant drawer dismissal
+function initMobileMenuListeners() {
+  const backdrop = document.getElementById('mobile-backdrop');
+  if (backdrop) {
+    backdrop.addEventListener('click', closeMobileMenu);
+    backdrop.addEventListener('touchstart', closeMobileMenu, { passive: true });
+  }
+  const dismissOutside = (e) => {
+    const drawer = document.getElementById('mobile-drawer');
+    const hamburger = document.getElementById('hamburger-btn');
+    if (drawer && drawer.classList.contains('open')) {
+      if (!drawer.contains(e.target) && hamburger && !hamburger.contains(e.target)) {
+        closeMobileMenu();
+      }
+    }
+  };
+  document.addEventListener('click', dismissOutside);
+  document.addEventListener('touchstart', dismissOutside, { passive: true });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initMobileMenuListeners);
+} else {
+  initMobileMenuListeners();
+}
+
 // Desktop Systems Dropdown Persistent Hover Lock
 function initNavDropdown() {
   const dropdowns = document.querySelectorAll('.nav-dropdown');

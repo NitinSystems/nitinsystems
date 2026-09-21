@@ -59,7 +59,7 @@ function renderCredentials(targetId = 'credentials-grid', maxItems = null) {
           </div>
           <div style="padding-top: 0.85rem; border-top: 1px solid var(--line); margin-top: 0.85rem; display: flex; align-items: center; justify-content: space-between;">
             <span style="font-size: 0.62rem; font-family: var(--font-mono); color: var(--ink-soft);">${c.badgeCode}</span>
-            <button data-img="${c.image}" data-img-title="${c.title}" class="cert-thumb btn btn-secondary raycast-hover" style="padding: 0.35rem 0.75rem; font-size: 0.72rem; border-radius: 0.5rem; color: var(--cobalt);">View Certificate 🔍</button>
+            <button data-img="${c.image}" data-img-title="${c.title}" class="cert-thumb btn btn-secondary raycast-hover" style="padding: 0.35rem 0.75rem; font-size: 0.72rem; border-radius: 0.5rem; color: var(--cobalt);">View Certificate ↗</button>
           </div>
         </div>
       </div>

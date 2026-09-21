@@ -41,6 +41,9 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://app.cal.com" crossorigin />
+  <link rel="dns-prefetch" href="https://app.cal.com" />
+  <link rel="preload" href="https://app.cal.com/embed/embed.js" as="script" />
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style-working.css?v=1.0" />
   <style id="mobile-footer-layout-fix">
@@ -240,15 +243,31 @@
 
         <div>
           <!-- Cal.com Popup Modal Trigger -->
-          <button data-cal-namespace="30min" data-cal-link="nitinmishra/30min" data-cal-config='{"layout":"month_view"}' class="btn btn-primary raycast-hover" style="width:100%;text-align:center;padding:0.85rem;font-size:0.92rem;display:inline-flex;align-items:center;justify-content:center;gap:0.45rem;cursor:pointer;border:none;border-radius:8px;">
-            <span>Choose Date &amp; Time Slot</span>
-            <span class="arrow-icon">→</span>
+          <button id="cal-trigger-btn" data-cal-namespace="30min" data-cal-link="nitinmishra/30min" data-cal-config='{"layout":"month_view"}' class="btn btn-primary raycast-hover" style="width:100%;text-align:center;padding:0.85rem;font-size:0.92rem;display:inline-flex;align-items:center;justify-content:center;gap:0.45rem;cursor:pointer;border:none;border-radius:8px;">
+            <span id="cal-btn-label">Choose Date &amp; Time Slot</span>
+            <span id="cal-btn-arrow" class="arrow-icon">→</span>
           </button>
           
           <script type="text/javascript">
             (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
             Cal("init", "30min", {origin:"https://app.cal.com"});
             Cal.ns["30min"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#2563EB"},"dark":{"cal-brand":"#0F172A"}},"hideEventTypeDetails":false,"layout":"month_view"});
+
+            document.getElementById('cal-trigger-btn')?.addEventListener('click', function () {
+              const label = document.getElementById('cal-btn-label');
+              const arrow = document.getElementById('cal-btn-arrow');
+              if (label && !label.dataset.clicked) {
+                label.dataset.clicked = "true";
+                const orig = label.innerHTML;
+                if (arrow) arrow.style.display = 'none';
+                label.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="animate-spin" style="display:inline-block;vertical-align:middle;margin-right:6px;"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>Opening Calendar...';
+                setTimeout(() => {
+                  label.innerHTML = orig;
+                  if (arrow) arrow.style.display = 'inline-block';
+                  delete label.dataset.clicked;
+                }, 4000);
+              }
+            });
           </script>
 
           <div style="margin-top:0.65rem;font-size:0.72rem;color:var(--ink-soft);text-align:center;">
