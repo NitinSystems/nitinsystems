@@ -19,11 +19,6 @@
 
 # Clean URL Redirects (e.g. /systems -> /systems.html)
 [[redirects]]
-  from = "/home"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
   from = "/systems"
   to = "/systems.html"
   status = 200

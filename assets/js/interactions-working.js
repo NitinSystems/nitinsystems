@@ -258,7 +258,7 @@ function initNavDropdown() {
 
 // Master Initialization
 document.addEventListener('DOMContentLoaded', () => {
-  initDynamicHomeRouting();
+  initHomeSmoothScroll();
   initSystemsFilter();
   initSmoothScroll();
   initWaveScrollReveals();
@@ -557,38 +557,26 @@ if (document.readyState === 'loading') {
 }
 
 
-// DUAL-LAYER ROUTING: Dynamic Client-Side Address Bar State for Logo (/) vs Home (/home)
-function initDynamicHomeRouting() {
+
+// Clean root smooth scrolling for logo and home links when already on homepage
+function initHomeSmoothScroll() {
   const isHomePage = window.location.pathname === '/' || 
-                     window.location.pathname === '/home' || 
-                     window.location.pathname.endsWith('index.html') ||
+                     window.location.pathname.endsWith('index.html') || 
                      window.location.pathname === '';
+  
+  if (!isHomePage) return;
 
-  // 1. Logo / Brand Clicks: Update to pure root '/'
-  document.querySelectorAll('.nav-brand-wrap a').forEach(logoLink => {
-    logoLink.addEventListener('click', (e) => {
-      if (isHomePage) {
-        e.preventDefault();
-        if (window.location.pathname !== '/') {
-          window.history.pushState({ page: 'root' }, '', '/');
-        }
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        if (typeof closeMobileMenu === 'function') closeMobileMenu();
-      }
+  document.querySelectorAll('.nav-brand-wrap a, a.nav-link[href="/"], a.mobile-nav-link[href="/"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (typeof closeMobileMenu === 'function') closeMobileMenu();
     });
   });
+}
 
-  // 2. Nav Home Button Clicks: Update to '/home'
-  document.querySelectorAll('a[href="/home"]').forEach(homeLink => {
-    homeLink.addEventListener('click', (e) => {
-      if (isHomePage) {
-        e.preventDefault();
-        if (window.location.pathname !== '/home') {
-          window.history.pushState({ page: 'home' }, '', '/home');
-        }
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        if (typeof closeMobileMenu === 'function') closeMobileMenu();
-      }
-    });
-  });
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initHomeSmoothScroll);
+} else {
+  initHomeSmoothScroll();
 }
