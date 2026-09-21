@@ -252,6 +252,19 @@
             (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
             Cal("init", "30min", {origin:"https://app.cal.com"});
             Cal.ns["30min"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#2563EB"},"dark":{"cal-brand":"#0F172A"}},"hideEventTypeDetails":false,"layout":"month_view"});
+            
+            // Official Cal.com background pre-fetch: downloads calendar availability into phone memory for instant 0ms modal pop
+            function triggerCalPreload() {
+              try {
+                Cal.ns["30min"]("preload", { calLink: "nitinmishra/30min" });
+                Cal("preload", { calLink: "nitinmishra/30min" });
+              } catch (e) {}
+            }
+            if ('requestIdleCallback' in window) {
+              requestIdleCallback(triggerCalPreload, { timeout: 1200 });
+            } else {
+              setTimeout(triggerCalPreload, 600);
+            }
 
             document.getElementById('cal-trigger-btn')?.addEventListener('click', function () {
               const label = document.getElementById('cal-btn-label');
