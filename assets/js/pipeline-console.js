@@ -153,10 +153,26 @@
     appendTelemetry('<span style="color:#FB923C;font-weight:700;">[' + now + '] [SIMULATED INBOUND LEAD] ' + mockId + ':</span> Verified in 118ms → Deal record created in CRM → Calendar invite & executive briefing dispatched.');
     
     packetPos = 0;
-    const node1 = document.getElementById('pnode-1');
-    if (node1) {
-      node1.style.borderColor = '#EA580C';
-      setTimeout(() => { node1.style.borderColor = ''; }, 700);
+
+    // Sequential traveling pulse wave across all 5 nodes (1 -> 2 -> 3 -> 4 -> 5)
+    // Tuned to 1.85s total (360ms per node) so human eyes comfortably track each step
+    const stepDelay = 360;
+    for (let i = 1; i <= 5; i++) {
+      setTimeout(() => {
+        const node = document.getElementById('pnode-' + i);
+        if (node) {
+          node.style.borderColor = 'rgba(56, 189, 248, 0.9)';
+          node.style.background = 'rgba(37, 99, 235, 0.18)';
+          node.style.boxShadow = '0 0 16px rgba(56, 189, 248, 0.35)';
+          node.style.transform = 'translateY(-2px)';
+          setTimeout(() => {
+            node.style.borderColor = '';
+            node.style.background = '';
+            node.style.boxShadow = '';
+            node.style.transform = '';
+          }, 420);
+        }
+      }, (i - 1) * stepDelay);
     }
   };
 
