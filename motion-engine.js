@@ -24,8 +24,9 @@
     // Touch devices (phones & tablets) have native 120Hz hardware momentum.
     // Bypass Lenis on touch to prevent loose inertia or overshoot on mobile flicks.
     const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth < 768);
-    if (isTouch) {
-      console.log('[MotionEngine] Touch device detected: using native hardware momentum scrolling.');
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isTouch || prefersReduced) {
+      console.log('[MotionEngine] Touch device or prefers-reduced-motion detected: using native hardware momentum scrolling.');
       return;
     }
 

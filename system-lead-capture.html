@@ -59,6 +59,24 @@
   }
 }
 </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Lead Capture to Booking System Case Study",
+    "description": "End-to-end inbound booking automation pipeline with GoHighLevel, eliminating manual calendar coordination.",
+    "author": {
+      "@type": "Person",
+      "name": "Nitin Mishra"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Nitin Systems",
+      "url": "https://nitinsystems.com"
+    },
+    "url": "https://nitinsystems.com/system-lead-capture.html"
+  }
+  </script>
 </head>
 <body>
 <header id="navbar" class="animate-hero-nav">
@@ -239,9 +257,11 @@
       <!-- DIAGRAM PREVIEW CONTAINER -->
       <div style="background:var(--cloud);padding:1.25rem;border-radius:8px;border:1px solid var(--line);text-align:center;margin-bottom:1.5rem;">
         <img 
-          src="assets/images/case-study/lead-capture/diagram-architecture.png" 
-          alt="System Architecture Diagram for Lead Capture to Booking System" 
-          style="width:100%;height:auto;max-height:500px;object-fit:contain;cursor:pointer;border-radius:6px;transition:transform 0.3s ease;"
+            src="assets/images/case-study/lead-capture/diagram-architecture.png" 
+            alt="System Architecture Diagram for Lead Capture to Booking System" 
+            loading="lazy" 
+            decoding="async" 
+            style="width:100%;height:auto;max-height:500px;object-fit:contain;cursor:pointer;border-radius:6px;transition:transform 0.3s ease;"
           onclick="openImgModal('Lead Capture System Architecture Diagram', 'assets/images/case-study/lead-capture/diagram-architecture.png')"
           class="raycast-hover"
         />
@@ -300,6 +320,8 @@
           <img 
             src="assets/images/case-study/lead-capture/intake-form.png" 
             alt="Embedded Website Intake Form UI" 
+            loading="lazy" 
+            decoding="async" 
             style="width:100%;height:180px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
             onclick="openImgModal('Embedded Intake Form UI', 'assets/images/case-study/lead-capture/intake-form.png')"
             class="raycast-hover"
@@ -313,6 +335,8 @@
           <img 
             src="assets/images/case-study/lead-capture/thank-you-page.png" 
             alt="Booking Confirmation Thank You Screen" 
+            loading="lazy" 
+            decoding="async" 
             style="width:100%;height:180px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
             onclick="openImgModal('Booking Confirmation Thank You Screen', 'assets/images/case-study/lead-capture/thank-you-page.png')"
             class="raycast-hover"
@@ -338,6 +362,8 @@
           <img 
             src="assets/images/case-study/lead-capture/booking-calendar.png" 
             alt="GoHighLevel Booking Calendar Widget" 
+            loading="lazy" 
+            decoding="async" 
             style="width:100%;height:170px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
             onclick="openImgModal('GoHighLevel Booking Calendar Widget', 'assets/images/case-study/lead-capture/booking-calendar.png')"
             class="raycast-hover"
@@ -352,6 +378,8 @@
           <img 
             src="assets/images/case-study/lead-capture/workflow-booking.png" 
             alt="GoHighLevel Calendar Booking Automation Workflow" 
+            loading="lazy" 
+            decoding="async" 
             style="width:100%;height:170px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
             onclick="openImgModal('Calendar Booking Automation Workflow', 'assets/images/case-study/lead-capture/workflow-booking.png')"
             class="raycast-hover"
@@ -366,6 +394,8 @@
           <img 
             src="assets/images/case-study/lead-capture/workflow-calendar-group.png" 
             alt="GoHighLevel Calendar Group Settings" 
+            loading="lazy" 
+            decoding="async" 
             style="width:100%;height:170px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
             onclick="openImgModal('Calendar Group Settings', 'assets/images/case-study/lead-capture/workflow-calendar-group.png')"
             class="raycast-hover"
@@ -380,6 +410,8 @@
           <img 
             src="assets/images/case-study/lead-capture/workflow-lead-pipeline.png" 
             alt="GoHighLevel Lead Automation Pipeline Trigger" 
+            loading="lazy" 
+            decoding="async" 
             style="width:100%;height:170px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
             onclick="openImgModal('Lead Pipeline Automation Trigger', 'assets/images/case-study/lead-capture/workflow-lead-pipeline.png')"
             class="raycast-hover"
@@ -493,7 +525,7 @@
       <button class="lightbox-close-btn" onclick="closeCertLightbox()" aria-label="Close">✕</button>
     </div>
     <div style="width:100%;max-height:82vh;overflow-y:auto;border-radius:8px;border:1px solid var(--line);background:#0F172A;text-align:center;padding:0.75rem;box-sizing:border-box;">
-      <img id="lightbox-img" src="" alt="Proof Preview" style="max-width:100%;height:auto;display:inline-block;vertical-align:middle;border-radius:4px;" />
+      <img id="lightbox-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="Proof Preview" style="max-width:100%;height:auto;display:inline-block;vertical-align:middle;border-radius:4px;" />
     </div>
   </div>
 </div>
@@ -549,15 +581,15 @@
     </div>
 
     <!-- Bottom Bar -->
-    <div class="footer-bottom-bar" style="padding-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;font-size:0.72rem;color:var(--ink-muted);">
-      <p style="font-weight:400;color:#64748B;margin:0;" class="footer-copyright">© 2026 Nitin Systems. All rights reserved.</p>
-      <div class="footer-legal-links" style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem;">
+        <div class="footer-bottom-bar" style="padding-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;font-size:0.72rem;color:var(--ink-muted);">
+      <p class="footer-copyright" style="font-weight:400;color:#64748B;margin:0;margin-right:auto;">© 2026 Nitin Systems. All rights reserved.</p>
+      <div class="footer-legal-pair" style="display:inline-flex;align-items:center;gap:0.5rem;white-space:nowrap;">
         <a href="privacy.html" style="color:var(--ink-muted);text-decoration:none;">Privacy Policy</a>
         <span style="color:var(--line);">·</span>
         <a href="terms.html" style="color:var(--ink-muted);text-decoration:none;">Terms of Service</a>
-        <span style="color:var(--line);" class="footer-pipe-sep">·</span>
-        <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="footer-back-to-top" style="padding:0.35rem 0.75rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.72rem;cursor:pointer;color:var(--ink-soft);">Back to top ↑</button>
       </div>
+      <span class="footer-desktop-sep" style="color:var(--line);">·</span>
+      <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="footer-back-to-top" style="padding:0.35rem 0.75rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.72rem;cursor:pointer;color:var(--ink-soft);">Back to top ↑</button>
     </div>
   </div>
 </footer>

@@ -2119,3 +2119,65 @@ footer h4 {
 .reveal .badge-pill {
   animation: floatSlowGemini 4.8s ease-in-out infinite !important;
 }
+
+
+/* ==========================================================================
+   ACCESSIBILITY & PREFERS-REDUCED-MOTION (WCAG 2.1)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-hero-badge,
+  .animate-hero-h1,
+  .animate-hero-sub,
+  .animate-hero-cta,
+  .animate-hero-nav,
+  .hero-badge-dot,
+  .animate-pulse,
+  .wave-path,
+  .pulse-ring,
+  .marquee-track,
+  .traveling-packet {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
+/* Standardized Mobile Footer Styles */
+@media (max-width: 640px) {
+  .footer-bottom-bar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    gap: 0.75rem !important;
+  }
+  .footer-legal-pair {
+    order: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    white-space: nowrap !important;
+  }
+  .footer-copyright {
+    order: 2 !important;
+    margin-right: 0 !important;
+    text-align: left !important;
+  }
+  .footer-desktop-sep {
+    display: none !important;
+  }
+  .footer-back-to-top {
+    order: 3 !important;
+    margin-top: 0.25rem !important;
+    display: inline-block !important;
+  }
+}

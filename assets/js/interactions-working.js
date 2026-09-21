@@ -314,8 +314,8 @@ async function handleAuditSubmit(e) {
   const techStack = stackEl?.value?.trim() || '';
   const bottleneck = bottleneckEl?.value?.trim() || '';
 
-  if (!name || !email) {
-    alert('Please fill in required fields (Full Name & Work Email).');
+  if (form && !form.checkValidity()) {
+    form.reportValidity();
     return false;
   }
 

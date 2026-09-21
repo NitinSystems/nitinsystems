@@ -8,7 +8,7 @@ const SITE_DATA = {
     founder: 'Nitin Mishra',
     role: 'B2B Automation Infrastructure Specialist',
     email: 'NitinSystems@outlook.com',
-    status: 'Operational · Solo Practice',
+    status: 'Operational · Solo-Led Business',
     socials: {
       beehiiv: 'https://nitinmishra.beehiiv.com/',
       makeAcademy: 'https://www.make.com/en/academy',
