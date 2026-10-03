@@ -12,7 +12,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Lead Intake & Duplicate Verification System | Nitin Systems Case Study" />
   <meta property="og:description" content="An automated multi-source ingestion pipeline built with Make.com, relational Airtable record matching, and Selective CRM Data Synchronization." />
-  <meta property="og:url" content="https://nitinsystems.com/systems/lead-intake-deduplication" />
+  <meta property="og:url" content="https://nitinsystems.com/system-lead-intake" />
   <meta property="og:image" content="https://nitinsystems.com/assets/logo/nav-logo.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Lead Intake & Duplicate Verification System | Nitin Systems Case Study" />
@@ -74,7 +74,7 @@
       "name": "Nitin Systems",
       "url": "https://nitinsystems.com"
     },
-    "url": "https://nitinsystems.com/system-lead-intake.html"
+    "url": "https://nitinsystems.com/system-lead-intake"
   }
   </script>
 </head>
@@ -246,23 +246,27 @@
       </div>
     </div>
 
-    <!-- 02 ARCHITECTURE & DATA FLOW DIAGRAMS -->
+    <!-- 02 ARCHITECTURE & OPERATIONAL DIAGRAM -->
     <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;">
       <span class="badge-pill" style="margin-bottom:0.75rem;">02 SYSTEM ARCHITECTURE</span>
-      <h2 class="section-title shimmer-sweep-title" style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Multi-Stage Ingestion &amp; Deduplication Framework</h2>
+      <h2 class="section-title shimmer-sweep-title" style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Unified Multi-Stage Ingestion &amp; Deduplication Architecture</h2>
       <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.5rem;">
-        The system maps the complete ingestion cycle: Inbound Webhook Listener → Normalization Engine → Relational Airtable Match → HubSpot Contact &amp; Deal Router.
+        The system maps the complete ingestion cycle: Inbound Webhook Listener → Normalization Engine → Relational Airtable Match → HubSpot Contact &amp; Deal Router. Click the diagram below to inspect the complete operational blueprint in high resolution:
       </p>
       
-      <!-- ARCHITECTURE FRAME -->
-      <div style="background:var(--cloud);padding:2rem 1.5rem;border-radius:8px;border:1px solid var(--line);text-align:center;margin-bottom:1.5rem;">
-        <div style="max-width:560px;margin:0 auto;">
-          <div style="font-size:0.75rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;margin-bottom:0.5rem;">
-            SYSTEM ARCHITECTURE BLUEPRINT
-          </div>
-          <p style="font-size:0.88rem;color:var(--ink-soft);line-height:1.6;">
-            A decoupled 3-tier pipeline isolating ingestion, database matching, and CRM sync to Structured Duplicate Prevention Architecture even during high-traffic ad campaigns.
-          </p>
+      <!-- DIAGRAM PREVIEW CONTAINER -->
+      <div style="background:var(--cloud);padding:1.25rem;border-radius:8px;border:1px solid var(--line);text-align:center;margin-bottom:1.5rem;">
+        <img 
+          src="assets/images/case-study/lead-intake/diagram-master.png" 
+          alt="Lead Intake and Duplicate Verification System Architecture Diagram" 
+          loading="lazy" 
+          decoding="async" 
+          style="width:100%;height:auto;max-height:500px;object-fit:contain;cursor:pointer;border-radius:6px;transition:transform 0.3s ease;"
+          onclick="openImgModal('Lead Intake &amp; Duplicate Verification Architecture Diagram', 'assets/images/case-study/lead-intake/diagram-master.png')"
+          class="raycast-hover"
+        />
+        <div style="margin-top:0.75rem;font-size:0.75rem;color:var(--ink-soft);display:flex;align-items:center;justify-content:center;gap:0.4rem;">
+          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:0.35rem;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Click diagram to expand full screen</span>
         </div>
       </div>
 
@@ -271,138 +275,259 @@
         <!-- SCHEMATIC 01 -->
         <div class="glass-card" style="padding:1.25rem;background:#FFFFFF;border-left:3px solid var(--cobalt);display:flex;flex-direction:column;justify-content:space-between;">
           <div>
-            <div style="font-size:0.68rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;letter-spacing:0.04em;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:0.35rem;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>01 · SYSTEM ARCHITECTURE SCHEMATIC</div>
-            <div style="font-size:0.95rem;font-weight:700;color:var(--ink);margin:0.35rem 0 0.35rem 0;">Multi-Tier Ingestion Blueprint</div>
+            <div style="font-size:0.68rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;letter-spacing:0.04em;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:0.35rem;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>01 · UNIFIED SYSTEM BLUEPRINT</div>
+            <div style="font-size:0.95rem;font-weight:700;color:var(--ink);margin:0.35rem 0 0.35rem 0;">Vector Architecture PDF</div>
             <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;margin-bottom:1rem;">
-              Full architectural blueprint detailing webhook endpoints, data sanitizer filters, and Selective CRM Data Synchronization.
+              Full vector schematic detailing webhook endpoints, deduplication filters, Airtable indexing, and HubSpot CRM routing logic.
             </p>
           </div>
-          <a href="/audit" class="btn btn-primary raycast-hover" style="width:100%;text-align:center;padding:0.65rem 1rem;font-size:0.82rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:0.4rem;">
-            <span>Request Architecture Blueprint</span>
-            <span class="arrow-icon">→</span>
+          <a href="assets/images/case-study/lead-intake/diagram-master.pdf" target="_blank" class="btn btn-primary raycast-hover" style="width:100%;text-align:center;padding:0.65rem 1rem;font-size:0.82rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:0.4rem;">
+            <span>Open Vector Blueprint PDF</span>
+            <span class="arrow-icon">↗</span>
           </a>
         </div>
 
         <!-- SCHEMATIC 02 -->
         <div class="glass-card" style="padding:1.25rem;background:#FFFFFF;border-left:3px solid var(--emerald);display:flex;flex-direction:column;justify-content:space-between;">
           <div>
-            <div style="font-size:0.68rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);text-transform:uppercase;letter-spacing:0.04em;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:0.35rem;"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>02 · OPERATIONAL SEQUENCE BLUEPRINT</div>
-            <div style="font-size:0.95rem;font-weight:700;color:var(--ink);margin:0.35rem 0 0.35rem 0;">Deduplication &amp; Merge Rules</div>
+            <div style="font-size:0.68rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);text-transform:uppercase;letter-spacing:0.04em;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:0.35rem;"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>02 · INTERACTIVE ARCHITECTURE INSPECTOR</div>
+            <div style="font-size:0.95rem;font-weight:700;color:var(--ink);margin:0.35rem 0 0.35rem 0;">High-Resolution Lightbox View</div>
             <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;margin-bottom:1rem;">
-              Step-by-step logic covering email canonicalization, secondary secondary contact lookup, and Duplicate Detection &amp; Existing Record Update.
+              Expand the architecture diagram on-screen with anti-clipping full viewport scrolling for deep technical inspection.
             </p>
           </div>
-          <a href="/audit" class="btn btn-secondary raycast-hover" style="width:100%;text-align:center;padding:0.65rem 1rem;font-size:0.82rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:0.4rem;">
-            <span>Request Operational Flow</span>
-            <span class="arrow-icon">→</span>
-          </a>
+          <button type="button" onclick="openImgModal('Lead Intake &amp; Duplicate Verification Architecture Diagram', 'assets/images/case-study/lead-intake/diagram-master.png')" class="btn btn-secondary raycast-hover" style="width:100%;text-align:center;padding:0.65rem 1rem;font-size:0.82rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:0.4rem;border:1px solid var(--line);background:#FFFFFF;">
+            <span>Expand High-Res Lightbox</span>
+            <span class="arrow-icon">↗</span>
+          </button>
         </div>
       </div>
 
     </div>
 
-    <!-- 03 MULTI-SOURCE INTAKE & NORMALIZATION -->
+    <!-- 03 INTAKE LAYER & USER EXPERIENCE -->
     <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;">
-      <span class="badge-pill" style="margin-bottom:0.75rem;">03 DATA FORMATTING ENGINE</span>
-      <h2 class="section-title shimmer-sweep-title" style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Data Formatting &amp; Clean Ingestion Engine</h2>
+      <span class="badge-pill" style="margin-bottom:0.75rem;">03 INTAKE UI &amp; USER EXPERIENCE</span>
+      <h2 class="section-title shimmer-sweep-title" style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Front-End Capture, Duplicate Interception &amp; Confirmation</h2>
       <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.5rem;">
-        Before any database query occurs, incoming payloads pass through an automated sanitizer that ensures clean data formatting:
-      </p>
-
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;">
-        <div style="background:var(--cloud);padding:1.25rem;border-radius:8px;border:1px solid var(--line);">
-          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);margin-bottom:0.35rem;">01 · EMAIL CANONICALIZATION</div>
-          <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.6;">
-            Trims leading/trailing whitespace, downcases characters, and strips plus-addressing aliases (e.g. name+test@domain.com).
-          </p>
-        </div>
-        <div style="background:var(--cloud);padding:1.25rem;border-radius:8px;border:1px solid var(--line);">
-          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);margin-bottom:0.35rem;">02 · E.164 PHONE STANDARDIZATION</div>
-          <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.6;">
-            Parses country code prefixes, strips dashes/parentheses, and formats phone numbers into international E.164 standard.
-          </p>
-        </div>
-        <div style="background:var(--cloud);padding:1.25rem;border-radius:8px;border:1px solid var(--line);">
-          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);margin-bottom:0.35rem;">03 · DOMAIN &amp; COMPANY ENRICHMENT</div>
-          <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.6;">
-            Extracts corporate root domain names from email addresses to automatically link leads to existing account records.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- 04 MAKE.COM DEDUPLICATION AUTOMATION ENGINE -->
-    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;">
-      <span class="badge-pill" style="margin-bottom:0.75rem;">04 MAKE.COM AUTOMATION MODULES</span>
-      <h2 class="section-title shimmer-sweep-title" style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">3-Tier Automation Architecture</h2>
-      <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.5rem;">
-        The system executes through 3 distinct Make.com modules to eliminate single points of failure:
+        The intake journey captures prospect intent, detects duplicate submissions instantly, and guides the user smoothly to qualification and booking:
       </p>
 
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;">
-        <!-- MODULE 01 -->
-        <div style="background:var(--cloud);padding:1.25rem;border-radius:8px;border:1px solid var(--line);">
-          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);">MODULE 01 · INTAKE &amp; SANITIZE</div>
-          <div style="font-size:0.9rem;font-weight:700;color:var(--ink);margin:0.25rem 0 0.5rem 0;">Webhook Ingestion Router</div>
-          <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;">
-            Receives real-time payloads from web forms, validates required parameters, and logs the raw transaction to the audit ledger.
-          </p>
+        <!-- UI 01: FORM -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);margin-bottom:0.4rem;">01 · EMBEDDED INTAKE FORM</div>
+          <img 
+            src="assets/images/case-study/lead-intake/intake-form.png" 
+            alt="Embedded Website Lead Intake Form" 
+            loading="lazy" 
+            decoding="async" 
+            style="width:100%;height:180px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
+            onclick="openImgModal('Embedded Intake Form UI', 'assets/images/case-study/lead-intake/intake-form.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Clean client-facing capture form validating work email, phone number, and service requirements.</p>
         </div>
 
-        <!-- MODULE 02 -->
-        <div style="background:var(--cloud);padding:1.25rem;border-radius:8px;border:1px solid var(--line);">
-          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);">MODULE 02 · MATCH &amp; TRIAGE</div>
-          <div style="font-size:0.9rem;font-weight:700;color:var(--ink);margin:0.25rem 0 0.5rem 0;">Airtable Relational Indexer</div>
-          <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;">
-            Queries existing records on canonical email, normalized phone, and company domain. Determines whether to create, update, or append history.
-          </p>
+        <!-- UI 02: DUPLICATE ALERT -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:#F43F5E;margin-bottom:0.4rem;">02 · DUPLICATE DETECTION ALERT</div>
+          <img 
+            src="assets/images/case-study/lead-intake/duplicate-alert-modal.png" 
+            alt="Duplicate Lead Detected Modal" 
+            loading="lazy" 
+            decoding="async" 
+            style="width:100%;height:180px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
+            onclick="openImgModal('Duplicate Submission Detected Alert', 'assets/images/case-study/lead-intake/duplicate-alert-modal.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Real-time modal intercepting repeated form submissions gracefully without blocking the prospect.</p>
         </div>
 
-        <!-- MODULE 03 -->
-        <div style="background:var(--cloud);padding:1.25rem;border-radius:8px;border:1px solid var(--line);">
-          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);">MODULE 03 · CRM SYNCHRONIZATION</div>
-          <div style="font-size:0.9rem;font-weight:700;color:var(--ink);margin:0.25rem 0 0.5rem 0;">HubSpot Contact &amp; Deal Router</div>
-          <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;">
-            Pushes verified records into HubSpot CRM, associates incoming submissions with existing deals, and notifies assigned sales reps.
-          </p>
+        <!-- UI 03: THANK YOU PAGE -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);margin-bottom:0.4rem;">03 · SUBMISSION CONFIRMATION SCREEN</div>
+          <img 
+            src="assets/images/case-study/lead-intake/thank-you-page.png" 
+            alt="Submission Confirmation Thank You Screen" 
+            loading="lazy" 
+            decoding="async" 
+            style="width:100%;height:180px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
+            onclick="openImgModal('Confirmation Thank You Screen', 'assets/images/case-study/lead-intake/thank-you-page.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Verified submission landing screen outlining next steps, confirming intake details, and prompting direct calendar scheduling.</p>
+        </div>
+
+        <!-- UI 04: CALENDAR POPUP -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);margin-bottom:0.4rem;">04 · CONSULTATION CALENDAR POPUP</div>
+          <img 
+            src="assets/images/case-study/lead-intake/calendar-popup.png" 
+            alt="Consultation Calendar Booking Popup" 
+            loading="lazy" 
+            decoding="async" 
+            style="width:100%;height:180px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
+            onclick="openImgModal('Integrated Calendar Booking Popup', 'assets/images/case-study/lead-intake/calendar-popup.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Direct calendar scheduling widget launched from the confirmation screen or website navigation for immediate slot booking.</p>
         </div>
       </div>
     </div>
 
-    <!-- 05 RELATIONAL DATABASE SCHEMA -->
+    <!-- 04 MAKE.COM AUTOMATION SCENARIOS -->
     <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;">
-      <span class="badge-pill" style="margin-bottom:0.75rem;">05 DATA GOVERNANCE</span>
-      <h2 class="section-title shimmer-sweep-title" style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">3-Table Relational Airtable Schema</h2>
-      <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.25rem;">
-        Database governance is maintained across 3 structured tables to ensure an immutable record of every lead interaction:
+      <span class="badge-pill" style="margin-bottom:0.75rem;">04 MAKE.COM AUTOMATION WORKFLOWS</span>
+      <h2 class="section-title shimmer-sweep-title" style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Automated Ingestion, Matching &amp; Routing Pipelines</h2>
+      <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.5rem;">
+        Engineered with multi-module Make.com scenarios to decouple webhook reception from complex CRM logic and eliminate data loss under traffic surges:
       </p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;">
-        <div style="background:var(--cloud);padding:1rem;border-radius:6px;border-left:3px solid var(--cobalt);">
-          <div style="font-size:0.75rem;font-weight:700;color:var(--ink);">Table 01: Raw Inbound Ledger</div>
-          <p style="font-size:0.78rem;color:var(--ink-soft);margin-top:0.25rem;line-height:1.5;">Immutable log of all raw webhook payloads, source UTM parameters, and timestamps.</p>
+
+      <!-- SCENARIO INVENTORY OVERVIEW BANNER -->
+      <div style="background:var(--cloud);padding:1.25rem;border-radius:8px;border:1px solid var(--line);margin-bottom:1.5rem;text-align:center;">
+        <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);margin-bottom:0.5rem;text-transform:uppercase;">
+          MASTER SCENARIO INVENTORY &amp; PIPELINE STATUS
         </div>
-        <div style="background:var(--cloud);padding:1rem;border-radius:6px;border-left:3px solid var(--cobalt);">
-          <div style="font-size:0.75rem;font-weight:700;color:var(--ink);">Table 02: Master Verified Contacts</div>
-          <p style="font-size:0.78rem;color:var(--ink-soft);margin-top:0.25rem;line-height:1.5;">Single source of truth containing sanitized emails, normalized phones, and linked account IDs.</p>
+        <img 
+          src="assets/images/case-study/lead-intake/scenario-inventory.png" 
+          alt="Make.com Scenario Inventory for Lead Intake System" 
+          loading="lazy" 
+          decoding="async" 
+          style="width:100%;height:auto;max-height:280px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
+          onclick="openImgModal('Make.com Master Scenario Inventory', 'assets/images/case-study/lead-intake/scenario-inventory.png')"
+          class="raycast-hover"
+        />
+        <p style="font-size:0.78rem;color:var(--ink-soft);margin-top:0.6rem;line-height:1.5;">Overview of active scenario modules handling webhook intake, relational lookup, and downstream CRM updates.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;">
+        <!-- SCENARIO 01 -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);margin-bottom:0.4rem;">SCENARIO 01 · INTAKE &amp; DATA NORMALIZER</div>
+          <img 
+            src="assets/images/case-study/lead-intake/scenario-01-intake.png" 
+            alt="Make.com Lead Intake Automation Scenario" 
+            loading="lazy" 
+            decoding="async" 
+            style="width:100%;height:180px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
+            onclick="openImgModal('Make.com Scenario 01: Lead Intake Engine', 'assets/images/case-study/lead-intake/scenario-01-intake.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Ingests inbound payload, cleanses email strings, canonicalizes phone numbers, and registers raw transaction record.</p>
         </div>
-        <div style="background:var(--cloud);padding:1rem;border-radius:6px;border-left:3px solid var(--cobalt);">
-          <div style="font-size:0.75rem;font-weight:700;color:var(--ink);">Table 03: Duplicate Audit Log</div>
-          <p style="font-size:0.78rem;color:var(--ink-soft);margin-top:0.25rem;line-height:1.5;">Historical record tracking matched fields, merge actions, and multi-touch submission counts.</p>
+
+        <!-- SCENARIO 02 -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);margin-bottom:0.4rem;">SCENARIO 02 · DUPLICATE VERIFICATION ENGINE</div>
+          <img 
+            src="assets/images/case-study/lead-intake/scenario-02-duplicate.png" 
+            alt="Make.com Duplicate Verification Automation Scenario" 
+            loading="lazy" 
+            decoding="async" 
+            style="width:100%;height:180px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
+            onclick="openImgModal('Make.com Scenario 02: Duplicate Verification Engine', 'assets/images/case-study/lead-intake/scenario-02-duplicate.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Executes multi-key relational lookup across canonical email, normalized phone, and domain. If duplicate, updates deal timestamp and appends history; if net-new, creates verified contact and deal.</p>
         </div>
       </div>
     </div>
 
-    <!-- 06 TECHNICAL CASE STUDY DOCUMENT -->
-    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:3rem;text-align:center;">
-      <span class="badge-pill" style="margin-bottom:0.75rem;display:inline-flex;">06 TECHNICAL CASE STUDY</span>
-      <h2 style="font-size:1.4rem;color:var(--ink);margin-bottom:0.5rem;">Lead Intake &amp; Duplicate Verification System Documentation</h2>
-      <p style="font-size:0.88rem;color:var(--ink-soft);max-width:580px;margin:0 auto 1.5rem auto;line-height:1.7;">
-        A complete architectural blueprint detailing data normalization schemas, Make.com router rules, and HubSpot CRM property mappings.
+    <!-- 05 RELATIONAL DATABASE & CRM SYNC -->
+    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;">
+      <span class="badge-pill" style="margin-bottom:0.75rem;">05 DATABASE GOVERNANCE &amp; CRM SYNC</span>
+      <h2 class="section-title shimmer-sweep-title" style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Airtable Relational Index &amp; HubSpot CRM Verification</h2>
+      <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.5rem;">
+        Live database records confirming clean relational normalization across Airtable and synchronized HubSpot CRM pipelines:
       </p>
-      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;">
-        <a href="/audit" class="btn btn-primary raycast-hover" style="padding:0.75rem 1.75rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;">
-          <span>Request Full System Blueprint →</span>
-        </a>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem;">
+        <!-- AIRTABLE -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);margin-bottom:0.4rem;">01 · AIRTABLE RELATIONAL RECORDS</div>
+          <img 
+            src="assets/images/case-study/lead-intake/airtable-records.png" 
+            alt="Airtable Relational Database Records" 
+            loading="lazy" 
+            decoding="async" 
+            style="width:100%;height:190px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
+            onclick="openImgModal('Airtable Relational Database Index', 'assets/images/case-study/lead-intake/airtable-records.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Structured 3-table index maintaining raw ingest log, verified master contacts, and duplicate audit ledger.</p>
+        </div>
+
+        <!-- HUBSPOT CRM -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);margin-bottom:0.4rem;">02 · HUBSPOT CRM SYNCED CONTACTS</div>
+          <img 
+            src="assets/images/case-study/lead-intake/hubspot-crm-records.png" 
+            alt="HubSpot CRM Synced Contact Records" 
+            loading="lazy" 
+            decoding="async" 
+            style="width:100%;height:190px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
+            onclick="openImgModal('HubSpot CRM Verified Contact Records', 'assets/images/case-study/lead-intake/hubspot-crm-records.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Synced HubSpot CRM contacts with verified lifecycle stages, custom intake properties, and deal association.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 COMMUNICATION PROOF & TECHNICAL CASE STUDY -->
+    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:3rem;">
+      <span class="badge-pill" style="margin-bottom:0.75rem;">06 VERIFIED PROOF &amp; CASE STUDY</span>
+      <h2 class="section-title shimmer-sweep-title" style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Notification Proof &amp; Full System Documentation</h2>
+      <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.5rem;">
+        Automated communication triggers informing both the internal sales team and the prospective client, paired with the comprehensive PDF case study:
+      </p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-bottom:2rem;">
+        <!-- EMAIL PROOF 01 -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);margin-bottom:0.4rem;">01 · INTERNAL TEAM ALERT EMAIL</div>
+          <img 
+            src="assets/images/case-study/lead-intake/email-internal-alert.png" 
+            alt="Internal Team Notification Email" 
+            loading="lazy" 
+            decoding="async" 
+            style="width:100%;height:190px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
+            onclick="openImgModal('Internal Sales Notification Email Alert', 'assets/images/case-study/lead-intake/email-internal-alert.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Automated team alert delivered with prospect qualification data, duplicate status, and direct CRM record link.</p>
+        </div>
+
+        <!-- EMAIL PROOF 02 -->
+        <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);margin-bottom:0.4rem;">02 · CLIENT CONFIRMATION EMAIL</div>
+          <img 
+            src="assets/images/case-study/lead-intake/email-client-confirmation.png" 
+            alt="Lead Confirmation Email Proof" 
+            loading="lazy" 
+            decoding="async" 
+            style="width:100%;height:190px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
+            onclick="openImgModal('Prospect Confirmation Email Proof', 'assets/images/case-study/lead-intake/email-client-confirmation.png')"
+            class="raycast-hover"
+          />
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Clean auto-responder sent to the lead acknowledging their inquiry with personalized intake confirmation details.</p>
+        </div>
+      </div>
+
+      <!-- TECHNICAL CASE STUDY DOWNLOAD CTA -->
+      <div style="background:var(--cloud);padding:1.75rem;border-radius:8px;border:1px solid var(--line);text-align:center;">
+        <span class="badge-pill" style="margin-bottom:0.5rem;display:inline-flex;">COMPLETE SPECIFICATION</span>
+        <h3 style="font-size:1.25rem;color:var(--ink);margin:0.25rem 0 0.5rem 0;">Download Full Technical Case Study Document</h3>
+        <p style="font-size:0.85rem;color:var(--ink-soft);max-width:540px;margin:0 auto 1.25rem auto;line-height:1.6;">
+          Read the complete 12-page systems document covering Make.com webhook security, Airtable normalization scripts, and duplicate detection benchmarks.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.85rem;">
+          <a href="assets/images/case-study/lead-intake/case-study-lead-intake.pdf" target="_blank" class="btn btn-primary raycast-hover" style="padding:0.75rem 1.75rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;">
+            <span>Open Technical Case Study PDF</span>
+            <span class="arrow-icon">↗</span>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -461,6 +586,19 @@
   </div>
 </section>
 </main>
+
+<!-- Image Lightbox Modal Container (Anti-Clipping / Full Scroll) -->
+<div id="cert-lightbox" class="lightbox-overlay" onclick="closeCertLightbox()">
+  <div class="lightbox-card" onclick="event.stopPropagation()">
+    <div class="lightbox-header">
+      <h3 id="lightbox-title" class="lightbox-title">Image Preview</h3>
+      <button class="lightbox-close-btn" onclick="closeCertLightbox()" aria-label="Close">✕</button>
+    </div>
+    <div style="width:100%;max-height:82vh;overflow-y:auto;border-radius:8px;border:1px solid var(--line);background:#0F172A;text-align:center;padding:0.75rem;box-sizing:border-box;">
+      <img id="lightbox-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="Proof Preview" style="max-width:100%;height:auto;display:inline-block;vertical-align:middle;border-radius:4px;" />
+    </div>
+  </div>
+</div>
 
 <footer id="footer">
   <div class="container">

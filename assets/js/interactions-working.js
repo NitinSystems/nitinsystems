@@ -3,6 +3,38 @@ if ('scrollRestoration' in history) {
   history.scrollRestoration = 'auto';
 }
 
+// Local file protocol link resolver: prevents ERR_FILE_NOT_FOUND when opening via file:///
+if (typeof window !== 'undefined' && window.location && window.location.protocol === 'file:') {
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+    
+    if (href.startsWith('/') && !href.startsWith('//')) {
+      e.preventDefault();
+      var pathWithoutSlash = href.substring(1);
+      var currentIsWorking = window.location.pathname.indexOf('-working.html') !== -1;
+      
+      if (!pathWithoutSlash) {
+        window.location.href = currentIsWorking ? 'index-working.html' : 'index.html';
+        return;
+      }
+      
+      var parts = pathWithoutSlash.split('#');
+      var targetBase = parts[0];
+      var hash = parts[1] ? '#' + parts[1] : '';
+      
+      if (targetBase.endsWith('.html')) {
+        targetBase = targetBase.replace('.html', '');
+      }
+      
+      var targetFile = targetBase + (currentIsWorking ? '-working.html' : '.html');
+      window.location.href = targetFile + hash;
+    }
+  }, true);
+}
+
 function initSmoothScroll() {
   // Smooth scrolling is managed by Lenis momentum engine; native fallback kept auto to prevent dual-interpolation jitter
   if (typeof Lenis === 'undefined') {
