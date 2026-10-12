@@ -39,11 +39,43 @@ if (typeof window !== 'undefined' && window.location && window.location.protocol
 }
 
 function initSmoothScroll() {
-  // Smooth scrolling is managed by Lenis momentum engine; native fallback kept auto to prevent dual-interpolation jitter
   if (typeof Lenis === 'undefined') {
     document.documentElement.style.scrollBehavior = 'smooth';
+    return;
   }
+
+  // Bypass on touch devices to preserve native mobile hardware inertia
+  const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth < 768);
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (isTouch || prefersReduced) return;
+
+  const lenis = new Lenis({
+    duration: 1.15,
+    wheelMultiplier: 1.0,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    orientation: 'vertical',
+    smoothWheel: true,
+    smoothTouch: false
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (targetId && targetId !== '#' && document.querySelector(targetId)) {
+        e.preventDefault();
+        lenis.scrollTo(targetId, { offset: -40, duration: 1.2 });
+      }
+    });
+  });
 }
+
 
 function initWaveScrollReveals() {
   // 1. Automatically assign staggered wave delays to grid cards
