@@ -2,7 +2,7 @@
 
 > **Founder-Led B2B Automation & Operations Infrastructure**
 
-Nitin Systems is an independent engineering operation operated directly by **Nitin Mishra**. Designing, architecting, and deploying custom intake landing pages, CRM pipelines, and automated backend workflows for growing service businesses across India, the US, UK, and Europe.
+Nitin Systems is an independent engineering operation operated directly by **Nitin Mishra**. Designing, architecting, and deploying custom intake landing pages, CRM pipelines, and automated backend workflows for growing service businesses across India, the US, the UK, and Europe.
 
 ---
 
