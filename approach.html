@@ -25,8 +25,8 @@
   <meta name="view-transition" content="same-origin" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style-working.css?v=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=block" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css?v=1.4" />
   <style id="mobile-footer-layout-fix">
 @media (max-width: 640px) {
   .footer-bottom-bar {
@@ -174,13 +174,13 @@
 
 <main>
 
-<section class="section pattern-dots-radial " style="min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;box-sizing:border-box;padding-top:8rem;padding-bottom:3.5rem;background:radial-gradient(circle at 50% 0%, #DBEAFE 0%, #EAF3FC 35%, #FFFFFF 75%);position:relative;">
-  <div class="container" style="max-width:980px;width:100%;text-align:center;">
+<section class="section pattern-dots-radial" style="min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;box-sizing:border-box;padding-top:8rem;padding-bottom:3.5rem;background:radial-gradient(circle at 50% 0%, #DBEAFE 0%, #EAF3FC 35%, #FFFFFF 75%);position:relative;">
+  <div class="container" style="max-width:980px;width:100%;text-align:center;position:relative;z-index:2;">
     <div class="hero-badge-wrap animate-hero-badge" style="display:flex;justify-content:center;margin-bottom:1.25rem;">
       <div class="badge-pill animate-float-slow"><span class="dot animate-pulse"></span>OPERATING ARCHITECTURE &amp; METHODOLOGY</div>
     </div>
-    <h1 class="animate-hero-title air-wave-target" data-air-speed="45" style="font-size:clamp(2.2rem,4.5vw,3.3rem);margin-top:0.85rem;color:var(--ink);font-weight:700;line-height:1.2;">
-      <span class="air-word-outer"><span class="air-word-inner" style="--air-delay: 0.000s;">Engineering</span></span><span class="air-word-outer"><span class="air-word-inner" style="--air-delay: 0.045s;">Systematic</span></span><span class="air-word-outer"><span class="air-word-inner air-word-gradient" style="--air-delay: 0.090s;">Reliability</span></span>
+    <h1 class="animate-hero-title hero-title-single air-wave-target">
+      <span class="air-word-outer"><span class="air-word-inner">Engineering</span></span><span class="air-word-outer"><span class="air-word-inner">Systematic</span></span><span class="air-word-outer"><span class="air-word-inner air-word-gradient">Reliability</span></span>
     </h1>
     <p class="section-sub animate-hero-sub" style="font-size:1.05rem;max-width:660px;margin:0.85rem auto 0 auto;color:var(--ink-soft);line-height:1.65;">
       Automation is not merely connecting software with webhooks; it is engineering a predictable, observable, and fail-safe operating process your business can rely on under high lead volume.
@@ -310,11 +310,11 @@
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--line);">
       <!-- Column 1: Brand & Contact/Social -->
       <div>
-        <div style="display:flex;align-items:center;gap:0.75rem;">
+        <a href="/" style="text-decoration:none;display:inline-flex;align-items:center;gap:0.75rem;">
           <div class="brand-logo-box"><img src="assets/logo/nav-logo.webp" alt="Nitin Systems brand logo" style="width:24px;height:24px;object-fit:contain;" /></div>
           <span style="font-family:var(--font-serif);font-weight:700;font-size:1.2rem;color:var(--ink);">Nitin Systems</span>
-        </div>
-        <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.7;margin-top:0.85rem;max-width:380px;">Solo-led B2B automation systems business operated directly by Nitin Mishra. Designing, architecting, and delivering practical, reliable automation pipelines for growing service businesses.</p>
+        </a>
+        <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.7;margin-top:0.85rem;max-width:380px;">Solo-led B2B automation systems business founded and operated by Nitin Mishra. Designing, architecting, and delivering practical, reliable automation pipelines for growing service businesses.</p>
         
         <p style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;letter-spacing:0.08em;margin-top:0.65rem;margin-bottom:0;line-height:1.45;">BASED IN DELHI NCR, INDIA &middot; OPERATING ON IST (UTC+5:30)</p>
         <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.35rem;margin-bottom:0;line-height:1.5;">Serving B2B founders and growing teams across India, US, UK &amp; Europe.</p>
@@ -389,7 +389,7 @@
   </div>
 <script src="assets/js/data.js?v=999.0"></script>
 <script src="assets/js/components.js?v=999.0"></script>
-<script src="assets/js/interactions-working.js?v=1.0"></script>
+<script src="assets/js/interactions.js?v=1.2"></script>
 <script src="assets/js/main.js?v=999.0"></script>
 
 <script src="assets/js/lenis.min.js"></script>

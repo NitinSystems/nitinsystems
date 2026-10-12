@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NITIN SYSTEMS — MASTER STAGING STYLESHEET (100% ISOLATED WORKING PIPELINE)
+   NITIN SYSTEMS - MASTER STAGING STYLESHEET (100% ISOLATED WORKING PIPELINE)
    ========================================================================== */
 
 /* ==========================================================================
@@ -84,9 +84,11 @@ html {
   font-family: var(--font-sans);
   color: var(--ink);
   background-color: #FAFAFA;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
   width: 100%;
   max-width: 100vw;
   overflow-x: clip;
@@ -236,7 +238,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes heroBadgeEntrance {
-  0% { opacity: 0; transform: translateY(26px) scale(0.94); }
+  0% { opacity: 0; transform: translateY(-8px) scale(0.98); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
@@ -267,15 +269,46 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Cleaned legacy keyframes */
 
-/* ── Hero Stagger Classes ── */
+/* -- Hero Stagger Classes -- */
 .animate-hero-nav {
   animation: heroNavDrop 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
 }
 
-
-
 .animate-hero-title {
-  animation: heroTitleFloat 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both !important;
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+  margin-top: 0.85rem;
+  margin-bottom: 0.85rem;
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Centralized Hero Headline Typography Scale */
+.hero-title-home {
+  font-size: clamp(2.05rem, 4.3vw, 3.35rem);
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-title-single {
+  font-size: clamp(2.2rem, 4.5vw, 3.3rem);
+}
+
+.hero-title-about {
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.hero-title-system {
+  font-size: clamp(2.1rem, 4.2vw, 3rem);
+  margin-bottom: 0.75rem;
 }
 
 .animate-hero-sub {
@@ -317,22 +350,22 @@ h1, h2, h3, h4, h5, h6 {
 .wave-delay-5 { transition-delay: 0.40s; }
 .wave-delay-6 { transition-delay: 0.48s; }
 
-/* ── Specular Gradient Scroll Sweep ── */
+/* -- Specular Gradient Scroll Sweep -- */
 .shimmer-sweep-title {
   opacity: 0;
   transform: translateY(24px);
   background: linear-gradient(105deg, #0F172A 0%, #0F172A 35%, #2563EB 50%, #38BDF8 58%, #0F172A 70%, #0F172A 100%);
   background-size: 260% 100%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
   transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform, background-position;
 }
 
 .shimmer-sweep-title.in-view {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translateY(0) !important;
   animation: specularShimmer 2.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
 }
 
@@ -1605,7 +1638,7 @@ footer h4 {
   background-size: 24px 24px;
   -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 45%, #000 50%, transparent 100%);
   mask-image: radial-gradient(ellipse 95% 85% at 50% 45%, #000 50%, transparent 100%);
-  z-index: 1;
+  z-index: 0;
 }
 
 @media (max-width: 768px) {
@@ -2049,12 +2082,15 @@ footer h4 {
   opacity: 1 !important;
   -webkit-text-fill-color: initial !important;
   color: var(--ink, #0F172A) !important;
+  word-break: keep-all;
+  text-rendering: geometricPrecision;
 }
 
 .air-word-outer {
   display: inline-block;
   overflow: hidden;
   vertical-align: top;
+  white-space: nowrap;
   margin-right: 0.28em;
   padding-top: 0.05em;
   padding-bottom: 0.18em;
@@ -2066,7 +2102,79 @@ footer h4 {
   }
 }
 
-.air-word-inner {
+@keyframes heroAirWaveRise {
+  0% {
+    transform: translateY(115%) rotate(1.5deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* 1. Universal Hero Headlines across ALL pages: Pure GPU wave rise from frame 0 */
+h1.air-wave-target .air-word-inner {
+  display: inline-block;
+  color: var(--ink, #0F172A) !important;
+  -webkit-text-fill-color: var(--ink, #0F172A) !important;
+  animation: heroAirWaveRise 1.45s cubic-bezier(0.12, 1, 0.25, 1) both !important;
+  will-change: transform, opacity;
+}
+
+/* Pure CSS Stagger Engine: Zero HTML inline variables needed */
+h1.air-wave-target .air-word-outer:nth-of-type(1) .air-word-inner { animation-delay: 0.000s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(2) .air-word-inner { animation-delay: 0.075s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(3) .air-word-inner { animation-delay: 0.150s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(4) .air-word-inner { animation-delay: 0.225s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(5) .air-word-inner { animation-delay: 0.300s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(6) .air-word-inner { animation-delay: 0.375s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(7) .air-word-inner { animation-delay: 0.450s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(8) .air-word-inner { animation-delay: 0.525s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(9) .air-word-inner { animation-delay: 0.600s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(10) .air-word-inner { animation-delay: 0.675s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(11) .air-word-inner { animation-delay: 0.750s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(12) .air-word-inner { animation-delay: 0.825s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(13) .air-word-inner { animation-delay: 0.900s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(14) .air-word-inner { animation-delay: 0.975s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(15) .air-word-inner { animation-delay: 1.050s !important; }
+
+
+/* 2. Universal Hero Gradient Words: Pure entrance wave and continuous specular shimmer */
+h1.air-wave-target .air-word-inner.air-word-gradient {
+  background: linear-gradient(115deg, #0F172A 5%, #2563EB 35%, #38BDF8 55%, #60A5FA 70%, #0F172A 95%) !important;
+  background-size: 250% 100% !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  animation: heroAirWaveRise 1.45s cubic-bezier(0.12, 1, 0.25, 1) both,
+             continuousSpecularShimmer 4.0s ease-in-out infinite alternate !important;
+  will-change: transform, opacity, background-position;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+}
+
+/* Stagger cascade for gradient words: entrance delay + shimmer 0s */
+h1.air-wave-target .air-word-outer:nth-of-type(1) .air-word-inner.air-word-gradient { animation-delay: 0.000s, 0s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(2) .air-word-inner.air-word-gradient { animation-delay: 0.075s, 0s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(3) .air-word-inner.air-word-gradient { animation-delay: 0.150s, 0s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(4) .air-word-inner.air-word-gradient { animation-delay: 0.225s, 0s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(5) .air-word-inner.air-word-gradient { animation-delay: 0.300s, 0s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(6) .air-word-inner.air-word-gradient { animation-delay: 0.375s, 0s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(7) .air-word-inner.air-word-gradient { animation-delay: 0.450s, 0s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(8) .air-word-inner.air-word-gradient { animation-delay: 0.525s, 0s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(9) .air-word-inner.air-word-gradient { animation-delay: 0.600s, 0s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(10) .air-word-inner.air-word-gradient { animation-delay: 0.675s, 0s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(11) .air-word-inner.air-word-gradient { animation-delay: 0.750s, 0s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(12) .air-word-inner.air-word-gradient { animation-delay: 0.825s, 0s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(13) .air-word-inner.air-word-gradient { animation-delay: 0.900s, 0s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(14) .air-word-inner.air-word-gradient { animation-delay: 0.975s, 0s !important; }
+h1.air-wave-target .air-word-outer:nth-of-type(15) .air-word-inner.air-word-gradient { animation-delay: 1.050s, 0s !important; }
+
+
+/* 3. Below-the-fold H2 elements retain scroll observer reveals */
+h2.air-wave-target .air-word-inner,
+section:not(#hero):not(:first-of-type) .air-word-inner {
   display: inline-block;
   color: var(--ink, #0F172A) !important;
   -webkit-text-fill-color: var(--ink, #0F172A) !important;
@@ -2078,17 +2186,17 @@ footer h4 {
   transition-delay: var(--air-delay, 0s);
 }
 
-.is-visible .air-word-inner,
-.is-visible.air-wave-target .air-word-inner,
-.in-view .air-word-inner,
-.in-view.air-wave-target .air-word-inner {
+h2.air-wave-target.is-visible .air-word-inner,
+h2.air-wave-target.in-view .air-word-inner,
+section:not(#hero):not(:first-of-type) .is-visible .air-word-inner,
+section:not(#hero):not(:first-of-type) .in-view .air-word-inner {
   transform: translateY(0%) rotate(0deg) !important;
   opacity: 1 !important;
-  
 }
 
-/* Continuous Liquid Specular Shimmer Sweep (Resting Flashing Effect) */
-.air-word-inner.air-word-gradient {
+/* 4. Below-the-fold gradient elements */
+h2.air-wave-target .air-word-inner.air-word-gradient,
+section:not(#hero):not(:first-of-type) .air-word-inner.air-word-gradient {
   background: linear-gradient(115deg, #0F172A 5%, #2563EB 35%, #38BDF8 55%, #60A5FA 70%, #0F172A 95%) !important;
   background-size: 250% 100% !important;
   background-clip: text !important;
@@ -2096,6 +2204,8 @@ footer h4 {
   -webkit-text-fill-color: transparent !important;
   animation: continuousSpecularShimmer 3.2s ease-in-out infinite alternate !important;
   will-change: background-position;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
 }
 
 @keyframes continuousSpecularShimmer {

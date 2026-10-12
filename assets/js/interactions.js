@@ -1,6 +1,9 @@
-// Native browser scroll restoration for trackpad back-swipe and history navigation
+// Enforce deterministic top-of-page load across all hard refreshes (prevents cached-offset flash)
 if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'auto';
+  history.scrollRestoration = 'manual';
+}
+if (!window.location.hash) {
+  window.scrollTo(0, 0);
 }
 
 // Local file protocol link resolver: prevents ERR_FILE_NOT_FOUND when opening via file:///
@@ -55,8 +58,8 @@ function initWaveScrollReveals() {
     });
   });
 
-  // 2. Add wave-reveal to section headers & cards
-  document.querySelectorAll('.section-header, .glass-card, .accordion-item, .workflow-console, .stage-card, .capability-card, .insight-topic-card').forEach(el => {
+  // 2. Add wave-reveal to cards and interactive components (not section-header containers)
+  document.querySelectorAll('.glass-card, .accordion-item, .workflow-console, .stage-card, .capability-card, .insight-topic-card').forEach(el => {
     if (!el.classList.contains('wave-reveal') && !el.closest('#hero')) {
       el.classList.add('wave-reveal');
     }
@@ -74,9 +77,17 @@ function initWaveScrollReveals() {
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.04, rootMargin: '0px 0px -40px 0px' });
 
-    reveals.forEach(el => observer.observe(el));
+    reveals.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add('in-view');
+        el.classList.add('visible');
+      } else {
+        observer.observe(el);
+      }
+    });
   } else {
     reveals.forEach(el => {
       el.classList.add('in-view');
@@ -558,19 +569,27 @@ function initAirWaveformEngine() {
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
-    revealTargets.forEach(el => observer.observe(el));
+    revealTargets.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add('is-visible');
+      } else {
+        observer.observe(el);
+      }
+    });
   } else {
     revealTargets.forEach(el => el.classList.add('is-visible'));
   }
 
-  // Trigger hero/top headlines smoothly on load
+  // Trigger hero/top headlines smoothly on load (Single-Execution Guard)
+  let topHeadlinesTriggered = false;
   function triggerTopHeadlines() {
+    if (topHeadlinesTriggered) return;
+    topHeadlinesTriggered = true;
     requestAnimationFrame(() => {
-      setTimeout(() => {
-        document.querySelectorAll('section:first-of-type .air-wave-target, [class*="hero"] .air-wave-target, header + main section .air-wave-target, #hero .air-wave-target, #hero .animate-hero-console').forEach(el => {
-          el.classList.add('is-visible');
-        });
-      }, 50);
+      document.querySelectorAll('section:first-of-type .air-wave-target, [class*="hero"] .air-wave-target, header + main section .air-wave-target, #hero .air-wave-target, #hero .animate-hero-console').forEach(el => {
+        el.classList.add('is-visible');
+      });
     });
   }
 

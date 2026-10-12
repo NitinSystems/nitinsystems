@@ -23,8 +23,8 @@
   <link rel="shortcut icon" href="assets/logo/nav-logo.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style-working.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=block" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css?v=1.4">
   <style id="mobile-footer-layout-fix">
 @media (max-width: 640px) {
   .footer-bottom-bar {
@@ -184,7 +184,9 @@
     <div class="hero-badge-wrap animate-hero-badge" style="display:flex;justify-content:center;margin-bottom:1.25rem;">
       <div class="badge-pill animate-float-slow"><span class="dot animate-pulse"></span>INTAKE RECEIVED</div>
     </div>
-    <h1 class="animate-hero-title air-wave-target" data-air-speed="28" style="font-size:clamp(2.2rem,4.5vw,3.2rem);margin-bottom:1rem;color:var(--ink);">Project Inquiry Received</h1>
+    <h1 class="animate-hero-title air-wave-target" data-air-speed="28" style="font-size:clamp(2.2rem,4.5vw,3.2rem);margin-bottom:1rem;color:var(--ink);">
+      <span class="air-word-outer"><span class="air-word-inner" style="--air-delay: 0.000s;">Project</span></span><span class="air-word-outer"><span class="air-word-inner" style="--air-delay: 0.028s;">Inquiry</span></span><span class="air-word-outer"><span class="air-word-inner air-word-gradient" style="--air-delay: 0.056s;">Received</span></span>
+    </h1>
         <h2 class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Inquiry Confirmation</h2>
     <p class="animate-hero-sub" style="font-size:1.1rem;color:var(--ink-soft);line-height:1.75;margin-bottom:2rem;">
       Thank you for reaching out. Nitin Mishra reviews every submission directly. You will receive a direct operational response within 24 business hours.
@@ -203,11 +205,11 @@
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--line);">
       <!-- Column 1: Brand & Contact/Social -->
       <div>
-        <div style="display:flex;align-items:center;gap:0.75rem;">
+        <a href="/" style="text-decoration:none;display:inline-flex;align-items:center;gap:0.75rem;">
           <div class="brand-logo-box"><img src="assets/logo/nav-logo.webp" alt="Nitin Systems brand logo" style="width:24px;height:24px;object-fit:contain;" /></div>
           <span style="font-family:var(--font-serif);font-weight:700;font-size:1.2rem;color:var(--ink);">Nitin Systems</span>
-        </div>
-        <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.7;margin-top:0.85rem;max-width:380px;">Solo-led B2B automation systems business operated directly by Nitin Mishra. Designing, architecting, and delivering practical, reliable automation pipelines for growing service businesses.</p>
+        </a>
+        <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.7;margin-top:0.85rem;max-width:380px;">Solo-led B2B automation systems business founded and operated by Nitin Mishra. Designing, architecting, and delivering practical, reliable automation pipelines for growing service businesses.</p>
         
         <p style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;letter-spacing:0.08em;margin-top:0.65rem;margin-bottom:0;line-height:1.45;">BASED IN DELHI NCR, INDIA &middot; OPERATING ON IST (UTC+5:30)</p>
         <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.35rem;margin-bottom:0;line-height:1.5;">Serving B2B founders and growing teams across India, US, UK &amp; Europe.</p>
@@ -265,7 +267,7 @@
 </div>
 <script src="assets/js/data.js?v=999.0"></script>
 <script src="assets/js/components.js?v=999.0"></script>
-<script src="assets/js/interactions-working.js?v=1.0"></script>
+<script src="assets/js/interactions.js?v=1.2"></script>
 <script src="assets/js/main.js?v=999.0"></script>
 
 <script src="assets/js/lenis.min.js"></script>
