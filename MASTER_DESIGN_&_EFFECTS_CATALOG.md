@@ -251,7 +251,210 @@ To ensure long-term stability and eliminate code overlapping:
 2. **CSS Files (`assets/css/style.css`):** 100% of presentation, typography scales, colors, gradients, layout grids, and keyframe animations.
    * Prohibited: Splitting core typography rules into local `<style>` blocks in HTML head.
    * Required: All scale modifications occur in the centralized CSS token catalog.
-3. **JavaScript Files (`assets/js/main.js`):** Interactive event handlers, console simulators, and drawer navigation ONLY.
-   * Prohibited: Adding classes or styles that hero headlines must wait for during page load.
-   * Required: Above-the-fold entrance effects must be pure CSS GPU compositor animations running from frame 0.
+254: 3. **JavaScript Files (`assets/js/main.js`):** Interactive event handlers, console simulators, and drawer navigation ONLY.
+255:    * Prohibited: Adding classes or styles that hero headlines must wait for during page load.
+256:    * Required: Above-the-fold entrance effects must be pure CSS GPU compositor animations running from frame 0.
+
+---
+
+## 10. Master Layout Blueprint: Spacing, Grids & Dimensions
+
+### 10.1 Global Container Scale
+* **Standard Page Container:** `max-width: 1080px; width: 100%; margin: 0 auto;` (used for Hero, problem breakdown, console wrapper, and core sections).
+* **Wide Architecture Container:** `max-width: 1200px; width: 100%; margin: 0 auto;` (used for multi-column process cards, grids, and footer inner).
+* **Narrow Case Study Container:** `max-width: 740px; margin: 0 auto;` (used for origin narrative, long-form system reads, and text bodies).
+* **Side Gutters:** `padding-left: clamp(1.25rem, 4vw, 2rem); padding-right: clamp(1.25rem, 4vw, 2rem);` (prevents screen edge collision across all viewport widths).
+
+### 10.2 Sticky Navigation Bar & Brand Assets
+* **Navbar Height:** `64px` desktop (`min-height: 4rem`), `58px` mobile.
+* **Navbar Placement:** `position: sticky; top: 0; z-index: 1000;`
+* **Surface Polish:** Background `rgba(255, 255, 255, 0.88)`, `backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);`, border-bottom `1px solid var(--line, #E2E8F0)`.
+* **Brand Logo Box:**
+  * Desktop Header: `width: 34px; height: 34px;` with `padding: 4px;`
+  * Mobile Drawer: `width: 28px; height: 28px;` with `padding: 3px;`
+  * Footer Block: `width: 24px; height: 24px;`
+  * Border & Shape: `border: 1px solid var(--line); border-radius: var(--radius-sm, 6px); background: #FFFFFF; box-shadow: 0 2px 6px rgba(0,0,0,0.04);`
+* **Brand Name Typography:** Font `'Lora', Georgia, serif; font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink, #001D3D);`
+
+### 10.3 Vertical Rhythm & Section Spacing Scale
+* **Hero Section Padding:**
+  * Desktop: `padding-top: 8rem; padding-bottom: 3.5rem;`
+  * Mobile: `padding-top: 6.5rem; padding-bottom: 2.5rem;`
+* **Standard Section Padding:**
+  * Desktop: `padding-top: 5rem; padding-bottom: 5rem;` (`80px` standard breathing space).
+  * Mobile: `padding-top: 3.5rem; padding-bottom: 3.5rem;`
+* **Inter-Element Vertical Gaps:**
+  * Badge Pill to H1 Headline: `1.25rem` (`20px`).
+  * H1 Headline to Subtitle Meta: `0.65rem - 0.85rem` (`10px - 14px`).
+  * Subtitle to Body Narrative: `1rem` (`16px`).
+  * Body Narrative to Hero CTA Row: `2rem` (`32px`).
+  * Hero CTA Row to Interactive Console: `3rem - 3.5rem` (`48px - 56px`).
+  * Section Title Header to Card Grid: `2.5rem - 3.25rem` (`40px - 52px`).
+
+### 10.4 Button & Interactive Action Matrix
+* **Primary Button (`.btn-primary`):**
+  * Desktop Padding: `0.85rem 2.25rem` (Hero), `0.45rem 1rem` (Header nav).
+  * Color: Background `var(--cobalt, #0052FF)`, text `#FFFFFF`, border `none`.
+  * Geometry: `border-radius: var(--radius-md, 10px); font-weight: 600; font-size: 0.88rem - 0.95rem;`
+  * Resting Shadow: `box-shadow: 0 4px 14px rgba(0, 82, 255, 0.24);`
+  * Hover State: `transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 82, 255, 0.35); background: #0043D1;`
+* **Secondary Button (`.btn-secondary`):**
+  * Desktop Padding: `0.85rem 2rem` (Hero), `0.45rem 0.85rem` (Footer social pill).
+  * Color: Background `var(--paper, #FFFFFF)`, border `1px solid var(--line, #E2E8F0)`, text `var(--ink)`.
+  * Hover State: `border-color: var(--cobalt); color: var(--cobalt); background: #F8FAFC; transform: translateY(-1px);`
+
+---
+
+## 11. Top Scroll Progress Bar Architecture (`#scroll-progress-bar`)
+
+### 11.1 Purpose & Visual Specification
+A razor-thin 1.5px laser indicator pinned to the absolute top of the viewport (`y: 0`) that fills progressively from left to right (`0%` to `100%`) as the visitor scrolls down the page.
+
+### 11.2 CSS Specification (`assets/css/style.css`)
+```css
+#scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: var(--cobalt, #0052FF);
+  transform-origin: 0% 50%;
+  transform: scaleX(0);
+  z-index: 99999;
+  pointer-events: none;
+  transition: transform 0.04s ease-out;
+}
+```
+
+### 11.3 JavaScript GPU Tracker (`assets/js/interactions.js`)
+```javascript
+function initScrollProgressBar() {
+  const bar = document.getElementById('scroll-progress-bar');
+  if (!bar) return;
+  
+  const updateProgress = () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? Math.min(1, Math.max(0, scrollTop / docHeight)) : 0;
+    bar.style.transform = `scaleX(${progress})`;
+  };
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress, { passive: true });
+  updateProgress();
+}
+```
+
+### 11.4 HTML Structural Placement
+Placed as the very first element directly after the opening `<body>` tag across all HTML templates:
+```html
+<body>
+  <div id="scroll-progress-bar" aria-hidden="true"></div>
+```
+
+---
+
+## 12. Strict Hero Headline Typography Scale (Extra-Bold Standard)
+
+To prevent mobile browsers from downscaling headlines to semi-bold, all H1 headings adhere to explicit extra-bold enforcement:
+
+```css
+.hero-title-home {
+  font-size: clamp(2.05rem, 4.3vw, 3.35rem);
+  font-weight: 800 !important;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-title-single {
+  font-size: clamp(2.2rem, 4.5vw, 3.3rem);
+  font-weight: 800 !important;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.hero-title-about {
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  font-weight: 800 !important;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+}
+```
+
+---
+
+## 13. 3-Stage Milestone Process Rail Architecture (`about.html`)
+
+### 13.1 Visual & Structural Blueprint
+Positioned on `about.html` (`#process-milestones`) between the origin philosophy and verified certifications. Uses a 3-column responsive card grid (`.process-milestones-grid`) displaying verifiable technical deliverables:
+
+1. **Stage 01: The Diagnostic Audit (Working Session)**
+   * Badge: `STAGE 01` (Cobalt Light) | SLA: `30-Min Working Session`
+   * Deliverable: `AUDIT-SPECIFICATION.JSON` dark code artifact block.
+   * Footer Guarantee: `✓ You leave with a clear yes, no, or better architecture`
+2. **Stage 02: Production Architecture (Primary Build Sprint)**
+   * Primary Border: `border: 2px solid var(--cobalt);` with accent elevation shadow.
+   * Inline Badges: `STAGE 02` pill accompanied by solid `PRIMARY BUILD` badge pill. Both contained inside the header row to prevent overflow clipping.
+   * Deliverable: `SCOPE-SHEET.MD (1-PAGE)` dark contract artifact block.
+   * Footer Guarantee: `✓ No junior developers, complete personal sign-off`
+3. **Stage 03: Zero-Drop Handover (Reliability & SLA)**
+   * Badge: `STAGE 03` (Cobalt Light) | SLA: `Reliability & SLA`
+   * Deliverable: `PRODUCTION-HEALTH.STATUS` dark telemetry health block.
+   * Footer Guarantee: `✓ Comprehensive walkthrough videos and 30-day warranty`
+
+---
+
+## 14. Brand Entity Authority: Verified Social & Schema Standards
+
+### 14.1 Footer Verification Buttons
+Monochrome SVG icon pills located in the footer brand block alongside the email link:
+* **LinkedIn:** `https://www.linkedin.com/in/nitinmishra-me`
+* **GitHub:** `https://github.com/NitinSystems` (Monochrome Octocat SVG)
+
+### 14.2 Google Knowledge Graph (`sameAs` Array)
+Declared in Schema.org JSON-LD structured data on `index.html` and `about.html`:
+```json
+"sameAs": [
+  "https://www.linkedin.com/in/nitinmishra-me",
+  "https://github.com/NitinSystems"
+]
+```
+
+---
+
+## 15. Homepage Logo Click Smooth-Scroll Standard
+
+### 15.1 Interaction Rule
+* When a visitor is on any subpage (`/about`, `/systems`, `/services`) and clicks the brand logo, the browser navigates back to the homepage.
+* When a visitor is **already on the homepage**, clicking the brand logo or brand text does not refresh the page. Instead, it triggers an instant smooth scroll back to coordinate `y: 0`.
+
+### 15.2 JavaScript Implementation (`assets/js/interactions.js`)
+```javascript
+function initHomeSmoothScroll() {
+  const path = window.location.pathname;
+  const isHomePage = path === '/' || 
+                     path === '' ||
+                     path.endsWith('/index.html') || 
+                     path.endsWith('index.html') ||
+                     path.endsWith('/nitinsystems/') ||
+                     path.endsWith('/nitinsystems');
+  
+  if (!isHomePage) return;
+
+  document.querySelectorAll('.nav-brand-wrap a, a.nav-link[href="/"], a.nav-link[href="index.html"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (typeof closeMobileMenu === 'function') closeMobileMenu();
+    });
+  });
+}
+```
+
 
