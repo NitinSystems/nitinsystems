@@ -6,36 +6,47 @@ if (!window.location.hash) {
   window.scrollTo(0, 0);
 }
 
-// Local file protocol link resolver: prevents ERR_FILE_NOT_FOUND when opening via file:///
-if (typeof window !== 'undefined' && window.location && window.location.protocol === 'file:') {
-  document.addEventListener('click', function(e) {
-    var a = e.target.closest('a');
-    if (!a) return;
-    var href = a.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
-    
-    if (href.startsWith('/') && !href.startsWith('//')) {
-      e.preventDefault();
-      var pathWithoutSlash = href.substring(1);
-      var currentIsWorking = window.location.pathname.indexOf('-working.html') !== -1;
+// Link resolver: handles file protocol and GitHub Pages /nitinsystems/ subfolder routing
+if (typeof window !== 'undefined' && window.location) {
+  var isLocalFile = window.location.protocol === 'file:';
+  var isGitHubPages = window.location.hostname.indexOf('github.io') !== -1;
+  var repoName = '/nitinsystems';
+
+  if (isLocalFile || (isGitHubPages && window.location.pathname.startsWith(repoName))) {
+    document.addEventListener('click', function(e) {
+      var a = e.target.closest('a');
+      if (!a) return;
+      var href = a.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
       
-      if (!pathWithoutSlash) {
-        window.location.href = currentIsWorking ? 'index-working.html' : 'index.html';
-        return;
+      if (href.startsWith('/') && !href.startsWith('//') && (!isGitHubPages || !href.startsWith(repoName))) {
+        e.preventDefault();
+        var pathWithoutSlash = href.substring(1);
+        var currentIsWorking = window.location.pathname.indexOf('-working.html') !== -1;
+        
+        if (isLocalFile) {
+          if (!pathWithoutSlash) {
+            window.location.href = currentIsWorking ? 'index-working.html' : 'index.html';
+            return;
+          }
+          var parts = pathWithoutSlash.split('#');
+          var targetBase = parts[0].replace('.html', '');
+          var hash = parts[1] ? '#' + parts[1] : '';
+          var targetFile = targetBase + (currentIsWorking ? '-working.html' : '.html');
+          window.location.href = targetFile + hash;
+        } else if (isGitHubPages) {
+          if (!pathWithoutSlash) {
+            window.location.href = repoName + '/index.html';
+            return;
+          }
+          var parts = pathWithoutSlash.split('#');
+          var targetBase = parts[0].replace('.html', '');
+          var hash = parts[1] ? '#' + parts[1] : '';
+          window.location.href = repoName + '/' + targetBase + '.html' + hash;
+        }
       }
-      
-      var parts = pathWithoutSlash.split('#');
-      var targetBase = parts[0];
-      var hash = parts[1] ? '#' + parts[1] : '';
-      
-      if (targetBase.endsWith('.html')) {
-        targetBase = targetBase.replace('.html', '');
-      }
-      
-      var targetFile = targetBase + (currentIsWorking ? '-working.html' : '.html');
-      window.location.href = targetFile + hash;
-    }
-  }, true);
+    }, true);
+  }
 }
 
 function initSmoothScroll() {
@@ -641,15 +652,36 @@ if (document.readyState === 'loading') {
 
 
 
+// Hardware-accelerated Top Scroll Progress Bar
+function initScrollProgressBar() {
+  const bar = document.getElementById('scroll-progress-bar');
+  if (!bar) return;
+  
+  const updateProgress = () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? Math.min(1, Math.max(0, scrollTop / docHeight)) : 0;
+    bar.style.transform = `scaleX(${progress})`;
+  };
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress, { passive: true });
+  updateProgress();
+}
+
 // Clean root smooth scrolling for logo and home links when already on homepage
 function initHomeSmoothScroll() {
-  const isHomePage = window.location.pathname === '/' || 
-                     window.location.pathname.endsWith('index.html') || 
-                     window.location.pathname === '';
+  const path = window.location.pathname;
+  const isHomePage = path === '/' || 
+                     path === '' ||
+                     path.endsWith('/index.html') || 
+                     path.endsWith('index.html') ||
+                     path.endsWith('/nitinsystems/') ||
+                     path.endsWith('/nitinsystems');
   
   if (!isHomePage) return;
 
-  document.querySelectorAll('.nav-brand-wrap a, a.nav-link[href="/"], a.mobile-nav-link[href="/"]').forEach(link => {
+  document.querySelectorAll('.nav-brand-wrap a, a.nav-link[href="/"], a.nav-link[href="index.html"], a.nav-link[href="./"], a.mobile-nav-link[href="/"], a.mobile-nav-link[href="index.html"]').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -658,8 +690,13 @@ function initHomeSmoothScroll() {
   });
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initHomeSmoothScroll);
-} else {
+function initPageBehaviors() {
+  initScrollProgressBar();
   initHomeSmoothScroll();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPageBehaviors);
+} else {
+  initPageBehaviors();
 }

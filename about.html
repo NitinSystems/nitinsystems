@@ -82,6 +82,7 @@
   </script>
 </head>
 <body style="overflow-x:hidden;">
+  <div id="scroll-progress-bar" aria-hidden="true"></div>
 
   <header id="navbar" class="animate-hero-nav">
   <div id="navbar-inner">
@@ -262,6 +263,101 @@
       <p style="font-size:1rem;color:var(--ink-soft);line-height:1.8;">
         That is why I built Nitin Systems as a direct, founder-led consultancy. Whether designing resilient lead-capture pipelines from scratch or repairing broken data flows across Make.com, Airtable, and HubSpot, I engineer every scenario myself with complete personal accountability and zero junior handoffs.
       </p>
+    </div>
+  </section>
+
+  <!-- 3-STAGE MILESTONE PROCESS RAIL (INSPIRED BY PREM PATEL, TUNED FOR NITIN SYSTEMS) -->
+  <section id="process-milestones" class="section" style="padding:5rem 0;background:#FFFFFF;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:3.25rem;">
+        <div class="badge-pill" style="margin-bottom:0.75rem;"><span class="dot"></span>HOW WE WORK TOGETHER</div>
+        <h2 class="section-title shimmer-sweep-title" style="font-size:clamp(1.75rem,3.5vw,2.25rem);max-width:760px;margin-left:auto;margin-right:auto;">The 3 Production Stages That Protect Your Pipeline</h2>
+        <p style="font-size:0.95rem;color:var(--ink-soft);max-width:620px;margin:0.65rem auto 0 auto;line-height:1.7;">
+          Direct, hands-on engineering across the critical moments that determine whether a system thrives in production or silently fails.
+        </p>
+      </div>
+
+      <div class="process-milestones-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:1.75rem;">
+        
+        <!-- STAGE 1 -->
+        <div class="glass-card reveal" style="padding:1.75rem;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);border-radius:var(--radius-lg);background:#FBFDFF;">
+          <div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+              <span style="font-family:var(--font-mono);font-size:0.75rem;font-weight:700;color:var(--cobalt);background:rgba(0,82,255,0.08);padding:0.25rem 0.65rem;border-radius:6px;">STAGE 01</span>
+              <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--ink-soft);font-weight:600;">30-Min Working Session</span>
+            </div>
+            <h3 style="font-size:1.2rem;font-weight:700;color:var(--ink);margin-bottom:0.65rem;line-height:1.35;">The Diagnostic Audit</h3>
+            <p style="font-size:0.88rem;color:var(--ink-soft);line-height:1.7;margin-bottom:1.25rem;">
+              We run a focused working session directly on your live stack. We trace every lead source, uncover schema bottlenecks, and isolate exactly where prospects delay or leak in your CRM.
+            </p>
+            <!-- Rendered Artifact Card -->
+            <div style="background:#0F172A;color:#F8FAFC;border-radius:var(--radius-sm);padding:0.95rem;font-family:var(--font-mono);font-size:0.75rem;line-height:1.55;border:1px solid #1E293B;margin-bottom:1.25rem;">
+              <div style="color:#38BDF8;font-weight:700;margin-bottom:0.35rem;">AUDIT-SPECIFICATION.JSON</div>
+              <div style="color:#94A3B8;">> Entry points mapped: <span style="color:#4ADE80;">3 Verified</span></div>
+              <div style="color:#94A3B8;">> Schema leakage: <span style="color:#F87171;">Isolated &amp; Scoped</span></div>
+              <div style="color:#94A3B8;">> Outcome: <span style="color:#FBBF24;">Clear build plan or referral</span></div>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--line);padding-top:1rem;font-size:0.8rem;color:var(--ink-muted);display:flex;align-items:center;gap:0.45rem;">
+            <span style="color:#10B981;font-weight:700;">✓</span>
+            <span>You leave with a clear yes, no, or better architecture</span>
+          </div>
+        </div>
+
+        <!-- STAGE 2 -->
+        <div class="glass-card reveal" style="padding:1.75rem;display:flex;flex-direction:column;justify-content:space-between;border:2px solid var(--cobalt);border-radius:var(--radius-lg);background:#FFFFFF;box-shadow:0 12px 30px rgba(0,82,255,0.06);">
+          <div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:0.5rem;">
+              <div style="display:flex;align-items:center;gap:0.5rem;">
+                <span style="font-family:var(--font-mono);font-size:0.75rem;font-weight:700;color:var(--cobalt);background:rgba(0,82,255,0.08);padding:0.25rem 0.65rem;border-radius:6px;">STAGE 02</span>
+                <span style="background:var(--cobalt);color:#FFFFFF;font-family:var(--font-mono);font-size:0.65rem;font-weight:700;padding:0.2rem 0.55rem;border-radius:9999px;letter-spacing:0.04em;">PRIMARY BUILD</span>
+              </div>
+              <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--ink-soft);font-weight:600;">Fixed Scope Sprint</span>
+            </div>
+            <h3 style="font-size:1.2rem;font-weight:700;color:var(--ink);margin-bottom:0.65rem;line-height:1.35;">Production Architecture</h3>
+            <p style="font-size:0.88rem;color:var(--ink-soft);line-height:1.7;margin-bottom:1.25rem;">
+              I build the systems myself with deterministic state machines in Make, Airtable, and GoHighLevel. Complete error-handling routes, payload normalization, and synthetic test verification before going live.
+            </p>
+            <!-- Rendered Artifact Card -->
+            <div style="background:#0F172A;color:#F8FAFC;border-radius:var(--radius-sm);padding:0.95rem;font-family:var(--font-mono);font-size:0.75rem;line-height:1.55;border:1px solid #1E293B;margin-bottom:1.25rem;">
+              <div style="color:#38BDF8;font-weight:700;margin-bottom:0.35rem;">SCOPE-SHEET.MD (1-PAGE)</div>
+              <div style="color:#94A3B8;">[✓] Data contracts locked</div>
+              <div style="color:#94A3B8;">[✓] Fallback routes engineered</div>
+              <div style="color:#94A3B8;">[✓] Signed &amp; verified by Nitin Mishra</div>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--line);padding-top:1rem;font-size:0.8rem;color:var(--ink-muted);display:flex;align-items:center;gap:0.45rem;">
+            <span style="color:#10B981;font-weight:700;">✓</span>
+            <span>No junior developers, complete personal sign-off</span>
+          </div>
+        </div>
+
+        <!-- STAGE 3 -->
+        <div class="glass-card reveal" style="padding:1.75rem;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);border-radius:var(--radius-lg);background:#FBFDFF;">
+          <div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+              <span style="font-family:var(--font-mono);font-size:0.75rem;font-weight:700;color:var(--cobalt);background:rgba(0,82,255,0.08);padding:0.25rem 0.65rem;border-radius:6px;">STAGE 03</span>
+              <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--ink-soft);font-weight:600;">Reliability &amp; SLA</span>
+            </div>
+            <h3 style="font-size:1.2rem;font-weight:700;color:var(--ink);margin-bottom:0.65rem;line-height:1.35;">Zero-Drop Handover</h3>
+            <p style="font-size:0.88rem;color:var(--ink-soft);line-height:1.7;margin-bottom:1.25rem;">
+              Every handover includes custom documentation and step-by-step Loom walkthroughs. In production, automated retries recover edge glitches, while instant mobile alerts notify us if third-party APIs stall.
+            </p>
+            <!-- Rendered Artifact Card -->
+            <div style="background:#0F172A;color:#F8FAFC;border-radius:var(--radius-sm);padding:0.95rem;font-family:var(--font-mono);font-size:0.75rem;line-height:1.55;border:1px solid #1E293B;margin-bottom:1.25rem;">
+              <div style="color:#38BDF8;font-weight:700;margin-bottom:0.35rem;">PRODUCTION-HEALTH.STATUS</div>
+              <div style="color:#94A3B8;">> SLA Status: <span style="color:#4ADE80;">Production Healthy</span></div>
+              <div style="color:#94A3B8;">> Auto-retries: <span style="color:#4ADE80;">Active (3x backoff)</span></div>
+              <div style="color:#94A3B8;">> Priority Alerts: <span style="color:#38BDF8;">Slack &amp; SMS Instant</span></div>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--line);padding-top:1rem;font-size:0.8rem;color:var(--ink-muted);display:flex;align-items:center;gap:0.45rem;">
+            <span style="color:#10B981;font-weight:700;">✓</span>
+            <span>Comprehensive walkthrough videos and 30-day warranty</span>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
