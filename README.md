@@ -39,11 +39,11 @@ Direct client implementation for an active B2B AI Automation Agency connecting w
 
 ### B. Lead Intake & Duplicate Verification System
 Deterministic system pipeline evaluating incoming webhook payloads against Airtable records to update existing contact records before updating HubSpot CRM with zero duplicate deal cards.
-- **Stack:** Make Webhook, Make.com, Airtable, HubSpot, Gmail / Outlook
+- **Stack:** Make Webhook, Make.com, Airtable, HubSpot, Outlook
 
 ### C. AI Customer Journey Operations & Recovery System
 A 7-scenario architecture case study demonstrating how Make.com, relational Airtable records (across 5 linked tables), and AI intent analysis monitor lifecycle states and route automated recovery actions.
-- **Stack:** Make.com, Gemini AI, Airtable
+- **Stack:** Make.com, Make AI Agent, Airtable
 
 ---
 
