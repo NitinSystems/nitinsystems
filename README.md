@@ -71,7 +71,7 @@ A 7-scenario architecture case study demonstrating how Make.com, relational Airt
 
 ## 7. Contact & Operations
 
-- **Founder & Systems Engineer:** Nitin Mishra
+- **Founder & Automation Systems Specialist:** Nitin Mishra
 - **Operational Base:** Based in Delhi NCR, India · Operating on IST (UTC+5:30)
 - **Email:** [NitinSystems@outlook.com](mailto:NitinSystems@outlook.com)
 - **LinkedIn:** [linkedin.com/in/nitinmishra-me](https://www.linkedin.com/in/nitinmishra-me/)
