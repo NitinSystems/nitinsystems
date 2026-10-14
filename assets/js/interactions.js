@@ -387,6 +387,7 @@ async function handleAuditSubmit(e) {
 
   const form = document.getElementById('audit-form');
   const submitBtn = form?.querySelector('button[type="submit"]');
+  const projectTypeEl = document.getElementById('audit-project-type');
   const serviceEl = document.getElementById('audit-service');
   const nameEl = document.getElementById('audit-name');
   const emailEl = document.getElementById('audit-email');
@@ -394,6 +395,7 @@ async function handleAuditSubmit(e) {
   const stackEl = document.getElementById('audit-stack');
   const bottleneckEl = form?.querySelector('textarea[name="operational_bottleneck"]');
 
+  const projectType = projectTypeEl?.value || '';
   const name = nameEl?.value?.trim() || '';
   const email = emailEl?.value?.trim() || '';
   const service = serviceEl?.value || '';
@@ -440,6 +442,7 @@ async function handleAuditSubmit(e) {
     submitted_at: new Date().toISOString(),
     source_page: window.location.href || 'https://nitinsystems.com/audit',
     lead_data: {
+      project_type: projectType,
       service_interest: service,
       full_name: name,
       work_email: email,
@@ -502,6 +505,7 @@ async function handleAuditSubmit(e) {
             'Hi Nitin,\n\nI submitted my project scope through your website, but the webhook timed out. Here are my preserved details:\n\n' +
             'Full Name: ' + name + '\n' +
             'Work Email: ' + email + '\n' +
+            'Project Type: ' + projectType + '\n' +
             'Service Needed: ' + service + '\n' +
             'Company / Industry: ' + industry + '\n' +
             'Current Tech Stack: ' + techStack + '\n' +
