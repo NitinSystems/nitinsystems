@@ -352,6 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSpotlightCards();
   initAccordions();
   initNavDropdown();
+  initAuditServiceDropdown();
 
   const hamburger = document.getElementById('hamburger-btn');
   if (hamburger) {
@@ -381,6 +382,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 });
 
+// Progressive Disclosure Handler for Custom / Other Service Selection
+function initAuditServiceDropdown() {
+  const serviceEl = document.getElementById('audit-service');
+  const otherWrap = document.getElementById('audit-service-other-wrap');
+  const otherInput = document.getElementById('audit-service-other');
+  if (!serviceEl || !otherWrap) return;
+
+  function updateVisibility() {
+    if (serviceEl.value === 'other') {
+      otherWrap.style.display = 'block';
+      if (otherInput) otherInput.focus();
+    } else {
+      otherWrap.style.display = 'none';
+      if (otherInput) otherInput.value = '';
+    }
+  }
+
+  serviceEl.addEventListener('change', updateVisibility);
+  updateVisibility();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAuditServiceDropdown);
+} else {
+  initAuditServiceDropdown();
+}
+
 // Form Submission & Webhook Handler for Audit / Written Inquiry with Triple-Layer Anti-Duplicate Shield
 async function handleAuditSubmit(e) {
   if (e) e.preventDefault();
@@ -389,6 +417,7 @@ async function handleAuditSubmit(e) {
   const submitBtn = form?.querySelector('button[type="submit"]');
   const projectTypeEl = document.getElementById('audit-project-type');
   const serviceEl = document.getElementById('audit-service');
+  const otherInput = document.getElementById('audit-service-other');
   const nameEl = document.getElementById('audit-name');
   const emailEl = document.getElementById('audit-email');
   const companyEl = document.getElementById('audit-company');
@@ -400,10 +429,15 @@ async function handleAuditSubmit(e) {
   const name = nameEl?.value?.trim() || '';
   const email = emailEl?.value?.trim() || '';
   const company = companyEl?.value?.trim() || '';
-  const service = serviceEl?.value || '';
   const industry = industryEl?.value?.trim() || '';
   const techStack = stackEl?.value?.trim() || '';
   const bottleneck = bottleneckEl?.value?.trim() || '';
+
+  let service = serviceEl?.value || '';
+  if (service === 'other') {
+    const customText = otherInput?.value?.trim();
+    service = customText ? ('Other: ' + customText) : 'Other: Custom Architecture Review';
+  }
 
   if (form && !form.checkValidity()) {
     form.reportValidity();
