@@ -1,0 +1,534 @@
+/* ==========================================================================
+   NITIN SYSTEMS - ON-SITE AI CONSULTATIVE AGENT (V7.0 - EXECUTIVE EDITION)
+   Executive Contrast Theme (Deep Navy Header, Crisp Light Canvas)
+   Isolated Hardware-Accelerated 2-Finger Trackpad & Wheel Scroll Engine
+   ========================================================================== */
+
+/* 1. FLOATING LAUNCHER TRIGGER */
+#ns-agent-trigger {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: #0B132B;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  box-shadow: 0 10px 25px -5px rgba(11, 19, 43, 0.4), 0 0 15px -3px rgba(37, 99, 235, 0.35);
+  cursor: pointer;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+#ns-agent-trigger:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: #0F172A;
+  border-color: #3B82F6;
+  box-shadow: 0 14px 30px -5px rgba(11, 19, 43, 0.5), 0 0 22px 0 rgba(37, 99, 235, 0.5);
+}
+
+#ns-agent-trigger:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.ns-trigger-dot {
+  width: 8px;
+  height: 8px;
+  background: #10B981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10B981;
+  animation: ns-pulse-green 2s infinite ease-in-out;
+}
+
+.ns-trigger-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3B82F6;
+}
+
+/* 2. CHAT MODAL WINDOW (EXECUTIVE CONTRAST & SCROLL ISOLATION) */
+#ns-agent-modal {
+  position: fixed;
+  bottom: 84px;
+  right: 24px;
+  z-index: 99999;
+  width: 410px;
+  max-width: calc(100vw - 32px);
+  height: 620px;
+  max-height: calc(100vh - 110px);
+  background: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.22), 0 0 0 1px rgba(15, 23, 42, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: bottom right;
+  overscroll-behavior: contain;
+}
+
+#ns-agent-modal.ns-agent-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px) scale(0.96);
+}
+
+#ns-agent-modal:not(.ns-agent-hidden) {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+/* 3. MODAL HEADER (DEEP EXECUTIVE NAVY) */
+.ns-agent-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: #0B132B;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.ns-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ns-header-avatar {
+  width: 34px;
+  height: 34px;
+  background: #1E293B;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.ns-header-avatar img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.ns-header-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ns-header-name {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+}
+
+.ns-header-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #94A3B8;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ns-status-dot {
+  width: 6px;
+  height: 6px;
+  background: #10B981;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #10B981;
+}
+
+.ns-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ns-header-btn {
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.ns-header-btn:hover {
+  background: #1E293B;
+  color: #FFFFFF;
+}
+
+/* 4. CONVERSATION BODY (CRISP LIGHT SLATE CANVAS & SCROLL TRAP) */
+.ns-agent-messages {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #F8FAFC;
+}
+
+.ns-agent-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ns-agent-messages::-webkit-scrollbar-track {
+  background: #F8FAFC;
+}
+
+.ns-agent-messages::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+.ns-agent-messages::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* 5. MESSAGE BUBBLES */
+.ns-message-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 88%;
+  animation: ns-fade-slide 0.25s ease-out;
+}
+
+.ns-message-bot {
+  align-self: flex-start;
+}
+
+.ns-message-user {
+  align-self: flex-end;
+}
+
+.ns-bubble {
+  padding: 11px 14px;
+  font-size: 13px;
+  line-height: 1.55;
+  word-wrap: break-word;
+}
+
+.ns-bubble-bot {
+  background: #FFFFFF;
+  color: #0F172A;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px 14px 14px 3px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+}
+
+.ns-bubble-user {
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px 14px 3px 14px;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+}
+
+.ns-message-timestamp {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  color: #94A3B8;
+  padding: 0 4px;
+}
+
+.ns-message-user .ns-message-timestamp {
+  align-self: flex-end;
+}
+
+/* 6. TYPING INDICATOR */
+.ns-typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 14px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px 14px 14px 3px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+  width: fit-content;
+}
+
+.ns-typing-dot {
+  width: 6px;
+  height: 6px;
+  background: #2563EB;
+  border-radius: 50%;
+  animation: ns-bounce 1.4s infinite ease-in-out both;
+}
+
+.ns-typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.ns-typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+/* 7. INPUT COMPOSER */
+.ns-agent-footer {
+  padding: 12px 14px;
+  background: #FFFFFF;
+  border-top: 1px solid #E2E8F0;
+  flex-shrink: 0;
+}
+
+.ns-composer-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.ns-composer-input {
+  flex: 1;
+  background: #F8FAFC;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 13px;
+  color: #0F172A;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.ns-composer-textarea {
+  min-height: 38px;
+  max-height: 110px;
+  resize: none;
+  overflow-y: auto;
+  line-height: 1.45;
+}
+
+.ns-composer-textarea::-webkit-scrollbar {
+  width: 4px;
+}
+
+.ns-composer-textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ns-composer-textarea::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+.ns-composer-input::placeholder,
+.ns-composer-textarea::placeholder {
+  color: #94A3B8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ns-composer-input:focus {
+  background: #FFFFFF;
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.ns-composer-send-btn {
+  width: 38px;
+  height: 38px;
+  background: #2563EB;
+  border: none;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.ns-composer-send-btn:hover {
+  background: #1D4ED8;
+  transform: translateY(-1px);
+}
+
+.ns-composer-send-btn:disabled {
+  background: #E2E8F0;
+  color: #94A3B8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.ns-composer-caption {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  text-align: center;
+}
+
+.ns-tech-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #475569;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -0.01em;
+}
+
+.ns-security-subtext {
+  font-size: 9.5px;
+  color: #94A3B8;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 8. FAST-TRACK BUTTON */
+.ns-fasttrack-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+  width: 100%;
+  padding: 9px 12px;
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #FFFFFF !important;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.ns-fasttrack-btn:hover {
+  background: #1D4ED8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+/* 9. PROACTIVE INVITATION SPEECH BUBBLE */
+#ns-agent-prompt-bubble {
+  position: fixed;
+  bottom: 80px;
+  right: 24px;
+  z-index: 99998;
+  max-width: 290px;
+  padding: 12px 14px;
+  background: #0B132B;
+  border: 1px solid #2563EB;
+  border-radius: 12px 12px 2px 12px;
+  box-shadow: 0 12px 35px -5px rgba(11, 19, 43, 0.4), 0 0 15px -3px rgba(37, 99, 235, 0.3);
+  color: #F8FAFC;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  line-height: 1.45;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: ns-fade-slide 0.3s ease-out;
+}
+
+#ns-agent-prompt-bubble:hover {
+  transform: translateY(-2px);
+  border-color: #3B82F6;
+  box-shadow: 0 16px 40px -5px rgba(11, 19, 43, 0.5), 0 0 20px 0 rgba(37, 99, 235, 0.4);
+}
+
+.ns-prompt-bubble-close {
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 2px 4px;
+  line-height: 1;
+}
+
+.ns-prompt-bubble-close:hover {
+  color: #FFFFFF;
+}
+
+.ns-prompt-bubble-action {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  color: #3B82F6;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* 10. KEYFRAME ANIMATIONS */
+@keyframes ns-pulse-green {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(1.15); }
+}
+
+@keyframes ns-fade-slide {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ns-bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+/* 11. RESPONSIVE MOBILE BREAKPOINTS */
+@media (max-width: 640px) {
+  #ns-agent-trigger {
+    bottom: 16px;
+    right: 16px;
+    padding: 9px 14px;
+    font-size: 12px;
+  }
+  
+  #ns-agent-modal {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    max-width: 100vw;
+    height: 92vh;
+    max-height: 92vh;
+    border-radius: 18px 18px 0 0;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+  }
+
+  #ns-agent-prompt-bubble {
+    bottom: 70px;
+    right: 16px;
+    max-width: calc(100vw - 32px);
+  }
+}
