@@ -26,12 +26,13 @@
 
   // 1. CONFIGURATION & STATE
   const CONFIG = {
-    geminiApiKey: 'AIzaSyCla4LZ60lZr3HhH6X_zn2FxjvWxL6ADns',
-    geminiModel: 'gemini-flash-lite-latest',
-    webhookUrl: 'https://hook.eu1.make.com/3ydi2fjlxni7qlpdtut2r8phkqinyizp',
+    // Make.com Chat Gateway Proxy Webhook (Private Server-Side Bridge to Gemini)
+    chatWebhookUrl: 'https://hook.eu1.make.com/ock2g4n8klhzpjzyk7eta7o22q9r4443',
+    // Make.com Lead Dispatch Webhook (Airtable + HubSpot + Email + Slack Sync)
+    leadWebhookUrl: 'https://hook.eu1.make.com/3ydi2fjlxni7qlpdtut2r8phkqinyizp',
     brandName: 'Nitin Systems',
     agentTitle: 'AI Systems Consultant',
-    timeoutMs: 25000,
+    timeoutMs: 30000,
     proactiveDelayMs: 18000
   };
 
@@ -469,8 +470,6 @@ MACHINE-READABLE DISPATCH TAG:
     showTypingIndicator();
 
     try {
-      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${CONFIG.geminiModel}:generateContent?key=${CONFIG.geminiApiKey}`;
-
       // Sliding Context Window: Cap sent history to the last 10 messages (5 user turns + 5 assistant turns)
       // while keeping the master system prompt intact. This eliminates token bloat and keeps latency under 2 seconds!
       const slidingContents = state.history.length > 10 
@@ -478,20 +477,15 @@ MACHINE-READABLE DISPATCH TAG:
         : state.history;
 
       const requestBody = {
-        system_instruction: {
-          parts: [{ text: SYSTEM_PROMPT }]
-        },
-        contents: slidingContents,
-        generationConfig: {
-          temperature: 0.3,
-          maxOutputTokens: 250
-        }
+        user_message: userText,
+        system_prompt: SYSTEM_PROMPT,
+        contents: slidingContents
       };
 
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), CONFIG.timeoutMs);
 
-      const response = await fetch(endpoint, {
+      const response = await fetch(CONFIG.chatWebhookUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -503,15 +497,34 @@ MACHINE-READABLE DISPATCH TAG:
       clearTimeout(timeoutId);
 
       if (!response.ok) {
-        throw new Error('Gemini API returned status ' + response.status);
+        throw new Error('Chat proxy gateway returned status ' + response.status);
       }
 
-      const data = await response.json();
-      let rawReply = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      const contentType = response.headers.get('content-type') || '';
+      let rawReply = '';
+
+      if (contentType.includes('application/json')) {
+        const data = await response.json();
+        if (typeof data === 'string') {
+          rawReply = data;
+        } else if (data.reply) {
+          rawReply = data.reply;
+        } else if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
+          rawReply = data.candidates[0].content.parts[0].text;
+        } else if (data.message) {
+          rawReply = data.message;
+        } else if (data.text) {
+          rawReply = data.text;
+        } else {
+          rawReply = JSON.stringify(data);
+        }
+      } else {
+        rawReply = await response.text();
+      }
 
       hideTypingIndicator();
 
-      if (!rawReply) {
+      if (!rawReply || rawReply.trim() === 'Accepted') {
         appendBotMessage("I am analyzing your data architecture. Please share your current platforms or bottleneck.");
         return;
       }
@@ -627,7 +640,8 @@ MACHINE-READABLE DISPATCH TAG:
     console.info(`[Nitin Systems AI Agent] Dispatching ${isUpdate ? 'UPDATED' : 'NEW'} payload to Make.com Webhook:`, payload);
 
     try {
-      await fetch(CONFIG.webhookUrl, {
+      const leadWebhookEndpoint = CONFIG.leadWebhookUrl || CONFIG.webhookUrl;
+      await fetch(leadWebhookEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
