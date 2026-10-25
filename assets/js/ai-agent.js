@@ -26,13 +26,13 @@
 
   // 1. CONFIGURATION & STATE
   const CONFIG = {
-    // Make.com Chat Gateway Proxy Webhook (Private Server-Side Bridge to Gemini)
-    chatWebhookUrl: 'https://hook.eu1.make.com/ock2g4n8klhzpjzyk7eta7o22q9r4443',
+    // Vercel Serverless Edge Gateway (Ultra-Fast Private Proxy to Gemini)
+    chatWebhookUrl: '/api/chat',
     // Make.com Lead Dispatch Webhook (Airtable + HubSpot + Email + Slack Sync)
     leadWebhookUrl: 'https://hook.eu1.make.com/3ydi2fjlxni7qlpdtut2r8phkqinyizp',
     brandName: 'Nitin Systems',
     agentTitle: 'AI Systems Consultant',
-    timeoutMs: 30000,
+    timeoutMs: 15000,
     proactiveDelayMs: 18000
   };
 
