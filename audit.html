@@ -294,6 +294,11 @@
           <textarea required rows="3" name="operational_bottleneck" placeholder="Describe manual steps, dropped leads, or tools that need connecting..." class="form-input" style="padding:0.65rem 0.85rem;font-size:0.84rem;border:1px solid var(--line);border-radius:6px;resize:vertical;"></textarea>
         </div>
 
+        <!-- Client-Side Honeypot Trap (Anti-Bot Perimeter) -->
+        <div style="position: absolute; left: -9999px; top: -9999px; opacity: 0; pointer-events: none;" aria-hidden="true">
+          <input type="text" name="system_security_check" id="system_security_check" tabindex="-1" autocomplete="off" value="" />
+        </div>
+
         <button type="submit" class="btn btn-primary raycast-hover" style="padding:0.95rem;font-size:0.95rem;width:100%;display:flex;align-items:center;justify-content:center;gap:0.45rem;border-radius:8px;background:var(--cobalt);color:#FFFFFF;border:none;cursor:pointer;font-weight:600;box-shadow:0 4px 14px rgba(37,99,235,0.25);">
           <span>Send Project Details</span>
           <span class="arrow-icon">→</span>

@@ -409,11 +409,32 @@ if (document.readyState === 'loading') {
   initAuditServiceDropdown();
 }
 
+// Page-load timestamp for velocity gating (anti-bot perimeter defense)
+const auditFormLoadTime = Date.now();
+
 // Form Submission & Webhook Handler for Audit / Written Inquiry with Triple-Layer Anti-Duplicate Shield
 async function handleAuditSubmit(e) {
   if (e) e.preventDefault();
 
   const form = document.getElementById('audit-form');
+  const honeypot = document.getElementById('system_security_check');
+  const submissionVelocity = Date.now() - auditFormLoadTime;
+
+  // Gate 1: Check Honeypot (Catches DOM autofill bots)
+  if (honeypot && honeypot.value.trim() !== '') {
+    console.warn('[Nitin Systems Security] Bot detected via honeypot. Dropping network request.');
+    if (form) form.reset();
+    window.location.href = '/thank-you';
+    return false;
+  }
+
+  // Gate 2: Check Velocity (Catches instant automated scripts under 2.5 seconds)
+  if (submissionVelocity < 2500) {
+    console.warn('[Nitin Systems Security] Submission velocity too fast (' + submissionVelocity + 'ms). Potential bot. Dropping request.');
+    if (form) form.reset();
+    window.location.href = '/thank-you';
+    return false;
+  }
   const submitBtn = form?.querySelector('button[type="submit"]');
   const projectTypeEl = document.getElementById('audit-project-type');
   const serviceEl = document.getElementById('audit-service');
@@ -485,7 +506,9 @@ async function handleAuditSubmit(e) {
       company_name: company,
       industry_type: industry,
       current_tech_stack: techStack,
-      operational_bottleneck: bottleneck
+      operational_bottleneck: bottleneck,
+      system_security_check: '',
+      origin_token: 'ns_enterprise_secure_token_2026'
     }
   };
 
