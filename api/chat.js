@@ -1,5 +1,5 @@
 /**
- * Nitin Systems - Serverless AI Chat Gateway (Vercel Edge / Serverless Function)
+ * Nitin Systems - Serverless AI Chat Gateway (Vercel Serverless Function)
  * Endpoint: /api/chat
  * Security: Private server-side execution. API Key is stored in Vercel Environment Variables.
  */
@@ -26,7 +26,16 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { user_message, system_prompt, contents } = req.body || {};
+    let body = req.body;
+    if (typeof body === 'string') {
+      try {
+        body = JSON.parse(body);
+      } catch (e) {
+        body = {};
+      }
+    }
+
+    const { user_message, system_prompt, contents } = body || {};
 
     // Build the contents array for Gemini
     let formattedContents = [];
@@ -60,8 +69,8 @@ export default async function handler(req, res) {
       }
     };
 
-    // Google Gemini 3.8 Flash Endpoint with zero thinking budget for sub-1s latency
-    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`;
+    // Google Gemini 2.5 Flash Endpoint with zero thinking budget for sub-second responses
+    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 12000);
@@ -78,10 +87,15 @@ export default async function handler(req, res) {
     clearTimeout(timeout);
 
     if (!geminiRes.ok) {
-      const errData = await geminiRes.json().catch(() => ({}));
-      return res.status(geminiRes.status).json({
-        error: errData.error?.message || 'Gemini API returned error status ' + geminiRes.status
-      });
+      const errText = await geminiRes.text();
+      let errMessage = 'Gemini API returned error status ' + geminiRes.status;
+      try {
+        const errJson = JSON.parse(errText);
+        errMessage = errJson.error?.message || errMessage;
+      } catch (e) {
+        errMessage = errText || errMessage;
+      }
+      return res.status(geminiRes.status).json({ error: errMessage });
     }
 
     const data = await geminiRes.json();
