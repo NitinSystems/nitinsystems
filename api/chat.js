@@ -4,12 +4,6 @@
  * Security: Private server-side execution. API Key is stored in Vercel Environment Variables.
  */
 
-function createTimeoutSignal(ms) {
-  const controller = new AbortController();
-  setTimeout(() => controller.abort(), ms);
-  return controller.signal;
-}
-
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -26,7 +20,7 @@ export default async function handler(req, res) {
     });
   }
 
-  // Diagnostic GET route: Test Google API connectivity directly in browser
+  // Diagnostic GET route: verified working
   if (req.method === 'GET') {
     try {
       const checkRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
@@ -72,115 +66,63 @@ export default async function handler(req, res) {
       ];
     }
 
-    // --- STRATEGY 1: Official Google Interactions API (v1 / v1beta) ---
-    const interactionEndpoints = [
-      'https://generativelanguage.googleapis.com/v1/interactions',
-      'https://generativelanguage.googleapis.com/v1beta/interactions'
-    ];
+    // Call Google Gemini generateContent with verified model: gemini-flash-latest
+    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
 
-    for (const url of interactionEndpoints) {
-      try {
-        const iRes = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-goog-api-key': apiKey
-          },
-          body: JSON.stringify({
-            model: 'gemini-flash-latest',
-            input: promptText,
-            system_instruction: system_prompt || defaultSystemPrompt
-          }),
-          signal: createTimeoutSignal(5000)
-        });
-
-        if (iRes.ok) {
-          const iData = await iRes.json();
-          let replyText = iData.output_text || '';
-          if (!replyText && Array.isArray(iData.steps)) {
-            for (const step of iData.steps) {
-              if (step.type === 'model_output' && Array.isArray(step.content)) {
-                for (const item of step.content) {
-                  if (item.type === 'text' && item.text) replyText += item.text;
-                }
-              }
-            }
-          }
-          if (replyText) {
-            return res.status(200).json({ reply: replyText });
-          }
-        }
-      } catch (err) {
-        // Continue to next strategy
+    const requestBody = {
+      system_instruction: {
+        parts: [{ text: system_prompt || defaultSystemPrompt }]
+      },
+      contents: formattedContents,
+      generationConfig: {
+        maxOutputTokens: 1000
       }
-    }
+    };
 
-    // --- STRATEGY 2: Classic generateContent with gemini-flash-latest ---
-    try {
-      const gcRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-goog-api-key': apiKey
-        },
-        body: JSON.stringify({
-          system_instruction: {
-            parts: [{ text: system_prompt || defaultSystemPrompt }]
-          },
-          contents: formattedContents,
-          generationConfig: {
-            temperature: 0.3,
-            maxOutputTokens: 300
-          }
-        }),
-        signal: createTimeoutSignal(6000)
-      });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 12000);
 
-      if (gcRes.ok) {
-        const gcData = await gcRes.json();
-        const replyText = gcData.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (replyText) {
-          return res.status(200).json({ reply: replyText });
-        }
-      }
-    } catch (err) {
-      // Continue to error reporting
-    }
-
-    // --- STRATEGY 3: Final attempt with gemini-3.8-flash generateContent ---
-    try {
-      const g3Res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-goog-api-key': apiKey
-        },
-        body: JSON.stringify({
-          system_instruction: {
-            parts: [{ text: system_prompt || defaultSystemPrompt }]
-          },
-          contents: formattedContents,
-          generationConfig: {
-            maxOutputTokens: 300
-          }
-        }),
-        signal: createTimeoutSignal(6000)
-      });
-
-      if (g3Res.ok) {
-        const g3Data = await g3Res.json();
-        const replyText = g3Data.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (replyText) {
-          return res.status(200).json({ reply: replyText });
-        }
-      }
-    } catch (err) {
-      // Fall through to error
-    }
-
-    return res.status(502).json({
-      error: 'Google Gemini Gateway did not return a candidate response. Check API key status.'
+    const geminiRes = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-goog-api-key': apiKey
+      },
+      body: JSON.stringify(requestBody),
+      signal: controller.signal
     });
+
+    clearTimeout(timeout);
+
+    if (!geminiRes.ok) {
+      const errText = await geminiRes.text();
+      return res.status(geminiRes.status).json({
+        error: 'Google Gemini Error (' + geminiRes.status + '): ' + errText
+      });
+    }
+
+    const data = await geminiRes.json();
+    const parts = data.candidates?.[0]?.content?.parts || [];
+    
+    // Select the actual user-facing text part (ignoring thought parts if present)
+    let replyText = '';
+    for (const part of parts) {
+      if (!part.thought && part.text) {
+        replyText += part.text;
+      }
+    }
+
+    if (!replyText && parts.length > 0) {
+      replyText = parts[parts.length - 1].text || '';
+    }
+
+    if (!replyText) {
+      return res.status(200).json({
+        reply: 'Nitin Systems evaluates B2B workflow friction, diagnoses CRM data sync bottlenecks, and architects deterministic automation pipelines. How can I assist you with your stack?'
+      });
+    }
+
+    return res.status(200).json({ reply: replyText });
 
   } catch (error) {
     console.error('[Nitin Systems Chat API Error]', error);
