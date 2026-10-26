@@ -64,16 +64,16 @@ export default async function handler(req, res) {
         temperature: 0.3,
         maxOutputTokens: 300,
         thinkingConfig: {
-          thinkingBudget: 0
+          thinkingLevel: "low"
         }
       }
     };
 
-    // Google Gemini 2.5 Flash Endpoint with zero thinking budget for sub-second responses
-    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+    // Official Google Gemini 3.8 Flash Endpoint with low thinking level for high-speed response
+    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`;
 
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 12000);
+    const timeout = setTimeout(() => controller.abort(), 20000);
 
     const geminiRes = await fetch(endpoint, {
       method: 'POST',
