@@ -37,71 +37,97 @@ export default async function handler(req, res) {
 
     const { user_message, system_prompt, contents } = body || {};
 
-    // Build the contents array for Gemini
-    let formattedContents = [];
-    if (Array.isArray(contents) && contents.length > 0) {
-      formattedContents = contents;
-    } else {
-      formattedContents = [
-        {
-          role: 'user',
-          parts: [{ text: user_message || 'Hello' }]
-        }
-      ];
-    }
-
     const defaultSystemPrompt = 
       'You are the Nitin Systems AI Systems Consultant. ' +
       'You evaluate B2B workflow friction, diagnose CRM data sync bottlenecks, and architect deterministic automation pipelines. ' +
       'Keep answers concise, authoritative, and practical (2 to 3 sentences maximum).';
 
-    const requestBody = {
-      system_instruction: {
-        parts: [{ text: system_prompt || defaultSystemPrompt }]
-      },
-      contents: formattedContents,
-      generationConfig: {
-        temperature: 0.3,
-        maxOutputTokens: 300,
-        thinkingConfig: {
-          thinkingLevel: "low"
-        }
-      }
+    const promptText = user_message || (Array.isArray(contents) && contents.length > 0 ? contents[contents.length - 1]?.parts?.[0]?.text : 'Hello');
+
+    // 1. Primary: Official Google Gemini Interactions API (GA for gemini-3.8-flash)
+    const interactionEndpoint = `https://generativelanguage.googleapis.com/v1/interactions?key=${apiKey}`;
+    const interactionBody = {
+      model: 'gemini-3.8-flash',
+      input: promptText || 'Hello',
+      system_instruction: system_prompt || defaultSystemPrompt
     };
 
-    // Official Google Gemini 3.8 Flash Endpoint with low thinking level for high-speed response
-    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`;
-
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 20000);
+    const timeout = setTimeout(() => controller.abort(), 12000);
 
-    const geminiRes = await fetch(endpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(requestBody),
-      signal: controller.signal
-    });
-
+    let geminiRes;
+    try {
+      geminiRes = await fetch(interactionEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(interactionBody),
+        signal: controller.signal
+      });
+    } catch (fetchErr) {
+      geminiRes = { ok: false, status: 504, errMessage: fetchErr.message };
+    }
     clearTimeout(timeout);
 
-    if (!geminiRes.ok) {
-      const errText = await geminiRes.text();
-      let errMessage = 'Gemini API returned error status ' + geminiRes.status;
-      try {
-        const errJson = JSON.parse(errText);
-        errMessage = errJson.error?.message || errMessage;
-      } catch (e) {
-        errMessage = errText || errMessage;
+    // If Interactions API succeeded
+    if (geminiRes && geminiRes.ok) {
+      const data = await geminiRes.json();
+      let replyText = data.output_text || '';
+      if (!replyText && Array.isArray(data.steps)) {
+        for (const step of data.steps) {
+          if (step.type === 'model_output' && Array.isArray(step.content)) {
+            for (const item of step.content) {
+              if (item.type === 'text' && item.text) {
+                replyText += item.text;
+              }
+            }
+          }
+        }
       }
-      return res.status(geminiRes.status).json({ error: errMessage });
+      if (replyText) {
+        return res.status(200).json({ reply: replyText });
+      }
     }
 
-    const data = await geminiRes.json();
-    const replyText = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    // 2. Fallback: If Interactions returned non-200, try generateContent with gemini-2.5-flash-lite
+    let initialError = '';
+    if (geminiRes && typeof geminiRes.text === 'function') {
+      initialError = await geminiRes.text().catch(() => '');
+    } else if (geminiRes && geminiRes.errMessage) {
+      initialError = geminiRes.errMessage;
+    }
 
-    return res.status(200).json({ reply: replyText });
+    const fallbackEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`;
+    const fallbackBody = {
+      contents: [
+        {
+          role: 'user',
+          parts: [{ text: (system_prompt || defaultSystemPrompt) + '\n\nUser Question: ' + (promptText || 'Hello') }]
+        }
+      ]
+    };
+
+    try {
+      const fallbackRes = await fetch(fallbackEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(fallbackBody)
+      });
+
+      if (fallbackRes.ok) {
+        const fbData = await fallbackRes.json();
+        const fbReply = fbData.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (fbReply) {
+          return res.status(200).json({ reply: fbReply });
+        }
+      }
+    } catch (fbErr) {
+      // Fallback failed as well
+    }
+
+    // Return detailed error so we can diagnose immediately
+    return res.status(geminiRes?.status || 500).json({
+      error: 'Gemini Gateway Error: ' + (initialError || 'Interaction failed')
+    });
 
   } catch (error) {
     console.error('[Nitin Systems Chat API Error]', error);
