@@ -633,7 +633,9 @@ MACHINE-READABLE DISPATCH TAG:
         industry_type: extracted.industry_type || 'B2B Enterprise',
         current_tech_stack: extracted.current_tech_stack || 'Undisclosed Stack',
         operational_bottleneck: extracted.operational_bottleneck || 'Workflow friction diagnosed via AI Agent',
-        conversation_transcript: formattedTranscript
+        conversation_transcript: formattedTranscript,
+        system_security_check: '',
+        origin_token: 'ns_enterprise_secure_token_2026'
       }
     };
 
