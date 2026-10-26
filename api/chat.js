@@ -1,8 +1,22 @@
 /**
- * Nitin Systems - Resilient Serverless AI Chat Gateway (Vercel Function)
+ * Nitin Systems - 24/7 Resilient AI Chat Gateway (Cascading Failover Architecture)
  * Endpoint: /api/chat
- * Security: Private server-side execution. API Key is stored in Vercel Environment Variables.
+ * Security: Private server-side execution. API Key stored in Vercel Environment Variables.
  */
+
+function extractCandidateText(data) {
+  const parts = data.candidates?.[0]?.content?.parts || [];
+  let text = '';
+  for (const part of parts) {
+    if (!part.thought && part.text) {
+      text += part.text;
+    }
+  }
+  if (!text && parts.length > 0) {
+    text = parts[parts.length - 1].text || '';
+  }
+  return text.trim();
+}
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -20,7 +34,7 @@ export default async function handler(req, res) {
     });
   }
 
-  // Diagnostic GET route: verified working
+  // Diagnostic GET route: Ping to verify Google connection and available models
   if (req.method === 'GET') {
     try {
       const checkRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
@@ -66,10 +80,7 @@ export default async function handler(req, res) {
       ];
     }
 
-    // Call Google Gemini generateContent with verified model: gemini-flash-latest
-    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
-
-    const requestBody = {
+    const requestPayload = {
       system_instruction: {
         parts: [{ text: system_prompt || defaultSystemPrompt }]
       },
@@ -79,55 +90,60 @@ export default async function handler(req, res) {
       }
     };
 
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 12000);
+    // 24/7 Cascading Failover Models (Ordered by reliability & capacity)
+    const modelCandidates = [
+      'gemini-flash-lite-latest',
+      'gemini-2.5-flash-lite',
+      'gemini-flash-latest'
+    ];
 
-    const geminiRes = await fetch(endpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-goog-api-key': apiKey
-      },
-      body: JSON.stringify(requestBody),
-      signal: controller.signal
-    });
+    let finalReply = '';
+    let lastError = null;
 
-    clearTimeout(timeout);
+    for (const model of modelCandidates) {
+      try {
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 6000);
 
-    if (!geminiRes.ok) {
-      const errText = await geminiRes.text();
-      return res.status(geminiRes.status).json({
-        error: 'Google Gemini Error (' + geminiRes.status + '): ' + errText
-      });
-    }
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-goog-api-key': apiKey
+          },
+          body: JSON.stringify(requestPayload),
+          signal: controller.signal
+        });
 
-    const data = await geminiRes.json();
-    const parts = data.candidates?.[0]?.content?.parts || [];
-    
-    // Select the actual user-facing text part (ignoring thought parts if present)
-    let replyText = '';
-    for (const part of parts) {
-      if (!part.thought && part.text) {
-        replyText += part.text;
+        clearTimeout(timeout);
+
+        if (response.ok) {
+          const data = await response.json();
+          const candidateText = extractCandidateText(data);
+          if (candidateText) {
+            finalReply = candidateText;
+            break; // Successfully answered, exit failover pool immediately
+          }
+        } else {
+          lastError = `Model ${model} returned status ${response.status}`;
+        }
+      } catch (err) {
+        lastError = `Model ${model} request error: ${err.message}`;
       }
     }
 
-    if (!replyText && parts.length > 0) {
-      replyText = parts[parts.length - 1].text || '';
+    // Emergency graceful response if Google experiences a global outage
+    if (!finalReply) {
+      finalReply = 'Nitin Systems evaluates B2B workflow friction, diagnoses CRM data sync bottlenecks, and architects deterministic automation pipelines. Please share your current software stack and work email to begin your systems roadmap.';
     }
 
-    if (!replyText) {
-      return res.status(200).json({
-        reply: 'Nitin Systems evaluates B2B workflow friction, diagnoses CRM data sync bottlenecks, and architects deterministic automation pipelines. How can I assist you with your stack?'
-      });
-    }
-
-    return res.status(200).json({ reply: replyText });
+    return res.status(200).json({ reply: finalReply });
 
   } catch (error) {
     console.error('[Nitin Systems Chat API Error]', error);
-    return res.status(500).json({
-      error: 'Chat Gateway Exception: ' + (error.message || 'Internal error')
+    return res.status(200).json({
+      reply: 'Nitin Systems evaluates B2B workflow friction, diagnoses CRM data sync bottlenecks, and architects deterministic automation pipelines. How can I assist you with your stack?'
     });
   }
 }
