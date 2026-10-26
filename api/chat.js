@@ -18,10 +18,10 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed. Use POST.' });
   }
 
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.AI_AGENT_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
   if (!apiKey) {
     return res.status(500).json({
-      error: 'GEMINI_API_KEY environment variable is not configured in Vercel.'
+      error: 'GEMINI_API_KEY or AI_AGENT_GEMINI_API_KEY environment variable is not configured in Vercel.'
     });
   }
 
