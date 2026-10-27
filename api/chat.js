@@ -92,9 +92,9 @@ export default async function handler(req, res) {
 
     // 24/7 Cascading Failover Models (Ordered by reliability & capacity)
     const modelCandidates = [
+      'gemini-flash-latest',
       'gemini-flash-lite-latest',
-      'gemini-2.5-flash-lite',
-      'gemini-flash-latest'
+      'gemini-2.5-flash'
     ];
 
     let finalReply = '';
@@ -104,7 +104,7 @@ export default async function handler(req, res) {
       try {
         const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 12000);
+        const timeout = setTimeout(() => controller.abort(), 10000);
 
         const response = await fetch(endpoint, {
           method: 'POST',

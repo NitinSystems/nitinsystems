@@ -32,7 +32,7 @@
     leadWebhookUrl: 'https://hook.eu1.make.com/3ydi2fjlxni7qlpdtut2r8phkqinyizp',
     brandName: 'Nitin Systems',
     agentTitle: 'AI Systems Consultant',
-    timeoutMs: 15000,
+    timeoutMs: 25000,
     proactiveDelayMs: 18000
   };
 
@@ -92,11 +92,14 @@ CONVERSATIONAL PACING (CRITICAL - NO ROBOTIC REPETITION):
 - Follow a natural 3-Phase Flow:
   Phase 1: Answer the visitor's question directly, thoroughly, and authoritatively.
   Phase 2: Ask 1 relevant diagnostic follow-up question regarding their current stack, software tools, or transaction volume.
-  Phase 3: ONLY propose Nitin Mishra's 24-hour written roadmap and invite them to share their work email AFTER the visitor describes their specific operational bottleneck, OR when they ask for pricing, an audit, or how to proceed.
+  Phase 3: Once the visitor shares their operational bottleneck, software friction, or asks how to proceed:
+    1. Deliver a crisp 2-sentence systems diagnosis explaining why their data flow is failing.
+    2. Propose Nitin Mishra's custom 24-hour systems architecture roadmap and invite them to confirm their details in the intake card below.
+    3. MANDATORY: Append the machine-readable intake tag: [SHOW_INTAKE_CARD: {"full_name": "...", "company_name": "...", "industry_type": "...", "current_tech_stack": "...", "operational_bottleneck": "..."}] with whatever details you have extracted from the conversation.
 
-LEAD CAPTURE & CONTACT QUALIFICATION:
-- When the visitor qualifies for a systems review, invite them to share their direct work email address so Nitin Mishra can prepare and send their custom 24-hour systems architecture roadmap.
-- In your dialogue, simply ask for their "work email address" or "direct email".
+QUALIFICATION & IN-CHAT INTAKE CARD RULES:
+- When presenting the roadmap, DO NOT ask them to type their email or details manually into chat dialogue. The embedded intake card handles all capture.
+- If the visitor also writes their work email in chat dialogue, you MUST emit [DISPATCH_LEAD: {...}] with their work_email.
 - NEVER leak technical or formatting instructions (such as "containing an '@' symbol" or "jisme '@' ho") into client dialogue. Speak naturally and professionally.
 
 PRICING & COMMERCIAL BOUNDARIES:
@@ -478,10 +481,10 @@ MACHINE-READABLE DISPATCH TAG:
     showTypingIndicator();
 
     try {
-      // Sliding Context Window: Cap sent history to the last 10 messages (5 user turns + 5 assistant turns)
+      // Sliding Context Window: Cap sent history to the last 6 messages (3 user turns + 3 assistant turns)
       // while keeping the master system prompt intact. This eliminates token bloat and keeps latency under 2 seconds!
-      const slidingContents = state.history.length > 10 
-        ? state.history.slice(-10) 
+      const slidingContents = state.history.length > 6 
+        ? state.history.slice(-6) 
         : state.history;
 
       const requestBody = {
@@ -567,6 +570,19 @@ MACHINE-READABLE DISPATCH TAG:
         role: 'model',
         parts: [{ text: visibleReply }]
       });
+
+      // Dual-Layer Card Interceptor (Fail-safe Determinism):
+      // If the LLM omitted the tag but the conversation indicates roadmap presentation or contact capture,
+      // extract parameters from history and mount the card immediately!
+      const lowerReply = visibleReply.toLowerCase();
+      const indicatesRoadmap = lowerReply.includes('roadmap') || 
+                               lowerReply.includes('24-hour') || 
+                               lowerReply.includes('work email') || 
+                               lowerReply.includes('intake card');
+
+      if (!cardData && indicatesRoadmap && !state.dispatchedEmail) {
+        cardData = extractContextFromHistory();
+      }
 
       if (cardData && !state.dispatchedEmail) {
         renderIntakeCard(cardData);
@@ -722,6 +738,57 @@ MACHINE-READABLE DISPATCH TAG:
     }, 400);
   }
 
+  // Context extraction helper from conversation history (Dual-Layer Fallback)
+  function extractContextFromHistory() {
+    let company = '';
+    let stack = '';
+    let bottleneck = '';
+    let name = '';
+
+    for (const msg of state.history) {
+      if (msg.role === 'user') {
+        const text = msg.parts?.[0]?.text || '';
+
+        // Match company pattern e.g. "at Vance Capital", "at Apex Freight", "company is ..."
+        const compMatch = text.match(/\b(?:at|for|company is|firm is)\s+([A-Z][A-Za-z0-9\s&]+?)(?=[,\.]|\s+we|\s+our|\s+and|$)/i);
+        if (compMatch && !company) {
+          company = compMatch[1].trim();
+        }
+
+        // Match tools
+        const tools = [];
+        const knownTools = ['HubSpot', 'Salesforce', 'Stripe', 'QuickBooks', 'NetSuite', 'Make', 'Zapier', 'Airtable', 'Zoho', 'Xero', 'Shopify', 'PostgreSQL', 'MySQL'];
+        for (const t of knownTools) {
+          if (new RegExp('\\b' + t + '\\b', 'i').test(text) && !tools.includes(t)) {
+            tools.push(t);
+          }
+        }
+        if (tools.length > 0 && !stack) {
+          stack = tools.join(', ');
+        }
+
+        // Match bottleneck sentence
+        if (!bottleneck && (text.toLowerCase().includes('bottleneck') || text.toLowerCase().includes('sync') || text.toLowerCase().includes('duplicate') || text.toLowerCase().includes('friction') || text.toLowerCase().includes('manual') || text.toLowerCase().includes('delay'))) {
+          bottleneck = text.replace(/[\r\n]+/g, ' ').slice(0, 140);
+        }
+
+        // Match name
+        const nameMatch = text.match(/\b(?:my name is|i am|this is)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\b/i);
+        if (nameMatch && !name) {
+          name = nameMatch[1].trim();
+        }
+      }
+    }
+
+    return {
+      full_name: name || '',
+      company_name: company || '',
+      industry_type: 'B2B Enterprise',
+      current_tech_stack: stack || 'Enterprise Stack',
+      operational_bottleneck: bottleneck || 'Cross-system data sync and reconciliation friction'
+    };
+  }
+
   // 9. METHOD B: IN-CHAT INTERACTIVE INTAKE CARD RENDERER
   function renderIntakeCard(cardData) {
     const container = document.getElementById('ns-agent-messages');
@@ -817,6 +884,8 @@ MACHINE-READABLE DISPATCH TAG:
         cardRow.style.opacity = '0.6';
         cardRow.style.pointerEvents = 'none';
         submitBtn.innerHTML = '<span>Roadmap Dispatched &check;</span>';
+
+        appendBotMessage("Your 24-hour systems architecture roadmap request has been logged. Nitin Mishra is reviewing your stack and operational bottleneck.");
       });
     }
   }
