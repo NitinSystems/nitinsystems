@@ -121,6 +121,14 @@ LANGUAGE ENGINE (PER-TURN DYNAMIC ADAPTATION):
 - Isolated Latin words, single tech terms, or abbreviations (e.g., "Joydec", "CRM", "Make", "Zapier"): ALWAYS default to English.
 - English Translation Gate: All values extracted inside the [DISPATCH_LEAD] JSON block MUST be translated into clean English for backend processing.
 
+QUALIFICATION & IN-CHAT INTAKE CARD PROTOCOL (METHOD B):
+- When the visitor qualifies for a systems review (describes their operational bottleneck, shares software stack friction, or asks for pricing, an audit, or how to proceed):
+  1. Provide a concise 2-sentence preliminary diagnosis explaining the architectural root-cause of their friction.
+  2. State that Nitin Mishra prepares a custom 24-hour systems architecture roadmap, and invite them to review their intake card below or share their direct work email.
+  3. Append the tag: [SHOW_INTAKE_CARD: {"full_name": "...", "company_name": "...", "industry_type": "...", "current_tech_stack": "...", "operational_bottleneck": "..."}] with whatever details you have extracted from the conversation.
+  4. If email is not yet provided, do NOT emit [DISPATCH_LEAD]. Emit [SHOW_INTAKE_CARD] instead!
+- If the visitor explicitly types their work email in chat (before or after seeing the card), you MUST also emit [DISPATCH_LEAD: {...}] with their work_email.
+
 MACHINE-READABLE DISPATCH TAG:
 - Only append the [DISPATCH_LEAD: {...}] tag when the visitor has explicitly provided a real work email.
 - EMAIL CORRECTIONS & UPDATES: If the visitor subsequently provides an updated, corrected, or replacement email address (e.g., "Wait, typo in my email", "This is the correct email: ..."), you MUST emit the [DISPATCH_LEAD: {...}] tag again with the newly corrected work_email, preserving all known company, stack, and bottleneck details.
@@ -532,21 +540,39 @@ MACHINE-READABLE DISPATCH TAG:
       // Hard filter: Intercept and convert any em-dash or en-dash to standard hyphen
       rawReply = rawReply.replace(/[\u2014\u2013]/g, ' - ');
 
+      // Check for [SHOW_INTAKE_CARD: {...}] tag (Method B Hybrid UI)
+      const cardMatch = rawReply.match(/\[SHOW_INTAKE_CARD:\s*({.*?})\]/s);
       // Check for [DISPATCH_LEAD: {...}] tag
       const dispatchMatch = rawReply.match(/\[DISPATCH_LEAD:\s*({.*?})\]/s);
 
       let visibleReply = rawReply;
+      let cardData = null;
+
+      if (cardMatch) {
+        visibleReply = visibleReply.replace(/\[SHOW_INTAKE_CARD:\s*{.*?}\]/s, '').trim();
+        try {
+          cardData = JSON.parse(cardMatch[1]);
+        } catch (e) {
+          console.warn('[Nitin Systems AI Agent] Error parsing intake card tag:', e);
+        }
+      }
 
       if (dispatchMatch) {
-        visibleReply = rawReply.replace(/\[DISPATCH_LEAD:\s*{.*?}\]/s, '').trim();
+        visibleReply = visibleReply.replace(/\[DISPATCH_LEAD:\s*{.*?}\]/s, '').trim();
+      }
 
-        appendBotMessage(visibleReply);
+      appendBotMessage(visibleReply);
 
-        state.history.push({
-          role: 'model',
-          parts: [{ text: visibleReply }]
-        });
+      state.history.push({
+        role: 'model',
+        parts: [{ text: visibleReply }]
+      });
 
+      if (cardData && !state.dispatchedEmail) {
+        renderIntakeCard(cardData);
+      }
+
+      if (dispatchMatch) {
         try {
           const leadData = JSON.parse(dispatchMatch[1]);
           const candidateEmail = (leadData.work_email || '').trim().toLowerCase();
@@ -562,13 +588,6 @@ MACHINE-READABLE DISPATCH TAG:
         } catch (e) {
           console.warn('[Nitin Systems AI Agent] Error parsing lead dispatch tag:', e);
         }
-      } else {
-        appendBotMessage(visibleReply);
-
-        state.history.push({
-          role: 'model',
-          parts: [{ text: visibleReply }]
-        });
       }
 
     } catch (err) {
@@ -625,7 +644,8 @@ MACHINE-READABLE DISPATCH TAG:
       source_page: window.location.href || 'https://nitinsystems.com',
       lead_source: 'Website AI Agent',
       lead_data: {
-        service_interest: isUpdate ? 'AI Consultation (Email Updated)' : 'AI Consultative Systems Triage',
+        project_type: extracted.project_type || 'Full-System Architecture Sprint',
+        service_interest: isUpdate ? 'AI Consultation (Email Updated)' : (extracted.service_interest || 'AI Consultative Systems Triage'),
         full_name: extracted.full_name || 'Inbound Prospect',
         work_email: candidateEmail,
         previous_email: previousEmail,
@@ -700,6 +720,105 @@ MACHINE-READABLE DISPATCH TAG:
       }
       container.scrollTop = container.scrollHeight;
     }, 400);
+  }
+
+  // 9. METHOD B: IN-CHAT INTERACTIVE INTAKE CARD RENDERER
+  function renderIntakeCard(cardData) {
+    const container = document.getElementById('ns-agent-messages');
+    if (!container) return;
+
+    // Check if card already exists in DOM
+    const existing = document.getElementById('ns-interactive-intake-card');
+    if (existing) existing.remove();
+
+    const nameVal = (cardData.full_name || '').trim();
+    const companyVal = (cardData.company_name || '').trim();
+    const stackVal = (cardData.current_tech_stack || '').trim();
+    const bottleneckVal = (cardData.operational_bottleneck || '').trim();
+
+    const cardRow = document.createElement('div');
+    cardRow.id = 'ns-interactive-intake-card';
+    cardRow.className = 'ns-message-row ns-message-bot';
+    cardRow.innerHTML = `
+      <div class="ns-intake-card">
+        <div class="ns-intake-card-header">
+          <span class="ns-intake-card-title">24h Systems Architecture Roadmap</span>
+          <span class="ns-intake-card-badge">Founder Review</span>
+        </div>
+        <div class="ns-intake-fields">
+          <div class="ns-intake-row">
+            <div class="ns-intake-group">
+              <label>Full Name *</label>
+              <input type="text" id="ns-card-name" class="ns-intake-input" placeholder="Your Name" value="${nameVal.replace(/"/g, '&quot;')}">
+            </div>
+            <div class="ns-intake-group">
+              <label>Direct Work Email *</label>
+              <input type="email" id="ns-card-email" class="ns-intake-input" placeholder="name@company.com" value="">
+            </div>
+          </div>
+          <div class="ns-intake-row">
+            <div class="ns-intake-group">
+              <label>Company Name</label>
+              <input type="text" id="ns-card-company" class="ns-intake-input" placeholder="e.g. Vance Capital" value="${companyVal.replace(/"/g, '&quot;')}">
+            </div>
+            <div class="ns-intake-group">
+              <label>Core Tech Stack</label>
+              <input type="text" id="ns-card-stack" class="ns-intake-input" placeholder="e.g. HubSpot, Stripe, QuickBooks" value="${stackVal.replace(/"/g, '&quot;')}">
+            </div>
+          </div>
+          <div class="ns-intake-group">
+            <label>Operational Bottleneck</label>
+            <input type="text" id="ns-card-bottleneck" class="ns-intake-input" placeholder="Where data is trapped or delayed" value="${bottleneckVal.replace(/"/g, '&quot;')}">
+          </div>
+        </div>
+        <button type="button" id="ns-card-submit-btn" class="ns-intake-submit-btn">
+          <span>Confirm &amp; Dispatch Systems Roadmap (24h SLA) &rarr;</span>
+        </button>
+      </div>
+    `;
+
+    container.appendChild(cardRow);
+    container.scrollTop = container.scrollHeight;
+
+    const submitBtn = cardRow.querySelector('#ns-card-submit-btn');
+    if (submitBtn) {
+      submitBtn.addEventListener('click', () => {
+        const nameInput = cardRow.querySelector('#ns-card-name');
+        const emailInput = cardRow.querySelector('#ns-card-email');
+        const companyInput = cardRow.querySelector('#ns-card-company');
+        const stackInput = cardRow.querySelector('#ns-card-stack');
+        const bottleneckInput = cardRow.querySelector('#ns-card-bottleneck');
+
+        const candidateEmail = (emailInput?.value || '').trim().toLowerCase();
+        if (!candidateEmail || !candidateEmail.includes('@') || candidateEmail.length < 6) {
+          if (emailInput) {
+            emailInput.style.borderColor = '#EF4444';
+            emailInput.focus();
+          }
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Logging into Review Queue...</span>';
+
+        const leadPayload = {
+          full_name: nameInput?.value?.trim() || nameVal || 'Inbound Prospect',
+          work_email: candidateEmail,
+          company_name: companyInput?.value?.trim() || companyVal || 'Enterprise Inquirer',
+          industry_type: cardData.industry_type || 'B2B Enterprise',
+          current_tech_stack: stackInput?.value?.trim() || stackVal || 'Undisclosed Stack',
+          operational_bottleneck: bottleneckInput?.value?.trim() || bottleneckVal || 'Workflow friction diagnosed via AI Agent',
+          project_type: 'Full-System Architecture Sprint',
+          service_interest: 'AI Consultative Systems Triage'
+        };
+
+        triggerWebhookDispatch(leadPayload);
+
+        cardRow.style.opacity = '0.6';
+        cardRow.style.pointerEvents = 'none';
+        submitBtn.innerHTML = '<span>Roadmap Dispatched &check;</span>';
+      });
+    }
   }
 
   // Mount on DOM Ready
