@@ -32,7 +32,7 @@
     leadWebhookUrl: 'https://hook.eu1.make.com/3ydi2fjlxni7qlpdtut2r8phkqinyizp',
     brandName: 'Nitin Systems',
     agentTitle: 'AI Systems Consultant',
-    timeoutMs: 25000,
+    timeoutMs: 30000,
     proactiveDelayMs: 18000
   };
 
@@ -493,19 +493,35 @@ MACHINE-READABLE DISPATCH TAG:
         contents: slidingContents
       };
 
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), CONFIG.timeoutMs);
+      // Gateway fetch helper with dedicated timeout controller
+      async function callChatGateway(payload, timeoutMs) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+        try {
+          const res = await fetch(CONFIG.chatWebhookUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload),
+            signal: controller.signal
+          });
+          clearTimeout(timeoutId);
+          return res;
+        } catch (e) {
+          clearTimeout(timeoutId);
+          throw e;
+        }
+      }
 
-      const response = await fetch(CONFIG.chatWebhookUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(requestBody),
-        signal: controller.signal
-      });
-
-      clearTimeout(timeoutId);
+      let response = null;
+      try {
+        response = await callChatGateway(requestBody, CONFIG.timeoutMs);
+      } catch (firstErr) {
+        console.warn('[Nitin Systems AI Agent] Mobile/first connection hesitated. Executing silent background retry...');
+        // Silent automatic retry for mobile cellular resilience
+        response = await callChatGateway(requestBody, CONFIG.timeoutMs);
+      }
 
       if (!response.ok) {
         throw new Error('Chat proxy gateway returned status ' + response.status);
@@ -613,16 +629,29 @@ MACHINE-READABLE DISPATCH TAG:
       }
 
     } catch (err) {
-      console.error('[Nitin Systems AI Agent Error]', err);
-      // Clean up history so failed, timed-out, or blocked queries do not pollute future turns
-      if (state.history.length > 0 && state.history[state.history.length - 1].role === 'user') {
-        state.history.pop();
-      }
+      console.warn('[Nitin Systems AI Agent Resilient Fallback Activated]', err);
       hideTypingIndicator();
-      appendBotMessage(
-        `Our architectural review queue is operating under high network demand. ` +
-        `You can continue typing, or submit your written scope directly on our <a href="/audit" style="color:#2563EB;text-decoration:underline;">Audit Request Form</a>.`
-      );
+
+      // Consultative Fallback Engine: Never display broken system errors or force visitors off the chat.
+      const context = extractContextFromHistory();
+      const hasContext = Boolean(context.company_name || (context.current_tech_stack && context.current_tech_stack !== 'Enterprise Stack'));
+
+      if (hasContext && !state.dispatchedEmail) {
+        const roadmapNotice = "I am evaluating your workflow and pipeline architecture. Nitin Mishra is preparing your custom 24-hour systems architecture roadmap. Please review your details in the intake card below:";
+        appendBotMessage(roadmapNotice);
+        state.history.push({
+          role: 'model',
+          parts: [{ text: roadmapNotice }]
+        });
+        renderIntakeCard(context);
+      } else {
+        const followUpNotice = "I am evaluating your workflow and pipeline architecture. Could you describe your current software stack or primary data sync bottleneck to continue?";
+        appendBotMessage(followUpNotice);
+        state.history.push({
+          role: 'model',
+          parts: [{ text: followUpNotice }]
+        });
+      }
     } finally {
       state.isThinking = false;
       if (sendBtn) sendBtn.disabled = false;
