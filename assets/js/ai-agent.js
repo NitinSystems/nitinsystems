@@ -578,7 +578,13 @@ MACHINE-READABLE DISPATCH TAG:
       const indicatesRoadmap = lowerReply.includes('roadmap') || 
                                lowerReply.includes('24-hour') || 
                                lowerReply.includes('work email') || 
-                               lowerReply.includes('intake card');
+                               lowerReply.includes('direct email') || 
+                               lowerReply.includes('email address') || 
+                               lowerReply.includes('intake card') || 
+                               lowerReply.includes('intake details') || 
+                               lowerReply.includes('details below') || 
+                               lowerReply.includes('card below') ||
+                               (state.history.length >= 4 && (lowerReply.includes('nitin mishra') || lowerReply.includes('systems architecture')));
 
       if (!cardData && indicatesRoadmap && !state.dispatchedEmail) {
         cardData = extractContextFromHistory();
@@ -846,6 +852,12 @@ MACHINE-READABLE DISPATCH TAG:
 
     container.appendChild(cardRow);
     container.scrollTop = container.scrollHeight;
+    setTimeout(() => {
+      container.scrollTop = container.scrollHeight;
+      try {
+        cardRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } catch (e) {}
+    }, 120);
 
     const submitBtn = cardRow.querySelector('#ns-card-submit-btn');
     if (submitBtn) {
