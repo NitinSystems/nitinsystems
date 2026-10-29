@@ -88,15 +88,15 @@ export default async function handler(req, res) {
       generationConfig: {
         maxOutputTokens: 1000,
         thinkingConfig: {
-          thinkingBudget: 256
+          thinkingBudget: 0
         }
       }
     };
 
     // 24/7 Cascading Failover Models (Ordered by reliability & capacity)
     const modelCandidates = [
-      'gemini-flash-latest',
       'gemini-flash-lite-latest',
+      'gemini-flash-latest',
       'gemini-2.5-flash'
     ];
 
