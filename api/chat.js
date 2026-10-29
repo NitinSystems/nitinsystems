@@ -86,7 +86,10 @@ export default async function handler(req, res) {
       },
       contents: formattedContents,
       generationConfig: {
-        maxOutputTokens: 1000
+        maxOutputTokens: 1000,
+        thinkingConfig: {
+          thinkingBudget: 256
+        }
       }
     };
 
@@ -104,7 +107,7 @@ export default async function handler(req, res) {
       try {
         const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 6000);
+        const timeout = setTimeout(() => controller.abort(), 7000);
 
         const response = await fetch(endpoint, {
           method: 'POST',
@@ -135,7 +138,7 @@ export default async function handler(req, res) {
 
     // Emergency graceful response if Google experiences a global outage
     if (!finalReply) {
-      finalReply = 'Nitin Systems evaluates B2B workflow friction, diagnoses CRM data sync bottlenecks, and architects deterministic automation pipelines. Please share your current software stack and work email to begin your systems roadmap.';
+      finalReply = 'I evaluate B2B workflow friction, diagnose CRM data sync bottlenecks, and architect deterministic automation pipelines. What specific software platforms or operational bottlenecks are you currently experiencing?';
     }
 
     return res.status(200).json({ reply: finalReply });
@@ -143,7 +146,7 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error('[Nitin Systems Chat API Error]', error);
     return res.status(200).json({
-      reply: 'Nitin Systems evaluates B2B workflow friction, diagnoses CRM data sync bottlenecks, and architects deterministic automation pipelines. How can I assist you with your stack?'
+      reply: 'I evaluate B2B workflow friction, diagnose CRM data sync bottlenecks, and architect deterministic automation pipelines. What specific software platforms or operational bottlenecks are you currently experiencing?'
     });
   }
 }

@@ -32,7 +32,7 @@
     leadWebhookUrl: 'https://hook.eu1.make.com/3ydi2fjlxni7qlpdtut2r8phkqinyizp',
     brandName: 'Nitin Systems',
     agentTitle: 'AI Systems Consultant',
-    timeoutMs: 30000,
+    timeoutMs: 18000,
     proactiveDelayMs: 18000
   };
 
@@ -587,6 +587,10 @@ MACHINE-READABLE DISPATCH TAG:
         parts: [{ text: visibleReply }]
       });
 
+      // Turn 2 Guard: The intake card is physically forbidden from mounting on Turn 1.
+      // A visitor must complete at least 2 full messages (Turn 1 inquiry + Turn 2 stack details) before the roadmap card can appear.
+      const hasReachedTurn2 = state.history.length >= 3;
+
       // Dual-Layer Card Interceptor (Fail-safe Determinism):
       // If the LLM omitted the tag but the conversation indicates roadmap presentation or contact capture,
       // extract parameters from history and mount the card immediately!
@@ -602,11 +606,27 @@ MACHINE-READABLE DISPATCH TAG:
                                lowerReply.includes('card below') ||
                                (state.history.length >= 4 && (lowerReply.includes('nitin mishra') || lowerReply.includes('systems architecture')));
 
-      if (!cardData && indicatesRoadmap && !state.dispatchedEmail) {
+      if (!cardData && indicatesRoadmap && hasReachedTurn2 && !state.dispatchedEmail) {
         cardData = extractContextFromHistory();
       }
 
-      if (cardData && !state.dispatchedEmail) {
+      if (cardData) {
+        const historyContext = extractContextFromHistory();
+        if (!cardData.company_name && historyContext.company_name) {
+          cardData.company_name = historyContext.company_name;
+        }
+        if ((!cardData.current_tech_stack || cardData.current_tech_stack === 'Enterprise Stack') && historyContext.current_tech_stack && historyContext.current_tech_stack !== 'Enterprise Stack') {
+          cardData.current_tech_stack = historyContext.current_tech_stack;
+        }
+        if (!cardData.operational_bottleneck && historyContext.operational_bottleneck) {
+          cardData.operational_bottleneck = historyContext.operational_bottleneck;
+        }
+        if (!cardData.full_name && historyContext.full_name) {
+          cardData.full_name = historyContext.full_name;
+        }
+      }
+
+      if (cardData && hasReachedTurn2 && !state.dispatchedEmail) {
         renderIntakeCard(cardData);
       }
 
@@ -633,10 +653,11 @@ MACHINE-READABLE DISPATCH TAG:
       hideTypingIndicator();
 
       // Consultative Fallback Engine: Never display broken system errors or force visitors off the chat.
+      const hasReachedTurn2 = state.history.length >= 3;
       const context = extractContextFromHistory();
       const hasContext = Boolean(context.company_name || (context.current_tech_stack && context.current_tech_stack !== 'Enterprise Stack'));
 
-      if (hasContext && !state.dispatchedEmail) {
+      if (hasReachedTurn2 && hasContext && !state.dispatchedEmail) {
         const roadmapNotice = "I am evaluating your workflow and pipeline architecture. Nitin Mishra is preparing your custom 24-hour systems architecture roadmap. Please review your details in the intake card below:";
         appendBotMessage(roadmapNotice);
         state.history.push({
@@ -785,17 +806,28 @@ MACHINE-READABLE DISPATCH TAG:
         const text = msg.parts?.[0]?.text || '';
 
         // Match company pattern e.g. "at Vance Capital", "at Apex Freight", "company is ..."
-        const compMatch = text.match(/\b(?:at|for|company is|firm is)\s+([A-Z][A-Za-z0-9\s&]+?)(?=[,\.]|\s+we|\s+our|\s+and|$)/i);
+        const compMatch = text.match(/\b(?:at|for|company is|firm is|called|named)\s+([A-Z][A-Za-z0-9\s&]+?)(?=[,\.]|\s+we|\s+our|\s+and|$)/i);
         if (compMatch && !company) {
           company = compMatch[1].trim();
         }
 
         // Match tools
         const tools = [];
-        const knownTools = ['HubSpot', 'Salesforce', 'Stripe', 'QuickBooks', 'NetSuite', 'Make', 'Zapier', 'Airtable', 'Zoho', 'Xero', 'Shopify', 'PostgreSQL', 'MySQL'];
+        const knownTools = [
+          'Shopify Plus', 'Shopify',
+          'QuickBooks Online', 'QuickBooks',
+          'Stripe Billing', 'Stripe',
+          'GoHighLevel', 'GHL',
+          'HubSpot', 'Salesforce', 'NetSuite',
+          'Make', 'Zapier', 'Airtable', 'Zoho', 'Xero',
+          'PostgreSQL', 'MySQL'
+        ];
         for (const t of knownTools) {
-          if (new RegExp('\\b' + t + '\\b', 'i').test(text) && !tools.includes(t)) {
-            tools.push(t);
+          if (new RegExp('\\b' + t + '\\b', 'i').test(text)) {
+            const alreadyCovered = tools.some(existing => existing.toLowerCase().includes(t.toLowerCase()));
+            if (!alreadyCovered) {
+              tools.push(t);
+            }
           }
         }
         if (tools.length > 0 && !stack) {
