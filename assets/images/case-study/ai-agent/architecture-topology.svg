@@ -1,60 +1,60 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 370" fill="none" width="100%" height="100%">
-  <!-- Background -->
+  <!-- Canvas Background -->
   <rect width="940" height="370" rx="10" fill="#0F172A"/>
 
-  <!-- Node 1: Client Browser -->
-  <rect x="25" y="45" width="165" height="95" rx="8" fill="#1E293B" stroke="#3B82F6" stroke-width="1.5"/>
+  <!-- NODE 1: CLIENT RUNTIME (Cobalt Blue) -->
+  <rect x="25" y="45" width="165" height="95" rx="8" fill="#1E293B" stroke="#3B82F6" stroke-width="1.75"/>
   <text x="40" y="72" fill="#3B82F6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace" font-size="10" font-weight="700" letter-spacing="0.05em">01 · CLIENT RUNTIME</text>
   <text x="40" y="96" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">Browser Chat Widget</text>
   <text x="40" y="117" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5">Sliding Window Engine</text>
 
-  <!-- Arrow 1 -> 2 -->
+  <!-- ARROW 1 -> 2: Client Request to Proxy (Dashed Blue) -->
   <line x1="190" y1="92" x2="245" y2="92" stroke="#3B82F6" stroke-width="2" stroke-dasharray="4 4"/>
   <polygon points="245,92 237,87 237,97" fill="#3B82F6"/>
 
-  <!-- Node 2: Private Edge Gateway -->
-  <rect x="245" y="45" width="185" height="95" rx="8" fill="#1E293B" stroke="#3B82F6" stroke-width="1.5"/>
+  <!-- NODE 2: PRIVATE EDGE PROXY (Cobalt Blue) -->
+  <rect x="245" y="45" width="185" height="95" rx="8" fill="#1E293B" stroke="#3B82F6" stroke-width="1.75"/>
   <text x="260" y="72" fill="#3B82F6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace" font-size="10" font-weight="700" letter-spacing="0.05em">02 · PRIVATE PROXY</text>
   <text x="260" y="96" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">Vercel Edge Gateway</text>
   <text x="260" y="117" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5">Serverless /api/chat</text>
 
-  <!-- Arrow 2 -> 3 -->
+  <!-- ARROW 2 -> 3: Edge to Neural Engine (Solid Blue to Green) -->
   <line x1="430" y1="92" x2="485" y2="92" stroke="#3B82F6" stroke-width="2"/>
-  <polygon points="485,92 477,87 477,97" fill="#3B82F6"/>
+  <polygon points="485,92 477,87 477,97" fill="#10B981"/>
 
-  <!-- Node 3: Neural Engine -->
-  <rect x="485" y="45" width="195" height="95" rx="8" fill="#1E293B" stroke="#3B82F6" stroke-width="1.5"/>
-  <text x="500" y="72" fill="#3B82F6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace" font-size="10" font-weight="700" letter-spacing="0.05em">03 · NEURAL ENGINE</text>
+  <!-- NODE 3: NEURAL ENGINE (Emerald Green) -->
+  <rect x="485" y="45" width="195" height="95" rx="8" fill="#1E293B" stroke="#10B981" stroke-width="1.75"/>
+  <text x="500" y="72" fill="#10B981" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace" font-size="10" font-weight="700" letter-spacing="0.05em">03 · NEURAL ENGINE</text>
   <text x="500" y="96" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">Gemini Flash-Lite Tier</text>
   <text x="500" y="117" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5">Cascading Failover Pool</text>
 
-  <!-- Arrow 3 -> 4 (Downward Branch) -->
-  <line x1="582" y1="140" x2="582" y2="190" stroke="#3B82F6" stroke-width="2"/>
-  <polygon points="582,190 577,182 587,182" fill="#3B82F6"/>
+  <!-- ARROW 3 -> 4: Neural Stream to Intent Router (Solid Green to Purple) -->
+  <line x1="582" y1="140" x2="582" y2="190" stroke="#10B981" stroke-width="2"/>
+  <polygon points="582,190 577,182 587,182" fill="#A855F7"/>
 
-  <!-- Node 4: 4-Mode Intent Router -->
-  <rect x="485" y="190" width="195" height="118" rx="8" fill="#1E293B" stroke="#3B82F6" stroke-width="1.5"/>
-  <text x="500" y="214" fill="#3B82F6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace" font-size="10" font-weight="700" letter-spacing="0.05em">04 · LOGIC CONTROL</text>
+  <!-- NODE 4: LOGIC CONTROL (Royal Purple) -->
+  <rect x="485" y="190" width="195" height="118" rx="8" fill="#1E293B" stroke="#A855F7" stroke-width="1.75"/>
+  <text x="500" y="214" fill="#A855F7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace" font-size="10" font-weight="700" letter-spacing="0.05em">04 · LOGIC CONTROL</text>
   <text x="500" y="236" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">4-Mode Intent Router</text>
-  <text x="500" y="257" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5">• FAQ &amp; Capabilities</text>
-  <text x="500" y="274" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5">• Ontological Boundary</text>
-  <text x="500" y="291" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5">• Friction Diagnosis</text>
+  <text x="500" y="257" fill="#CBD5E1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5">• FAQ &amp; Capabilities</text>
+  <text x="500" y="274" fill="#CBD5E1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5">• Ontological Boundary</text>
+  <text x="500" y="291" fill="#CBD5E1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5">• Friction Diagnosis</text>
 
-  <!-- Arrow 4 -> 5 -->
-  <line x1="680" y1="249" x2="735" y2="249" stroke="#3B82F6" stroke-width="2"/>
-  <polygon points="735,249 727,244 727,254" fill="#3B82F6"/>
+  <!-- ARROW 4 -> 5: Intent to Downstream Sync (Solid Green Pipeline) -->
+  <line x1="680" y1="249" x2="735" y2="249" stroke="#10B981" stroke-width="2"/>
+  <polygon points="735,249 727,244 727,254" fill="#10B981"/>
 
-  <!-- Node 5: Downstream Sync -->
-  <rect x="735" y="165" width="180" height="152" rx="8" fill="#1E293B" stroke="#3B82F6" stroke-width="1.5"/>
-  <text x="750" y="190" fill="#3B82F6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace" font-size="10" font-weight="700" letter-spacing="0.05em">05 · DOWNSTREAM SYNC</text>
+  <!-- NODE 5: DOWNSTREAM SYNC (Emerald Green) -->
+  <rect x="735" y="165" width="180" height="152" rx="8" fill="#1E293B" stroke="#10B981" stroke-width="1.75"/>
+  <text x="750" y="190" fill="#10B981" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace" font-size="10" font-weight="700" letter-spacing="0.05em">05 · DOWNSTREAM SYNC</text>
   <text x="750" y="213" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">Make.com Gateway</text>
-  <text x="750" y="235" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5">• Airtable Event Log</text>
-  <text x="750" y="254" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5">• HubSpot CRM Upsert</text>
-  <text x="750" y="273" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5">• Executive Alert Email</text>
-  <text x="750" y="292" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5">• Slack Notification</text>
+  <text x="750" y="235" fill="#CBD5E1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5">• Airtable Event Log</text>
+  <text x="750" y="254" fill="#CBD5E1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5">• HubSpot CRM Upsert</text>
+  <text x="750" y="273" fill="#CBD5E1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5">• Executive Alert Email</text>
+  <text x="750" y="292" fill="#CBD5E1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5">• Slack Notification</text>
 
-  <!-- Loopback from Node 1 to Node 5 -->
+  <!-- LOOPBACK: In-Chat Intake Card Direct Dispatch (Cobalt to Emerald) -->
   <path d="M 107 140 L 107 338 L 825 338 L 825 317" stroke="#3B82F6" stroke-width="1.5" stroke-dasharray="3 3"/>
-  <polygon points="825,317 821,324 829,324" fill="#3B82F6"/>
-  <text x="345" y="354" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace" font-size="10">Direct In-Chat Intake Card Webhook (NS-01 Dispatch)</text>
+  <polygon points="825,317 821,324 829,324" fill="#10B981"/>
+  <text x="340" y="354" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace" font-size="10">Direct In-Chat Intake Card Webhook (NS-01 Dispatch)</text>
 </svg>
