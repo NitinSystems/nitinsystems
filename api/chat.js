@@ -87,17 +87,15 @@ export default async function handler(req, res) {
       contents: formattedContents,
       generationConfig: {
         maxOutputTokens: 1000,
-        thinkingConfig: {
-          thinkingBudget: 0
-        }
+        temperature: 0.7
       }
     };
 
-    // 24/7 Cascading Failover Models (Ordered by reliability & capacity)
+    // 24/7 Cascading Failover Models (Ordered by reliability & stability)
     const modelCandidates = [
-      'gemini-flash-lite-latest',
+      'gemini-2.5-flash',
       'gemini-flash-latest',
-      'gemini-2.5-flash'
+      'gemini-2.5-flash-lite'
     ];
 
     let finalReply = '';
@@ -129,9 +127,12 @@ export default async function handler(req, res) {
             break; // Successfully answered, exit failover pool immediately
           }
         } else {
-          lastError = `Model ${model} returned status ${response.status}`;
+          const errText = await response.text();
+          console.error(`[Nitin Systems Gateway] Model ${model} returned ${response.status}:`, errText);
+          lastError = `Model ${model} returned status ${response.status}: ${errText}`;
         }
       } catch (err) {
+        console.error(`[Nitin Systems Gateway] Model ${model} error:`, err.message);
         lastError = `Model ${model} request error: ${err.message}`;
       }
     }

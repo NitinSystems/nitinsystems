@@ -606,8 +606,12 @@ MACHINE-READABLE DISPATCH TAG:
                                lowerReply.includes('card below') ||
                                (state.history.length >= 4 && (lowerReply.includes('nitin mishra') || lowerReply.includes('systems architecture')));
 
-      if (!cardData && indicatesRoadmap && hasReachedTurn2 && !state.dispatchedEmail) {
-        cardData = extractContextFromHistory();
+      if (!cardData && hasReachedTurn2 && !state.dispatchedEmail) {
+        const historyContext = extractContextFromHistory();
+        const hasToolsOrCompany = Boolean(historyContext.company_name || (historyContext.current_tech_stack && historyContext.current_tech_stack !== 'Enterprise Stack'));
+        if (indicatesRoadmap || hasToolsOrCompany) {
+          cardData = historyContext;
+        }
       }
 
       if (cardData) {
