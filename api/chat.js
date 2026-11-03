@@ -108,11 +108,10 @@ export default async function handler(req, res) {
       }
     };
 
-    // 24/7 Cascading Failover Models (Ordered by reliability & stability)
+    // 24/7 Cascading Failover Models (Verified active quota & sub-second availability)
     const modelCandidates = [
-      'gemini-2.5-flash',
-      'gemini-flash-latest',
-      'gemini-2.5-flash-lite'
+      'gemini-flash-lite-latest',
+      'gemini-3.5-flash-lite'
     ];
 
     let finalReply = '';
