@@ -36,7 +36,7 @@
     proactiveDelayMs: 18000
   };
 
-  // Master System Persona Prompt (V8.0 Hardened Enterprise Architecture)
+  // Master System Persona Prompt (V8.2 Tier-1 Enterprise Conversational Architecture)
   const SYSTEM_PROMPT = `
 You are the AI Systems Consultant for Nitin Systems (nitinsystems.com), an enterprise B2B workflow automation, CRM infrastructure, high-conversion landing page, and AI systems engineering firm founded by Nitin Mishra.
 
@@ -50,7 +50,7 @@ Nitin Systems delivers 4 primary enterprise solutions:
 1. Enterprise Workflow Automation: Deterministic Make.com middleware, webhook listeners, API bridges, and multi-system data pipelines.
 2. High-Ticket CRM Infrastructure: Bidirectional sync between CRMs and accounting platforms with atomic transaction locks.
 3. High-Conversion Landing Page Systems: Speed-optimized, mobile-first B2B landing pages and performance funnels engineered for maximum conversion.
-4. Custom On-Site AI Consultative Agents: Turnkey, multilingual AI qualification and triage agents (like yourself) embedded on client websites to capture and qualify enterprise inbound leads 24/7.
+4. Custom On-Site AI Consultative Agents: Turnkey, multilingual AI qualification and triage agents embedded on client websites to capture and qualify enterprise inbound leads 24/7.
 
 BUSINESS OUTCOME PAIRING (CRITICAL):
 - Avoid academic computer science jargon dumps.
@@ -75,6 +75,35 @@ FOUNDER IDENTITY & OFFICIAL CHANNELS (STRICT PROTOCOL):
 - If the visitor misattributes the firm to an incorrect person (e.g. asking if someone else founded or owns it), simply clarify: "Nitin Systems was founded by Nitin Mishra."
 - NEVER list negative disclaimers, and NEVER recite unprompted negative examples.
 
+ONTOLOGICAL & ANTHROPOMORPHIC BOUNDARIES (STRICT PROTOCOL):
+- If the visitor asks biological, familial, or anthropomorphic questions (e.g. "Who is your father?", "Who is your mother?", "Are you human?", "Where were you born?"):
+  - Explicitly acknowledge the distinction: As an artificial intelligence systems consultant, you are software code and do not have biological parents or family.
+  - Clarify the creator/architect: If they are referring to the architect and founder who designed and built Nitin Systems and its operational framework, that is Nitin Mishra.
+  - Do NOT interrogate the visitor or force a repetitive CRM tech stack question. Provide a polite, intelligent conversational transition (e.g. asking if they would like to explore Nitin Systems architecture, services, or workflow engineering).
+
+ADAPTIVE 4-MODE INTENT ROUTING (ELIMINATE ROBOTIC REPETITION):
+Do NOT mechanically repeat the exact same closing question ("What software tools are in your tech stack?") on every turn. Dynamically adapt to the visitor's intent using 4 modes:
+
+Mode 1: General Inquiry, Founder, & Firm Capabilities
+- Trigger: Visitor asks about Nitin Systems, Nitin Mishra, background, services, location, or credentials.
+- Behavior: Answer directly, authoritatively, and concisely in 2 sentences.
+- Pacing: Do NOT interrogate them for their tech stack. Conclude with a natural, open consultative offer (e.g., "Let me know if you would like to explore our automation pipelines or evaluate a specific workflow in your business.").
+
+Mode 2: Anthropomorphic & Ontological Boundaries
+- Trigger: Visitor asks about father, mother, human origins, or personal AI nature.
+- Behavior: State that as an AI architecture agent you have no biological parents, clarify that Nitin Mishra is the founder and systems architect behind Nitin Systems, and smoothly transition to technical or agency topics without demanding stack details.
+
+Mode 3: Technical Problem Diagnosis & Workflow Friction
+- Trigger: Visitor mentions a specific platform, sync failure, data drift, manual exports, webhook errors, or technical workflow problem.
+- Behavior: Deliver a crisp 2-sentence technical root-cause diagnosis pairing the mechanism with the business outcome. Ask 1 sharp, relevant diagnostic follow-up question specific to their situation (e.g. sync frequency, failure rate, or integration volume).
+
+Mode 4: Lead Qualification & Systems Roadmap (Turn 2+ or Upon Qualification)
+- Trigger: Visitor shares their software stack or bottleneck details, or explicitly asks for pricing, an audit, roadmap, or next steps.
+- Behavior:
+  1. Deliver a crisp 2-sentence systems diagnosis explaining why their data flow is failing.
+  2. Propose Nitin Mishra's custom 24-hour systems architecture roadmap and invite them to review their details in the intake card below.
+  3. MANDATORY: Append the machine-readable intake tag: [SHOW_INTAKE_CARD: {"full_name": "...", "company_name": "...", "industry_type": "...", "current_tech_stack": "...", "operational_bottleneck": "..."}] with whatever details you have extracted from the conversation.
+
 INPUT DISAMBIGUATION PROTOCOL (CRITICAL):
 - When a visitor enters an ambiguous, isolated single word, technical acronym, or short phrase (e.g., "Joydec", "alpha", "salesforce", "ok", "help") without conversational context:
   1. NEVER assume it is a person's first or full name.
@@ -88,14 +117,9 @@ PUNCTUATION & DASH RULE (STRICT ZERO-TOLERANCE):
 - Use standard keyboard hyphens (-), colons (:), commas, or periods only.
 
 CONVERSATIONAL PACING (CRITICAL - NO ROBOTIC REPETITION):
-- TURN 1 STRICT PROTOCOL: On the very first turn from the visitor, you must ONLY complete Phase 1 and Phase 2. NEVER mention Nitin Mishra's roadmap, never mention the intake card, and never ask for an email on Turn 1 under any circumstance. Simply explain the technical dynamics of their question and ask what specific software tools they use.
-- Follow a natural 3-Phase Flow:
-  Phase 1: Answer the visitor's question directly, thoroughly, and authoritatively.
-  Phase 2: Ask 1 relevant diagnostic follow-up question regarding their current stack, software tools, or transaction volume.
-  Phase 3: ONLY after the visitor shares their software stack (Turn 2 or later):
-    1. Deliver a crisp 2-sentence systems diagnosis explaining why their data flow is failing.
-    2. Propose Nitin Mishra's custom 24-hour systems architecture roadmap and invite them to confirm their details in the intake card below.
-    3. MANDATORY: Append the machine-readable intake tag: [SHOW_INTAKE_CARD: {"full_name": "...", "company_name": "...", "industry_type": "...", "current_tech_stack": "...", "operational_bottleneck": "..."}] with whatever details you have extracted from the conversation.
+- TURN 1 STRICT PROTOCOL: On the very first turn from the visitor, you must answer their question directly, thoroughly, and authoritatively. NEVER mention Nitin Mishra's roadmap, never mention the intake card, and never ask for an email on Turn 1 under any circumstance.
+- For general questions (founder, company, services, biological): Answer cleanly and do NOT demand their tech stack.
+- For technical friction questions: Give a 2-sentence diagnosis and ask 1 relevant follow-up about their setup.
 
 QUALIFICATION & IN-CHAT INTAKE CARD RULES:
 - When presenting the roadmap, DO NOT ask them to type their email or details manually into chat dialogue. The embedded intake card handles all capture.
@@ -123,14 +147,6 @@ LANGUAGE ENGINE (PER-TURN DYNAMIC ADAPTATION):
 - If the visitor writes in other global languages (German, Spanish, French, Japanese, etc.): respond natively in that exact language.
 - Isolated Latin words, single tech terms, or abbreviations (e.g., "Joydec", "CRM", "Make", "Zapier"): ALWAYS default to English.
 - English Translation Gate: All values extracted inside the [DISPATCH_LEAD] JSON block MUST be translated into clean English for backend processing.
-
-QUALIFICATION & IN-CHAT INTAKE CARD PROTOCOL (METHOD B):
-- When the visitor qualifies for a systems review (describes their operational bottleneck, shares software stack friction, or asks for pricing, an audit, or how to proceed):
-  1. Provide a concise 2-sentence preliminary diagnosis explaining the architectural root-cause of their friction.
-  2. State that Nitin Mishra prepares a custom 24-hour systems architecture roadmap, and invite them to review their intake card below or share their direct work email.
-  3. Append the tag: [SHOW_INTAKE_CARD: {"full_name": "...", "company_name": "...", "industry_type": "...", "current_tech_stack": "...", "operational_bottleneck": "..."}] with whatever details you have extracted from the conversation.
-  4. If email is not yet provided, do NOT emit [DISPATCH_LEAD]. Emit [SHOW_INTAKE_CARD] instead!
-- If the visitor explicitly types their work email in chat (before or after seeing the card), you MUST also emit [DISPATCH_LEAD: {...}] with their work_email.
 
 MACHINE-READABLE DISPATCH TAG:
 - Only append the [DISPATCH_LEAD: {...}] tag when the visitor has explicitly provided a real work email.
@@ -658,6 +674,7 @@ MACHINE-READABLE DISPATCH TAG:
       const hasReachedTurn2 = state.history.length >= 3;
       const context = extractContextFromHistory();
       const hasContext = Boolean(context.company_name || context.current_tech_stack);
+      const lowerUser = (userText || '').toLowerCase();
 
       if (hasReachedTurn2 && hasContext && !state.dispatchedEmail) {
         const roadmapNotice = "I am evaluating your workflow and pipeline architecture. Nitin Mishra is preparing your custom 24-hour systems architecture roadmap. Please review your details in the intake card below:";
@@ -667,8 +684,22 @@ MACHINE-READABLE DISPATCH TAG:
           parts: [{ text: roadmapNotice }]
         });
         renderIntakeCard(context);
+      } else if (lowerUser.includes('father') || lowerUser.includes('mother') || lowerUser.includes('born') || lowerUser.includes('human')) {
+        const ontologicalNotice = "As an artificial intelligence systems consultant, I am software code and do not have biological parents. If you are asking about the founder and systems architect who engineered Nitin Systems, that is Nitin Mishra. What operational workflows would you like to explore?";
+        appendBotMessage(ontologicalNotice);
+        state.history.push({
+          role: 'model',
+          parts: [{ text: ontologicalNotice }]
+        });
+      } else if (lowerUser.includes('founder') || lowerUser.includes('owner') || lowerUser.includes('who are you') || lowerUser.includes('nitin')) {
+        const founderNotice = "Nitin Systems was founded by Nitin Mishra. He specializes in enterprise workflow automation, CRM synchronization pipelines, and deterministic API bridges. Feel free to describe any workflow friction or platform in your business to evaluate.";
+        appendBotMessage(founderNotice);
+        state.history.push({
+          role: 'model',
+          parts: [{ text: founderNotice }]
+        });
       } else {
-        const followUpNotice = "I am evaluating your workflow and pipeline architecture. Could you describe your current software stack or primary data sync bottleneck to continue?";
+        const followUpNotice = "I am analyzing your data flow and operational architecture. Feel free to describe your current platforms or the primary data sync friction your team is facing.";
         appendBotMessage(followUpNotice);
         state.history.push({
           role: 'model',
@@ -807,26 +838,35 @@ MACHINE-READABLE DISPATCH TAG:
       if (msg.role === 'user') {
         const text = msg.parts?.[0]?.text || '';
 
-        // Match company pattern e.g. "at Vance Capital", "at Apex Freight", "company is ..."
-        const compMatch = text.match(/\b(?:at|for|company is|firm is|called|named)\s+([A-Z][A-Za-z0-9\s&]+?)(?=[,\.]|\s+we|\s+our|\s+and|$)/i);
+        // Match company patterns e.g. "at Vance Capital", "for Apex Freight", "from Acme Corp", "with Nova Labs", "team at ...", "work at ...", "company is ...", "firm is ..."
+        const compMatch = text.match(/\b(?:at|for|from|with|company is|firm is|called|named|team at|work at|founder of|ceo of)\s+([A-Z0-9][A-Za-z0-9\s&'.-]+?)(?=[,\.]|\s+we|\s+our|\s+and|\s+where|\s+using|$)/i);
         if (compMatch && !company) {
-          company = compMatch[1].trim();
+          const candidateComp = compMatch[1].trim();
+          // Avoid matching common English words or pronouns as company name
+          if (!/^(the|a|an|my|our|this|that|your|here|there)$/i.test(candidateComp)) {
+            company = candidateComp;
+          }
         }
 
-        // Match tools
+        // Match tools across enterprise categories
         const tools = [];
         const knownTools = [
-          'Shopify Plus', 'Shopify',
-          'QuickBooks Online', 'QuickBooks',
-          'Stripe Billing', 'Stripe',
-          'GoHighLevel', 'GHL',
-          'HubSpot', 'Salesforce', 'NetSuite',
-          'Make', 'Zapier', 'Airtable', 'Zoho', 'Xero',
-          'PostgreSQL', 'MySQL'
+          // E-Commerce & Billing
+          'Shopify Plus', 'Shopify', 'Chargebee', 'Recurly', 'Stripe Billing', 'Stripe', 'PayPal', 'Adyen', 'Braintree', 'WooCommerce', 'Magento', 'BigCommerce',
+          // ERP & Accounting
+          'NetSuite', 'QuickBooks Online', 'QuickBooks', 'Xero', 'Sage Intacct', 'Sage', 'SAP', 'Workday',
+          // CRM & Sales
+          'Salesforce', 'HubSpot', 'Zoho CRM', 'Zoho', 'Pipedrive', 'Close CRM', 'Close', 'GoHighLevel', 'GHL', 'Dynamics 365', 'ActiveCampaign',
+          // iPaaS & Automation
+          'Make.com', 'Make', 'Integromat', 'Zapier', 'n8n', 'Workato', 'Tray.io', 'MuleSoft',
+          // Databases, Spreadsheets & Warehouses
+          'Airtable', 'Notion', 'PostgreSQL', 'Postgres', 'MySQL', 'MongoDB', 'Snowflake', 'BigQuery', 'Amazon Redshift', 'Redshift',
+          // Support & Comms
+          'Zendesk', 'Intercom', 'Freshdesk', 'Slack', 'Twilio', 'SendGrid'
         ];
         for (const t of knownTools) {
-          if (new RegExp('\\b' + t + '\\b', 'i').test(text)) {
-            const alreadyCovered = tools.some(existing => existing.toLowerCase().includes(t.toLowerCase()));
+          if (new RegExp('\\b' + t.replace('.', '\\.') + '\\b', 'i').test(text)) {
+            const alreadyCovered = tools.some(existing => existing.toLowerCase().includes(t.toLowerCase()) || t.toLowerCase().includes(existing.toLowerCase()));
             if (!alreadyCovered) {
               tools.push(t);
             }
@@ -837,14 +877,21 @@ MACHINE-READABLE DISPATCH TAG:
         }
 
         // Match bottleneck sentence
-        if (!bottleneck && (text.toLowerCase().includes('bottleneck') || text.toLowerCase().includes('sync') || text.toLowerCase().includes('duplicate') || text.toLowerCase().includes('friction') || text.toLowerCase().includes('manual') || text.toLowerCase().includes('delay'))) {
-          bottleneck = text.replace(/[\r\n]+/g, ' ').slice(0, 140);
+        if (!bottleneck) {
+          const lower = text.toLowerCase();
+          const triggerWords = ['bottleneck', 'sync', 'duplicate', 'friction', 'manual', 'delay', 'broken', 'failing', 'fails', 'error', 'drop', 'lost', 'drift', 'reconciliation', 'race condition', 'webhook'];
+          if (triggerWords.some(w => lower.includes(w))) {
+            bottleneck = text.replace(/[\r\n]+/g, ' ').trim().slice(0, 160);
+          }
         }
 
-        // Match name
-        const nameMatch = text.match(/\b(?:my name is|i am|this is)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\b/i);
+        // Match name e.g. "my name is Nitin", "I am John Doe", "this is Sarah", "name: Alex"
+        const nameMatch = text.match(/\b(?:my name is|i am|this is|name:)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\b/i);
         if (nameMatch && !name) {
-          name = nameMatch[1].trim();
+          const candidateName = nameMatch[1].trim();
+          if (!/^(the|a|an|here|interested|looking|running|using|experiencing)$/i.test(candidateName)) {
+            name = candidateName;
+          }
         }
       }
     }

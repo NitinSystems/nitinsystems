@@ -81,7 +81,10 @@ export default async function handler(req, res) {
     const defaultSystemPrompt = 
       'You are the Nitin Systems AI Systems Consultant. ' +
       'You evaluate B2B workflow friction, diagnose CRM data sync bottlenecks, and architect deterministic automation pipelines. ' +
-      'Keep answers concise, authoritative, and practical (2 to 3 sentences maximum).';
+      'Keep answers concise, authoritative, and practical (2 to 3 sentences maximum). ' +
+      'Nitin Systems was founded by Nitin Mishra. ' +
+      'If asked biological or personal questions like who is your father or mother, clarify that as an AI you have no biological parents, and that Nitin Mishra is the founder and systems architect who engineered Nitin Systems. ' +
+      'Do not repetitively interrogate the user with the exact same tech stack question on every turn.';
 
     const promptText = user_message || (Array.isArray(contents) && contents.length > 0 ? contents[contents.length - 1]?.parts?.[0]?.text : 'Hello');
 
@@ -153,9 +156,16 @@ export default async function handler(req, res) {
       }
     }
 
-    // Emergency graceful response if Google experiences a global outage
+    // Emergency graceful response if Google experiences an outage or quota limit
     if (!finalReply) {
-      finalReply = 'I evaluate B2B workflow friction, diagnose CRM data sync bottlenecks, and architect deterministic automation pipelines. What specific software platforms or operational bottlenecks are you currently experiencing?';
+      const lowerPrompt = (promptText || '').toLowerCase();
+      if (lowerPrompt.includes('father') || lowerPrompt.includes('mother') || lowerPrompt.includes('parent') || lowerPrompt.includes('human')) {
+        finalReply = 'As an artificial intelligence systems consultant, I am software code and do not have biological parents. Nitin Mishra is the founder and enterprise systems architect who created Nitin Systems. What workflow systems or architecture would you like to explore?';
+      } else if (lowerPrompt.includes('founder') || lowerPrompt.includes('owner') || lowerPrompt.includes('who are you') || lowerPrompt.includes('who is nitin')) {
+        finalReply = 'Nitin Systems was founded by Nitin Mishra. He is an enterprise systems architect specializing in deterministic API bridges, CRM synchronization, and webhook infrastructure. Feel free to describe any workflow challenges your team is encountering.';
+      } else {
+        finalReply = 'I evaluate B2B workflow friction, diagnose CRM data sync bottlenecks, and architect deterministic automation pipelines. Feel free to describe your current platforms or operational challenges to evaluate.';
+      }
     }
 
     return res.status(200).json({ 
@@ -165,8 +175,15 @@ export default async function handler(req, res) {
 
   } catch (error) {
     console.error('[Nitin Systems Chat API Error]', error);
+    const lowerReq = (req.body?.user_message || '').toLowerCase();
+    let emergencyReply = 'I evaluate B2B workflow friction, diagnose CRM data sync bottlenecks, and architect deterministic automation pipelines. Feel free to describe your current platforms or operational challenges to evaluate.';
+    if (lowerReq.includes('father') || lowerReq.includes('mother') || lowerReq.includes('human')) {
+      emergencyReply = 'As an artificial intelligence systems consultant, I am software code and do not have biological parents. Nitin Mishra is the founder and enterprise systems architect who created Nitin Systems. What workflow systems or architecture would you like to explore?';
+    } else if (lowerReq.includes('founder') || lowerReq.includes('owner') || lowerReq.includes('nitin')) {
+      emergencyReply = 'Nitin Systems was founded by Nitin Mishra. He is an enterprise systems architect specializing in deterministic API bridges, CRM synchronization, and webhook infrastructure.';
+    }
     return res.status(200).json({
-      reply: 'I evaluate B2B workflow friction, diagnose CRM data sync bottlenecks, and architect deterministic automation pipelines. What specific software platforms or operational bottlenecks are you currently experiencing?',
+      reply: emergencyReply,
       debugCatch: error.message
     });
   }
