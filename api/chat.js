@@ -34,9 +34,26 @@ export default async function handler(req, res) {
     });
   }
 
-  // Diagnostic GET route: Ping to verify Google connection and available models
+  // Diagnostic GET route: Ping to verify Google connection and available models, or test generation
   if (req.method === 'GET') {
     try {
+      if (req.query && req.query.test) {
+        const testModel = req.query.model || 'gemini-2.5-flash';
+        const testRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${testModel}:generateContent?key=${apiKey}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: 'Who is your founder?' }] }]
+          })
+        });
+        const testData = await testRes.text();
+        return res.status(200).json({
+          model: testModel,
+          status: testRes.status,
+          googleResponse: testData
+        });
+      }
+
       const checkRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
       const checkData = await checkRes.json();
       return res.status(checkRes.status).json(checkData);
@@ -142,12 +159,16 @@ export default async function handler(req, res) {
       finalReply = 'I evaluate B2B workflow friction, diagnose CRM data sync bottlenecks, and architect deterministic automation pipelines. What specific software platforms or operational bottlenecks are you currently experiencing?';
     }
 
-    return res.status(200).json({ reply: finalReply });
+    return res.status(200).json({ 
+      reply: finalReply,
+      debugError: lastError
+    });
 
   } catch (error) {
     console.error('[Nitin Systems Chat API Error]', error);
     return res.status(200).json({
-      reply: 'I evaluate B2B workflow friction, diagnose CRM data sync bottlenecks, and architect deterministic automation pipelines. What specific software platforms or operational bottlenecks are you currently experiencing?'
+      reply: 'I evaluate B2B workflow friction, diagnose CRM data sync bottlenecks, and architect deterministic automation pipelines. What specific software platforms or operational bottlenecks are you currently experiencing?',
+      debugCatch: error.message
     });
   }
 }
