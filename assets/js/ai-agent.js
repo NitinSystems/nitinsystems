@@ -32,7 +32,7 @@
     leadWebhookUrl: 'https://hook.eu1.make.com/3ydi2fjlxni7qlpdtut2r8phkqinyizp',
     brandName: 'Nitin Systems',
     agentTitle: 'AI Systems Consultant',
-    timeoutMs: 18000,
+    timeoutMs: 8000,
     proactiveDelayMs: 18000
   };
 
@@ -592,34 +592,31 @@ MACHINE-READABLE DISPATCH TAG:
       const hasReachedTurn2 = state.history.length >= 3;
 
       // Dual-Layer Card Interceptor (Fail-safe Determinism):
-      // If the LLM omitted the tag but the conversation indicates roadmap presentation or contact capture,
-      // extract parameters from history and mount the card immediately!
+      // The intake card is ONLY for qualifying visitors who have shared actual friction or software tools.
+      // It must NEVER appear for general FAQ or background questions (e.g. "Who is founder?", "What did he do?").
       const lowerReply = visibleReply.toLowerCase();
-      const indicatesRoadmap = lowerReply.includes('roadmap') || 
-                               lowerReply.includes('24-hour') || 
-                               lowerReply.includes('work email') || 
-                               lowerReply.includes('direct email') || 
-                               lowerReply.includes('email address') || 
-                               lowerReply.includes('intake card') || 
-                               lowerReply.includes('intake details') || 
-                               lowerReply.includes('details below') || 
-                               lowerReply.includes('card below') ||
-                               (state.history.length >= 4 && (lowerReply.includes('nitin mishra') || lowerReply.includes('systems architecture')));
+      const historyContext = extractContextFromHistory();
+      const hasActualContext = Boolean(
+        historyContext.company_name || 
+        historyContext.current_tech_stack || 
+        (historyContext.operational_bottleneck && historyContext.operational_bottleneck.length > 10)
+      );
 
-      if (!cardData && hasReachedTurn2 && !state.dispatchedEmail) {
-        const historyContext = extractContextFromHistory();
-        const hasToolsOrCompany = Boolean(historyContext.company_name || (historyContext.current_tech_stack && historyContext.current_tech_stack !== 'Enterprise Stack'));
-        if (indicatesRoadmap || hasToolsOrCompany) {
+      const indicatesRoadmap = lowerReply.includes('systems architecture roadmap') || 
+                               lowerReply.includes('intake card below') || 
+                               lowerReply.includes('card below');
+
+      if (!cardData && hasReachedTurn2 && hasActualContext && !state.dispatchedEmail) {
+        if (indicatesRoadmap || cardMatch) {
           cardData = historyContext;
         }
       }
 
       if (cardData) {
-        const historyContext = extractContextFromHistory();
         if (!cardData.company_name && historyContext.company_name) {
           cardData.company_name = historyContext.company_name;
         }
-        if ((!cardData.current_tech_stack || cardData.current_tech_stack === 'Enterprise Stack') && historyContext.current_tech_stack && historyContext.current_tech_stack !== 'Enterprise Stack') {
+        if (!cardData.current_tech_stack && historyContext.current_tech_stack) {
           cardData.current_tech_stack = historyContext.current_tech_stack;
         }
         if (!cardData.operational_bottleneck && historyContext.operational_bottleneck) {
@@ -630,7 +627,8 @@ MACHINE-READABLE DISPATCH TAG:
         }
       }
 
-      if (cardData && hasReachedTurn2 && !state.dispatchedEmail) {
+      // STRICT GATE: Never render the card unless the visitor has provided real context and reached Turn 2+
+      if (cardData && hasReachedTurn2 && hasActualContext && !state.dispatchedEmail) {
         renderIntakeCard(cardData);
       }
 
@@ -659,7 +657,7 @@ MACHINE-READABLE DISPATCH TAG:
       // Consultative Fallback Engine: Never display broken system errors or force visitors off the chat.
       const hasReachedTurn2 = state.history.length >= 3;
       const context = extractContextFromHistory();
-      const hasContext = Boolean(context.company_name || (context.current_tech_stack && context.current_tech_stack !== 'Enterprise Stack'));
+      const hasContext = Boolean(context.company_name || context.current_tech_stack);
 
       if (hasReachedTurn2 && hasContext && !state.dispatchedEmail) {
         const roadmapNotice = "I am evaluating your workflow and pipeline architecture. Nitin Mishra is preparing your custom 24-hour systems architecture roadmap. Please review your details in the intake card below:";
@@ -855,8 +853,8 @@ MACHINE-READABLE DISPATCH TAG:
       full_name: name || '',
       company_name: company || '',
       industry_type: 'B2B Enterprise',
-      current_tech_stack: stack || 'Enterprise Stack',
-      operational_bottleneck: bottleneck || 'Cross-system data sync and reconciliation friction'
+      current_tech_stack: stack || '',
+      operational_bottleneck: bottleneck || ''
     };
   }
 
