@@ -8,4 +8,4 @@ Disallow: /scratch/
 Disallow: /backups/
 Disallow: /.git/
 
-Sitemap: https://nitinsystems.com/sitemap.xml
+Sitemap: https://www.nitinsystems.com/sitemap.xml
