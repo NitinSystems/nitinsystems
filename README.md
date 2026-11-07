@@ -1,86 +1,106 @@
 # Nitin Systems
 
-> **Founder-Led B2B Automation & Operations Infrastructure**
+> **Founder-Led B2B Automation & Operations Systems**
 
-Nitin Systems is an independent B2B automation systems practice founded and operated directly by **Nitin Mishra**. Designing, architecting, and deploying custom intake landing pages, CRM pipelines, and automated backend workflows for growing service businesses across India, the US, the UK, and Europe.
-
----
-
-## 1. What We Engineer
-
-- **Hand-Coded Intake Landing Pages:** Lightweight, high-conversion frontend interfaces built with semantic HTML5, CSS design tokens, and vanilla JavaScript. Zero page-builder bloat, sub-second load times, and fail-safe webhook form bindings.
-- **Webhook & API Orchestration:** Real-time data routing via Make.com, Zapier, and custom webhooks with automated offline queue failover.
-- **CRM Pipeline Architecture:** Sub-account structure, multi-calendar scheduling, and deal stage automation in GoHighLevel, HubSpot, and Airtable.
-- **Data Hygiene & Duplicate Verification:** Pre-CRM payload normalization, duplicate verification checks, and clean record updates.
-- **AI-Powered Customer Journey Triage:** Multi-scenario recovery workflows, automated team alerts, and lifecycle intent analysis using Make AI Agent.
+Nitin Systems is an independent systems practice founded and operated directly by **Nitin Mishra** (Founder & Automation Systems Specialist). We design, architect, and deliver custom automation workflows, CRM systems, AI-assisted tools, and operational applications for B2B service businesses.
 
 ---
 
-## 2. The Tech Stack
+## 1. Core Service Categories
 
-- **Frontend & Intake Code:** Lightweight Semantic HTML5, Modular CSS3 Design Tokens, Vanilla JavaScript, WebP Assets (Zero framework overhead, 100/100 Lighthouse performance).
-- **Automation & Scenarios:** Make.com, Zapier, Custom Webhooks, REST APIs.
-- **CRM & Relational Databases:** GoHighLevel, Airtable, HubSpot CRM.
-- **AI Infrastructure:** Make AI Agent, Google AI Studio (Gemini API), OpenAI.
-
----
-
-## 3. Systems Architecture & Case Studies
-
-### A. Lead Capture to Booking System
-Direct client implementation for an active B2B AI Automation Agency connecting website intake forms, automated email confirmations, and 2-way Google Calendar scheduling.
-- **Frontend Interface:** Custom conversion landing page with dynamic validation
-- **Backend Stack:** GoHighLevel, Gmail, Google Calendar
-
-### B. Lead Intake & Duplicate Verification System
-A decoupled, event-driven data ingestion pipeline with real-time deduplication and a fail-open resilience architecture.
-- **Pre-Flight Ingestion Middleware:** Executes an asynchronous pre-flight ping via Make.com with an `AbortController` set to a strict 3,000ms timeout. If the validation API experiences latency or network failure, the system fails open with a `Bypassed (Webhook Failure)` state, guaranteeing that a secondary API glitch never freezes the UI or drops an enterprise lead.
-- **24-Hour Delta State Machine:** Evaluates incoming email timestamps against Airtable and HubSpot records. Inquiries submitted within a 24-hour window mount an accessible modal interface allowing the lead to either update their existing request or contact Nitin directly.
-- **Data Hygiene & Protocol Resiliency:** Client emails are normalized (lowercased and trimmed), tagged with system-generated unique hashes (`SUB-[8-char-hex]-[timestamp]`), and transmitted using `keepalive: true` to prevent packet loss upon immediate tab unload.
-- **Decoupled Backend Layers:** Uses Airtable as an upsert audit data lake (single source of truth) while synchronizing contact records and deal properties into HubSpot CRM.
-- **Associated Live Interface & Reference Build:** [https://nitinsystems.github.io/nitinmishra/](https://nitinsystems.github.io/nitinmishra/)
-- **Backend Stack:** Custom Webhooks, Make.com, Airtable, HubSpot CRM
-
-### C. AI Customer Journey Operations & Recovery System
-A 7-scenario architecture case study demonstrating how Make.com, relational Airtable records (across 5 linked tables), and AI intent analysis monitor lifecycle states and route automated recovery actions.
-- **Backend Stack:** Make.com, Make AI Agent, Airtable
+1. **Lead & Customer Management Systems**  
+   Lead capture, qualification, CRM workflows (GoHighLevel, HubSpot), two-way calendar booking, routing, and follow-up.
+2. **Workflow & Operations Automation**  
+   Business process automation, Make.com workflows, custom webhook pipelines, Airtable data management, and system integrations.
+3. **AI-Assisted Operational Systems**  
+   Custom on-site consultative AI agents, prompt routing, task assistance, and AI-supported workflow components.
+4. **Custom Applications & Conversion Systems**  
+   Client-facing booking applications, operational cockpits, internal dashboards, landing pages, and conversion funnels.
 
 ---
 
-## 4. Live Architecture & Deployed Systems
+## 2. Systems Portfolio & Technical Classifications
 
-- **Primary Agency Platform:** [https://nitinsystems.com](https://nitinsystems.com)
-  - Active GitHub Pages Mirror: [https://nitinsystems.github.io/nitinsystems/](https://nitinsystems.github.io/nitinsystems/)
-- **Live Reference System Build:** [https://nitinsystems.github.io/nitinmishra/](https://nitinsystems.github.io/nitinmishra/)
-  - Direct live interface and case study foundation for the Lead Intake & Duplicate Verification pipeline.
-- **Core Route Architecture:**
-  - Services Catalog: [`services.html`](services.html)
-  - Systems Architecture Library: [`systems.html`](systems.html)
-  - Diagnostic Audit Intake: [`audit.html`](audit.html)
-  - Master Design Blueprint: [`MASTER_DESIGN_&_EFFECTS_CATALOG.md`](MASTER_DESIGN_&_EFFECTS_CATALOG.md)
+To maintain factual integrity, all documented builds in this repository are classified according to their actual deployment status:
 
----
+- **System 01: Lead Capture to Booking System (Real-World Implementation)**  
+  A documented real-world implementation featuring lead form capture, two-way Google Calendar synchronization, automated email confirmations, and appointment reminders. The frontend landing page was developed and verified, while email notifications and calendar booking served as the operational core.
+  - *Stack:* GoHighLevel, Google Calendar, Email Notification Triggers.
 
-## 5. Performance, Quality & Accessibility Standards
+- **System 02: Lead Intake & Duplicate Verification System (Self-Initiated Architecture)**  
+  A self-initiated Make.com ingestion architecture with exactly two scenarios. Features email normalization, deduplication checks against existing records, and selective CRM property synchronization.
+  - *Stack:* Custom Webhooks, Make.com (2 Scenarios), Airtable, HubSpot CRM.
 
-- **Pure CSS Hardware-Accelerated Motion:** Following the design engineering standards of Apple, Stripe, and Linear. Zero heavy JavaScript animation libraries (no GSAP, no Framer Motion bloat). All transitions run directly on GPU compositor layers (`transform` and `opacity`), locking performance at 60fps with 0ms execution lag.
-- **Zero-Bloat Frontend Engineering:** Hand-coded semantic structure without third-party page builders. Guarantees sub-second mobile render speeds and zero dropped webhooks.
-- **Accessibility Score:** 100/100 (WCAG compliant sequential heading hierarchy, accessible touch targets, explicit ARIA labels).
-- **SEO & Search Indexing:** Structured JSON-LD schema, canonical indexing, robots.txt, and XML sitemap.
-- **Design Purity:** Strict zero-emoji policy (monochrome SVG vectors only) and clean typography with zero em-dashes.
+- **System 03: Customer Journey Operations System (Architecture Case Study)**  
+  An architecture case study (not a client deployment) modeling a 7-scenario operational workflow in Make.com with relational Airtable tables, monitoring customer lifecycle status and triggering automated recovery actions.
+  - *Stack:* Make.com, Airtable, Scenario Logic.
 
----
+- **System 04: Consultative AI Systems Agent (Demonstrable On-Site Build)**  
+  An on-site consultative AI agent live on `nitinsystems.com`. Built with a sliding-window token memory, strict qualification gate, and direct webhook dispatch to CRM.
+  - *Stack:* Vercel Serverless Function (`/api/chat.js`), Gemini API, Make.com Dispatch Webhook.
 
-## 6. Contact & Operations
-
-- **Founder & Automation Systems Specialist:** Nitin Mishra
-- **Operational Base:** Based in Delhi NCR, India · Operating on IST (UTC+5:30)
-- **Primary Website:** [https://nitinsystems.com](https://nitinsystems.com)
-- **Live Showcase:** [https://nitinsystems.github.io/nitinsystems/](https://nitinsystems.github.io/nitinsystems/)
-- **Email:** [NitinSystems@outlook.com](mailto:NitinSystems@outlook.com)
-- **LinkedIn:** [linkedin.com/in/nitinmishra-me](https://www.linkedin.com/in/nitinmishra-me/)
-- **GitHub:** [github.com/NitinSystems](https://github.com/NitinSystems)
+- **Custom Application: Operations Cockpit (Active Development)**  
+  A proprietary operational interface (`nitin-systems-operations-cockpit.vercel.app`) designed to visualize, monitor, and manage business workflows. Maintained as a custom application capability currently under active development.
 
 ---
 
-© 2026 Nitin Systems - Founder-Led B2B Automation & Operations Systems.
+## 3. Website Route Architecture (14 Production Templates)
+
+The website is composed of 14 clean, standalone HTML templates:
+
+- **Core Authority & Engagement Pages:**
+  - `index.html`: Primary homepage establishing the B2B Automation & Operations Systems category.
+  - `services.html`: Modular breakdown of the four core service capabilities.
+  - `systems.html`: Complete directory of systems proof, case studies, and architecture blueprints.
+  - `approach.html`: Documented 6-milestone engineering and delivery methodology.
+  - `about.html`: Founder narrative, verified credentials, and solo delivery model.
+  - `audit.html`: Diagnostic project scope submission and discovery scheduling.
+  - `insights.html`: Technical dispatches and operational field notes.
+- **Dedicated System Deep Dives:**
+  - `system-lead-capture.html`: Implementation documentation for System 01.
+  - `system-lead-intake.html`: Architecture documentation for System 02.
+  - `system-ai-journey.html`: Case study documentation for System 03.
+  - `system-ai-agent.html`: Case study documentation for System 04.
+- **Utility & Compliance Pages:**
+  - `privacy.html`: Data handling and client confidentiality standards.
+  - `terms.html`: Commercial engagement terms.
+  - `thank-you.html`: Post-submission confirmation.
+
+---
+
+## 4. Technology Stack & Runtime Standards
+
+- **Frontend Architecture:** Semantic HTML5, CSS3 Custom Properties (Design Tokens), Vanilla JavaScript. Built without client-side framework overhead.
+- **Asset Optimization:** Self-hosted preloaded WOFF2 fonts (Inter, Lora, JetBrains Mono) with `font-display: block`. WebP graphics for responsive image loading.
+- **Serverless API Gateway:** `/api/chat.js` running on Vercel Node.js runtime with 30-second execution headroom.
+- **Routing Rules:** Configured via `vercel.json` (`cleanUrls: true`, `trailingSlash: false`).
+
+---
+
+## 5. Analytics, Tag Management & Webhooks
+
+- **Google Tag Platform:** Google Tag Manager container `GTM-N3SKJNR2` integrated across all 14 templates immediately after `<head>`.
+- **Measurement Destination:** Google Analytics 4 Measurement ID `G-093KMV619R` pre-compiled and routed through GTM.
+- **Form Dispatch:** Direct HTTPS POST routing to Make.com webhook endpoints with client-side payload normalization.
+
+---
+
+## 6. Hosting, DNS & Deployment Architecture
+
+- **Primary Production Domain:** `https://www.nitinsystems.com`
+- **Canonical Redirect:** Apex `nitinsystems.com` permanently redirects (308) to `www.nitinsystems.com`.
+- **DNS Provider:** Cloudflare DNS (DNS-only / Grey Cloud mode pointing CNAME to Vercel).
+- **Hosting Platform:** Vercel (Edge network, automated deployments triggered from the `main` Git branch).
+- **Historical Note on GitHub Pages:** Legacy repository URLs (`nitinsystems.github.io/nitinsystems/` and `nitinsystems.github.io/nitinmishra/`) exist as earlier static staging mirrors and are not active production endpoints.
+
+---
+
+## 7. Maintenance & Code Standards
+
+- **Character Encoding:** Strict UTF-8 without BOM. Zero non-ASCII corrupted characters.
+- **Icons & Symbols:** Scalable inline SVGs or standard HTML character entities (`&rarr;`, `&check;`, `&#9662;`).
+- **Deployment Protocol:**
+  1. Test changes locally in a clean preview environment.
+  2. Verify Git diffs to confirm zero unintentional modifications.
+  3. Commit locally to `main`.
+  4. Push origin to trigger the Vercel production deployment.
