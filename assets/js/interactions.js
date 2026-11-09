@@ -541,7 +541,29 @@ async function handleAuditSubmit(e) {
     clearTimeout(timeoutId);
     if (isSuccess) {
       try { localStorage.removeItem('nitin_pending_lead'); } catch(e) {}
-      window.location.href = '/thank-you';
+
+      // Unified GA4 Lead Tracking with Atomic Navigation Guard
+      let hasNavigated = false;
+      const navigateToThankYou = function() {
+        if (!hasNavigated) {
+          hasNavigated = true;
+          window.location.href = '/thank-you';
+        }
+      };
+
+      window.dataLayer = window.dataLayer || [];
+      if (!window.__auditLeadPushed) {
+        window.__auditLeadPushed = true;
+        window.dataLayer.push({ 
+          event: 'lead_capture_success',
+          lead_source: 'audit_form',
+          eventCallback: navigateToThankYou,
+          eventTimeout: 1000
+        });
+      }
+
+      // Fallback timer ensures visitor navigation if GTM is blocked or delayed
+      setTimeout(navigateToThankYou, 1000);
     } else {
       // Offline-Resilient Lead Queue & Email Failover Guard
       try {

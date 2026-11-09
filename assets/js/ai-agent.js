@@ -766,22 +766,46 @@ MACHINE-READABLE DISPATCH TAG:
 
     console.info(`[Nitin Systems AI Agent] Dispatching ${isUpdate ? 'UPDATED' : 'NEW'} payload to Make.com Webhook:`, payload);
 
+    // 6-Second Timeout Guard with AbortController
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 6000);
+    let isSuccess = false;
+
     try {
       const leadWebhookEndpoint = CONFIG.leadWebhookUrl || CONFIG.webhookUrl;
-      await fetch(leadWebhookEndpoint, {
+      const res = await fetch(leadWebhookEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        signal: controller.signal
       });
+      if (res.ok || res.status === 200 || res.status === 204) {
+        isSuccess = true;
+      } else {
+        console.warn('[Nitin Systems AI Agent] Webhook returned non-200 status:', res.status);
+      }
     } catch (e) {
-      console.warn('[Nitin Systems AI Agent] Webhook post delivered with state:', e.name);
+      console.warn('[Nitin Systems AI Agent] Webhook dispatch error:', e.name);
+    } finally {
+      clearTimeout(timeoutId);
     }
 
-    // Render emerald confirmation card or update existing card in-place
-    setTimeout(() => {
+    if (isSuccess) {
+      // Unified GA4 Lead Tracking for Verified AI Inbound Inquiries
+      window.dataLayer = window.dataLayer || [];
+      if (!window.__aiLeadPushed) {
+        window.__aiLeadPushed = true;
+        window.dataLayer.push({ 
+          event: 'lead_capture_success',
+          lead_source: 'ai_agent'
+        });
+      }
+
+      // Render emerald confirmation card or update existing card in-place
+      setTimeout(() => {
       const container = document.getElementById('ns-agent-messages');
       if (!container) return;
 
@@ -825,6 +849,30 @@ MACHINE-READABLE DISPATCH TAG:
       }
       container.scrollTop = container.scrollHeight;
     }, 400);
+
+    } else {
+      // Rollback email dispatch state so visitor can retry
+      state.dispatchedEmail = previousEmail;
+
+      // Re-enable lead intake card submit button if present so visitor can retry
+      const cardSubmitBtn = document.getElementById('ns-card-submit-btn');
+      if (cardSubmitBtn) {
+        cardSubmitBtn.disabled = false;
+        cardSubmitBtn.innerHTML = '<span>Retry Sending Systems Roadmap &rarr;</span>';
+        const cardRow = cardSubmitBtn.closest('.ns-message-row');
+        if (cardRow) {
+          cardRow.style.opacity = '1';
+          cardRow.style.pointerEvents = 'auto';
+        }
+      }
+
+      // Display graceful, recoverable failure prompt in chat (Zero false confirmation)
+      setTimeout(() => {
+        appendBotMessage(
+          "We encountered a temporary network delay reaching our automation webhook. Your details are safely preserved in our chat history. You can click 'Retry' on the card above, or email Nitin Mishra directly at NitinSystems@outlook.com."
+        );
+      }, 400);
+    }
   }
 
   // Context extraction helper from conversation history (Dual-Layer Fallback)
