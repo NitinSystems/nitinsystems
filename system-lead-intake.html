@@ -12,18 +12,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lead Intake & Duplicate Verification System | Nitin Systems</title>
   <link rel="canonical" href="https://www.nitinsystems.com/system-lead-intake" />
-  <meta name="description" content="A self-initiated 2-scenario Make.com ingestion architecture featuring Airtable record matching, email normalization, and selective CRM synchronization." />
+  <meta name="description" content="A self-initiated 2-scenario Make.com lead intake architecture featuring 24-hour Airtable email lookup, duplicate prompt handling, and HubSpot contact synchronization." />
   <meta name="author" content="Nitin Mishra" />
   <meta name="robots" content="index, follow" />
   <!-- Open Graph & Social Cards -->
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Lead Intake & Duplicate Verification System | Nitin Systems Case Study" />
-  <meta property="og:description" content="A self-initiated 2-scenario Make.com ingestion architecture featuring Airtable record matching, email normalization, and selective CRM synchronization." />
+  <meta property="og:description" content="A self-initiated 2-scenario Make.com lead intake architecture featuring 24-hour Airtable email lookup, duplicate prompt handling, and HubSpot contact synchronization." />
   <meta property="og:url" content="https://www.nitinsystems.com/system-lead-intake" />
   <meta property="og:image" content="https://nitinsystems.com/assets/logo/nav-logo.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Lead Intake & Duplicate Verification System | Nitin Systems Case Study" />
-  <meta name="twitter:description" content="A self-initiated 2-scenario Make.com ingestion architecture featuring Airtable record matching, email normalization, and selective CRM synchronization." />
+  <meta name="twitter:description" content="A self-initiated 2-scenario Make.com lead intake architecture featuring 24-hour Airtable email lookup, duplicate prompt handling, and HubSpot contact synchronization." />
   <meta name="twitter:image" content="https://nitinsystems.com/assets/logo/nav-logo.webp" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="48x48" href="/assets/logo/favicon-48x48.png" />
@@ -214,7 +214,7 @@
       <span class="air-word-outer"><span class="air-word-inner air-word-gradient">Duplicate</span></span><span class="air-word-outer"><span class="air-word-inner air-word-gradient">Verification</span></span><span class="air-word-outer"><span class="air-word-inner air-word-gradient">System</span></span>
     </h1>
     <p class="animate-hero-sub" style="font-size:1.05rem;color:var(--ink-soft);line-height:1.7;margin-bottom:1.25rem;">
-      An automated multi-source ingestion pipeline built with Make.com, relational Airtable record matching, and Selective CRM Data Synchronization: eliminating duplicate entries, standardizing contact fields, and routing verified leads in real time.
+      An automated lead intake and duplicate verification workflow built with Make.com, Airtable record lookup, and selective HubSpot contact synchronization: detecting repeat submissions within 24 hours, updating existing records, and sending Outlook notifications automatically.
     </p>
 
     <!-- METRICS & TECH PILLS -->
@@ -222,23 +222,23 @@
       <div class="glass-card" style="padding:1.15rem 1.25rem;background:#FFFFFF;border-left:3px solid var(--cobalt);">
         <div style="font-size:0.65rem;font-family:var(--font-mono);color:var(--ink-muted);text-transform:uppercase;">Ingestion &amp; Routing</div>
         <div style="font-size:1.05rem;font-weight:700;color:var(--ink);margin-top:0.25rem;">Make.com (2 Scenarios)</div>
-        <div style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.2rem;">Multi-source webhook listeners</div>
+        <div style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.2rem;">2 instant custom webhooks</div>
       </div>
       <div class="glass-card" style="padding:1.15rem 1.25rem;background:#FFFFFF;border-left:3px solid var(--cobalt);">
         <div style="font-size:0.65rem;font-family:var(--font-mono);color:var(--ink-muted);text-transform:uppercase;">Deduplication Layer</div>
         <div style="font-size:1.05rem;font-weight:700;color:var(--ink);margin-top:0.25rem;">Airtable Relational DB</div>
-        <div style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.2rem;">Duplicate Prevention & Existing Record Update &amp; secondary index check</div>
+        <div style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.2rem;">24-hour email lookup &amp; duplicate prompt</div>
       </div>
       <div class="glass-card" style="padding:1.15rem 1.25rem;background:#FFFFFF;border-left:3px solid var(--cobalt);">
         <div style="font-size:0.65rem;font-family:var(--font-mono);color:var(--ink-muted);text-transform:uppercase;">Primary CRM</div>
         <div style="font-size:1.05rem;font-weight:700;color:var(--ink);margin-top:0.25rem;">HubSpot CRM Sync</div>
-        <div style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.2rem;">Clean contact &amp; deal association</div>
+        <div style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.2rem;">Selective HubSpot contact sync</div>
       </div>
     </div>
 
     <!-- SCOPE DISCLOSURE -->
     <div class="animate-hero-console" style="margin-top:1.25rem;padding:0.75rem 1.25rem;background:var(--cloud);border:1px dashed var(--line);border-radius:8px;font-size:0.78rem;color:var(--ink-soft);line-height:1.6;">
-      <strong style="color:var(--ink);">Architectural Blueprint:</strong> Engineered as a structured B2B RevOps pipeline resolving multi-channel form submission conflicts and maintaining clean CRM databases.
+      <strong style="color:var(--ink);">Self-Initiated System Design:</strong> Built in a portfolio test environment to prevent duplicate lead entries from repeat form submissions and keep Airtable and HubSpot contact records clean.
     </div>
   </div>
 </section>
@@ -252,12 +252,12 @@
       <span class="badge-pill" style="margin-bottom:0.75rem;">01 THE OPERATIONAL PROBLEM</span>
       <h2 class="section-title shimmer-sweep-title" style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">How Duplicate Leads Break Sales Pipelines</h2>
       <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1rem;">
-        When growing service businesses run ads, webinars, and website forms simultaneously, prospects frequently submit multiple forms with slight variations (e.g., personal vs. work email, formatted vs. raw phone numbers). Without centralized deduplication, CRMs become bloated with duplicate contacts, causing reps to cross wires and send conflicting follow-ups.
+        When prospects submit an intake form more than once within 24 hours, standard automations create duplicate database rows and redundant CRM contacts. Without a pre-submission check and update path, teams lose submission context and trigger repetitive outreach.
       </p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1.25rem;background:var(--cloud);padding:1.25rem;border-radius:8px;">
         <div>
           <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:#F43F5E;"><span style="color:#F43F5E;font-weight:700;margin-right:0.25rem;">✕</span> FRACTURED LEAD HISTORIES</div>
-          <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.6;margin-top:0.25rem;">Deal notes, consultation notes, and form submissions split across multiple records for the same client.</p>
+          <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.6;margin-top:0.25rem;">Repeated inquiry details and form submissions split across duplicate contact records for the same prospect.</p>
         </div>
         <div>
           <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:#F43F5E;"><span style="color:#F43F5E;font-weight:700;margin-right:0.25rem;">✕</span> REVENUE ATTRIBUTION BLIND SPOTS</div>
@@ -271,7 +271,7 @@
       <span class="badge-pill" style="margin-bottom:0.75rem;">02 SYSTEM ARCHITECTURE</span>
       <h2 class="section-title shimmer-sweep-title" style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Unified Multi-Stage Ingestion &amp; Deduplication Architecture</h2>
       <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.5rem;">
-        The system maps the complete ingestion cycle: Inbound Webhook Listener → Normalization Engine → Relational Airtable Match → HubSpot Contact &amp; Deal Router. Click the diagram below to inspect the complete operational blueprint in high resolution:
+        The diagram maps the full operational flow: Intake Form → Pre-Submission Duplicate Check (Scenario 02) → Airtable Record Lookup → Lead Intake &amp; Resubmission Engine (Scenario 01) → HubSpot Contact Sync &amp; Outlook Alerts. Click the diagram below to view it in high resolution:
       </p>
       
       <!-- DIAGRAM PREVIEW CONTAINER -->
@@ -346,7 +346,7 @@
             onclick="openImgModal('Embedded Intake Form UI', 'assets/images/case-study/lead-intake/intake-form.png')"
             class="raycast-hover"
           />
-          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Clean client-facing capture form validating work email, phone number, and service requirements.</p>
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Client-facing split intake form capturing name, email, business type, required help, primary challenge, and current tools.</p>
         </div>
 
         <!-- UI 02: DUPLICATE ALERT -->
@@ -361,7 +361,7 @@
             onclick="openImgModal('Duplicate Submission Detected Alert', 'assets/images/case-study/lead-intake/duplicate-alert-modal.png')"
             class="raycast-hover"
           />
-          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Real-time modal intercepting repeated form submissions gracefully without blocking the prospect.</p>
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Real-time modal triggered when an email matches a submission within the last 24 hours, letting the user update their request, email directly, or cancel.</p>
         </div>
 
         <!-- UI 03: THANK YOU PAGE -->
@@ -401,7 +401,7 @@
       <span class="badge-pill" style="margin-bottom:0.75rem;">04 MAKE.COM AUTOMATION WORKFLOWS</span>
       <h2 class="section-title shimmer-sweep-title" style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Automated Ingestion, Matching &amp; Routing Pipelines</h2>
       <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.5rem;">
-        Engineered with multi-module Make.com scenarios to decouple webhook reception from complex CRM logic and eliminate data loss under traffic surges:
+        Engineered as two separate Make.com scenarios so pre-submission duplicate verification stays decoupled from downstream record updates and email notifications:
       </p>
 
       <!-- SCENARIO INVENTORY OVERVIEW BANNER -->
@@ -418,13 +418,13 @@
           onclick="openImgModal('Make.com Master Scenario Inventory', 'assets/images/case-study/lead-intake/scenario-inventory.png')"
           class="raycast-hover"
         />
-        <p style="font-size:0.78rem;color:var(--ink-soft);margin-top:0.6rem;line-height:1.5;">Overview of active scenario modules handling webhook intake, relational lookup, and downstream CRM updates.</p>
+        <p style="font-size:0.78rem;color:var(--ink-soft);margin-top:0.6rem;line-height:1.5;">Make.com scenario inventory showing the two instant webhook scenarios: Lead Duplicate Verification Engine and Lead Intake &amp; Resubmission Engine.</p>
       </div>
 
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;">
         <!-- SCENARIO 01 -->
         <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
-          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);margin-bottom:0.4rem;">SCENARIO 01 · INTAKE &amp; DATA NORMALIZER</div>
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);margin-bottom:0.4rem;">SCENARIO 01 · LEAD INTAKE &amp; RESUBMISSION ENGINE</div>
           <img 
             src="assets/images/case-study/lead-intake/scenario-01-intake.png" 
             alt="Make.com Lead Intake Automation Scenario" 
@@ -434,12 +434,12 @@
             onclick="openImgModal('Make.com Scenario 01: Lead Intake Engine', 'assets/images/case-study/lead-intake/scenario-01-intake.png')"
             class="raycast-hover"
           />
-          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Ingests inbound payload, cleanses email strings, canonicalizes phone numbers, and registers raw transaction record.</p>
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Receives the submitted lead payload, searches Airtable by email, routes between updating an existing record or creating a new one, syncs selected fields to HubSpot Contacts, and triggers both Outlook emails.</p>
         </div>
 
         <!-- SCENARIO 02 -->
         <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
-          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);margin-bottom:0.4rem;">SCENARIO 02 · DUPLICATE VERIFICATION ENGINE</div>
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);margin-bottom:0.4rem;">SCENARIO 02 · LEAD DUPLICATE VERIFICATION ENGINE</div>
           <img 
             src="assets/images/case-study/lead-intake/scenario-02-duplicate.png" 
             alt="Make.com Duplicate Verification Automation Scenario" 
@@ -449,7 +449,7 @@
             onclick="openImgModal('Make.com Scenario 02: Duplicate Verification Engine', 'assets/images/case-study/lead-intake/scenario-02-duplicate.png')"
             class="raycast-hover"
           />
-          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Executes multi-key relational lookup across canonical email, normalized phone, and domain. If duplicate, updates deal timestamp and appends history; if net-new, creates verified contact and deal.</p>
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Receives the pre-submission lookup webhook, searches Airtable for a matching email within the 24-hour window, and returns a webhook response (Existing Lead Found or New Lead Inquiry) to inform the frontend prompt.</p>
         </div>
       </div>
     </div>
@@ -459,7 +459,7 @@
       <span class="badge-pill" style="margin-bottom:0.75rem;">05 DATABASE GOVERNANCE &amp; CRM SYNC</span>
       <h2 class="section-title shimmer-sweep-title" style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Airtable Relational Index &amp; HubSpot CRM Verification</h2>
       <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.5rem;">
-        Live database records confirming clean relational normalization across Airtable and synchronized HubSpot CRM pipelines:
+        Sample portfolio records confirming Airtable intake storage and selective field synchronization into HubSpot Contacts:
       </p>
 
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem;">
@@ -475,7 +475,7 @@
             onclick="openImgModal('Airtable Relational Database Index', 'assets/images/case-study/lead-intake/airtable-records.png')"
             class="raycast-hover"
           />
-          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Structured 3-table index maintaining raw ingest log, verified master contacts, and duplicate audit ledger.</p>
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Airtable table (Nitin-Mishra-Portfolio-Leads-Table) storing submitted lead fields along with duplicate decision and duplicate check source tracking.</p>
         </div>
 
         <!-- HUBSPOT CRM -->
@@ -490,7 +490,7 @@
             onclick="openImgModal('HubSpot CRM Verified Contact Records', 'assets/images/case-study/lead-intake/hubspot-crm-records.png')"
             class="raycast-hover"
           />
-          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Synced HubSpot CRM contacts with verified lifecycle stages, custom intake properties, and deal association.</p>
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Synced HubSpot CRM contacts populated with selected intake properties (Business Type, Service Type, Lead Challenge, and Tools Used), without duplicate contacts.</p>
         </div>
       </div>
     </div>
@@ -500,7 +500,7 @@
       <span class="badge-pill" style="margin-bottom:0.75rem;">06 VERIFIED PROOF &amp; CASE STUDY</span>
       <h2 class="section-title shimmer-sweep-title" style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Notification Proof &amp; Full System Documentation</h2>
       <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.5rem;">
-        Automated communication triggers informing both the internal sales team and the prospective client, paired with the comprehensive PDF case study:
+        Automated Outlook notifications for internal review and prospect confirmation, paired with the full system case study:
       </p>
 
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-bottom:2rem;">
@@ -516,7 +516,7 @@
             onclick="openImgModal('Internal Sales Notification Email Alert', 'assets/images/case-study/lead-intake/email-internal-alert.png')"
             class="raycast-hover"
           />
-          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Automated team alert delivered with prospect qualification data, duplicate status, and direct CRM record link.</p>
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Automated Outlook alert delivered to Nitin Systems with submitted prospect details and a View Contact in CRM action button.</p>
         </div>
 
         <!-- EMAIL PROOF 02 -->
@@ -531,20 +531,20 @@
             onclick="openImgModal('Prospect Confirmation Email Proof', 'assets/images/case-study/lead-intake/email-client-confirmation.png')"
             class="raycast-hover"
           />
-          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Clean auto-responder sent to the lead acknowledging their inquiry with personalized intake confirmation details.</p>
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Outlook confirmation email sent to the prospect summarizing their inquiry details with a Book Discovery Call button.</p>
         </div>
       </div>
 
       <!-- TECHNICAL CASE STUDY DOWNLOAD CTA -->
       <div style="background:var(--cloud);padding:1.75rem;border-radius:8px;border:1px solid var(--line);text-align:center;">
         <span class="badge-pill" style="margin-bottom:0.5rem;display:inline-flex;">COMPLETE SPECIFICATION</span>
-        <h3 style="font-size:1.25rem;color:var(--ink);margin:0.25rem 0 0.5rem 0;">Download Full Technical Case Study Document</h3>
+        <h3 style="font-size:1.25rem;color:var(--ink);margin:0.25rem 0 0.5rem 0;">Read the Complete Case Study Document</h3>
         <p style="font-size:0.85rem;color:var(--ink-soft);max-width:540px;margin:0 auto 1.25rem auto;line-height:1.6;">
-          Read the complete 12-page systems document covering Make.com webhook security, Airtable normalization scripts, and duplicate detection benchmarks.
+          Explore the complete 14-page visual case study covering the intake journey, both Make.com scenarios, Airtable and HubSpot sync, and Outlook notifications.
         </p>
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.85rem;">
           <a href="assets/images/case-study/lead-intake/case-study-lead-intake.pdf" target="_blank" class="btn btn-primary raycast-hover" style="padding:0.75rem 1.75rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;">
-            <span>Open Technical Case Study PDF</span>
+            <span>Read Case Study PDF</span>
             <span class="arrow-icon">↗</span>
           </a>
         </div>
@@ -556,17 +556,17 @@
       <span class="badge-pill" style="margin-bottom:0.75rem;">EXPLORE OTHER SYSTEMS</span>
       <h2 style="font-size:1.35rem;color:var(--ink);margin-bottom:0.5rem;">Related Production Systems &amp; Case Studies</h2>
       <p style="font-size:0.88rem;color:var(--ink-soft);margin-bottom:1.5rem;line-height:1.6;">
-        Explore other active client implementations and AI-assisted lifecycle recovery blueprints:
+        Explore other automation builds and lifecycle workflow systems:
       </p>
 
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;">
         <!-- SYSTEM 01 -->
         <div class="glass-card raycast-hover" style="padding:1.25rem;background:var(--cloud);border-radius:8px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;">
           <div>
-            <div style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);text-transform:uppercase;">SYSTEM 01 · CLIENT BUILD</div>
+            <div style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);text-transform:uppercase;">2025 · PORTFOLIO PROTOTYPE</div>
             <h3 style="font-size:1.05rem;color:var(--ink);margin:0.35rem 0 0.35rem 0;font-weight:700;">Lead Capture to Booking</h3>
             <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;margin-bottom:1rem;">
-              GoHighLevel calendar automation, 2-way Google sync, and instant SMS reminders.
+              GoHighLevel Availability Widget scheduling, Google Calendar sync, and workflow-triggered booking confirmations.
             </p>
           </div>
           <a href="/system-lead-capture" class="btn btn-secondary" style="font-size:0.8rem;padding:0.5rem 1rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:0.35rem;">
