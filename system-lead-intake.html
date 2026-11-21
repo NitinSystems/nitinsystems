@@ -72,7 +72,7 @@
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "headline": "Lead Intake & Duplicate Verification System Case Study",
-    "description": "Multi-source lead intake and deduplication engine built on Make.com, Airtable, and HubSpot.",
+    "description": "Website lead intake and deduplication engine built on Make.com, Airtable, and HubSpot.",
     "author": {
       "@type": "Person",
       "name": "Nitin Mishra"
@@ -214,7 +214,7 @@
       <span class="air-word-outer"><span class="air-word-inner air-word-gradient">Duplicate</span></span><span class="air-word-outer"><span class="air-word-inner air-word-gradient">Verification</span></span><span class="air-word-outer"><span class="air-word-inner air-word-gradient">System</span></span>
     </h1>
     <p class="animate-hero-sub" style="font-size:1.05rem;color:var(--ink-soft);line-height:1.7;margin-bottom:1.25rem;">
-      An automated lead intake and duplicate verification workflow built with Make.com, Airtable record lookup, and selective HubSpot contact synchronization: detecting repeat submissions within 24 hours, updating existing records, and sending Outlook notifications automatically.
+      A custom-built lead intake and duplicate verification system using two decoupled Make.com scenarios, Airtable email lookup, and selective HubSpot contact synchronization. It checks for repeat submissions within a 24-hour window, gives returning prospects a live choice, and routes accepted submissions through an existing-record update or new-record creation path.
     </p>
 
     <!-- METRICS & TECH PILLS -->
@@ -222,11 +222,11 @@
       <div class="glass-card" style="padding:1.15rem 1.25rem;background:#FFFFFF;border-left:3px solid var(--cobalt);">
         <div style="font-size:0.65rem;font-family:var(--font-mono);color:var(--ink-muted);text-transform:uppercase;">Ingestion &amp; Routing</div>
         <div style="font-size:1.05rem;font-weight:700;color:var(--ink);margin-top:0.25rem;">Make.com (2 Scenarios)</div>
-        <div style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.2rem;">2 instant custom webhooks</div>
+        <div style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.2rem;">2 Make.com webhook endpoints</div>
       </div>
       <div class="glass-card" style="padding:1.15rem 1.25rem;background:#FFFFFF;border-left:3px solid var(--cobalt);">
         <div style="font-size:0.65rem;font-family:var(--font-mono);color:var(--ink-muted);text-transform:uppercase;">Deduplication Layer</div>
-        <div style="font-size:1.05rem;font-weight:700;color:var(--ink);margin-top:0.25rem;">Airtable Relational DB</div>
+        <div style="font-size:1.05rem;font-weight:700;color:var(--ink);margin-top:0.25rem;">Airtable Record Store</div>
         <div style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.2rem;">24-hour email lookup &amp; duplicate prompt</div>
       </div>
       <div class="glass-card" style="padding:1.15rem 1.25rem;background:#FFFFFF;border-left:3px solid var(--cobalt);">
@@ -238,7 +238,7 @@
 
     <!-- SCOPE DISCLOSURE -->
     <div class="animate-hero-console" style="margin-top:1.25rem;padding:0.75rem 1.25rem;background:var(--cloud);border:1px dashed var(--line);border-radius:8px;font-size:0.78rem;color:var(--ink-soft);line-height:1.6;">
-      <strong style="color:var(--ink);">Self-Initiated System Design:</strong> Built in a portfolio test environment to prevent duplicate lead entries from repeat form submissions and keep Airtable and HubSpot contact records clean.
+      <strong style="color:var(--ink);">Self-Initiated Portfolio System:</strong> Designed and tested in a portfolio environment. The system uses two decoupled Make.com scenarios to check for repeat submissions, update or create Airtable records, synchronize selected contact properties with HubSpot, and send Outlook notifications.
     </div>
   </div>
 </section>
@@ -260,8 +260,8 @@
           <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.6;margin-top:0.25rem;">Repeated inquiry details and form submissions split across duplicate contact records for the same prospect.</p>
         </div>
         <div>
-          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:#F43F5E;"><span style="color:#F43F5E;font-weight:700;margin-right:0.25rem;">✕</span> REVENUE ATTRIBUTION BLIND SPOTS</div>
-          <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.6;margin-top:0.25rem;">Marketing cannot accurately track campaign ROI because duplicate records mask original source attribution.</p>
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:#F43F5E;"><span style="color:#F43F5E;font-weight:700;margin-right:0.25rem;">✕</span> DUPLICATE CONTACT RECORDS</div>
+          <p style="font-size:0.82rem;color:var(--ink-soft);line-height:1.6;margin-top:0.25rem;">Unchecked repeat form submissions create redundant contacts in HubSpot, confusing sales representatives and fragmenting engagement logs.</p>
         </div>
       </div>
     </div>
@@ -454,10 +454,10 @@
       </div>
     </div>
 
-    <!-- 05 RELATIONAL DATABASE & CRM SYNC -->
+    <!-- 05 DATABASE GOVERNANCE & CRM SYNC -->
     <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;">
       <span class="badge-pill" style="margin-bottom:0.75rem;">05 DATABASE GOVERNANCE &amp; CRM SYNC</span>
-      <h2 class="section-title shimmer-sweep-title" style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Airtable Relational Index &amp; HubSpot CRM Verification</h2>
+      <h2 class="section-title shimmer-sweep-title" style="font-size:1.4rem;color:var(--ink);margin-bottom:0.75rem;">Airtable State Management &amp; HubSpot CRM Synchronization</h2>
       <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1.5rem;">
         Sample portfolio records confirming Airtable intake storage and selective field synchronization into HubSpot Contacts:
       </p>
@@ -465,17 +465,17 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem;">
         <!-- AIRTABLE -->
         <div style="background:var(--cloud);padding:1rem;border-radius:8px;border:1px solid var(--line);">
-          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);margin-bottom:0.4rem;">01 · AIRTABLE RELATIONAL RECORDS</div>
+          <div style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);margin-bottom:0.4rem;">01 · AIRTABLE STATE STORE</div>
           <img 
             src="assets/images/case-study/lead-intake/airtable-records.png" 
-            alt="Airtable Relational Database Records" 
+            alt="Airtable State Management Records" 
             loading="lazy" 
             decoding="async" 
             style="width:100%;height:190px;object-fit:contain;background:#0F172A;border-radius:6px;cursor:pointer;border:1px solid var(--line);padding:4px;"
-            onclick="openImgModal('Airtable Relational Database Index', 'assets/images/case-study/lead-intake/airtable-records.png')"
+            onclick="openImgModal('Airtable State Management Index', 'assets/images/case-study/lead-intake/airtable-records.png')"
             class="raycast-hover"
           />
-          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Airtable table (Nitin-Mishra-Portfolio-Leads-Table) storing submitted lead fields along with duplicate decision and duplicate check source tracking.</p>
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Stores submitted lead information, email-based lookup data, and duplicate-decision details. The intake scenario updates an existing matching record or creates a new record when no match is found.</p>
         </div>
 
         <!-- HUBSPOT CRM -->
@@ -490,7 +490,34 @@
             onclick="openImgModal('HubSpot CRM Verified Contact Records', 'assets/images/case-study/lead-intake/hubspot-crm-records.png')"
             class="raycast-hover"
           />
-          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Synced HubSpot CRM contacts populated with selected intake properties (Business Type, Service Type, Lead Challenge, and Tools Used), without duplicate contacts.</p>
+          <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;line-height:1.5;">Receives selected intake properties through the Make.com workflow. Existing contacts are updated in-place, while new contacts are created when no matching record exists.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05B TESTING & SYSTEM BOUNDARIES -->
+    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;border-left:3px solid var(--cobalt);margin-bottom:2.5rem;">
+      <span class="badge-pill" style="margin-bottom:0.75rem;">ENGINEERING GOVERNANCE</span>
+      <h3 style="font-size:1.25rem;color:var(--ink);margin:0 0 0.5rem 0;font-weight:700;">Testing &amp; System Boundaries</h3>
+      <p style="font-size:0.88rem;color:var(--ink-soft);line-height:1.7;margin-bottom:1.25rem;">
+        The workflow was verified using sample portfolio submissions to confirm the duplicate lookup, existing-record update path, new-record creation path, CRM synchronization, and Outlook alerts.
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;background:var(--cloud);padding:1.25rem;border-radius:8px;font-size:0.8rem;color:var(--ink-soft);line-height:1.6;">
+        <div>
+          <strong style="color:var(--ink);display:block;margin-bottom:0.25rem;">• Matching Key &amp; Window:</strong>
+          Duplicate detection uses the submitted email address within a strict 24-hour lookup window.
+        </div>
+        <div>
+          <strong style="color:var(--ink);display:block;margin-bottom:0.25rem;">• Fail-Open Fallback:</strong>
+          If the verification request fails or times out after 3 seconds, the frontend allows submission to avoid lost inquiries.
+        </div>
+        <div>
+          <strong style="color:var(--ink);display:block;margin-bottom:0.25rem;">• Scope Boundary:</strong>
+          HubSpot synchronization updates Contacts only, excluding automated Deal creation or sales-stage transitions.
+        </div>
+        <div>
+          <strong style="color:var(--ink);display:block;margin-bottom:0.25rem;">• Environment:</strong>
+          Self-initiated and tested portfolio architecture, built to demonstrate full-stack intake and workflow engineering.
         </div>
       </div>
     </div>
