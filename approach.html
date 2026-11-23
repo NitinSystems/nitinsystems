@@ -72,7 +72,7 @@
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "Engineering Systematic Reliability | Approach",
-    "description": "Core technical principles and operational methodology for production B2B automation systems.",
+    "description": "Core engineering principles and operational methodology for production B2B automation systems.",
     "publisher": {
       "@type": "Organization",
       "name": "Nitin Systems",
@@ -88,7 +88,7 @@
 <header id="navbar" class="animate-hero-nav">
   <div id="navbar-inner">
     <div class="nav-brand-wrap">
-        <a href="/" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;">
+        <a href="/" aria-label="Nitin Systems homepage" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;">
           <div class="brand-logo-box" style="width:34px;height:34px;background:#FFFFFF;border:1px solid var(--line);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,0.04);padding:4px;">
             <img src="assets/logo/nav-logo.webp" alt="Nitin Systems brand logo" style="width:100%;height:100%;object-fit:contain;" />
           </div>
@@ -97,47 +97,46 @@
       </div>
 
     <nav class="nav-links-wrap">
-      <a href="/" class="nav-link">Home</a>
       <a href="/services" class="nav-link">Services</a>
       <div class="nav-dropdown">
         <a href="/systems" class="nav-link" style="display:flex;align-items:center;gap:0.25rem;">
-          Systems <span style="font-size:0.65rem;opacity:0.7;">▾</span>
+          Systems <span style="font-size:0.65rem;opacity:0.7;">&#9662;</span>
         </a>
-                <div class="nav-dropdown-menu">
-          <a href="/systems#case-studies" class="dropdown-item">
+        <div class="nav-dropdown-menu">
+          <a href="/system-ai-agent" class="dropdown-item">
+            <div class="dropdown-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div class="dropdown-item-content">
+              <span class="dropdown-item-title">AI Inbound Qualification &amp; Operations</span>
+              <span class="dropdown-item-desc">Website AI Agent &middot; Lead Qualification &middot; CRM Workflow</span>
+            </div>
+          </a>
+          <a href="/system-lead-capture" class="dropdown-item">
             <div class="dropdown-item-icon">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             </div>
             <div class="dropdown-item-content">
               <span class="dropdown-item-title">Lead Capture to Booking</span>
-              <span class="dropdown-item-desc">GoHighLevel · Calendar · Instant Routing</span>
+              <span class="dropdown-item-desc">Lead Capture &middot; Calendar Sync &middot; Reminders</span>
             </div>
           </a>
-          <a href="/systems#case-studies" class="dropdown-item">
+          <a href="/system-lead-intake" class="dropdown-item">
             <div class="dropdown-item-icon">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
             </div>
             <div class="dropdown-item-content">
               <span class="dropdown-item-title">Lead Intake &amp; Duplicate Verification</span>
-              <span class="dropdown-item-desc">Make.com · Airtable · HubSpot Sync</span>
+              <span class="dropdown-item-desc">Data Validation &middot; Deduplication &middot; CRM Routing</span>
             </div>
           </a>
-          <a href="/systems#case-studies" class="dropdown-item">
+          <a href="/system-ai-journey" class="dropdown-item">
             <div class="dropdown-item-icon">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3"/><path d="M15 1v3"/><path d="M9 20v3"/><path d="M15 20v3"/><path d="M20 9h3"/><path d="M20 14h3"/><path d="M1 9h3"/><path d="M1 14h3"/></svg>
             </div>
             <div class="dropdown-item-content">
-              <span class="dropdown-item-title">AI Customer Journey Ops</span>
-              <span class="dropdown-item-desc">7 Scenarios · Multi-Branch Logic · AI Agent</span>
-            </div>
-          </a>
-                    <a href="/system-ai-agent" class="dropdown-item">
-            <div class="dropdown-item-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <div class="dropdown-item-content">
-              <span class="dropdown-item-title">Autonomous Consultative AI Agent</span>
-              <span class="dropdown-item-desc">Gemini Flash-Lite · Sub-2s Edge · CRM Ingestion</span>
+              <span class="dropdown-item-title">AI Customer Journey Operations</span>
+              <span class="dropdown-item-desc">Lead Recovery &middot; Follow-up &middot; Workflow Automation</span>
             </div>
           </a>
           <div class="dropdown-divider"></div>
@@ -151,14 +150,14 @@
           </a>
         </div>
       </div>
+      <a href="/case-studies" class="nav-link">Case Studies</a>
       <a href="/approach" class="nav-link active">Approach</a>
       <a href="/about" class="nav-link">About</a>
-      <a href="/insights" class="nav-link">Insights</a>
     </nav>
 
     <div class="nav-actions-wrap">
-      <a href="/audit" class="btn btn-primary" style="padding:0.45rem 1rem;font-size:0.85rem;">Discuss a Project →</a>
-      <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle menu">☰</button>
+      <a href="/audit" class="btn btn-primary" style="padding:0.45rem 1rem;font-size:0.85rem;">Discuss a Project &rarr;</a>
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle menu">&#9776;</button>
     </div>
   </div>
 </header>
@@ -166,26 +165,26 @@
 <!-- MOBILE NAVIGATION DRAWER & BACKDROP -->
 <div id="mobile-drawer" class="mobile-drawer" style="display:none;">
   <div class="mobile-drawer-header">
-    <div style="display:flex;align-items:center;gap:0.6rem;">
+    <a href="/" aria-label="Nitin Systems homepage" style="display:flex;align-items:center;gap:0.6rem;text-decoration:none;" onclick="closeMobileMenu()">
       <div class="brand-logo-box" style="width:28px;height:28px;background:#FFFFFF;border:1px solid var(--line);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;padding:3px;">
         <img src="assets/logo/nav-logo.webp" alt="Nitin Systems brand logo" style="width:100%;height:100%;object-fit:contain;" />
       </div>
       <span style="font-family:var(--font-serif);font-weight:700;font-size:1.05rem;color:var(--ink);">Nitin Systems</span>
-    </div>
-    <button class="mobile-drawer-close" onclick="closeMobileMenu()" aria-label="Close menu">✕</button>
+    </a>
+    <button class="mobile-drawer-close" onclick="closeMobileMenu()" aria-label="Close menu">&#10005;</button>
   </div>
   <nav class="mobile-nav-links">
-    <a href="/" class="mobile-nav-link" onclick="closeMobileMenu()">Home</a>
     <a href="/services" class="mobile-nav-link" onclick="closeMobileMenu()">Services</a>
     <a href="/systems" class="mobile-nav-link" onclick="closeMobileMenu()">Systems Library</a>
+    <a href="/case-studies" class="mobile-nav-link" onclick="closeMobileMenu()">Case Studies</a>
     <a href="/approach" class="mobile-nav-link active" onclick="closeMobileMenu()">Approach</a>
     <a href="/about" class="mobile-nav-link" onclick="closeMobileMenu()">About</a>
-    <a href="/insights" class="mobile-nav-link" onclick="closeMobileMenu()">Insights</a>
   </nav>
   <div class="mobile-drawer-footer">
-    <a href="/audit" class="btn btn-primary" style="width:100%;text-align:center;padding:0.75rem 1rem;" onclick="closeMobileMenu()">Discuss a Project →</a>
-    <div style="margin-top:0.75rem;font-size:0.7rem;color:var(--ink-muted);text-align:center;">
-      <span>B2B Automation Systems</span>
+    <a href="/audit" class="btn btn-primary" style="width:100%;text-align:center;padding:0.75rem 1rem;" onclick="closeMobileMenu()">Discuss a Project &rarr;</a>
+    <div style="margin-top:0.85rem;padding-top:0.75rem;border-top:1px solid rgba(0,0,0,0.06);text-align:center;display:flex;flex-direction:column;gap:0.25rem;">
+      <span style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--ink);letter-spacing:0.04em;">Nitin Systems</span>
+      <span style="font-size:0.66rem;font-family:var(--font-mono);color:var(--ink-muted);letter-spacing:0.02em;">B2B Automation &amp; Operations Systems</span>
     </div>
   </div>
 </div>
@@ -333,8 +332,7 @@
           <div class="brand-logo-box"><img src="assets/logo/nav-logo.webp" alt="Nitin Systems brand logo" style="width:24px;height:24px;object-fit:contain;" /></div>
           <span style="font-family:var(--font-serif);font-weight:700;font-size:1.2rem;color:var(--ink);">Nitin Systems</span>
         </a>
-        <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.7;margin-top:0.85rem;max-width:400px;">Nitin Systems builds custom automation and operations systems for B2B service businesses, covering lead management, CRM workflows, process automation, AI-assisted applications and conversion systems.</p>
-        
+        <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.7;margin-top:0.85rem;max-width:380px;">Solo-led B2B automation systems business founded and operated by Nitin Mishra. Designing, architecting, and delivering practical, reliable automation pipelines for growing service businesses.</p>
         <p style="font-size:0.72rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;letter-spacing:0.08em;margin-top:0.65rem;margin-bottom:0;line-height:1.45;">BASED IN DELHI NCR, INDIA &middot; OPERATING ON IST (UTC+5:30)</p>
         <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:0.35rem;margin-bottom:0;line-height:1.5;">Serving B2B founders and growing teams across India, US, UK &amp; Europe.</p>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.6rem;margin-top:1.25rem;">
@@ -359,6 +357,7 @@
         <ul style="display:flex;flex-direction:column;gap:0.5rem;list-style:none;padding:0;margin:0;">
           <li><a href="/" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Home</a></li>
           <li><a href="/services" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Services</a></li>
+          <li><a href="/case-studies" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Case Studies</a></li>
           <li><a href="/systems" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Systems Library</a></li>
           <li><a href="/approach" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">Approach</a></li>
           <li><a href="/about" style="font-size:0.8rem;color:var(--ink-soft);text-decoration:none;">About</a></li>
@@ -373,21 +372,21 @@
         <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.65;margin-bottom:1.15rem;max-width:320px;">Explore documented client implementations, architecture blueprints, and end-to-end workflow case studies.</p>
         <a href="/systems" class="btn btn-secondary raycast-hover" style="display:inline-flex;align-items:center;gap:0.45rem;font-size:0.78rem;padding:0.55rem 1.15rem;text-decoration:none;border-radius:0.5rem;font-weight:600;">
           <span>Explore Systems Library</span>
-          <span style="color:var(--cobalt);">→</span>
+          <span style="color:var(--cobalt);">&rarr;</span>
         </a>
       </div>
     </div>
 
     <!-- Bottom Bar -->
-        <div class="footer-bottom-bar" style="padding-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;font-size:0.72rem;color:var(--ink-muted);">
-      <p class="footer-copyright" style="font-weight:400;color:#64748B;margin:0;margin-right:auto;">© 2026 Nitin Systems. All rights reserved.</p>
+    <div class="footer-bottom-bar" style="padding-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;font-size:0.72rem;color:var(--ink-muted);">
+      <p class="footer-copyright" style="font-weight:400;color:#64748B;margin:0;margin-right:auto;">&copy; 2026 Nitin Systems. All rights reserved.</p>
       <div class="footer-legal-pair" style="display:inline-flex;align-items:center;gap:0.5rem;white-space:nowrap;">
         <a href="/privacy" style="color:var(--ink-muted);text-decoration:none;">Privacy Policy</a>
-        <span style="color:var(--line);">·</span>
+        <span style="color:var(--line);">&middot;</span>
         <a href="/terms" style="color:var(--ink-muted);text-decoration:none;">Terms of Service</a>
       </div>
-      <span class="footer-desktop-sep" style="color:var(--line);">·</span>
-      <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="footer-back-to-top" style="padding:0.35rem 0.75rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.72rem;cursor:pointer;color:var(--ink-soft);">Back to top ↑</button>
+      <span class="footer-desktop-sep" style="color:var(--line);">&middot;</span>
+      <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="footer-back-to-top" style="padding:0.35rem 0.75rem;border-radius:0.5rem;background:var(--paper);border:1px solid var(--line);font-size:0.72rem;cursor:pointer;color:var(--ink-soft);">Back to top &uarr;</button>
     </div>
   </div>
 </footer>
@@ -396,7 +395,7 @@
   <div class="modal-card">
     <button class="modal-close-btn" onclick="closePdfModal()" aria-label="Close modal">✕</button>
     <h3 id="modal-pdf-title" style="font-family:var(--font-serif);font-weight:700;font-size:1.25rem;color:var(--ink);margin-bottom:0.4rem;">Document Preview</h3>
-    <p style="font-size:0.8rem;color:var(--ink-soft);margin-bottom:1.5rem;">Access the verified technical case study document.</p>
+    <p style="font-size:0.8rem;color:var(--ink-soft);margin-bottom:1.5rem;">Access the verified system case study document.</p>
     <a id="modal-pdf-open" href="javascript:void(0)" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%;margin-bottom:0.5rem;">Open in New Tab ↗</a>
     <a id="modal-pdf-download" href="javascript:void(0)" download class="btn btn-secondary" style="width:100%;">Download PDF</a>
   </div>
