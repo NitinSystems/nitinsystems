@@ -1067,7 +1067,7 @@ MACHINE-READABLE DISPATCH TAG:
     initAgentUI();
   }
 
-  window.NitinSystemsAIAgent = {
+  window.NitinSystemsAIInbound = window.NitinSystemsAIAgent = {
     open: () => toggleChat(true),
     close: () => toggleChat(false),
     toggle: () => toggleChat(),

@@ -206,8 +206,8 @@ Because this payload matches the exact contract of the **Unified Ingestion Pipel
 | File | Path | Function |
 | :--- | :--- | :--- |
 | **1. Markup** | `.../nitinsystems/index.html` & `audit.html` | Embeds the container `<div id="ns-ai-agent-root"></div>`. |
-| **2. Styling** | `.../nitinsystems/assets/css/ai-agent.css` | Implements dark luxury theme, chat bubbles, animations. |
-| **3. Controller**| `.../nitinsystems/assets/js/ai-agent.js` | Manages message state, Gemini API calls, and webhook POST. |
+| **2. Styling** | `.../nitinsystems/assets/css/ai-inbound.css` | Implements dark luxury theme, chat bubbles, animations. |
+| **3. Controller**| `.../nitinsystems/assets/js/ai-inbound.js` | Manages message state, Gemini API calls, and webhook POST. |
 | **4. Blueprint** | `.../nitinsystems/AI_AGENT_ARCHITECTURE_BLUEPRINT.md` | Master reference specification (this file). |
 
 ---

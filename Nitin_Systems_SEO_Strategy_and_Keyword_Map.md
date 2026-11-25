@@ -84,7 +84,7 @@ To prevent destructive keyword cannibalization (where multiple pages compete aga
 | **`/system-lead-capture`** | System 01 real-world build | `lead capture and booking automation` | Two-way calendar sync, email notifications |
 | **`/system-lead-intake`** | System 02 Make.com build | `lead intake and duplicate verification` | Make.com scenarios, Airtable normalization, HubSpot sync |
 | **`/system-ai-journey`** | System 03 architecture case study | `customer journey operations architecture` | Lifecycle status recovery, multi-branch workflow |
-| **`/system-ai-agent`** | System 04 consultative agent | `custom consultative AI agent architecture` | On-site qualification, edge serverless proxy |
+| **`/system-ai-inbound`** | System 04 consultative agent | `custom consultative AI agent architecture` | On-site qualification, edge serverless proxy |
 | **`/approach`** | 6-stage engineering process | `systems architecture and delivery process` | Process discovery, data modeling, payload validation |
 | **`/about`** | Founder narrative & credentials | `Nitin Mishra automation systems specialist` | Nitin Systems founder, solo delivery model |
 | **`/audit`** | Diagnostic scope submission | `discuss B2B automation project` | Project scope evaluation, technical call booking |

@@ -42,5 +42,12 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/system-ai-agent",
+      "destination": "/system-ai-inbound",
+      "permanent": true
+    }
   ]
 }
