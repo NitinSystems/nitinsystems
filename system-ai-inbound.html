@@ -66,10 +66,13 @@
     gap: 0.85rem !important;
   }
 }
+.verification-table-wrap {
+  width: 100%;
+  margin-top: 1rem;
+}
 .verification-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1rem;
   font-size: 0.85rem;
 }
 .verification-table th {
@@ -81,6 +84,7 @@
   font-size: 0.72rem;
   text-transform: uppercase;
   border: 1px solid var(--line);
+  white-space: nowrap;
 }
 .verification-table td {
   padding: 0.85rem 1rem;
@@ -90,6 +94,64 @@
 }
 .verification-table tr:nth-child(even) {
   background: rgba(248, 250, 252, 0.6);
+}
+@media (max-width: 640px) {
+  .verification-table, 
+  .verification-table tbody, 
+  .verification-table tr, 
+  .verification-table td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .verification-table thead {
+    display: none;
+  }
+  .verification-table tr {
+    background: #FFFFFF !important;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    margin-bottom: 1.25rem;
+    padding: 1.15rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  }
+  .verification-table td {
+    border: none;
+    padding: 0.45rem 0;
+    font-size: 0.84rem;
+  }
+  .verification-table td:first-child {
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--cobalt);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.6rem;
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .verification-table td:nth-child(2)::before {
+    content: "VERIFIED EVIDENCE: ";
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--emerald);
+    display: block;
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.03em;
+  }
+  .verification-table td:nth-child(3)::before {
+    content: "OPERATIONAL SCOPE: ";
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--ink-muted);
+    display: block;
+    margin-top: 0.45rem;
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.03em;
+  }
 }
 </style>
   <script type="application/ld+json">
@@ -719,52 +781,54 @@
         The system has been evaluated using live submissions through both entry surfaces on nitinsystems.com. The table below delineates verified functional behaviors from operational boundaries:
       </p>
 
-      <table class="verification-table">
-        <thead>
-          <tr>
-            <th>Functional Layer</th>
-            <th>Verified Implementation Evidence</th>
-            <th>Operational Boundary &amp; Scope</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Inbound Capture</strong></td>
-            <td>Two separate entry paths: static audit form (/audit) and interactive on-site AI widget.</td>
-            <td>Path A terminates on /thank-you-page; Path B renders an in-chat receipt card.</td>
-          </tr>
-          <tr>
-            <td><strong>AI Consultation</strong></td>
-            <td>Answers systems inquiries concisely; surfaces structured intake card upon qualification.</td>
-            <td>Assists with qualification; does not finalize pricing or execute service contracts.</td>
-          </tr>
-          <tr>
-            <td><strong>Middleware Ingestion</strong></td>
-            <td>Make.com scenario successfully parses payloads and triggers multi-destination routes.</td>
-            <td>Payload execution verified on documented test runs; not measured under high-volume stress.</td>
-          </tr>
-          <tr>
-            <td><strong>Database Logging</strong></td>
-            <td>Four test records successfully created in Airtable with source attribution.</td>
-            <td>Demonstrates multi-source capture; does not constitute long-term performance telemetry.</td>
-          </tr>
-          <tr>
-            <td><strong>CRM Synchronization</strong></td>
-            <td>HubSpot contacts synchronized with custom property mapping (Stack, Friction, Service).</td>
-            <td>Structured field mapping executed during test suite; manual field validation retained.</td>
-          </tr>
-          <tr>
-            <td><strong>Internal Alerts</strong></td>
-            <td>Automated Slack message in #nitinsystems and detailed founder notification email in Outlook.</td>
-            <td>Triggered on successful webhook execution; delivery dependent on third-party service uptime.</td>
-          </tr>
-          <tr>
-            <td><strong>Prospect Communication</strong></td>
-            <td>Automated branded confirmation email delivered to prospect inbox with 24h review expectation.</td>
-            <td>Communicates a stated operational review target, not an automated SLA contract.</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="verification-table-wrap">
+        <table class="verification-table">
+          <thead>
+            <tr>
+              <th>Functional Layer</th>
+              <th>Verified Implementation Evidence</th>
+              <th>Operational Boundary &amp; Scope</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Inbound Capture</strong></td>
+              <td>Two separate entry paths: static audit form (/audit) and interactive on-site AI widget.</td>
+              <td>Path A terminates on /thank-you-page; Path B renders an in-chat receipt card.</td>
+            </tr>
+            <tr>
+              <td><strong>AI Consultation</strong></td>
+              <td>Answers systems inquiries concisely; surfaces structured intake card upon qualification.</td>
+              <td>Assists with qualification; does not finalize pricing or execute service contracts.</td>
+            </tr>
+            <tr>
+              <td><strong>Middleware Ingestion</strong></td>
+              <td>Make.com scenario successfully parses payloads and triggers multi-destination routes.</td>
+              <td>Payload execution verified on documented test runs; not measured under high-volume stress.</td>
+            </tr>
+            <tr>
+              <td><strong>Database Logging</strong></td>
+              <td>Four test records successfully created in Airtable with source attribution.</td>
+              <td>Demonstrates multi-source capture; does not constitute long-term performance telemetry.</td>
+            </tr>
+            <tr>
+              <td><strong>CRM Synchronization</strong></td>
+              <td>HubSpot contacts synchronized with custom property mapping (Stack, Friction, Service).</td>
+              <td>Structured field mapping executed during test suite; manual field validation retained.</td>
+            </tr>
+            <tr>
+              <td><strong>Internal Alerts</strong></td>
+              <td>Automated Slack message in #nitinsystems and detailed founder notification email in Outlook.</td>
+              <td>Triggered on successful webhook execution; delivery dependent on third-party service uptime.</td>
+            </tr>
+            <tr>
+              <td><strong>Prospect Communication</strong></td>
+              <td>Automated branded confirmation email delivered to prospect inbox with 24h review expectation.</td>
+              <td>Communicates a stated operational review target, not an automated SLA contract.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <div style="margin-top:1.25rem;padding:1rem;background:var(--cloud);border:1px dashed var(--line);border-radius:8px;font-size:0.8rem;color:var(--ink-soft);line-height:1.6;">
         <strong style="color:var(--ink);">Documented Testing Boundary:</strong> The four records captured in Airtable and synchronized to HubSpot demonstrate that data flows accurately across all configured endpoints under tested conditions. These results verify integration functionality rather than measured statistical conversion lift or universal high-volume concurrency.
@@ -787,7 +851,7 @@
           <div>
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;">
               <span style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;">VISUAL DECK</span>
-              <span style="font-size:0.68rem;font-family:var(--font-mono);color:var(--ink-muted);background:var(--cloud);border:1px solid var(--line);padding:0.15rem 0.5rem;border-radius:4px;">8 Pages · Slide Deck</span>
+              <span style="font-size:0.68rem;font-family:var(--font-mono);color:var(--ink-muted);background:var(--cloud);border:1px solid var(--line);padding:0.15rem 0.5rem;border-radius:4px;">9 Pages · Slide Deck</span>
             </div>
             <h4 style="font-size:1.05rem;color:var(--ink);margin:0 0 0.45rem 0;font-weight:700;">Production Build Proof</h4>
             <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;margin-bottom:0.85rem;">
@@ -840,56 +904,22 @@
       </div>
     </div>
 
-    <!-- 08 RELATED PRODUCTION SYSTEMS & CASE STUDIES -->
-    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;">
-      <span class="badge-pill" style="margin-bottom:0.75rem;">08 EXPLORE OTHER SYSTEMS</span>
-      <h2 style="font-size:1.35rem;color:var(--ink);margin-bottom:0.5rem;">Related Production Systems &amp; Case Studies</h2>
-      <p style="font-size:0.88rem;color:var(--ink-soft);margin-bottom:1.5rem;line-height:1.6;">
-        Explore other active client implementations and AI-assisted lifecycle recovery blueprints:
+    <!-- 08 EXPLORE THE SYSTEMS LIBRARY -->
+    <div class="glass-card reveal" style="padding:2.25rem;background:#FFFFFF;margin-bottom:2.5rem;text-align:center;border-left:4px solid var(--cobalt);">
+      <span class="badge-pill" style="margin-bottom:0.75rem;">SYSTEMS &amp; ARCHITECTURE LIBRARY</span>
+      <h2 style="font-size:1.4rem;color:var(--ink);margin-bottom:0.6rem;">Explore All Production Systems &amp; Blueprints</h2>
+      <p style="font-size:0.9rem;color:var(--ink-soft);max-width:620px;margin:0 auto 1.5rem auto;line-height:1.7;">
+        Browse our centralized library of production lead intake engines, AI consultation workflows, CRM automations, and operational delivery blueprints.
       </p>
-
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;">
-        <!-- SYSTEM 01 -->
-        <div class="glass-card raycast-hover" style="padding:1.25rem;background:var(--cloud);border-radius:8px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;">
-          <div>
-            <div style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:var(--emerald);text-transform:uppercase;">SYSTEM 01 · CLIENT BUILD</div>
-            <h3 style="font-size:1.05rem;color:var(--ink);margin:0.35rem 0 0.35rem 0;font-weight:700;">Lead Capture to Booking</h3>
-            <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;margin-bottom:1rem;">
-              GoHighLevel calendar automation, 2-way Google sync, and instant SMS reminders.
-            </p>
-          </div>
-          <a href="/system-lead-capture" class="btn btn-secondary" style="font-size:0.8rem;padding:0.5rem 1rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:0.35rem;">
-            <span>Explore Booking System →</span>
-          </a>
-        </div>
-
-        <!-- SYSTEM 02 -->
-        <div class="glass-card raycast-hover" style="padding:1.25rem;background:var(--cloud);border-radius:8px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;">
-          <div>
-            <div style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;">SYSTEM 02 · CASE STUDY</div>
-            <h3 style="font-size:1.05rem;color:var(--ink);margin:0.35rem 0 0.35rem 0;font-weight:700;">Lead Intake &amp; Duplicate Verification</h3>
-            <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;margin-bottom:1rem;">
-              Make.com webhook ingestion, relational Airtable matching, and selective HubSpot CRM sync.
-            </p>
-          </div>
-          <a href="/system-lead-intake" class="btn btn-secondary" style="font-size:0.8rem;padding:0.5rem 1rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:0.35rem;">
-            <span>Explore Intake System →</span>
-          </a>
-        </div>
-
-        <!-- SYSTEM 03 -->
-        <div class="glass-card raycast-hover" style="padding:1.25rem;background:var(--cloud);border-radius:8px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;">
-          <div>
-            <div style="font-size:0.65rem;font-family:var(--font-mono);font-weight:700;color:var(--cobalt);text-transform:uppercase;">SYSTEM 03 · CASE STUDY</div>
-            <h3 style="font-size:1.05rem;color:var(--ink);margin:0.35rem 0 0.35rem 0;font-weight:700;">AI Customer Journey Ops</h3>
-            <p style="font-size:0.8rem;color:var(--ink-soft);line-height:1.6;margin-bottom:1rem;">
-              7-scenario Make.com automation, relational Airtable records, and Make.com AI Agent triage.
-            </p>
-          </div>
-          <a href="/system-ai-journey" class="btn btn-secondary" style="font-size:0.8rem;padding:0.5rem 1rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:0.35rem;">
-            <span>Explore AI Journey Ops →</span>
-          </a>
-        </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.85rem;">
+        <a href="/systems" class="btn btn-primary raycast-hover" style="font-size:0.85rem;padding:0.65rem 1.4rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;">
+          <span>View Systems Library</span>
+          <span class="arrow-icon">→</span>
+        </a>
+        <a href="/audit" class="btn btn-secondary raycast-hover" style="font-size:0.85rem;padding:0.65rem 1.4rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;background:#FFFFFF;">
+          <span>Discuss a Project</span>
+          <span class="arrow-icon">↗</span>
+        </a>
       </div>
     </div>
 
